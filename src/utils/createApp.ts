@@ -3,9 +3,12 @@ import express, { Express } from "express";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
-import routes from "../routes/index";
+import users from "../routes/auth/index";
+import products from "../routes/products/index";
+import carts from "../routes/carts/index";
 import store from "connect-mongo";
-const db = require("../config/keys").mongoURI;
+import bodyParser from "body-parser";
+const db = require("../../config/keys").mongoURI;
 
 config();
 
@@ -31,7 +34,13 @@ function createApp(): Express {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  app.use('/api', routes);
+  // Enable app to respond to apps like postman
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+
+  app.use('/api/users', users);
+  app.use('/api/products', products);
+  app.use('/api/cart', carts);
   return app;
 };
 

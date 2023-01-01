@@ -6,6 +6,6 @@ import cartRouter from "./carts/index.js";
 
 router.use('/auth', authRouter);
 router.use('/products', productRouter);
-router.use('/cart', cartRouter);
+// router.use('/cart', cartRouter);
 
 export default router;

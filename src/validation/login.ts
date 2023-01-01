@@ -1,7 +1,7 @@
 import Validator from "validator";
-import validText from "./valid-text.js";
+import validText from "./valid-text";
 
-export default function validateLoginInput(data) {
+export default function validateLoginInput(data: { email: string; password: string; }) {
   let errors = {
     email: "",
     password: ""

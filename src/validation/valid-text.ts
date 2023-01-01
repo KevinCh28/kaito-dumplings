@@ -1,5 +1,4 @@
-// Check if given string consists of valid input
-const validText = str => {
+const validText = (str: string) => {
   return typeof str === 'string' && str.trim().length > 0;
 };
 
