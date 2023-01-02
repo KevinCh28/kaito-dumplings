@@ -40,7 +40,7 @@ function createApp(): Express {
 
   app.use('/api/users', users);
   app.use('/api/products', products);
-  app.use('/api/cart', carts);
+  // app.use('/api/cart', carts);
   return app;
 };
 
