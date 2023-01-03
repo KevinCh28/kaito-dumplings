@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getUserCart } from '../utils/cart_api_util';
+import { getUserCart } from '../utils/cartApiUtil';
 import User from '../database/schemas/User';
 
 export async function getCartController(req: Request, res: Response) {

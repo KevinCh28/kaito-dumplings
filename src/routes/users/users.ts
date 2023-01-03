@@ -5,9 +5,10 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import validateLoginInput from "../../validation/login";
 import validateRegisterInput from "../../validation/register";
-import validateUserUpdate from "../../validation/users";
 import User from "../../database/schemas/User";
 const keys = require("../../../config/keys");
+const { loginUser, restoreUser } = require("../../../config/passport");
+import { Request, Response, NextFunction } from "express";
 
 // Private auth route for accessing user data on the frontend once logged in
 // router.get('/current',
@@ -31,48 +32,40 @@ router.get('/status', (req, res) => {
 });
 
 //registration route  
-router.post("/register", (req, res) => {
-  console.log(req.body)
-  const { errors, isValid } = validateRegisterInput(req.body);
+router.post("/register", validateRegisterInput, async (req: Request, res: Response, next: NextFunction) => {
+  const { email, firstname, lastname, password, password2 } = req.body;
+  const user = await User.findOne({ email });
 
-  if (!isValid) {
+  if (user) {
+    const errors: any = {};
+    if (user.email === email) {
+      errors.email = "Email already exists";
+    }
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then(user => {
-    if (user) {
-      errors.email = "Email already registered";
-      return res.status(400).json(errors);
-    } else {
-      const newUser = new User({
-        email: req.body.email,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        password: req.body.password
-      });
-
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user => {
-              const payload = { id: user.id, email: user.email };
-
-              jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-                res.json({
-                  success: true,
-                  token: "Bearer " + token
-                });
-              });
-            })
-            .catch(err => console.log(err));
-        });
-      });
-    }
+  const newUser = new User({
+    email: req.body.email,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    password: req.body.password
   });
-});
+
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) throw err;
+    bcrypt.hash(password, salt, async (err, hashedPassword) => {
+      if (err) throw err;
+      try {
+        newUser.password = hashedPassword;
+        const user = await newUser.save();
+        return res.json(loginUser(user));
+      } catch (err) {
+        return next(err);
+      }
+    });
+    });
+  }
+);
 
 //login route
 router.post("/login", (req, res) => {

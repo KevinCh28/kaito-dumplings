@@ -3,7 +3,7 @@ import express, { Express } from "express";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
-import users from "../routes/auth/index";
+import users from "../routes/users/users";
 import products from "../routes/products/index";
 import carts from "../routes/carts/index";
 import store from "connect-mongo";
