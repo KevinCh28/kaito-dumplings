@@ -1,25 +1,14 @@
-import Validator from "validator";
-import validText from "./valid-text";
+import { check } from 'express-validator';
+import handleValidationErrors from "./handleValidationErrors";
 
-export default function validateLoginInput(data: { email: string; password: string; }) {
-  let errors = {
-    email: "",
-    password: ""
-  };
-
-  data.email = validText(data.email) ? data.email : '';
-  data.password = validText(data.password) ? data.password : '';
-
-  if (Validator.isEmpty(data.email)) {
-    errors.email = 'Email field is required';
-  }
-
-  if (Validator.isEmpty(data.password)) {
-    errors.password = 'Password field is required';
-  }
-
-  return {
-    errors,
-    isValid: errors.email.length === 0 && errors.password.length === 0
-  };
-};
+const validateLoginInput = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .isEmail()
+    .withMessage('Please provide a valid email address'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 6 })
+    .withMessage('Password must be at least 6 characters'),
+  handleValidationErrors
+];
