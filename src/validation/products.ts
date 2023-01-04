@@ -1,25 +1,31 @@
-import Validator from "validator";
-import validText from "./valid-text";
+import { check } from 'express-validator';
+import handleValidationErrors from "./handleValidationErrors";
 
-export default function validateProductInput(data: { name: string; description: string; }) {
-  let errors = {
-    name: "",
-    description: ""
-  };
+const validateProductInput = [
+  check('name')
+    .exists({ checkFalsy: true })
+    .withMessage('Product name is required')
+    .isLength({ min: 1, max: 30 })
+    .withMessage('Product name must be between 4 to 30 characters')
+    .matches(/[a-zA-Z]/)
+    .withMessage('Product name contains invalid values'),
+  check('description')
+    .exists({ checkFalsy: true })
+    .withMessage('Product description is required'),
+  check('price')
+    .exists({ checkFalsy: true })
+    .withMessage('Product price is required')
+    .isNumeric()
+    .withMessage('Product price must be a number')
+    .matches(/[0-9]/)
+    .withMessage('Product price contains non numeric values'),
+  check('imageUrl')
+    .exists({ checkFalsy: true })
+    .withMessage('Product image url is required'),
+  check('category')
+    .exists({ checkFalsy: true })
+    .withMessage('Product category is required'),
+  handleValidationErrors
+];
 
-  data.name = validText(data.name) ? data.name : '';
-  data.description = validText(data.description) ? data.description : '';
-
-  if (Validator.isEmpty(data.name)) {
-    errors.name = 'Product name is required';
-  }
-
-  if (Validator.isEmpty(data.description)) {
-    errors.description = 'Product description is required';
-  }
-
-  return {
-    errors,
-    isValid: errors.name.length === 0 && errors.description.length === 0
-  };
-};
+export default validateProductInput;
