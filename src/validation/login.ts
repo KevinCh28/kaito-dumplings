@@ -12,3 +12,5 @@ const validateLoginInput = [
     .withMessage('Password must be at least 6 characters'),
   handleValidationErrors
 ];
+
+export default validateLoginInput;
