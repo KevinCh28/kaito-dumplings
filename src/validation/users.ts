@@ -1,29 +1,18 @@
-import Validator from "validator";
-import validText from "./valid-text";
+import { check } from 'express-validator';
+import handleValidationErrors from "./handleValidationErrors";
 
-export default function validateUserUpdate(data: { password: string; password2: string; }) {
-  let errors = {
-    password: '',
-    password2: ''
-  };
+const validateUserUpdate = [
+  check('password')
+    .trim()
+    .exists({ checkFalsy: true })
+    .isLength({ min: 6, max: 16 })
+    .withMessage('Password must be between 6 to 16 characters.'),
+  check('password2')
+    .trim()
+    .exists({ checkFalsy: true })
+    .custom((value, { req }) => value === req.body.password)
+    .withMessage("The passwords do not match"),
+  handleValidationErrors
+];
 
-  data.password = validText(data.password) ? data.password : '';
-  data.password2 = validText(data.password2) ? data.password2 : '';
-
-  if (Validator.isEmpty(data.password)) {
-    errors.password = 'Password is required';
-  }
-
-  if (Validator.isEmpty(data.password2)) {
-    errors.password2 = 'Passwords does not match';
-  }
-
-  if (!Validator.equals(data.password, data.password2)) {
-    errors.password2 = 'Passwords does not match';
-  }
-
-  return {
-    errors,
-    isValid: errors.password.length === 0 && errors.password2.length === 0
-  };
-};
+export default validateUserUpdate;
