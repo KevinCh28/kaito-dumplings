@@ -9,7 +9,7 @@ const validateRegisterInput = [
   check('password')
     .trim()
     .exists({ checkFalsy: true })
-    .isLength({ min: 8, max: 16 })
+    .isLength({ min: 6, max: 16 })
     .withMessage('Password must be between 6 to 16 characters.'),
   check('password2')
     .trim()
