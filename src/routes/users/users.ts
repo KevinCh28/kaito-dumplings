@@ -11,9 +11,9 @@ const { loginUser, restoreUser } = require("../../../config/passport");
 import { Request, Response, NextFunction } from "express";
 
 // Private auth route for accessing user data on the frontend once logged in
-// router.get('/current',
+// router.get("/current",
 //   passport.authenticate('jwt', {session: false}),
-//   (req, res) => {
+//   (req: Request, res: Response) => {
 //     res.json({
 //       id: req.user.id,
 //       firstname: req.user.firstname,
@@ -23,15 +23,8 @@ import { Request, Response, NextFunction } from "express";
 //   }
 // );
 
-router.get('/status', (req, res) => {
-  return req.user
-    ? res.send(req.user)
-    : res.status(401).send({
-      msg: 'Unauthorized'
-  });
-});
-
-//registration route  
+// Registration Route
+// Post /api/users/register
 router.post("/register", validateRegisterInput, async (req: Request, res: Response, next: NextFunction) => {
   const { email, firstname, lastname, password, password2 } = req.body;
   const user = await User.findOne({ email });
@@ -67,20 +60,16 @@ router.post("/register", validateRegisterInput, async (req: Request, res: Respon
   }
 );
 
-//login route
-router.post("/login", (req, res) => {
-  const { errors, isValid } = validateLoginInput(req.body);
-
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
-
+// Login Route
+// Post /api/users/login
+router.post("/login", validateLoginInput, async (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
 
   User.findOne({ email })
     .then(user => {
       if (!user) {
+        const errors: any = {};
         errors.email = "No account found with this email";
         return res.status(400).json(errors);
       }
@@ -100,28 +89,10 @@ router.post("/login", (req, res) => {
               });
             });
           } else {
-            errors.password = "Incorrect password";
-            return res.status(400).json(errors);
+            return res.status(400).json("Incorrect password");
           }
         });
       });
 });
-
-  // PATCH route for User
-// router.patch('/:id',
-//   passport.authenticate('jwt', { session: false }),
-//   (req, res) => {
-//     const { errors, isValid } = validateUserUpdate(req.body);
-//     if (!isValid) {
-//       return res.status(400).json(errors);
-//     }
-//     User.findById(req.params.id)
-//       .then(user => {
-//         user.set(req.body)
-//         res.json(user)
-//       })
-//       .catch(err => res.status(404).json({ noUserFound: "No user found with that ID" }))
-//   }
-// )
 
 export default router;

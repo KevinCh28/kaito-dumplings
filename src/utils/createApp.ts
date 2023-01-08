@@ -6,8 +6,10 @@ import passport from "passport";
 import users from "../routes/users/users";
 import products from "../routes/products/index";
 import carts from "../routes/carts/index";
+import csrfRouter from "../routes/csrf";
 import store from "connect-mongo";
 import bodyParser from "body-parser";
+const cookieParser = require("cookie-parser");
 const db = require("../../config/keys").mongoURI;
 
 config();
@@ -16,6 +18,7 @@ function createApp(): Express {
   const app = express();
   //Enable Parsing Middleware for Requests
   app.use(express.json());
+  app.use(cookieParser());
 
   // Enable CORS
   app.use(cors({ origin: ['http://localhost:3000'], credentials: true }));
@@ -41,6 +44,26 @@ function createApp(): Express {
   app.use('/api/users', users);
   app.use('/api/products', products);
   // app.use('/api/cart', carts);
+  // app.use('/api/csrf', csrfRouter);
+
+  // if (process.env.NODE_ENV === 'production') {
+  //   const path = require("path");
+  //   // Serve the frontend's index.html file at the root route
+  //   app.get("/", (req, res) => {
+  //     res.cookie("CSRF-TOKEN", req.csrfToken());
+  //     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+  //   });
+
+  //   // Serve the static assets in the frontend's build folder
+  //   app.use(express.static(path.resolve("../client", "build")));
+
+  //   // Serve the frontend's index.html file at all other routes NOT starting with /api
+  //   app.get(/^(?!\/?api).*/, (req, res) => {
+  //     res.cookie("CSRF-TOKEN", req.csrfToken());
+  //     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
+  //   });
+  // }
+
   return app;
 };
 
