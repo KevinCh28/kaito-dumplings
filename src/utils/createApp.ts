@@ -4,7 +4,7 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import users from "../routes/users/users";
-import products from "../routes/products/index";
+import products from "../routes/products/products";
 import carts from "../routes/carts/index";
 import csrfRouter from "../routes/csrf";
 import store from "connect-mongo";
@@ -42,7 +42,7 @@ function createApp(): Express {
   app.use(bodyParser.json());
 
   app.use('/api/users', users);
-  app.use('/api/products', products);
+  // app.use('/api/products', products);
   // app.use('/api/cart', carts);
   // app.use('/api/csrf', csrfRouter);
 
