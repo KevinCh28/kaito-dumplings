@@ -5,7 +5,7 @@ import session from "express-session";
 import passport from "passport";
 import users from "../routes/users/users";
 import products from "../routes/products/products";
-import carts from "../routes/carts/index";
+import carts from "../routes/carts/carts";
 import csrfRouter from "../routes/csrf";
 import store from "connect-mongo";
 import bodyParser from "body-parser";

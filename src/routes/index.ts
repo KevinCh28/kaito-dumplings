@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 import authRouter from "./users/users";
 import productRouter from "./products/products";
-import cartRouter from "./carts/index";
+import cartRouter from "./carts/carts";
 
 router.use('/auth', authRouter);
 router.use('/products', productRouter);
