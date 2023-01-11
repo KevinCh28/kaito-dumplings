@@ -16,12 +16,13 @@ const ProductSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    required: true,
   },
   category: {
-    type: String,
-    required: true,
+    type: Schema.Types.ObjectId,
+    ref: 'Category',
   }
+}, {
+  timestamps: true
 });
 
 export default mongoose.model('Product', ProductSchema);
