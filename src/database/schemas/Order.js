@@ -10,6 +10,10 @@ const OrderSchema = new Schema({
     type: String,
     require: true
   },
+  orderStatus: {
+    type: String,
+    enum: ['pending', 'transit', 'completed', 'refunded', 'canceled'],
+  },
   total: {
     type: Number,
     require: true
