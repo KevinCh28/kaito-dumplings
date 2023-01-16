@@ -8,7 +8,8 @@ const OrderSchema = new Schema({
   },
   orderNumber: {
     type: String,
-    require: true
+    require: true,
+    unique: true
   },
   orderStatus: {
     type: String,
