@@ -30,6 +30,25 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
 
 // Create a new product
 // POST /api/products
+router.post("/", validateProductInput, async (req: Request, res: Response, next: NextFunction) => {
+  const { name, description, price, imageUrl, category } = req.body;
+
+  if (!validateProductInput) {
+    return res.status(400).json("Invalid product data");
+  }
+
+  try {
+    const newProduct = new Product({
+      name,
+      description,
+      price,
+      imageUrl,
+      category,
+    });
+  } catch (err) {
+    return res.status(400).json("Invalid product data");
+  };
+});
 
 // Update a product
 // PUT /api/products/:id
