@@ -42,7 +42,7 @@ function createApp(): Express {
   app.use(bodyParser.json());
 
   app.use('/api/users', users);
-  // app.use('/api/products', products);
+  app.use('/api/products', products);
   // app.use('/api/cart', carts);
   // app.use('/api/csrf', csrfRouter);
 

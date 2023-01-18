@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-const validateProductInput = require("../../validation/product");
+const validateProductInput = require("../../validation/products");
 import { Request, Response, NextFunction } from "express";
 import Product from "../../database/schemas/Product";
 
@@ -32,21 +32,19 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
 // POST /api/products
 router.post("/", validateProductInput, async (req: Request, res: Response, next: NextFunction) => {
   const { name, description, price, imageUrl, category } = req.body;
-
-  if (!validateProductInput) {
-    return res.status(400).json("Invalid product data");
-  }
+  const newProduct = new Product({
+    name,
+    description,
+    price,
+    imageUrl,
+    category,
+  });
 
   try {
-    const newProduct = new Product({
-      name,
-      description,
-      price,
-      imageUrl,
-      category,
-    });
+    const product = await newProduct.save();
+    return res.json(product);
   } catch (err) {
-    return res.status(400).json("Invalid product data");
+    return next(err);
   };
 });
 
