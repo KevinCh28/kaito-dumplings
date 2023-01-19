@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-const validateProductInput = require("../../validation/products");
+import validateProductInput from "../../validation/products";
 import { Request, Response, NextFunction } from "express";
 import Product from "../../database/schemas/Product";
 
@@ -29,15 +29,14 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
 });
 
 // Create a new product
-// POST /api/products
-router.post("/", validateProductInput, async (req: Request, res: Response, next: NextFunction) => {
-  const { name, description, price, imageUrl, category } = req.body;
+// POST /api/products/create
+router.post("/create", validateProductInput, async (req: Request, res: Response, next: NextFunction) => {
   const newProduct = new Product({
-    name,
-    description,
-    price,
-    imageUrl,
-    category,
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    imageUrl: req.body.imageUrl,
+    category: req.body.category,
   });
 
   try {
