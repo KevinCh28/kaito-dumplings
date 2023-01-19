@@ -1,18 +1,19 @@
-import { config } from "dotenv";
 import express, { Express } from "express";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
-import users from "../routes/users/users";
-import products from "../routes/products/products";
-import carts from "../routes/carts/carts";
-import csrfRouter from "../routes/csrf";
 import store from "connect-mongo";
 import bodyParser from "body-parser";
 const cookieParser = require("cookie-parser");
 const db = require("../../config/keys").mongoURI;
 
+import { config } from "dotenv";
 config();
+
+import usersRouter from "../routes/users/users";
+import productsRouter from "../routes/products/products";
+import cartsRouter from "../routes/carts/carts";
+import csrfRouter from "../routes/csrf";
 
 function createApp(): Express {
   const app = express();
@@ -41,9 +42,9 @@ function createApp(): Express {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
-  app.use('/api/users', users);
-  app.use('/api/products', products);
-  // app.use('/api/cart', carts);
+  app.use('/api/users', usersRouter);
+  app.use('/api/products', productsRouter);
+  // app.use('/api/cart', cartsRouter);
   // app.use('/api/csrf', csrfRouter);
 
   // if (process.env.NODE_ENV === 'production') {
