@@ -6,7 +6,8 @@ const CategorySchema = new Schema({
     type: String,
     enum: ['Dumplings', 'Gyoza'],
     default: 'Dumplings',
-    required: true
+    required: true,
+    unique: true
   },
 }, {
   timestamps: true
