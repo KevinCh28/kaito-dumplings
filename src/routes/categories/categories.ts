@@ -15,12 +15,12 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
 });
 
 // Get a single category
-// GET /api/categories/:id
-router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
+// GET /api/categories/:categoryName
+router.get("/:categoryName", async (req: Request, res: Response, next: NextFunction) => {
   let category;
 
   try {
-    category = await Category.findById(req.params.id);
+    category = await Category.findById(req.params.categoryName);
     return res.json(category);
   } catch (err) {
     return res.status(404).json("Category not found");
