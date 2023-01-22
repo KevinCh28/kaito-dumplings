@@ -12,7 +12,6 @@ config();
 
 import usersRouter from "../routes/users/users";
 import productsRouter from "../routes/products/products";
-import categoriesRouter from "../routes/categories/categories";
 import cartsRouter from "../routes/carts/carts";
 import csrfRouter from "../routes/csrf";
 
@@ -45,7 +44,6 @@ function createApp(): Express {
 
   app.use('/api/users', usersRouter);
   app.use('/api/products', productsRouter);
-  app.use('/api/categories', categoriesRouter);
   // app.use('/api/cart', cartsRouter);
   // app.use('/api/csrf', csrfRouter);
 
