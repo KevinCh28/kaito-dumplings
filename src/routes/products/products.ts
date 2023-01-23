@@ -41,7 +41,7 @@ router.post("/create", validateProductInput, async (req: Request, res: Response,
 
   try {
     const product = await newProduct.save();
-    return res.json(product);
+    return res.status(200).json(product);
   } catch (err) {
     return next(err);
   };
