@@ -31,8 +31,8 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
 // Get all products by category
 // GET /api/products/:category
 router.get("/category/:category", async (req: Request, res: Response, next: NextFunction) => {
-  const category = req.params.category.toLowerCase();
-  
+  const category = req.params.category.toLowerCase().trim();
+
   try {
     const products = await Product.find({ category: category });
     return res.json(products);
