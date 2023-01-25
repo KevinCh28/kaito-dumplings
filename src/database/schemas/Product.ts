@@ -20,7 +20,7 @@ const ProductSchema = new Schema({
   category: {
     type: String,
     enum: ["dumplings", "gyoza"],
-    default: "Dumplings",
+    default: "dumplings",
     required: true,
   }
 }, {
