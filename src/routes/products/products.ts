@@ -28,6 +28,19 @@ router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
   }
 });
 
+// Get all products by category
+// GET /api/products/:category
+router.get("/category/:category", async (req: Request, res: Response, next: NextFunction) => {
+  const category = req.params.category.toLowerCase();
+  
+  try {
+    const products = await Product.find({ category: category });
+    return res.json(products);
+  } catch (err) {
+    return next([]);
+  }
+});
+
 // Create a new product
 // POST /api/products/create
 router.post("/create", validateProductInput, async (req: Request, res: Response, next: NextFunction) => {
