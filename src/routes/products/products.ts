@@ -62,6 +62,47 @@ router.post("/create", validateProductInput, async (req: Request, res: Response,
 
 // Update a product
 // PUT /api/products/:id
+router.put("/:id", validateProductInput, async (req: Request, res: Response, next: NextFunction) => {
+  Product.findByIdAndUpdate(
+    req.params.id,
+    {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      imageUrl: req.body.imageUrl,
+      category: req.body.category
+    },
+    { new: true }
+  )
+    .then(product => {
+      return res.json(product)
+    })
+    .catch(err => {
+      return res.status(404).json("Product not found");
+    });
+});
+
+// Update a product
+// PUT /api/products/:id
+router.patch("/:id", validateProductInput, async (req: Request, res: Response, next: NextFunction) => {
+  Product.findByIdAndUpdate(
+    req.params.id,
+    {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      imageUrl: req.body.imageUrl,
+      category: req.body.category
+    },
+    { new: true }
+  )
+    .then(product => {
+      return res.json(product)
+    })
+    .catch(err => {
+      return res.status(404).json("Product not found");
+    });
+});
 
 // Delete a product
 // DELETE /api/products/:id
