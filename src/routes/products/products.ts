@@ -106,5 +106,14 @@ router.patch("/:id", validateProductInput, async (req: Request, res: Response, n
 
 // Delete a product
 // DELETE /api/products/:id
+router.delete("/:id", async (req: Request, res: Response, next: NextFunction) => {
+  Product.findByIdAndDelete(req.params.id)
+    .then(() => {
+      return res.json("Product deleted");
+    })
+    .catch(err => {
+      return res.status(404).json("Product not found");
+    });
+});
 
 export default router;
