@@ -70,7 +70,7 @@ router.put("/:id", validateProductInput, async (req: Request, res: Response, nex
       description: req.body.description,
       price: req.body.price,
       imageUrl: req.body.imageUrl,
-      category: req.body.category
+      category: req.body.category.toLowerCase().trim()
     },
     { new: true }
   )
