@@ -29,7 +29,32 @@ router.get("/:id", async (req: Request, res: Response) => {
 });
 
 // Create a new order
-// POST /api/orders
+// POST /api/orders/create
+router.post("/create", validateOrderInput, async (req: Request, res: Response, next: NextFunction) => {
+  let orderNumber = "W" + Math.floor(Math.random() * 1000000000).toString()
+  const order = await Order.find({ orderNumber: orderNumber });
+
+  if (order) {
+    orderNumber = "W" + Math.floor(Math.random() * 1000000000).toString()
+  };
+
+  if (!order) {
+    const newOrder = new Order({
+      owner: req.body.user.id,
+      orderNumber: orderNumber,
+      orderStatus: "pending",
+      total: req.body.total,
+      items: req.body.items,
+    });
+
+    try {
+      const order = await newOrder.save();
+      return res.status(200).json(order);
+    } catch (err) {
+      return next(err);
+    };
+  }
+});
 
 // Delete an order, only is the status is "pending"
 // DELETE /api/orders/:id
