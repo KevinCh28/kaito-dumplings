@@ -24,7 +24,9 @@ const validateProductInput = [
     .withMessage('Product image url is required'),
   check('category')
     .exists({ checkFalsy: true })
-    .withMessage('Product category is required'),
+    .withMessage('Product category is required')
+    .isIn(['dumplings', 'gyoza'])
+    .withMessage('Product category must be either dumplings or gyoza'),
   handleValidationErrors
 ];
 
