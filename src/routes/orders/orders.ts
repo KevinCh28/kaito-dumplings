@@ -1,9 +1,7 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const User = require("../../database/schemas/User");
-const Order = require("../../database/schemas/Order");
-const Product = require("../../database/schemas/Product");
-const validateOrderInput = require("../../validation/order");
+import Order from "../../database/schemas/Order";
+import validateOrderInput from "../../validation/order";
 import { Request, Response, NextFunction } from "express";
 
 // Get all orders
@@ -45,6 +43,7 @@ router.post("/create", validateOrderInput, async (req: Request, res: Response, n
       orderStatus: "pending",
       total: req.body.total,
       items: req.body.items,
+      date: Date.now().toString(),
     });
 
     try {

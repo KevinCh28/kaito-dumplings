@@ -31,8 +31,8 @@ const OrderSchema = new Schema({
     }
   }],
   date: {
-    type: Date,
-    default: Date.now
+    type: String,
+    require: true
   }
 }, {
   timestamps: true
