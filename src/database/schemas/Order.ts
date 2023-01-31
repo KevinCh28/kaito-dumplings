@@ -20,7 +20,7 @@ const OrderSchema = new Schema({
     type: Number,
     require: true
   },
-  items: {
+  products: {
     type: Array,
     require: true
   },

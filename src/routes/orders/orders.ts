@@ -38,11 +38,11 @@ router.post("/create", validateOrderInput, async (req: Request, res: Response, n
 
   if (!order) {
     const newOrder = new Order({
-      owner: req.body.user.id,
+      owner: req.body.owner,
       orderNumber: orderNumber,
       orderStatus: "pending",
       total: req.body.total,
-      items: req.body.items,
+      products: req.body.products,
       date: Date.now().toString(),
     });
 
