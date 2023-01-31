@@ -20,16 +20,10 @@ const OrderSchema = new Schema({
     type: Number,
     require: true
   },
-  items: [{
-    product: {
-      type: Schema.Types.ObjectId,
-      ref: 'Product'
-    },
-    quantity: {
-      type: Number,
-      default: 1
-    }
-  }],
+  items: {
+    type: Array,
+    require: true
+  },
   date: {
     type: String,
     require: true
