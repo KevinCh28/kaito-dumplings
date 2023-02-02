@@ -77,50 +77,60 @@ router.post("/create", validateOrderInput, async (req: Request, res: Response, n
 
 // Update an order's status (Admin)
 // PUT /api/orders/:id
-router.put("/:id", async (req: Request, res: Response) => {
-  Order.findByIdAndUpdate(req.params.id, { orderStatus: req.body.orderStatus }, { new: true }, (err, order) => {
-    if (err) {
-      return res.status(404).json("Order not found");
-    } else {
-      return res.status(200).json(order);
-    }
+router.put("/:id", validateOrderInput, async (req: Request, res: Response, next: NextFunction) => {
+  Order.findByIdAndUpdate(
+    req.params.id,
+    {
+      owner: req.body.owner,
+      orderNumber: req.body.orderNumber,
+      orderStatus: req.body.orderStatus,
+      total: req.body.total,
+      products: req.body.products,
+      date: req.body.date,
+    },
+    { new: true }
+  )
+  .then(order => {
+    return res.json(order)
+  })
+  .catch(err => {
+    return res.status(404).json("Order not found");
   });
 });
 
 // Update an order's status (Admin)
 // PATCH /api/orders/:id
-router.patch("/:id", async (req: Request, res: Response) => {
-  Order.findByIdAndUpdate(req.params.id, { orderStatus: req.body.orderStatus }, { new: true }, (err, order) => {
-    if (err) {
-      return res.status(404).json("Order not found");
-    } else {
-      return res.status(200).json(order);
-    }
+router.patch("/:id", validateOrderInput, async (req: Request, res: Response) => {
+  Order.findByIdAndUpdate(
+    req.params.id,
+    {
+      owner: req.body.owner,
+      orderNumber: req.body.orderNumber,
+      orderStatus: req.body.orderStatus,
+      total: req.body.total,
+      products: req.body.products,
+      date: req.body.date,
+    },
+    { new: true }
+  )
+  .then(order => {
+    return res.json(order)
+  })
+  .catch(err => {
+    return res.status(404).json("Order not found");
   });
 });
 
 // Update an order's status (User)
 // PUT /api/orders/user/:id/:orderNumber
-router.put("/user/:id/:orderNumber", async (req: Request, res: Response) => {
-  Order.findOneAndUpdate({ owner: req.params.id, orderNumber: req.params.orderNumber }, { orderStatus: req.body.orderStatus }, { new: true }, (err, order) => {
-    if (err) {
-      return res.status(404).json("Order not found");
-    } else {
-      return res.status(200).json(order);
-    }
-  });
+router.put("/user/:id/:orderNumber", validateOrderInput, async (req: Request, res: Response) => {
+
 });
 
 // Update an order's status (User)
 // PATCH /api/orders/user/:id/:orderNumber
-router.patch("/user/:id/:orderNumber", async (req: Request, res: Response) => {
-  Order.findOneAndUpdate({ owner: req.params.id, orderNumber: req.params.orderNumber }, { orderStatus: req.body.orderStatus }, { new: true }, (err, order) => {
-    if (err) {
-      return res.status(404).json("Order not found");
-    } else {
-      return res.status(200).json(order);
-    }
-  });
+router.patch("/user/:id/:orderNumber", validateOrderInput, async (req: Request, res: Response) => {
+
 });
 
 export default router;
