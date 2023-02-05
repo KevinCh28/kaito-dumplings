@@ -1,6 +1,5 @@
-import axios from "axios";
-
-export const getUserCart = async () => {
-  const res = await axios.get(`/api/products`);
-  return res.data;
+export const getProducts = async () => {
+  const data = await fetch("/api/products");
+  const res = await data.json();
+  return res;
 };
