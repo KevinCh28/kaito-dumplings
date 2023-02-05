@@ -1,12 +1,12 @@
-import { Router } from "express";
-import passport from "passport";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+const Router = require("express");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 const router = Router();
 
-const validateRegisterInput = require('../validation/register.js');
-const validateLoginInput = require('../validation/login.js');
-const validateUserUpdate = require('../validation/users.js');
+// const validateRegisterInput = require('../validation/register.js');
+// const validateLoginInput = require('../validation/login.js');
+// const validateUserUpdate = require('../validation/users.js');
 
 // Private auth route for accessing user data on the frontend once logged in
 router.get('/current',
@@ -21,4 +21,4 @@ router.get('/current',
   }
 );
 
-export default router;
+module.exports = router;

@@ -1,10 +1,10 @@
-import express from 'express';
-import cors from 'cors';
-import session from 'express-session';
-import passport from 'passport';
-import routes from '../routes/index.js';
+const express = require("express");
+const cors = require("cors");
+const session = require("express-session");
+const passport = require("passport");
+const routes = require("../routes/index.js");
 
-export function createApp() {
+module.exports = function createApp() {
   const app = express();
   //Enable Parsing Middleware for Requests
   app.use(express.json());
