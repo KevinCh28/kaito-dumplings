@@ -1,5 +1,5 @@
-const createApp = require("./utils/createApp");
-const mongoose = require("mongoose");
+import createApp from "./utils/createApp";
+import mongoose from "mongoose";
 const db = require("../config/keys").mongoURI;
 
 const PORT = process.env.PORT || 3001;

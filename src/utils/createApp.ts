@@ -1,11 +1,15 @@
-const express = require("express");
-const cors = require("cors");
-const session = require("express-session");
-const passport = require("passport");
-const routes = require("../routes/index.js");
-const store = require("connect-mongo");
+import { config } from "dotenv";
+import express, { Express } from "express";
+import cors from "cors";
+import session from "express-session";
+import passport from "passport";
+import routes from "../routes/index";
+import store from "connect-mongo";
+const db = require("../config/keys").mongoURI;
 
-module.exports = function createApp() {
+config();
+
+function createApp(): Express {
   const app = express();
   //Enable Parsing Middleware for Requests
   app.use(express.json());
@@ -19,7 +23,7 @@ module.exports = function createApp() {
       resave: false,
       saveUninitialized: false,
       cookie: { maxAge: 60000 * 60 * 24 * 30, },
-      store: store.create({ mongoUrl: mongoURI })
+      store: store.create({ mongoUrl: db })
     })
   );
 
@@ -30,3 +34,5 @@ module.exports = function createApp() {
   app.use('/api', routes);
   return app;
 };
+
+export default createApp;

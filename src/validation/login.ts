@@ -2,7 +2,10 @@ import Validator from "validator";
 import validText from "./valid-text.js";
 
 module.exports = function validateLoginInput(data) {
-  let errors = {};
+  let errors = {
+    email: "",
+    password: ""
+  };
 
   data.email = validText(data.email) ? data.email : '';
   data.password = validText(data.password) ? data.password : '';
@@ -17,6 +20,6 @@ module.exports = function validateLoginInput(data) {
 
   return {
     errors,
-    isValid: Object.keys(errors).length === 0
+    isValid: errors.email.length === 0 && errors.password.length === 0
   };
 };

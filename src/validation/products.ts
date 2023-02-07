@@ -2,7 +2,10 @@ import Validator from "validator";
 import validText from "./valid-text.js";
 
 module.exports = function validateProductInput(data) {
-  let errors = {};
+  let errors = {
+    name: "",
+    description: ""
+  };
 
   data.name = validText(data.name) ? data.name : '';
   data.description = validText(data.description) ? data.description : '';
@@ -17,6 +20,6 @@ module.exports = function validateProductInput(data) {
 
   return {
     errors,
-    isValid: Object.keys(errors).length === 0
+    isValid: errors.name.length === 0 && errors.description.length === 0
   };
 };

@@ -2,7 +2,13 @@ import Validator from "validator";
 import validText from "./valid-text.js";
 
 module.exports = function validateRegisterInput(data) {
-  let errors = {};
+  let errors = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    password2: ""
+  };
 
   data.firstname = validText(data.firstname) ? data.firstname : '';
   data.lastname = validText(data.lastname) ? data.lastname : '';
@@ -18,12 +24,8 @@ module.exports = function validateRegisterInput(data) {
     errors.lastname = 'Last name can not be blank';
   }
 
-  if (Validator.isEmpty(data.username)) {
-    errors.username = 'Username field is required';
-  }
-
   if (Validator.isEmpty(data.email)) {
-    errors.email = 'Email field is required';
+    errors.email = 'Email is required';
   }
 
   if (!Validator.isEmail(data.email)) {
@@ -31,7 +33,7 @@ module.exports = function validateRegisterInput(data) {
   }
 
   if (Validator.isEmpty(data.password)) {
-    errors.password = 'Password field is required';
+    errors.password = 'Password is required';
   }
 
   if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
@@ -48,6 +50,11 @@ module.exports = function validateRegisterInput(data) {
 
   return {
     errors,
-    isValid: Object.keys(errors).length === 0
+    isValid:
+      errors.firstname.length === 0 &&
+      errors.lastname.length === 0 &&
+      errors.email.length === 0 &&
+      errors.password.length === 0 &&
+      errors.password2.length === 0
   };
 };

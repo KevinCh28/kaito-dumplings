@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const passport = require("passport");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+import passport from "passport";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 // Private auth route for accessing user data on the frontend once logged in
 router.get('/current',
@@ -25,4 +25,4 @@ router.get('/status', (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;
