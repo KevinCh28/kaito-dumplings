@@ -1,7 +1,7 @@
 import Validator from "validator";
 import validText from "./valid-text.js";
 
-module.exports = function validateProductInput(data) {
+export default function validateProductInput(data) {
   let errors = {
     name: "",
     description: ""

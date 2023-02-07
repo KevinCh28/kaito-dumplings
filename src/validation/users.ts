@@ -1,26 +1,29 @@
 import Validator from "validator";
 import validText from "./valid-text.js";
 
-module.exports = function validateUserUpdate(data) {
-  let errors = {};
+export default function validateUserUpdate(data) {
+  let errors = {
+    password: '',
+    password2: ''
+  };
 
-  data.username = validText(data.username) ? data.username : '';
-  data.email = validText(data.email) ? data.email : '';
+  data.password = validText(data.password) ? data.password : '';
+  data.password2 = validText(data.password2) ? data.password2 : '';
 
-  if (Validator.isEmpty(data.username)) {
-    errors.username = 'Username is required';
+  if (Validator.isEmpty(data.password)) {
+    errors.password = 'Password is required';
   }
 
-  if (Validator.isEmpty(data.email)) {
-    errors.email = 'Email field is required';
+  if (Validator.isEmpty(data.password2)) {
+    errors.password2 = 'Passwords does not match';
   }
 
-  if (!Validator.isEmail(data.email)) {
-    errors.email = 'Email is invalid';
+  if (!Validator.equals(data.password, data.password2)) {
+    errors.password2 = 'Passwords does not match';
   }
 
   return {
     errors,
-    isValid: Object.keys(errors).length === 0
+    isValid: errors.password.length === 0 && errors.password2.length === 0
   };
 };

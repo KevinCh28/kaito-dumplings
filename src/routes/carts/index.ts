@@ -1,8 +1,9 @@
 import express from "express";
 const router = express.Router();
 import passport from "passport";
-import isAuthenticated from "../../utils/middlewares.js";
+import isAuthenticated from "../../utils/middlewares";
+import { getCartController } from "../../controllers/cart"
 
-router.get('/', isAuthenticated, (req, res) => res.send(200));
+router.get('/', isAuthenticated, getCartController);
 
 export default router;

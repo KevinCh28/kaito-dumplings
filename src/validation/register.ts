@@ -1,7 +1,7 @@
 import Validator from "validator";
 import validText from "./valid-text.js";
 
-module.exports = function validateRegisterInput(data) {
+export default function validateRegisterInput(data) {
   let errors = {
     firstname: "",
     lastname: "",
@@ -41,11 +41,11 @@ module.exports = function validateRegisterInput(data) {
   }
 
   if (Validator.isEmpty(data.password2)) {
-    errors.password2 = 'Confirm Password field is required';
+    errors.password2 = 'Passwords does not match';
   }
 
   if (!Validator.equals(data.password, data.password2)) {
-    errors.password2 = 'Passwords must match';
+    errors.password2 = 'Passwords does not match';
   }
 
   return {
