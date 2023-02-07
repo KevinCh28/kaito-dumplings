@@ -1,12 +1,8 @@
-const Router = require("express");
+const express = require("express");
+const router = express.Router();
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const router = Router();
-
-// const validateRegisterInput = require('../validation/register.js');
-// const validateLoginInput = require('../validation/login.js');
-// const validateUserUpdate = require('../validation/users.js');
 
 // Private auth route for accessing user data on the frontend once logged in
 router.get('/current',
@@ -20,5 +16,13 @@ router.get('/current',
     });
   }
 );
+
+router.get('/status', (req, res) => {
+  return req.user
+    ? res.send(req.user)
+    : res.status(401).send({
+      msg: 'Unauthorized'
+  });
+});
 
 module.exports = router;
