@@ -16,7 +16,6 @@ const Products = () => {
   }, []);
 
   const renderProducts = () => {
-    console.log(products)
     const dumplings = products.filter(obj => obj.category === "dumplings");
     const gyoza = products.filter(obj => obj.category === "gyoza");
 
