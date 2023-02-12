@@ -19,7 +19,7 @@ const Register = () => {
     password2: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setUser((prevState) => ({
       ...prevState,
@@ -27,7 +27,7 @@ const Register = () => {
     }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     register(user)
       .then((res) => {
