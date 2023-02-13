@@ -78,25 +78,39 @@ export default function Navbar() {
   //   }
   // };
 
+  // If user is logged in, render button that links to account
+  // If user is not logged in, render button that links to login
+  // If user is admin, render button that links to admin dashboard
+  const userLinks = () => {
+    let currentUser = null;
+    let buttons = <div></div>;
+
+    if (currentUser !== null) {
+      if (currentUser.isAdmin) {
+        buttons = <div><Link href="/admin/dashboard">Admin Dashboard</Link></div>
+      } else {
+        buttons = <div><Link href="/account">My Account</Link></div>
+      }
+    } else {
+      buttons = <div><Link href="/login">Login</Link></div>
+    }
+
+    return buttons;
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar__logo">
-        <Link href="/">
-          {/* <a>
-            <img src="/logo.png" alt="Kaito Logo" />
-          </a> */}
-          LOGO
-        </Link>
+        <Link href="/">LOGO</Link>
       </div>
       <div className="navbar_links">
-        <Link href="/products">
-          Products
-        </Link>
-        <Link href="/faq">
-          FAQ
-        </Link>
+        <Link href="/products">Products</Link>
+        <Link href="/faq">FAQ</Link>
       </div>
-      {/* { userLinks() } */}
+      <div>
+        <Link href="/products">ORDER NOW</Link>
+      </div>
+      { userLinks() }
     </nav>
   )
 };
