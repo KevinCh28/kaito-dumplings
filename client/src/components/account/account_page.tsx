@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import type { NextPage } from 'next';
 
 const AccountPage: NextPage = () => {
-  const [firstName, setfirstName] = useState(user.firstName);
-  const [lastName, setlastName] = useState(user.lastName);
+  const [firstname, setFirstName] = useState(user.firstname);
+  const [lastname, setLastName] = useState(user.lastname);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
@@ -16,7 +16,7 @@ const AccountPage: NextPage = () => {
     const res = await fetch('/api/auth/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstName, lastName, email, password, password2 }),
+      body: JSON.stringify({ firstname, lastname, email, password, password2 }),
     });
     const data = await res.json();
     if (data.errors) {
@@ -31,19 +31,19 @@ const AccountPage: NextPage = () => {
     <div>
       <div>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstname">First Name</label>
           <input
             type="text"
-            name="firstName"
-            value={firstName}
-            onChange={(e) => setfirstName(e.target.value)}
+            name="firstname"
+            value={firstname}
+            onChange={(e) => setFirstName(e.target.value)}
           />
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastname">Last Name</label>
           <input
             type="text"
-            name="lastName"
-            value={lastName}
-            onChange={(e) => setlastName(e.target.value)}
+            name="lastname"
+            value={lastname}
+            onChange={(e) => setLastName(e.target.value)}
           />
           <label htmlFor="password">Password</label>
           <input

@@ -20,11 +20,14 @@ export const setAuthToken = (token: string) => {
 //   }
 // };
 
+// export const register = async (userData: any) => {
+//   return await fetch('/api/users/register', {
+//     method: 'POST',
+//     body: JSON.stringify(userData)
+//   });
+// };
 export const register = async (userData: any) => {
-  return await fetch('/api/users/register', {
-    method: 'POST',
-    body: JSON.stringify(userData)
-  });
+  return await axios.post('/api/users/register', userData);
 };
 
 export const login = async (userData: any) => {

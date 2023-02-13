@@ -26,15 +26,14 @@ import { Request, Response, NextFunction } from "express";
 // Registration Route
 // Post /api/users/register
 router.post("/register", validateRegisterInput, async (req: Request, res: Response, next: NextFunction) => {
-  const { email, firstname, lastname, password, password2 } = req.body;
-  const user = await User.findOne({ email });
-
+  const user = await User.findOne({ email: req.body.email });
   if (user) {
-    const errors: any = {};
-    if (user.email === email) {
-      errors.email = "Email already exists";
-    }
-    return res.status(400).json(errors);
+    const errors = { email: "Email already exists" };
+    const err = Error("Validation Error.");
+    (err as any).errors = errors;
+    (err as any).statusCode = 400;
+    (err as any).title = "Validation Error.";
+    return res.status(400).json({ err });
   }
 
   const newUser = new User({
@@ -46,7 +45,7 @@ router.post("/register", validateRegisterInput, async (req: Request, res: Respon
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
-    bcrypt.hash(password, salt, async (err, hashedPassword) => {
+    bcrypt.hash(req.body.password, salt, async (err, hashedPassword) => {
       if (err) throw err;
       try {
         newUser.password = hashedPassword;

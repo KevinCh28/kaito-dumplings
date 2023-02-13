@@ -4,20 +4,29 @@ import { register } from "../../utils/sessionApiUtils";
 
 const Register = () => {
   const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     password2: "",
+    role: "Customer",
   });
   
   const [errors, setErrors] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     password2: "",
   });
+
+  const emptyInfo = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    password2: "",
+  };
 
   const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
@@ -29,24 +38,28 @@ const Register = () => {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    setErrors(emptyInfo);
     register(user)
       .then((res) => {
-        window.location.href = "/";
+        if (res.statusText === "OK") {
+          window.location.href = "/";
+        }
       })
       .catch((err) => {
-        console.log(err);
-      });
+        const newErrors = err.response.data.err.errors;
+        Object.keys(newErrors).forEach(function (key: any, value: any) {
+          setErrors((prevState) => ({
+            ...prevState,
+            [key]: newErrors[key],
+          }));
+        });
+      }
+    )
   };
 
-  const renderErrors = () => {
-    if (!Object.values(errors).every((val) => val === "")) {
-      <div>
-        <ul>
-          {Object.values(errors).map((val, idx) => (
-            <li key={idx}>{val}</li>
-          ))}
-        </ul>
-      </div>
+  const handleErrors = (key: any) => {
+    if (errors[key] !== "") {
+      return <div>{errors[key]}</div>;
     } else {
       return null;
     }
@@ -58,22 +71,24 @@ const Register = () => {
         <h1>Register</h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="firstname">First Name</label>
             <input
               type="text"
-              name="firstName"
-              value={user.firstName}
+              name="firstname"
+              value={user.firstname}
               onChange={handleChange}
             />
+            {handleErrors("firstname")}
           </div>
           <div>
-            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="lastname">Last Name</label>
             <input
               type="text"
-              name="lastName"
-              value={user.lastName}
+              name="lastname"
+              value={user.lastname}
               onChange={handleChange}
             />
+            {handleErrors("lastname")}
           </div>
           <div>
             <label htmlFor="email">Email</label>
@@ -83,6 +98,7 @@ const Register = () => {
               value={user.email}
               onChange={handleChange}
             />
+            {handleErrors("email")}
           </div>
           <div>
             <label htmlFor="password">Password</label>
@@ -92,6 +108,7 @@ const Register = () => {
               value={user.password}
               onChange={handleChange}
             />
+            {handleErrors("password")}
           </div>
           <div>
             <label htmlFor="password2">Confirm Password</label>
@@ -101,6 +118,7 @@ const Register = () => {
               value={user.password2}
               onChange={handleChange}
             />
+            {handleErrors("password2")}
           </div>
           <button type="submit">Register</button>
         </form>
