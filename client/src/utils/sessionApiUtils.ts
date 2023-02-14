@@ -31,8 +31,12 @@ export const register = async (userData: any) => {
 };
 
 export const login = async (userData: any) => {
-  return await fetch('/api/users/login', {
-    method: 'POST',
-    body: JSON.stringify(userData)
-  });
+  return await axios.post('/api/users/login', userData);
 };
+
+// export const login = async (userData: any) => {
+//   return await fetch('/api/users/login', {
+//     method: 'POST',
+//     body: JSON.stringify(userData)
+//   });
+// };
