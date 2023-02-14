@@ -68,9 +68,12 @@ router.post("/login", validateLoginInput, async (req: Request, res: Response) =>
   User.findOne({ email })
     .then(user => {
       if (!user) {
-        const errors: any = {};
-        errors.email = "No account found with this email";
-        return res.status(400).json(errors);
+        const errors = { email: "No account found with this email" };
+        const err = Error("Validation Error.");
+        (err as any).errors = errors;
+        (err as any).statusCode = 400;
+        (err as any).title = "Validation Error.";
+        return res.status(400).json({ err });
       }
 
       bcrypt.compare(password, user.password)
