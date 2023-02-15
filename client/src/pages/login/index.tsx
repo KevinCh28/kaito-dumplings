@@ -13,6 +13,11 @@ const Login = () => {
     password: "",
   });
 
+  const emptyInfo = {
+    email: "",
+    password: "",
+  };
+
   const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setUser((prevState) => ({
@@ -23,28 +28,32 @@ const Login = () => {
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    setErrors(emptyInfo);
     login(user)
       .then((res) => {
-        window.location.href = "/";
+        if (res.statusText === "OK") {
+          window.location.href = "/";
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data)
+        const newErrors = err.response.data.err.errors;
+        Object.keys(newErrors).forEach(function (key: any) {
+          setErrors((prevState) => ({
+            ...prevState,
+            [key]: newErrors[key],
+          }));
+        });
       });
   };
 
-  const renderErrors = () => {
-    if (!Object.values(errors).every((val) => val === "")) {
-      <div>
-        <ul>
-          {Object.values(errors).map((val, idx) => (
-            <li key={idx}>{val}</li>
-          ))}
-        </ul>
-      </div>
+  const handleErrors = (key: any) => {
+    if (errors[key] !== "") {
+      return <div>{errors[key]}</div>;
     } else {
       return null;
     }
-  }
+  };
 
   return (
     <div>
@@ -59,6 +68,7 @@ const Login = () => {
               value={user.email}
               onChange={handleChange}
             />
+            {handleErrors("email")}
           </div>
           <div>
             <label htmlFor="password">Password</label>
@@ -68,6 +78,7 @@ const Login = () => {
               value={user.password}
               onChange={handleChange}
             />
+            {handleErrors("password")}
           </div>
           <button type="submit">Login</button>
         </form>

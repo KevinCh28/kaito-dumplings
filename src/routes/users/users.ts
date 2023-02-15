@@ -91,7 +91,12 @@ router.post("/login", validateLoginInput, async (req: Request, res: Response) =>
               });
             });
           } else {
-            return res.status(400).json("Incorrect password");
+            const errors = { password: "Incorrect password" };
+            const err = Error("Validation Error.");
+            (err as any).errors = errors;
+            (err as any).statusCode = 400;
+            (err as any).title = "Validation Error.";
+            return res.status(400).json({ err });
           }
         });
       });
