@@ -106,6 +106,7 @@ export default function Navbar() {
       <div className="navbar_links">
         <Link href="/products">Products</Link>
         <Link href="/faq">FAQ</Link>
+        <Link href="/blog">Blog</Link>
       </div>
       <div>
         <Link href="/products">ORDER NOW</Link>
