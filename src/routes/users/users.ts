@@ -1,13 +1,10 @@
 import express from "express";
 const router = express.Router();
-import passport from "passport";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import validateLoginInput from "../../validation/login";
 import validateRegisterInput from "../../validation/register";
 import User from "../../database/schemas/User";
-const keys = require("../../../config/keys");
-const { loginUser, restoreUser } = require("../../../config/passport");
+const { loginUser } = require("../../../config/passport");
 import { Request, Response, NextFunction } from "express";
 
 // Private auth route for accessing user data on the frontend once logged in
@@ -79,17 +76,7 @@ router.post("/login", validateLoginInput, async (req: Request, res: Response) =>
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
-            const payload = { id: user.id, email: user.email };
-
-            // the user(the payload) is encoded into the jwt. The frontend will decode it
-            // to get the user object upon page refresh
-            jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-              res.json({
-                success: true,
-                token: "Bearer " + token,
-                user
-              });
-            });
+            return res.json(loginUser(user));
           } else {
             const errors = { password: "Incorrect password" };
             const err = Error("Validation Error.");
