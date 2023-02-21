@@ -8,24 +8,6 @@ export const setAuthToken = (token: string) => {
   }
 };
 
-// export const setAuthToken = async (token: string) => {
-//   if (token) {
-//     fetch('/', {
-//       headers: {
-//         'Authorization': token
-//       }
-//     })
-//   } else {
-//     delete fetch('/').headers.common['Authorization']
-//   }
-// };
-
-// export const register = async (userData: any) => {
-//   return await fetch('/api/users/register', {
-//     method: 'POST',
-//     body: JSON.stringify(userData)
-//   });
-// };
 export const register = async (userData: any) => {
   return await axios.post('/api/users/register', userData);
 };
@@ -34,9 +16,14 @@ export const login = async (userData: any) => {
   return await axios.post('/api/users/login', userData);
 };
 
-// export const login = async (userData: any) => {
-//   return await fetch('/api/users/login', {
-//     method: 'POST',
-//     body: JSON.stringify(userData)
-//   });
-// };
+export const logout = async () => {
+  localStorage.removeItem('jwtToken');
+  window.location.href = '/';
+};
+
+export const getCurrentUser = async () => {
+  const token = localStorage.getItem('jwtToken');
+  if (!token) return null;
+  const res = await axios.get('/api/current');
+  return res.data;
+};

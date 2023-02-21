@@ -4,7 +4,7 @@ import session from "express-session";
 import passport from "passport";
 import store from "connect-mongo";
 import bodyParser from "body-parser";
-const cookieParser = require("cookie-parser");
+import cookieParser from "cookie-parser";
 const db = require("../../config/keys").mongoURI;
 
 import { config } from "dotenv";

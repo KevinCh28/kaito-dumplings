@@ -1,24 +1,35 @@
 import express from "express";
 const router = express.Router();
 import bcrypt from "bcryptjs";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import validateLoginInput from "../../validation/login";
 import validateRegisterInput from "../../validation/register";
 import User from "../../database/schemas/User";
-const { loginUser } = require("../../../config/passport");
 import { Request, Response, NextFunction } from "express";
+const keys = require("../../../config/keys");
 
-// Private auth route for accessing user data on the frontend once logged in
-// router.get("/current",
-//   passport.authenticate('jwt', {session: false}),
-//   (req: Request, res: Response) => {
-//     res.json({
-//       id: req.user.id,
-//       firstname: req.user.firstname,
-//       lastname: req.user.lastname,
-//       email: req.user.email
-//     });
-//   }
-// );
+// Private Auth Route for accessing user data on the frontend once logged in
+// Get /api/users/current
+router.get("/current", async (req: Request, res: Response) => {
+  try {
+    const cookie = req.cookies['jwt'];
+    const claims = jwt.verify(cookie, keys.secretOrKey) as JwtPayload;
+
+    if (!claims) {
+      return res.status(401).send({ err: "Unauthenticated" });
+    };
+
+    const user = await User.findOne({ _id: claims._id });
+    if (user) {
+      const { password, ...data } = user.toJSON();
+      res.send(data);
+    } else {
+      return res.status(401).send({ err: "Unauthenticated" });
+    }
+  } catch (err) {
+    return res.status(401).send({ err: "Unauthenticated" });
+  }
+});
 
 // Registration Route
 // Post /api/users/register
@@ -47,7 +58,14 @@ router.post("/register", validateRegisterInput, async (req: Request, res: Respon
       try {
         newUser.password = hashedPassword;
         const user = await newUser.save();
-        return res.json(loginUser(user));
+        const userInfo = { _id: user._id };
+        const token = jwt.sign(userInfo, keys.secretOrKey);
+
+        res.cookie('jwt', token, {
+          httpOnly: true,
+          maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
+        })
+        res.send({ success: true });
       } catch (err) {
         return next(err);
       }
@@ -76,7 +94,14 @@ router.post("/login", validateLoginInput, async (req: Request, res: Response) =>
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if (isMatch) {
-            return res.json(loginUser(user));
+            const userInfo = { _id: user._id };
+            const token = jwt.sign(userInfo, keys.secretOrKey);
+
+            res.cookie('jwt', token, {
+              httpOnly: true,
+              maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
+            })
+            res.send({ success: true });
           } else {
             const errors = { password: "Incorrect password" };
             const err = Error("Validation Error.");
@@ -87,6 +112,13 @@ router.post("/login", validateLoginInput, async (req: Request, res: Response) =>
           }
         });
       });
+});
+
+// Logout Route
+// Post /api/users/logout
+router.post("/logout", (req: Request, res: Response) => {
+  res.cookie('jwt', '', { maxAge: 0 })
+  res.send({ success: true });
 });
 
 export default router;
