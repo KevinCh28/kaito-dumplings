@@ -41,7 +41,7 @@ const Register = () => {
     setErrors(emptyInfo);
     register(user)
       .then((res) => {
-        if (res.statusText === "OK") {
+        if (res.data.success === true) {
           window.location.href = "/";
         }
       })
