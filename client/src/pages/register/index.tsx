@@ -1,8 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SyntheticEvent } from "react";
 import Link from 'next/link';
 import { register } from "../../utils/sessionApiUtils";
 
 const Register = () => {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -28,16 +34,16 @@ const Register = () => {
     password2: "",
   };
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
-    const { name, value } = e.target;
-    setUser((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  }
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+    setUser({
+      firstname,
+      lastname,
+      email,
+      password,
+      password2,
+      role: "Customer",
+    });
     setErrors(emptyInfo);
     register(user)
       .then((res) => {
@@ -76,7 +82,7 @@ const Register = () => {
               type="text"
               name="firstname"
               value={user.firstname}
-              onChange={handleChange}
+              onChange={e => setFirstname(e.target.value)}
             />
             {handleErrors("firstname")}
           </div>
@@ -86,7 +92,7 @@ const Register = () => {
               type="text"
               name="lastname"
               value={user.lastname}
-              onChange={handleChange}
+              onChange={e => setLastname(e.target.value)}
             />
             {handleErrors("lastname")}
           </div>
@@ -96,7 +102,7 @@ const Register = () => {
               type="text"
               name="email"
               value={user.email}
-              onChange={handleChange}
+              onChange={e => setEmail(e.target.value)}
             />
             {handleErrors("email")}
           </div>
@@ -106,7 +112,7 @@ const Register = () => {
               type="password"
               name="password"
               value={user.password}
-              onChange={handleChange}
+              onChange={e => setPassword(e.target.value)}
             />
             {handleErrors("password")}
           </div>
@@ -116,7 +122,7 @@ const Register = () => {
               type="password"
               name="password2"
               value={user.password2}
-              onChange={handleChange}
+              onChange={e => setPassword2(e.target.value)}
             />
             {handleErrors("password2")}
           </div>

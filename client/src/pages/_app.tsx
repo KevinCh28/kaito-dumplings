@@ -1,12 +1,25 @@
 import '../utils/styles/globals.scss'
 import type { AppProps } from 'next/app'
-
-import { UserProvider } from '../../context/userContext';
+import { useState, useEffect } from 'react';
+import { getCurrentUser } from '../utils/sessionApiUtils';
 
 export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <UserProvider>
-      <Component {...pageProps} />
-    </UserProvider>
-  )
+  // const [auth, setAuth] = useState(false);
+  // const [user, setUser] = useState({});
+
+  // useEffect(() => {
+  //   (
+  //     async () => {
+  //       const response = await getCurrentUser();
+  //       if (response) {
+  //         setUser(response);
+  //         setAuth(true);
+  //       } else {
+  //         setAuth(false);
+  //       }
+  //     }
+  //   )();
+  // }, []);
+  
+  return <Component {...pageProps} />
 }

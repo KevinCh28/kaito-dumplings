@@ -1,8 +1,33 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { getCurrentUser } from '../utils/sessionApiUtils';
+import Navbar from '../components/nav/navbar';
 
 const Home: NextPage = () => {
+  const [auth, setAuth] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    (
+      async () => {
+        try {
+          const response = await getCurrentUser();
+          if (response) {
+            setUser(response);
+            setAuth(true);
+          } else {
+            setAuth(false);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    )();
+  }, []);
+
   return (
+    <Navbar auth={auth} user={user}>
     <div className="page">Kaito Home Page
       <div className="featured-product-block">
         <div className="featured-product">
@@ -159,6 +184,7 @@ const Home: NextPage = () => {
       </div>
       
     </div>
+    </Navbar>
   );
 };
 
