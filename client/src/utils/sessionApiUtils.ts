@@ -16,10 +16,6 @@ export const login = async (userData: any) => {
   return await axios.post('/api/users/login', userData);
 };
 
-// export const logout = async () => {
-//   localStorage.removeItem('jwtToken');
-//   window.location.href = '/';
-// };
 export const logout = async () => {
   return await axios.post('/api/users/logout');
 };

@@ -1,33 +1,34 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import Navbar from '../components/nav/navbar';
 import { useState, useEffect } from 'react';
 import { getCurrentUser } from '../utils/sessionApiUtils';
-import Navbar from '../components/nav/navbar';
 
 const Home: NextPage = () => {
-  const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState({});
+    const [auth, setAuth] = useState(false);
+    const [user, setUser] = useState({ role: 'Customer' });
 
-  useEffect(() => {
-    (
-      async () => {
-        try {
-          const response = await getCurrentUser();
-          if (response) {
-            setUser(response);
-            setAuth(true);
-          } else {
-            setAuth(false);
+    useEffect(() => {
+      (
+        async () => {
+          try {
+            const response = await getCurrentUser();
+            if (response) {
+              setUser(response);
+              setAuth(true);
+            } else {
+              setAuth(false);
+            }
+          } catch (err) {
+            console.log(err);
           }
-        } catch (err) {
-          console.log(err);
         }
-      }
-    )();
-  }, []);
+      )();
+    }, []);
 
   return (
-    <Navbar auth={auth} user={user}>
+    <>
+    <Navbar auth={auth} role={user.role}></Navbar>
     <div className="page">Kaito Home Page
       <div className="featured-product-block">
         <div className="featured-product">
@@ -184,7 +185,7 @@ const Home: NextPage = () => {
       </div>
       
     </div>
-    </Navbar>
+    </>
   );
 };
 
