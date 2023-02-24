@@ -17,7 +17,7 @@ export const login = async (userData: any) => {
 };
 
 export const logout = async () => {
-  return await axios.post('/api/users/logout');
+  await axios.post('/api/users/logout');
 };
 
 export const getCurrentUser = async () => {

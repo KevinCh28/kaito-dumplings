@@ -13,14 +13,11 @@ const Home: NextPage = () => {
         async () => {
           try {
             const response = await getCurrentUser();
-            if (response) {
-              setUser(response);
-              setAuth(true);
-            } else {
-              setAuth(false);
-            }
+            setUser(response);
+            setAuth(true);
           } catch (err) {
             console.log(err);
+            setAuth(false);
           }
         }
       )();

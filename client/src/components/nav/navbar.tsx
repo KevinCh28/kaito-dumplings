@@ -4,8 +4,6 @@ import { logout } from '../../utils/sessionApiUtils';
 
 const Navbar = (props: { auth: boolean, role: string }) => {
   const [cartModalOpen, setCartModalOpen] = useState(false);
-  const [auth, setAuth] = useState(props.auth);
-  const [role, setRole] = useState(props.role);
 
   const openCartModal = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -17,17 +15,18 @@ const Navbar = (props: { auth: boolean, role: string }) => {
     setCartModalOpen(false);
   };
 
-  const handleLogout = (e: { preventDefault: () => void; }) => {
+  const handleLogout = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    logout();
-    setAuth(false);
-    window.location.href = "/";
+    logout()
+      .then((res) => {
+        window.location.href = "/";
+      })
   };
 
   // Selectively render links based on user state
   const userLinks = () => {
-    if (auth) {
-      if (role === 'admin') {
+    if (props.auth) {
+      if (props.role === 'admin') {
         return (
           <>
             <Link href="/admin/dashboard">
