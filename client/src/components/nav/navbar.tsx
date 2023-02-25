@@ -19,7 +19,11 @@ const Navbar = (props: { auth: boolean, role: string }) => {
     e.preventDefault();
     logout()
       .then((res) => {
-        window.location.href = "/";
+        if (window.location.pathname === '/account' || window.location.pathname === '/admin/dashboard' || window.location.pathname === '/order-history') {
+          window.location.href = '/';
+        } else {
+          window.location.reload();
+        }
       })
   };
 
