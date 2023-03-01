@@ -1,4 +1,5 @@
 import '../utils/styles/globals.scss'
+import '../utils/styles/navbar.scss'
 import type { AppProps } from 'next/app'
 import { useState, useEffect } from 'react';
 import { getCurrentUser } from '../utils/sessionApiUtils';

@@ -1,0 +1,121 @@
+.navbar {
+	background-color: #ffffff;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.navbar_left_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.navbar_logo {
+	max-height: 80px;
+}
+
+.navbar_middle_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.navbar_right_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	gap: 30px;
+}
+
+.navbar-right-buttons-container {
+	display: flex;
+	height: 38px;
+	width: 132.5px;
+}
+
+
+.navbar_right_button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	background-color: #27bdbe;
+	color: #ffffff;
+	box-shadow: 0 0 0 2px #27bdbe;
+	font-family: sans-serif;
+	font-weight: 700;
+	font-size: 18px;
+	font-style: normal;
+	text-align: center;
+	text-decoration: solid;
+	text-size-adjust: 100%;
+	cursor: pointer;
+	transition: all 0.5s ease;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.navbar_right_button_hover {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	background-color: #ffffff;
+	color: #27bdbe;
+	box-shadow: 0 0 0 2px #27bdbe;
+	font-family: sans-serif;
+	font-weight: 700;
+	font-size: 18px;
+	font-style: normal;
+	text-align: center;
+	text-decoration: solid;
+	text-size-adjust: 100%;
+	cursor: pointer;
+	transition: all 0.5s ease;
+	white-space: nowrap;
+	width: 100%;
+}
+
+.navbar_cart_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background-color: #27bdbe;
+}
+
+.navbar_cart_image {
+	max-height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+.navbar_middle_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	// padding: 10px 0;
+	// gap: 30px;
+}
+
+.navbar_middle_buttons_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+}
+
+.nav_middle_button {
+	justify-content: center;
+	align-items: center;
+	font-family: sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+}
