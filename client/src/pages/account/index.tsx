@@ -1,30 +1,16 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
+import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 
-const AccountPage: NextPage = () => {
-  const [firstname, setFirstName] = useState(user.firstname);
-  const [lastname, setLastName] = useState(user.lastname);
-  const [email, setEmail] = useState(user.email);
+const AccountPage: NextPage = ({ user }) => {
+  if (user === null) window.location.href = '/';
+
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const router = useRouter();
   const [errors, setErrors] = useState({});
-
+  
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    const res = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstname, lastname, email, password, password2 }),
-    });
-    const data = await res.json();
-    if (data.errors) {
-      setErrors(data.errors);
-    }
-    if (res.ok) {
-      router.push('/');
-    }
   };
 
   return (
@@ -32,19 +18,6 @@ const AccountPage: NextPage = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="firstname">First Name</label>
-          <input
-            type="text"
-            name="firstname"
-            value={firstname}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <label htmlFor="lastname">Last Name</label>
-          <input
-            type="text"
-            name="lastname"
-            value={lastname}
-            onChange={(e) => setLastName(e.target.value)}
-          />
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -67,3 +40,15 @@ const AccountPage: NextPage = () => {
 };
 
 export default AccountPage;
+
+export async function getServerSideProps() {
+  const session = await getCurrentUser();
+
+  if (session) {
+    return {
+      props: { user: session.user },
+    };
+  } 
+
+  return { props: { user: null } };
+};
