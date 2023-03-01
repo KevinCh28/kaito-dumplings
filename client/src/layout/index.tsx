@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { logout } from '../utils/sessionApiUtils';
-import {useRouter} from 'next/router';
 
 export function Layout(props: { auth: boolean }) {
   const [cartModalOpen, setCartModalOpen] = useState(false);
@@ -78,7 +77,9 @@ export function Layout(props: { auth: boolean }) {
     <>
       <nav className="navbar">
           <div className="navbar__logo">
-          <Link href="/">LOGO</Link>
+          <Link href="/">
+            <img src="/favicon.png" alt="logo" />
+          </Link>
           </div>
           <div className="navbar_links">
           <Link href="/products">Products</Link>
