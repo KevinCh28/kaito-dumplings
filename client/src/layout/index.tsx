@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { logout } from '../../utils/sessionApiUtils';
+import { logout } from '../utils/sessionApiUtils';
+import {useRouter} from 'next/router';
 
-const Navbar = (props: { auth: boolean, role: string }) => {
+export function Layout(props: { auth: boolean }) {
   const [cartModalOpen, setCartModalOpen] = useState(false);
 
   const openCartModal = (e: { preventDefault: () => void; }) => {
@@ -26,7 +27,7 @@ const Navbar = (props: { auth: boolean, role: string }) => {
         }
       })
   };
-
+  
   // Selectively render links based on user state
   const userLinks = () => {
     if (props.auth) {
@@ -74,21 +75,21 @@ const Navbar = (props: { auth: boolean, role: string }) => {
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar__logo">
-        <Link href="/">LOGO</Link>
-      </div>
-      <div className="navbar_links">
-        <Link href="/products">Products</Link>
-        <Link href="/faq">FAQ</Link>
-        <Link href="/blog">Blog</Link>
-      </div>
-      <div>
-        <Link href="/products">ORDER NOW</Link>
-      </div>
-      { userLinks() }
-    </nav>
+    <>
+      <nav className="navbar">
+          <div className="navbar__logo">
+          <Link href="/">LOGO</Link>
+          </div>
+          <div className="navbar_links">
+          <Link href="/products">Products</Link>
+          <Link href="/faq">FAQ</Link>
+          <Link href="/blog">Blog</Link>
+          </div>
+          <div>
+          <Link href="/products">ORDER NOW</Link>
+          </div>
+          { userLinks() }
+      </nav>
+    </>
   )
 };
-
-export default Navbar;

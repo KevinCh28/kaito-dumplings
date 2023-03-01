@@ -57,34 +57,32 @@ const Login = () => {
 
   return (
     <div>
-      <div>
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              name="email"
-              value={user.email}
-              onChange={handleChange}
-            />
-            {handleErrors("email")}
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={user.password}
-              onChange={handleChange}
-            />
-            {handleErrors("password")}
-          </div>
-          <button type="submit">Login</button>
-        </form>
+      <h1>Login</h1>
+      <form onSubmit={handleSubmit}>
         <div>
-          <Link href="/register">Register</Link>
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+          />
+          {handleErrors("email")}
         </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            value={user.password}
+            onChange={handleChange}
+          />
+          {handleErrors("password")}
+        </div>
+        <button type="submit">Login</button>
+      </form>
+      <div>
+        <Link href="/register">Register</Link>
       </div>
     </div>
   );
