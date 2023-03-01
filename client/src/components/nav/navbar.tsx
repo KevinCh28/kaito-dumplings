@@ -19,7 +19,7 @@ const Navbar = (props: { auth: boolean, role: string }) => {
     e.preventDefault();
     logout()
       .then((res) => {
-        if (window.location.pathname === '/account' || window.location.pathname === '/admin/dashboard' || window.location.pathname === '/order-history') {
+        if (window.location.pathname === '/account') {
           window.location.href = '/';
         } else {
           window.location.reload();
@@ -30,39 +30,26 @@ const Navbar = (props: { auth: boolean, role: string }) => {
   // Selectively render links based on user state
   const userLinks = () => {
     if (props.auth) {
-      if (props.role === 'admin') {
-        return (
-          <>
-            <Link href="/admin/dashboard">
-              Admin Dashboard
-            </Link>
-            <button onClick={handleLogout}>
-              Log Out
+      return (
+        <>
+          <Link href="/account">
+            My Account
+          </Link>
+          <button onClick={handleLogout}>
+            Log Out
+          </button>
+          { cartModalOpen ? (
+            <button onClick={openCartModal}>
+              Cart
             </button>
-          </>
-        )
-      } else {
-        return (
-          <>
-            <Link href="/account">
-              My Account
-            </Link>
-            <button onClick={handleLogout}>
-              Log Out
-            </button>
-            { cartModalOpen ? (
-              <button onClick={openCartModal}>
+          ) : (
+              <button onClick={closeCartModal}>
                 Cart
               </button>
-            ) : (
-                <button onClick={closeCartModal}>
-                  Cart
-                </button>
-              )
-            }
-          </>
-        )
-      }
+            )
+          }
+        </>
+      )
     } else {
       return (
         <>
