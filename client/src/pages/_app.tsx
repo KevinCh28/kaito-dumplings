@@ -5,6 +5,11 @@ import type { AppProps } from 'next/app'
 import { useState, useEffect } from 'react';
 import { getCurrentUser } from '../utils/sessionApiUtils';
 import { Layout } from '../layout';
+import { Oswald } from '@next/font/google'
+
+const oswald = Oswald({
+  subsets: ['latin'],
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   const [auth, setAuth] = useState(false);
@@ -26,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
   
   return (
-    <div className='page'>
+    <div className={oswald.className}>
       <Layout auth={auth} user={user} />
       <Component {...pageProps} />
     </div>

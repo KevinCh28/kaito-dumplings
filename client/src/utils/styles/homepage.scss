@@ -432,3 +432,85 @@
 		color: #ec1c24;
 	}
 }
+
+.shop_gyozas_container {
+	line-height: 1.5em;
+
+	section {
+		background-color: #27bdbe;
+		color: #1b2137;
+	}
+}
+
+.shop_gyoza_image_container {
+	display: flex;
+	
+	a {
+		text-decoration: none;
+		background-color: transparent;
+		width: 50%;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			vertical-align: middle;
+			max-width: 100%;
+			border-style: none;
+			overflow-clip-margin: content-box;
+			overflow: clip;
+		}
+	}
+}
+
+.shop_gyozas_info_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	width: 50%;
+	padding: 100px 0;
+}
+
+.shop_gyoza_info_wrapper {
+	position: relative;
+	padding: 80px 50px;
+	font-weight: 600;
+
+	img {
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: rotate(18deg);
+		max-width: 100px;
+		width: 100%;
+	}
+
+	p {
+		margin-bottom: 32px;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
+		color: #1b2137;
+		font-size: 16px;
+	}
+
+	h3 {
+		max-width: 425px;
+		margin-top: -0.25em;
+		margin-bottom: 32px;
+		line-height: 1.2;
+		font-size: 50px;
+		letter-spacing: .025em;
+	}
+
+	a {
+		width: fit-content;
+		margin: 0 auto 25px;
+		padding: 11px 30px;
+		font-size: 16px;
+		background-color: #ec1c24;
+		color: #fff;
+	}
+}

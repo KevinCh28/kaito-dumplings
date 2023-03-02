@@ -249,15 +249,22 @@ const Home: NextPage = () => {
         </a>
       </div>
 
-      <div className="shop-gyozas-block">
-        <div className="shop-gyozas-image">
-          IMAGE
-        </div>
-        <div className="shop-gyozas-info">
-          <h3>Shop Gyoza</h3>
-          <p>Product description</p>
-          <button>SHOP GYOZAs</button>
-        </div>
+      <div className="shop_gyozas_container">
+        <section>
+          <div className='shop_gyoza_image_container'>
+            <a href="/products">
+              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/topdown-edited_2_bcefcd16-4d37-494e-afd9-86a87317b0df_720x_1_1512x.jpg?v=1665763652" alt="gyozas" />
+            </a>
+            <div className="shop_gyozas_info_container">
+              <div className='shop_gyoza_info_wrapper'>
+                <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Group_9_1a01c87c-f83a-4cc8-b48e-24d01839df03_180x.png?v=1664992473" alt="image new" />
+                <p>CHINESE DUMPLINGS</p>
+                <h3>ENJOY THE FLAVORS OF SHANGHAI, SICHUAN & BEIJING</h3>
+                <a href="">SHOP DUMPLINGS</a>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
 
       <div className="gif-shipping-description-block">
