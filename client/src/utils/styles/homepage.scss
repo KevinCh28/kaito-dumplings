@@ -514,3 +514,54 @@
 		color: #fff;
 	}
 }
+
+.shipping_description_container {
+	background-color: rgb(242, 9, 11);
+	position: relative;
+	width: 100%;
+}
+
+.shipping_description_wrapper {
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto 40px;
+	max-width: 1230px;
+}
+
+.shipping_descrpition_text {
+	flex: 1 0 33%;
+	margin-right: 5%;
+	text-align: center;
+	color: #ffffff;
+
+	h2 {
+    margin: 30px 0 12px;
+    letter-spacing: .025em;
+    margin-bottom: 12px;
+		font-weight: 600;
+		font-size: 38px;
+    line-height: 1.2;
+	}
+
+	p {
+    font-style: normal;
+    margin: 0 0 20px;
+    font-weight: 400;
+    display: flex;
+    flex-grow: .3;
+    line-height: 1.2;
+    font-size: 17px!important;
+	}
+}
+
+.shipping_description_gif {
+	flex: 1 0 60%;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+
+	img {
+		vertical-align: middle;
+		max-width: 100%;
+	}
+}

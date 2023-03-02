@@ -267,54 +267,75 @@ const Home: NextPage = () => {
         </section>
       </div>
 
-      <div className="gif-shipping-description-block">
-        <div className="gif-shipping-description">
-          <h3>FREE GIFTS & SHIPPING</h3>
-          GIF
+      <div className='shipping_container'>
+        <div className='shipping_description_container'>
+          <div className='shipping_description_wrapper'>
+            <div className='shipping_descrpition_text'>
+              <h2>SHIPPED FROZEN TO YOUR DOOR</h2>
+              <p>Made daily and shipped directly to your door. Enjoy our melt-free guarantee!</p>
+            </div>
+            <div className='shipping_description_gif'>
+              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/mila2.gif?v=1673460859" alt="" />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="reviews-carousel-block">
-        <div className="reviews-carousel">
-          <div className="review-card">
-            <div className="review-card-image">
-              <a href="/products/beef-&-cheese">
-                <div className='product_image_wrapper'>
-                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedbeef-xlb_2_590x.png?v=1675392214" alt="" />
+      <div className='reviews_carousel_container'>
+        <div className='reviews_carousel_wrapper'>
+          <div className='reviews_carousel_info_container'>
+
+            <div className='reviews_carousel_header'>
+              <p>DON'T JUST TAKE OUR WORD FOR IT</p>
+            </div>
+
+            <div className='reviews_carousel_stars'>
+              <p>DON'T JUST TAKE OUR WORD FOR IT</p>
+            </div>
+
+            <div className='reviews_carousel_cards_container'>
+              <div className='review_card'>
+                <div className='review_card-image'>
+                  <a href='/products/beef-&-cheese'>
+                    <div className='product_image_wrapper'>
+                      <img src='https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedbeef-xlb_2_590x.png?v=1675392214' alt='' />
+                    </div>
+                  </a>
                 </div>
-              </a>
+                <div className='review-card-info'>
+                  <h4>Review Name</h4>
+                  <p>Review description</p>
+                </div>
+              </div>
+              <div className="review-card">
+                <div className="review-card-image">
+                  IMAGE
+                </div>
+                <div className="review-card-info">
+                  <h4>Review Name</h4>
+                  <p>Review description</p>
+                </div>
+              </div>
+              <div className="review-card">
+                <div className="review-card-image">
+                  IMAGE
+                </div>
+                <div className="review-card-info">
+                  <h4>Review Name</h4>
+                  <p>Review description</p>
+                </div>
+              </div>
+              <div className="review-card">
+                <div className="review-card-image">
+                  IMAGE
+                </div>
+                <div className="review-card-info">
+                  <h4>Review Name</h4>
+                  <p>Review description</p>
+                </div>
+              </div>
             </div>
-            <div className="review-card-info">
-              <h4>Review Name</h4>
-              <p>Review description</p>
-            </div>
-          </div>
-          <div className="review-card">
-            <div className="review-card-image">
-              IMAGE
-            </div>
-            <div className="review-card-info">
-              <h4>Review Name</h4>
-              <p>Review description</p>
-            </div>
-          </div>
-          <div className="review-card">
-            <div className="review-card-image">
-              IMAGE
-            </div>
-            <div className="review-card-info">
-              <h4>Review Name</h4>
-              <p>Review description</p>
-            </div>
-          </div>
-          <div className="review-card">
-            <div className="review-card-image">
-              IMAGE
-            </div>
-            <div className="review-card-info">
-              <h4>Review Name</h4>
-              <p>Review description</p>
-            </div>
+
           </div>
         </div>
       </div>
