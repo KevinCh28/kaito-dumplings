@@ -3,20 +3,38 @@ import Link from 'next/link';
 
 const Home: NextPage = () => {
   return (
-    <div className="">Kaito Home Page
-      <div className="featured-product-block">
-        <div className="featured-product">
-          <div className="featured-product-image">
-            IMAGE
-          </div>
-          <div className="featured-product-info">
-            <h2>Featured Product</h2>
-            <p>Product description</p>
-            <p>Product description</p>
-            <p>Product description</p>
-          </div>
-          <div className="featured-product-button">
-            <button>ORDER NOW</button>
+    <div className="main_page_container">
+      <div className="featured_product_container">
+        <div className="featured_product_background_image">
+          <div className="featured_product">
+            <div className="featured_product_header">
+              <h1>
+                GRANDMA CALLED.
+                <br />
+                SHE WANTS HER
+                <br />
+                DUMPLINGS BACK.
+              </h1>
+              <ul className="featured_product_description">
+                <li>Authentic Chinese soup dumplings</li>
+                <li>Made fresh daily with high-quality ingredients</li>
+                <li>Steams up in just 11 minutes at home</li>
+              </ul>
+              <div className="featured_product_button_container">
+                <Link href="/products" className="featured_product_button_text">ORDER NOW</Link>
+              </div>
+            </div>
+            <div className="featured_product_image_container">
+              <img
+                src="//cdn.shopify.com/s/files/1/0042/3834/4321/files/assets_bc154811e83d4532a4f4f57c9d96f6c3_a16e5f1e74a34f049e81832530bf9734.png?v=1670451362"
+                alt="featured product image"
+                className="featured_product_image"
+                data-src="//cdn.shopify.com/s/files/1/0042/3834/4321/files/assets_bc154811e83d4532a4f4f57c9d96f6c3_a16e5f1e74a34f049e81832530bf9734.png?v=1670451362"
+                data-widths="[180, 360, 480, 590, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                data-sizes="auto"
+                sizes="504px"
+              />
+            </div>
           </div>
         </div>
       </div>

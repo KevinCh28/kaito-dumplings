@@ -1,5 +1,6 @@
 import '../utils/styles/globals.scss'
 import '../utils/styles/navbar.scss'
+import '../utils/styles/homepage.scss'
 import type { AppProps } from 'next/app'
 import { useState, useEffect } from 'react';
 import { getCurrentUser } from '../utils/sessionApiUtils';
@@ -25,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
   
   return (
-    <div>
+    <div className='page'>
       <Layout auth={auth} user={user} />
       <Component {...pageProps} />
     </div>
