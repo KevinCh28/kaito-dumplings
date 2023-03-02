@@ -39,56 +39,176 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <div className="why-purchase-block">
-        <div className="why-purchase-images">
-          <div className="why-purchase-image">
-            IMAGE
-          </div>
-        </div>
-        <div className="why-purchase-message">
-          <h3>EASY, FAST, DELISH</h3>
-        </div>
-      </div>
+      <div className="top3_products_container">
+        <h3>EASY, FAST, DELISH.</h3>
+        <div className="product_carousel_container">
+          <div className="product_carousel_cards">
 
-      <div className="product-carousel-block">
-        <div className="product-cards">
-          <div className="product-card">
-            <div className="product-card-image">
-              IMAGE
-            </div>
-            <div className="product-card-info">
-              <Link href={''}>Product Name</Link>
-              <p>Product description</p>
-              <Link href={''}>ORDER NOW</Link>
-            </div>
-          </div>
-          <div className="product-card">
-            <div className="product-card-image">
-              IMAGE
-            </div>
-            <div className="product-card-info">
-              <Link href={''}>Product Name</Link>
-              <p>Product description</p>
-              <Link href={''}>ORDER NOW</Link>
-            </div>
-          </div>
-          <div className="product-card">
-            <div className="product-card-image">
-              IMAGE
-            </div>
-            <div className="product-card-info">
-              <Link href={''}>Product Name</Link>
-              <p>Product description</p>
-              <Link href={''}>ORDER NOW</Link>
-            </div>
-          </div>
-        </div>
-      </div>
+            <div className="product_card_container">
+              <div className='product_card_wrapper'>
+                <div className="product_card_image">
+                  <a href="/products/beef-&-cheese">
+                    <div className='product_image_wrapper'>
+                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedbeef-xlb_2_590x.png?v=1675392214" alt="" />
+                    </div>
+                  </a>
+                </div>
+                
+                <div className="product_card_info_container">
+                  <div className='product_card_info_wrapper'>
+                    <div className='product_card_info_column'>
+                      <h3><a href="/products/beef-&-cheese">BEEF & CHEESE</a></h3>
+                      <div className='product_review'>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                      </div>
+                      <div className='product_card_info_product_description'>
+                        <p>Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.</p>
+                      </div>
+                    </div>
+                  </div>
 
-      <div className="shop-all-product-block">
-        <div className="shop-all-product-button">
-          <button>SHOP ALL PRODUCTS</button>
+                  <Link href={''}>ORDER NOW</Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="product_card_container">
+              <div className='product_card_wrapper'>
+                <div className="product_card_image">
+                  <a href="/products/beef-&-cheese">
+                    <div className='product_image_wrapper'>
+                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/product-1_f30f9493-ef96-446c-8dc1-e3dfce797f30_360x.png?v=1664295187" alt="" />
+                    </div>
+                  </a>
+                </div>
+                
+                <div className="product_card_info_container">
+                  <div className='product_card_info_wrapper'>
+                    <div className='product_card_info_column'>
+                      <h3><a href="/products/beef-&-cheese">SOUP DUMPLINGS</a></h3>
+                      <div className='product_review'>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                      </div>
+                      <div className='product_card_info_product_description'>
+                        <p>Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Link href={''}>ORDER NOW</Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="product_card_container">
+              <div className='product_card_wrapper'>
+                <div className="product_card_image">
+                  <a href="/products/beef-&-cheese">
+                    <div className='product_image_wrapper'>
+                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedDDM-3_2_360x.png?v=1665654399" alt="" />
+                    </div>
+                  </a>
+                </div>
+                
+                <div className="product_card_info_container">
+                  <div className='product_card_info_wrapper'>
+                    <div className='product_card_info_column'>
+                      <h3><a href="/products/beef-&-cheese">NOODLES</a></h3>
+                      <div className='product_review'>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                      </div>
+                      <div className='product_card_info_product_description'>
+                        <p>Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <Link href={''}>ORDER NOW</Link>
+                </div>
+              </div>
+            </div>
+            
+          </div>
         </div>
+
+        <a href="/products" className='shop_all_button'>
+          <span>SHOP ALL PRODUCTS</span>
+        </a>
       </div>
 
       <div className="shop-gyozas-block">
@@ -113,7 +233,11 @@ const Home: NextPage = () => {
         <div className="reviews-carousel">
           <div className="review-card">
             <div className="review-card-image">
-              IMAGE
+              <a href="/products/beef-&-cheese">
+                <div className='product_image_wrapper'>
+                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedbeef-xlb_2_590x.png?v=1675392214" alt="" />
+                </div>
+              </a>
             </div>
             <div className="review-card-info">
               <h4>Review Name</h4>
