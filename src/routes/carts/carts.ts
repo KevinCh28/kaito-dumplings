@@ -1,12 +1,20 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const User = require("../../database/schemas/User");
-const Cart = require("../../database/schemas/Cart");
-const Product = require("../../database/schemas/Product");
-const validateCartInput = require("../../validation/cart");
-import { Request, Response, NextFunction } from "express";
+import Cart from "../../database/schemas/Cart";
+import { Request, Response } from "express";
 
-// Get User's cart
-// Maybe put it in User's route?
+// Get /api/carts/:id
+router.get("/:id", async (req: Request, res: Response) => {
+  try {
+    const cart = await Cart.findOne({ owner: req.params.id });
+    if (cart) {
+      return res.json(cart);
+    } else {
+      res.status(404).json({ err: "Cart not found" });
+    }
+  } catch (err) {
+    res.status(404).json({ err: "Cart not found" });
+  }
+});
 
 export default router;

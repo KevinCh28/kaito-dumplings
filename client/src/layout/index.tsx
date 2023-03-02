@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-export function Layout(props: { auth: boolean, user: { firstName: string; lastName: string; email: string; _id: string; }; }) {
+export function Layout(props: { auth: boolean,
+  user: { firstname: string; lastname: string; email: string; _id: string; cart(cart: any): unknown; }
+}) {
   const [cartModalOpen, setCartModalOpen] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
