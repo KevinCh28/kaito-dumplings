@@ -89,10 +89,35 @@ const Home: NextPage = () => {
                       <div className='product_card_info_product_description'>
                         <p>Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.</p>
                       </div>
+                      {/* <div className='product_card_info_variants'>
+                        <div className='product_card_variants_container'>
+                          <div className='product_card_variants_wrapper'>
+                            <div className='product_card_variant'>
+                              <button>BEEF & CHEESE,</button>
+                            </div>
+                            <div className='product_card_variant'>
+                              <button>PORK & CHIEVES,</button>
+                            </div>
+                            <div className='product_card_variant'>
+                              <button>CHICKEN & CABBAGE,</button>
+                            </div>
+                            <div className='product_card_variant'>
+                              <button>and VEGE</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div> */}
+                    </div>
+
+                    <div className='product_card_price_and_button'>
+                      <div className='product_card_price'>
+                        <span>$44.95</span>
+                      </div>
+                      <a href="/products/pork-&-chieves" className='product_card_button'>
+                        ORDER NOW
+                      </a>
                     </div>
                   </div>
-
-                  <Link href={''}>ORDER NOW</Link>
                 </div>
               </div>
             </div>
@@ -143,9 +168,16 @@ const Home: NextPage = () => {
                         <p>Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.</p>
                       </div>
                     </div>
-                  </div>
 
-                  <Link href={''}>ORDER NOW</Link>
+                    <div className='product_card_price_and_button'>
+                      <div className='product_card_price'>
+                        <span>$44.95</span>
+                      </div>
+                      <a href="/products/beef-&-cheese" className='product_card_button'>
+                        PICK MY FLAVOR
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -196,13 +228,19 @@ const Home: NextPage = () => {
                         <p>Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.</p>
                       </div>
                     </div>
-                  </div>
 
-                  <Link href={''}>ORDER NOW</Link>
+                    <div className='product_card_price_and_button'>
+                      <div className='product_card_price'>
+                        <span>$44.95</span>
+                      </div>
+                      <a href="/products/beef-&-cheese" className='product_card_button'>
+                        PICK MY FLAVOR
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-            
           </div>
         </div>
 
