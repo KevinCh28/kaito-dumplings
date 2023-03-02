@@ -1,50 +1,47 @@
 import { useState, useEffect } from 'react';
+import { getProductsByIds } from '../../utils/productApiUtils';
 
 const Cart = (cart: any) => {
   const [cartItems, setCartItems] = useState([]);
-  //takes in the user's cart from navbar
-  //renders the cart items
-  //renders the total price
-  //renders the checkout button
-  //renders the continue shopping button
-  //renders the remove item button
-  //renders the update quantity button
-  //renders the cart is empty message
-  //renders the cart is empty image
-  //if quantity is updated, update user's cart
-  //if item is removed, update user's cart
-  //if cart is emptied, update user's cart
-  //if checkout is clicked, redirect to checkout page
-  //if continue shopping is clicked, redirect to products page
-  //render 3 suggested products that is not current in the car, it has button to add to cart and button to select flavor
-  //if add to cart is clicked, add to cart, update user's cart
-
   
+  useEffect(() => {(
+    async () => {
+      try {
+        const response = await getProductsByIds(cart);
+        setCartItems(response);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
+  const handleCartItems = () => {
+    if (cartItems.length > 0) {
+      return cartItems.map((item: any) => {
+        <div>
+          <div className="cart-item-image">
+            <img src={item.imageUrl} alt="" />
+          </div>
+          <div className="cart-item-info">
+            <h4>{item.name}</h4>
+            <p>{item.category}</p>
+            <p>{item.price}</p>
+          </div>
+          <div className="cart-item-remove">
+            <button>REMOVE</button>
+          </div>
+        </div>
+      })
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div className="cart">
       <div className="cart-items">
         <div className="cart-item">
-          <div className="cart-item-image">
-            IMAGE
-          </div>
-          <div className="cart-item-info">
-            <p>Product Name</p>
-            <p>Product description</p>
-            <p>Product description</p>
-            <p>Product description</p>
-          </div>
-          <div className="cart-item-quantity">
-            <p>Quantity</p>
-            <input type="number" min="1" max="10" value="1" />
-          </div>
-          <div className="cart-item-price">
-            <p>Price</p>
-            <p>$10.00</p>
-          </div>
-          <div className="cart-item-remove">
-            <button>REMOVE</button>
-          </div>
+          {handleCartItems()}
         </div>
       </div>
       <div className="cart-total">
