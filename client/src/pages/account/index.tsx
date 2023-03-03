@@ -2,9 +2,24 @@ import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import { logout } from '@/src/utils/sessionApiUtils';
+import { useRouter } from 'next/router';
 
-const AccountPage: NextPage = ({ user }) => {
-  if (user === null) window.location.href = '/';
+const AccountPage: NextPage = () => {
+  const router = useRouter();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    getCurrentUser()
+      .then((res) => {
+        if (res) {
+          setUser(res);
+        }
+      })
+      .catch((err) => {
+        router.push('/login');
+      }
+    );
+  }, []);
 
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
@@ -20,7 +35,7 @@ const AccountPage: NextPage = ({ user }) => {
 
   const handleLogout = async () => {
     await logout();
-    window.location.href = '/';
+    router.push('/');
   };
 
   const handleModal = async () => {
@@ -53,28 +68,28 @@ const AccountPage: NextPage = ({ user }) => {
     )}
   };
 
-  const orderHistory = (user) => {
-    if (user.orders.length === 0) {
-      return (
-      <div>
-        <p>You have no orders associated with this email address ({user.email}).</p>
-        <p>If you believe this is incorrect, please try another email address or contact our support team for further help.</p>
-      </div>
-    )};
+  // const orderHistory = () => {
+  //   if (user.orders.length === 0) {
+  //     return (
+  //     <div>
+  //       <p>You have no orders associated with this email address ({user.email}).</p>
+  //       <p>If you believe this is incorrect, please try another email address or contact our support team for further help.</p>
+  //     </div>
+  //   )};
 
-    return (
-      <div>
-        {user.orders.map((order: any) => (
-          <div key={order._id}>
-            <p>{order.date}</p>
-            <p>{order.orderNumber}</p>
-            <p>{order.total}</p>
-            <p>{order.products.length}</p>
-          </div>
-        ))}
-      </div>
-    )
-  };
+  //   return (
+  //     <div>
+  //       {user.orders.map((order: any) => (
+  //         <div key={order._id}>
+  //           <p>{order.date}</p>
+  //           <p>{order.orderNumber}</p>
+  //           <p>{order.total}</p>
+  //           <p>{order.products.length}</p>
+  //         </div>
+  //       ))}
+  //     </div>
+  //   )
+  // };
 
   return (
     <div>
@@ -82,13 +97,13 @@ const AccountPage: NextPage = ({ user }) => {
         <div>
           YOUR ORDERS
         </div>
-        {orderHistory(user)}
+        {/* {orderHistory()} */}
       </div>
 
       <div>
         <div>
           <button onClick={openModal}>Update Password</button>
-          {handleModal()}
+          {/* {handleModal()} */}
         </div>
         <div>
           <button onClick={handleLogout}>Logout</button>
@@ -101,14 +116,16 @@ const AccountPage: NextPage = ({ user }) => {
 
 export default AccountPage;
 
-export async function getServerSideProps() {
-  const session = await getCurrentUser();
+// export async function getServerSideProps() {
+//   const token = window.localStorage.getItem('jwtToken');
+//   console.log(token)
+//   const session = await getCurrentUser();
 
-  if (session) {
-    return {
-      props: { user: session.user },
-    };
-  } 
+//   if (session) {
+//     return {
+//       props: { user: session.user },
+//     };
+//   } 
 
-  return { props: { user: null } };
-};
+//   return { props: { user: null } };
+// };
