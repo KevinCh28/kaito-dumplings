@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SyntheticEvent } from 'react';
 import { getCart } from '../../utils/cartApiUtils';
 
 const Cart = (userId: string) => {
@@ -24,9 +24,14 @@ const Cart = (userId: string) => {
             <img src={item.imageUrl} alt="" />
           </div>
           <div className="cart-item-info">
-            <h4>{item.name}</h4>
-            <p>{item.category}</p>
-            <p>{item.price}</p>
+            <h4>{item.category}</h4>
+            <h5>{item.name}</h5>
+            <div>
+              <button onClick={handleMinusQuantity} value={item.quanity}>-</button>
+              <p>{item.quanity}</p>
+              <button onClick={handleAddQuantity} value={item.quanity}>+</button>
+            </div>
+            <p>{item.price * item.quanity}</p>
           </div>
           <div className="cart-item-remove">
             <button>REMOVE</button>
@@ -36,6 +41,17 @@ const Cart = (userId: string) => {
     } else {
       return null;
     }
+  };
+
+  const handleAddQuantity = (e: SyntheticEvent) => {
+    e.preventDefault();
+    console.log(e)
+    // setCart();
+  };
+
+  const handleMinusQuantity = (e: SyntheticEvent) => {
+    e.preventDefault();
+    // setCart();
   };
 
   return (
