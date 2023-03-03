@@ -1,6 +1,8 @@
+import '../utils/icons/font-awesome'
 import '../utils/styles/globals.scss'
 import '../utils/styles/navbar.scss'
 import '../utils/styles/homepage.scss'
+import '../utils/styles/modal.scss'
 import type { AppProps } from 'next/app'
 import { Oswald } from '@next/font/google'
 import { useState, useEffect } from 'react';

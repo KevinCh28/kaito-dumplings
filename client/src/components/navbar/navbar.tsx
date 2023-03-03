@@ -1,22 +1,14 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import Modal from '../modal/modal';
+import Cart from '../cart/cart';
 
 const Navbar = (props: { auth: boolean,
   user: { firstname: string; lastname: string; email: string; _id: string; }
 }) => {
-  const [cartModalOpen, setCartModalOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
-
-  const openCartModal = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    setCartModalOpen(true);
-  };
-
-  const closeCartModal = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    setCartModalOpen(false);
-  };
   
   // Selectively render navbar links based on user authentication
   const userLinks = () => {
@@ -28,9 +20,12 @@ const Navbar = (props: { auth: boolean,
               ACCOUNT
             </Link>
           </div>
-          <div onClick={openCartModal} className="navbar_cart_container">
+          <div onClick={() => setShowModal(true)} className="navbar_cart_container">
             <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
           </div>
+          { showModal && <Modal onClose={() => setShowModal(false)} >
+            <Cart userId={props.user._id} />
+          </Modal> }
         </div>
       )
     } else {
@@ -54,9 +49,12 @@ const Navbar = (props: { auth: boolean,
             >ORDER NOW
             </Link>
           </div>
-          <div onClick={openCartModal} className="navbar_cart_container">
+          <div onClick={() => setShowModal(true)} className="navbar_cart_container">
             <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
           </div>
+          {showModal && <Modal onClose={() => setShowModal(false)} >
+            <Cart userId={props.user._id} />
+          </Modal>}
         </div>
       )
     }
