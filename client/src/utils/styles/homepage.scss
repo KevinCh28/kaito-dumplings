@@ -683,3 +683,124 @@
 	border: 0;
 	vertical-align: baseline;
 }
+
+.contact_us_container {
+	position: relative;
+	overflow: hidden;
+	background-color: #ed1c24;
+}
+
+.contact_us_wrapper {
+	max-width: 1350px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 30px;
+	padding-top: 8%;
+	padding-bottom: 8%;
+}
+
+.contact_us_form_container {
+	position: relative;
+	max-width: 560px;
+	margin: 0 auto 0 9%;
+	z-index: 3;
+}
+
+.contact_us_form_header {
+	line-height: 1.5em;
+	color: #1b2137;
+	display: flex;
+	align-items: center;
+	margin-bottom: 18%;
+
+	h3 {
+		margin: -0.25em 0;
+		font-size: 45px;
+		font-weight: 600;
+		line-height: 1.3;
+		letter-spacing: -1px;
+		margin-left: 0;
+	}
+}
+
+.contact_us_form {
+	margin-top: 0em;
+	line-height: 1.5em;
+
+	input {
+		appearance: none;
+    box-shadow: none;
+    margin: 0 0 16px;
+    max-width: 100%;
+    overflow: auto;
+    width: 100%;
+		height: 45px;
+		letter-spacing: 1px;
+    text-transform: none;
+		margin-top: 45px;
+    margin-bottom: 0;
+    padding: 10px 0 0;
+    background-color: transparent;
+    border: none;
+    border-radius: unset;
+    border-bottom: 3px solid #fff;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 1;
+    color: #fff;
+	}
+
+	button {
+		background-color: #25bcbd;
+    border: none;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+		width: 100%;
+    margin-top: 35px;
+    padding: 18px 10px;
+    font-size: 20px;
+    letter-spacing: 1px;
+	}
+}
+
+.contact_us_image1 {
+	transform: translate(50px);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 28%;
+	z-index: 2;
+	opacity: 1;
+	transition: all .2s ease;
+
+	img {
+		transform: translateY(7%);
+		width: 100%;
+		vertical-align: middle;
+		max-width: 100%;
+		overflow-clip-margin: content-box;
+		overflow: clip;
+	}
+}
+
+.contact_us_image2 {
+	top: -7%;
+	right: 16.5%;
+	bottom: auto;
+	width: 17%;
+	z-index: 1;
+	transform: translateY(50px);
+	position: absolute;
+	opacity: 1;
+	transition: all .2s ease;
+
+	img {
+		transform: translateY(7%);
+		width: 100%;
+		vertical-align: middle;
+		max-width: 100%;
+		overflow-clip-margin: content-box;
+		overflow: clip;
+	}
+}

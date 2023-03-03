@@ -1,7 +1,31 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const Home: NextPage = () => {
+  const [formName, setFormName] = useState('');
+  const [formEmail, setFormEmail] = useState('');
+  const [formQuestion, setFormQuestion] = useState('');
+
+  const handleChange = (e: { target: { name: any; value: any; } }) => {
+    console.log(e.target)
+    const { name, value } = e.target;
+
+    switch (name) {
+      case 'formName':
+        setFormName(value);
+        break;
+      case 'formEmail':
+        setFormEmail(value);
+        break;
+      case 'formQuestion':
+        setFormQuestion(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="main_page_container">
       <div className="featured_product_container">
@@ -351,7 +375,7 @@ const Home: NextPage = () => {
       <div className="featured-blog-post-block">
         <div className="featured-blog-post">
           <div className="featured-blog-post-image">
-            IMAGE
+            BLOG IMAGE
           </div>
           <div className="featured-blog-post-info">
             <h3>Featured Blog Post</h3>
@@ -361,16 +385,27 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <div className="contact-us-block">
-        <div className="contact-us">
-          <h3>QUESTIONS, COMMENTS, FEEDBACK?</h3>
-          <textarea placeholder="Name"></textarea>
-          <textarea placeholder="Email"></textarea>
-          <textarea placeholder="How's it going?"></textarea>
-          <button>GET IN TOUCH</button>
-        </div>
-        <div className="contact-us-mage">
-          IMAGE
+      <div className="contact_us_container">
+        <div className="contact_us_wrapper">
+          <div className='contact_us_form_container'>
+            <div className='contact_us_form_header'>
+              <h3>QUESTIONS, COMMENTS, FEEDBACK?</h3>
+            </div>
+            <form className='contact_us_form'>
+              <input type="text" placeholder='Name' value={formName} onChange={handleChange}/>
+              <input type="email" placeholder='Email' value={formEmail} onChange={handleChange}/>
+              <input type="text" placeholder='What can we do for you?' value={formQuestion} onChange={handleChange}/>
+              <button type="submit">GET IN TOUCH</button>
+            </form>
+          </div>
+          <div className='contact_us_image_container'>
+            <div className='contact_us_image1'>
+              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/baby-alt-min_590x.png?v=1658852252" alt="" />
+            </div>
+            <div className='contact_us_image2'>
+              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/background-image-2_360x.png?v=1613163280" alt="" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
