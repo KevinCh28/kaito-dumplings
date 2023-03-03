@@ -26,7 +26,7 @@ const AccountPage: NextPage = () => {
         }
       })
       .catch((err) => {
-        router.push('/login');
+        router.reload();
       }
     );
   }, []);
