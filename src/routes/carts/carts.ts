@@ -17,4 +17,14 @@ router.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
+// Post /api/carts
+router.post("/", async (req: Request, res: Response) => {
+  try {
+    const cart = await Cart.create(req.body);
+    return res.json(cart);
+  } catch (err) {
+    res.status(404).json({ err: "User not logged in" });
+  }
+});
+
 export default router;
