@@ -1,25 +1,24 @@
 import { useState, useEffect } from 'react';
-import { getProductsByIds } from '../../utils/productApiUtils';
+import { getCart } from '../../utils/cartApiUtils';
 
-
-const Cart = (cart: any) => {
-  const [cartItems, setCartItems] = useState([]);
+const Cart = (userId: string) => {
+  const [cart, setCart] = useState([]);
   
-
-  useEffect(() => {(
-    async () => {
-      try {
-        const response = await getProductsByIds(cart);
-        setCartItems(response);
-      } catch (err) {
+  useEffect(() => {
+    getCart(userId)
+      .then((res) => {
+        if (res.products.length > 0) {
+          setCart(res.products);
+        }
+      })
+      .catch((err) => {
         console.log(err);
-      }
-    })();
+      })
   }, []);
 
   const handleCartItems = () => {
-    if (cartItems.length > 0) {
-      return cartItems.map((item: any) => {
+    if (cart.length > 0) {
+      return cart.map((item: any) => {
         <div>
           <div className="cart-item-image">
             <img src={item.imageUrl} alt="" />
