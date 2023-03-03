@@ -45,7 +45,7 @@ function createApp(): Express {
   app.use('/api/users', usersRouter);
   app.use('/api/products', productsRouter);
   app.use('/api/orders', ordersRouter);
-  app.use('/api/cart', cartsRouter);
+  app.use('/api/carts', cartsRouter);
 
   // if (process.env.NODE_ENV === 'production') {
   //   const path = require("path");
