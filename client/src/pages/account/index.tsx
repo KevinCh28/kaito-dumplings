@@ -1,18 +1,29 @@
 import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
+import { getOrders } from '@/src/utils/orderApiUtils';
 import { logout } from '@/src/utils/sessionApiUtils';
 import { useRouter } from 'next/router';
 
 const AccountPage: NextPage = () => {
   const router = useRouter();
-  const [user, setUser] = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [user, setUser] = useState({
+    id: '',
+    firstname: '',
+    ordered: false,
+  });
 
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
         if (res) {
-          setUser(res);
+          console.log(res)
+          setUser({
+            id: res._id,
+            firstname: res.firstname,
+            ordered: res.orders.length === 0 ? false : true,
+          })
         }
       })
       .catch((err) => {
@@ -21,111 +32,61 @@ const AccountPage: NextPage = () => {
     );
   }, []);
 
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
-  const [errors, setErrors] = useState({});
-  const [showModal, setShowModal] = useState(false);
-
-  const openModal = () => setShowModal(true);
-  const closeModal = () => setShowModal(false);
-  
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-  };
+  useEffect(() => {
+    if (user.ordered) {
+      getOrders(user.id)
+        .then((res) => {
+          setOrders(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, [user.ordered]);
 
   const handleLogout = async () => {
     await logout();
     router.push('/');
   };
 
-  const handleModal = async () => {
-    {showModal && (
-      <div style={{backgroundColor: '#fff', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', padding: '20px'}}>
-        <h3>Change Password</h3>
-        <form onSubmit={handleSubmit}>
-          <label>
-            New Password:
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <label>
-            Confirm Password:
-            <input
-              type="password2"
-              value={password2}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          <div>
-            <button type="submit">Submit</button>
-            <button onClick={closeModal}>Cancel</button>
-          </div>
-        </form>
-      </div>
-    )}
-  };
+  const handleOrderHistory = () => {
+    if (!user.ordered) {
+      return (
+        <div>
+          <p>You have no orders associated with this email address.</p>
+          <p>If you believe this is incorrect, please try another email address or contact our support team for further help.</p>
+        </div>
+      )};
+      return (
+        <div>
+          <h2>YOUR ORDERS:</h2>
+          {orders.map((order: any) => {
+            const date = order.date.split(' ')
+            const newDate = date[1] + " " + date[2] + ", " + date[3]
 
-  // const orderHistory = () => {
-  //   if (user.orders.length === 0) {
-  //     return (
-  //     <div>
-  //       <p>You have no orders associated with this email address ({user.email}).</p>
-  //       <p>If you believe this is incorrect, please try another email address or contact our support team for further help.</p>
-  //     </div>
-  //   )};
-
-  //   return (
-  //     <div>
-  //       {user.orders.map((order: any) => (
-  //         <div key={order._id}>
-  //           <p>{order.date}</p>
-  //           <p>{order.orderNumber}</p>
-  //           <p>{order.total}</p>
-  //           <p>{order.products.length}</p>
-  //         </div>
-  //       ))}
-  //     </div>
-  //   )
-  // };
+            return (
+              <div key={order._id}>
+                <p>Order Number: {order.orderNumber}</p>
+                <p>Order Date: {newDate}</p>
+                <p>Order Total: ${order.orderTotal}</p>
+                <p>Order Status: {order.orderStatus}</p>
+              </div>
+            )
+          })}
+        </div>
+  )};
 
   return (
-    <div>
-      <div>
-        <div>
-          YOUR ORDERS
-        </div>
-        {/* {orderHistory()} */}
+    <div className='account_page_container'>
+      <div className='account_orders_container'>
+        <h3>HI {user.firstname}!</h3>
+        {handleOrderHistory()}
       </div>
-
-      <div>
-        <div>
-          <button onClick={openModal}>Update Password</button>
-          {/* {handleModal()} */}
-        </div>
-        <div>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
+      <div className='account_logout_button_container'>
+        <button onClick={handleLogout}>Logout</button>
       </div>
-
     </div>
   );
 };
 
 export default AccountPage;
-
-// export async function getServerSideProps() {
-//   const token = window.localStorage.getItem('jwtToken');
-//   console.log(token)
-//   const session = await getCurrentUser();
-
-//   if (session) {
-//     return {
-//       props: { user: session.user },
-//     };
-//   } 
-
-//   return { props: { user: null } };
-// };
