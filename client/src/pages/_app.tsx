@@ -4,7 +4,7 @@ import '../utils/styles/homepage.scss'
 import type { AppProps } from 'next/app'
 import { useState, useEffect } from 'react';
 import { getCurrentUser } from '../utils/sessionApiUtils';
-import { Layout } from '../layout';
+import { Navbar } from '../components/navbar/navbar';
 import { Oswald } from '@next/font/google'
 
 const oswald = Oswald({
@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
   
   return (
     <div className={oswald.className}>
-      <Layout auth={auth} user={user} />
+      <Navbar auth={auth} user={user} />
       <Component {...pageProps} />
     </div>
     
