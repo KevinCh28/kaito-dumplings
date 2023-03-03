@@ -14,7 +14,12 @@ const oswald = Oswald({
 
 export default function App({ Component, pageProps }: AppProps) {
   const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+    _id: ''
+  });
 
   useEffect(() => {
     (

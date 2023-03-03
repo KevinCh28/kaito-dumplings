@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 const Navbar = (props: { auth: boolean,
-  user: { firstname: string; lastname: string; email: string; _id: string; cart(cart: any): unknown; }
+  user: { firstname: string; lastname: string; email: string; _id: string; }
 }) => {
   const [cartModalOpen, setCartModalOpen] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
