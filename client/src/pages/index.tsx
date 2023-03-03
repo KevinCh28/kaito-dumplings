@@ -289,53 +289,61 @@ const Home: NextPage = () => {
               <p>DON'T JUST TAKE OUR WORD FOR IT</p>
             </div>
 
-            <div className='reviews_carousel_stars'>
-              <p>DON'T JUST TAKE OUR WORD FOR IT</p>
+            <div className='reviews_carousel_cards_stars'>
+              <div>
+                <div className='reviews_carousel_cards_stars_wrapper'>
+                  <div className='reviews_carousel_stars'>
+                    <div>
+                      <svg className="reviews_carousel_star" version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#ffb900" stroke="none">
+                          <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                        </g>
+                      </svg>
+                      <svg className="reviews_carousel_star" version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#ffb900" stroke="none">
+                          <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                        </g>
+                      </svg>
+                      <svg className="reviews_carousel_star" version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#ffb900" stroke="none">
+                          <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                        </g>
+                      </svg>
+                      <svg className="reviews_carousel_star" version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#ffb900" stroke="none">
+                          <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                        </g>
+                      </svg>
+                      <svg className="reviews_carousel_star" version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#ffb900" stroke="none">
+                          <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                        </g>
+                      </svg>
+                      <span className='total_review_amount'>
+                        (6,866)
+                      </span>
+                    </div>
+                  </div>
+                  <span className='five_star_reviews'>
+                    5-STAR REVIEWS
+                  </span>
+                </div>
+              </div>
             </div>
 
             <div className='reviews_carousel_cards_container'>
-              <div className='review_card'>
-                <div className='review_card-image'>
-                  <a href='/products/beef-&-cheese'>
-                    <div className='product_image_wrapper'>
-                      <img src='https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedbeef-xlb_2_590x.png?v=1675392214' alt='' />
+              <div>
+                <div className='reviews_carousel_cards_container_height'>
+                  <div>
+                    <div className='reviews_carousel_cards_wrapper'>
+                      <div className='reviews_carousel_cards'>
+
+                      </div>
                     </div>
-                  </a>
-                </div>
-                <div className='review-card-info'>
-                  <h4>Review Name</h4>
-                  <p>Review description</p>
-                </div>
-              </div>
-              <div className="review-card">
-                <div className="review-card-image">
-                  IMAGE
-                </div>
-                <div className="review-card-info">
-                  <h4>Review Name</h4>
-                  <p>Review description</p>
-                </div>
-              </div>
-              <div className="review-card">
-                <div className="review-card-image">
-                  IMAGE
-                </div>
-                <div className="review-card-info">
-                  <h4>Review Name</h4>
-                  <p>Review description</p>
-                </div>
-              </div>
-              <div className="review-card">
-                <div className="review-card-image">
-                  IMAGE
-                </div>
-                <div className="review-card-info">
-                  <h4>Review Name</h4>
-                  <p>Review description</p>
+                  </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
