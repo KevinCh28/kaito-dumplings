@@ -23,7 +23,6 @@ const Products = () => {
 
   const handleDumplingClick = (e: {preventDefault: () => void; target: { innerText: string; }; }) => {
     e.preventDefault();
-    console.log(e)
     const flavor = e.target.innerText;
     if (flavor === "PORK & CHIEVES") {
       setDumpling({
