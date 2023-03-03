@@ -2,10 +2,11 @@ import '../utils/styles/globals.scss'
 import '../utils/styles/navbar.scss'
 import '../utils/styles/homepage.scss'
 import type { AppProps } from 'next/app'
+import { Oswald } from '@next/font/google'
 import { useState, useEffect } from 'react';
 import { getCurrentUser } from '../utils/sessionApiUtils';
-import { Navbar } from '../components/navbar/navbar';
-import { Oswald } from '@next/font/google'
+import Navbar from '../components/navbar/navbar';
+import Footer from '../components/footer/footer';
 
 const oswald = Oswald({
   subsets: ['latin'],
@@ -34,6 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <div className={oswald.className}>
       <Navbar auth={auth} user={user} />
       <Component {...pageProps} />
+      <Footer />
     </div>
     
   );

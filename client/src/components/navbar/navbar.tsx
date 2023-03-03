@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
-export const Navbar = (props: { auth: boolean,
+const Navbar = (props: { auth: boolean,
   user: { firstname: string; lastname: string; email: string; _id: string; cart(cart: any): unknown; }
 }) => {
   const [cartModalOpen, setCartModalOpen] = useState(false);
@@ -82,3 +82,5 @@ export const Navbar = (props: { auth: boolean,
     </>
   )
 };
+
+export default Navbar;
