@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { getProductsByIds } from '../../utils/productApiUtils';
 
+
 const Cart = (cart: any) => {
   const [cartItems, setCartItems] = useState([]);
   
+
   useEffect(() => {(
     async () => {
       try {
