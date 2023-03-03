@@ -13,7 +13,7 @@ const oswald = Oswald({
 
 export default function App({ Component, pageProps }: AppProps) {
   const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState({ role: 'Customer' });
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     (

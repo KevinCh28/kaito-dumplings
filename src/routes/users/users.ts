@@ -65,7 +65,10 @@ router.post("/register", validateRegisterInput, async (req: Request, res: Respon
           httpOnly: true,
           maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
         })
-        res.send({ success: true });
+        res.send({ 
+          success: true,
+          userId: user._id
+        });
       } catch (err) {
         return next(err);
       }

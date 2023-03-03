@@ -18,7 +18,6 @@ const AccountPage: NextPage = () => {
     getCurrentUser()
       .then((res) => {
         if (res) {
-          console.log(res)
           setUser({
             id: res._id,
             firstname: res.firstname,
@@ -45,8 +44,10 @@ const AccountPage: NextPage = () => {
   }, [user.ordered]);
 
   const handleLogout = async () => {
-    await logout();
-    router.push('/');
+    await logout()
+      .then((res) => {
+        router.push('/');
+      })
   };
 
   const handleOrderHistory = () => {

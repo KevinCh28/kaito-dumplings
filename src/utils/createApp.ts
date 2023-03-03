@@ -14,7 +14,6 @@ import usersRouter from "../routes/users/users";
 import productsRouter from "../routes/products/products";
 import ordersRouter from "../routes/orders/orders";
 import cartsRouter from "../routes/carts/carts";
-import csrfRouter from "../routes/csrf";
 
 function createApp(): Express {
   const app = express();
@@ -46,8 +45,7 @@ function createApp(): Express {
   app.use('/api/users', usersRouter);
   app.use('/api/products', productsRouter);
   app.use('/api/orders', ordersRouter);
-  // app.use('/api/cart', cartsRouter);
-  // app.use('/api/csrf', csrfRouter);
+  app.use('/api/cart', cartsRouter);
 
   // if (process.env.NODE_ENV === 'production') {
   //   const path = require("path");

@@ -1,8 +1,11 @@
-import { useState, useEffect, SyntheticEvent } from "react";
+import { useState, SyntheticEvent } from "react";
 import Link from 'next/link';
 import { register } from "../../utils/sessionApiUtils";
+import { createCart } from "../../utils/cartApiUtils";
+import { useRouter } from "next/router";
 
 const Register = () => {
+  const router = useRouter();
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -15,7 +18,6 @@ const Register = () => {
     email: "",
     password: "",
     password2: "",
-    role: "Customer",
   });
   
   const [errors, setErrors] = useState({
@@ -34,6 +36,14 @@ const Register = () => {
     password2: "",
   };
 
+  const handleChange = (e: { target: { name: any; value: any; } } ) => {
+    const { name, value } = e.target;
+    setUser((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  };
+
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     setUser({
@@ -42,16 +52,17 @@ const Register = () => {
       email,
       password,
       password2,
-      role: "Customer",
     });
     setErrors(emptyInfo);
     register(user)
       .then((res) => {
         if (res.data.success === true) {
-          window.location.href = "/";
+          createCart(res.data.userId);
+          router.push("/");
         }
       })
       .catch((err) => {
+        console.log(err)
         const newErrors = err.response.data.err.errors;
         Object.keys(newErrors).forEach(function (key: any, value: any) {
           setErrors((prevState) => ({
@@ -63,7 +74,7 @@ const Register = () => {
     )
   };
 
-  const handleErrors = (key: any) => {
+  const handleErrors = (key: string) => {
     if (errors[key] !== "") {
       return <div>{errors[key]}</div>;
     } else {
@@ -82,7 +93,7 @@ const Register = () => {
               type="text"
               name="firstname"
               value={user.firstname}
-              onChange={e => setFirstname(e.target.value)}
+              onChange={handleChange}
             />
             {handleErrors("firstname")}
           </div>
@@ -92,7 +103,7 @@ const Register = () => {
               type="text"
               name="lastname"
               value={user.lastname}
-              onChange={e => setLastname(e.target.value)}
+              onChange={handleChange}
             />
             {handleErrors("lastname")}
           </div>
@@ -102,7 +113,7 @@ const Register = () => {
               type="text"
               name="email"
               value={user.email}
-              onChange={e => setEmail(e.target.value)}
+              onChange={handleChange}
             />
             {handleErrors("email")}
           </div>
@@ -112,7 +123,7 @@ const Register = () => {
               type="password"
               name="password"
               value={user.password}
-              onChange={e => setPassword(e.target.value)}
+              onChange={handleChange}
             />
             {handleErrors("password")}
           </div>
@@ -122,7 +133,7 @@ const Register = () => {
               type="password"
               name="password2"
               value={user.password2}
-              onChange={e => setPassword2(e.target.value)}
+              onChange={handleChange}
             />
             {handleErrors("password2")}
           </div>

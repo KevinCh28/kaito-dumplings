@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 import Cart from "../../database/schemas/Cart";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 // Get /api/carts/:id
 router.get("/:id", async (req: Request, res: Response) => {
@@ -18,13 +18,18 @@ router.get("/:id", async (req: Request, res: Response) => {
 });
 
 // Post /api/carts
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", async (req: Request, res: Response, next: NextFunction) => {
+  const newCart = new Cart({
+    owner: req.body.userId,
+    products: [],
+  });
+
   try {
-    const cart = await Cart.create(req.body);
-    return res.json(cart);
+    const cart = await newCart.save();
+    return res.status(200).json(cart);
   } catch (err) {
-    res.status(404).json({ err: "User not logged in" });
-  }
+    return next(err);
+  };
 });
 
 export default router;
