@@ -14,10 +14,10 @@ const Veggie = () => {
     const renderFlavors = () => {
         return flavors.map((flavor) => {
             if (flavor === productName) {
-                return <div>{flavor.split('-').join(' ').toUpperCase()}</div>
+                return <div key={flavor}>{flavor.split('-').join(' ').toUpperCase()}</div>
             } else {
                 return (
-                    <div>
+                    <div key={flavor}>
                         <Link href={`/products/${flavor}`}>
                             {flavor.split('-').join(' ').toUpperCase()}
                         </Link>

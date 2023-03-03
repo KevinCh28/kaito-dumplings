@@ -1,18 +1,18 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const ProductDetail = () => {
     const router = useRouter();
     const { productName } = router.query;
     const products = {
-            'veggie': 'Veggie (Vegan) (50pc)',
-            'chicken-&-cabbage': 'Chicken & Cabbage (50pc)',
-            'beef-&-cheese': 'Beef & Cheese (50pc)',
-            'pork-&-chieves': 'Pork & Chieves (50pc)'
+            'veggie': true,
+            'chicken-&-cabbage': true,
+            'beef-&-cheese': true,
+            'pork-&-chieves': true
         };
 
     useEffect(() => {
-        if (!products[productName]) {
+        if (!products.productName) {
             router.push('/products');
         } else {
             return <div>{productName}</div>
