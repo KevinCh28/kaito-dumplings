@@ -1,0 +1,67 @@
+.cart_container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.cart_free_shipping_container {
+  margin: 0;
+  padding: 20px;
+  background-color: rgba(236, 29, 35, 0.2);
+}
+
+.free_shipping_text {
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+
+  b {
+    font-weight: bolder;
+  }
+}
+
+.free_shipping_status_bar {
+  position: relative;
+  margin: 10px 0 0 0;
+  padding: 0;
+  width: 99%;
+  height: 10px;
+  border-radius: 10px;
+  background-color: #eee;
+
+  span {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 8px;
+    line-height: 10px;
+    opacity: 0;
+  }
+}
+
+.free_shipping_status_bar_progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: auto;
+  padding: 0 10px;
+  height: 10px;
+  text-align: right;
+  border-radius: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  opacity: 1;
+  transition: all 0.25s ease;
+  color: #ffffff;
+  background-color: #ec1d23;
+  width: 0%;
+}

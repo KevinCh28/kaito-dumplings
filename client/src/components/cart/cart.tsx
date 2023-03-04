@@ -3,6 +3,7 @@ import { getCart } from '../../utils/cartApiUtils';
 
 const Cart = (userId: string) => {
   const [cart, setCart] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
   
   useEffect(() => {
     getCart(userId)
@@ -15,6 +16,30 @@ const Cart = (userId: string) => {
         console.log(err);
       })
   }, []);
+
+  // Updates cart's modal free shipping progress bar to red
+  useEffect(() => {
+    const progressBar = document.getElementById('free_shipping_status_bar_progress');
+    progressBar.style.width = totalAmount > 98.99 ? '100%' : `${totalAmount}%`;
+  }, [])
+
+  const handleCartFreeShippingMessage = () => {
+    if (totalAmount < 90) {
+      return (
+        <div className='free_shipping_text'>
+          You are ${99 - totalAmount} away from
+          <b> FREE SHIPPING</b>
+        </div>
+      )
+    } else {
+      return (
+        <div className='free_shipping_text'>
+          🎉 Congrats! You have unlocked
+          <b> FREE SHIPPING!</b>
+        </div>
+      )
+    }
+  };
 
   const handleCartItems = () => {
     if (cart.length > 0) {
@@ -55,9 +80,17 @@ const Cart = (userId: string) => {
   };
 
   return (
-    <div className="cart">
-      <div className="cart-items">
-        <div className="cart-item">
+    <div className='cart_container'>
+      <div className='cart_free_shipping_container'>
+        {handleCartFreeShippingMessage()}
+        <div className='free_shipping_status_bar'>
+          <span></span>
+          <div id='free_shipping_status_bar_progress' className='free_shipping_status_bar_progress'></div>
+        </div>
+      </div>
+
+      <div className='cart-items'>
+        <div className='cart-item'>
           {handleCartItems()}
         </div>
       </div>
