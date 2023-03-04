@@ -88,6 +88,7 @@ const Cart = (userId: string) => {
               )}
             )}
           </ul>
+          <div className='cart_products_recommendations_container'></div>
         </div>
       })
     } else {
@@ -123,16 +124,7 @@ const Cart = (userId: string) => {
           <div id='free_shipping_status_bar_progress' className='free_shipping_status_bar_progress'></div>
         </div>
       </div>
-
       {handleCartItems()}
-      <div className="cart-total">
-        <p>Total</p>
-        <p>${totalAmount.toFixed(2)}</p>
-      </div>
-      <div className="cart-buttons">
-        <button>CHECKOUT</button>
-        <button>CONTINUE SHOPPING</button>
-      </div>
     </div>
   );
 };
