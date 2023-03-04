@@ -34,8 +34,31 @@ const Modal = ({ onClose = () => {}, children }) => {
           </div>
         </div>
 
-        <div>
-
+        <div className='cart_footer_container'>
+          <div className='cart_footer_image'>
+            <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/ice-dark.png?v=1667978802" alt="" />
+            <span>
+              Melt-Free
+              <br />
+              Guarantee
+            </span>
+          </div>
+          <div className='cart_footer_image'>
+            <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Star-dark.png?v=1667978802" alt="" />
+            <span>
+              5000+
+              <br />
+              5-Star Reviews
+            </span>
+          </div>
+          <div className='cart_footer_image'>
+            <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/fast-delivery-dark.png?v=1667978802" alt="" />
+            <span>
+              Free Shipping on
+              <br />
+              Orders $99+
+            </span>
+          </div>
         </div>
       </div>
       {/* <div className='modal_background'></div> */}
