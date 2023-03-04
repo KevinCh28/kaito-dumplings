@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 import Cart from "../../database/schemas/Cart";
 import { Request, Response, NextFunction } from "express";
+import { Types } from "mongoose";
 
 // Get User's Cart
 // Get /api/carts/:id
@@ -35,12 +36,28 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
   };
 });
 
-// Update Cart
-// Put /api/carts/:id
-router.put("/:id", async (req: Request, res: Response, next: NextFunction) => {
+// Update Cart to increase a product quantity
+// Put /api/carts/:id/increase
+router.put("/:id/increase", async (req: Request, res: Response, next: NextFunction) => {
+  const { userId, productId } = req.body;
   try {
-    const cart = await Cart.findOneAndUpdate({ owner: req.params.id }, { $set: req.body }, { new: true });
-    return res.status(200).json(cart);
+    let products: { quantity: number; productId?: Types.ObjectId | undefined; }[] = [];
+    const cart = await Cart.findOne({ owner: userId });
+
+    if (cart) products = cart.products;
+    if (products.length === 0) {
+      products.push({ productId: productId, quantity: 1 });
+      await cart?.save();
+      return res.status(200).json(cart);
+    }
+
+    for (let product of products) {
+      if (Object(product.productId).equals(productId)) {
+        product.quantity += 1;
+        await cart?.save();
+        return res.status(200).json(cart);
+      };
+    };
   } catch (err) {
     return next(err);
   };

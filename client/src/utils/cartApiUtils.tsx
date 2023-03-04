@@ -13,7 +13,7 @@ export const removeItemFromCart = async (userId: string, productId: string) => {
 };
 
 export const increaseItemQuantity = async (userId: string, productId: string) => {
-  return await axios.put(`/api/carts/${userId}/increase`, { productId });
+  return await axios.put(`/api/carts/${userId}/increase`, { userId, productId });
 }
 
 export const lowerItemQuantity = async (userId: string, productId: string) => {

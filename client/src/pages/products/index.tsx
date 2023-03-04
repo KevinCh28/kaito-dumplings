@@ -35,8 +35,7 @@ const Products = () => {
 
   const handleAddToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
     e.preventDefault();
-    const productId = e.target.value;
-    increaseItemQuantity(userId, productId)
+    increaseItemQuantity(userId, dumplingsId)
       .then((res) => {
         setShowModal(true);
       })
