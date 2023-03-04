@@ -181,17 +181,56 @@ const Products = () => {
   };
 
   return (
-    <main>
-      <div className='products_page_products_container'>
-        <div className='products_page_products_wrapper'>
-          <h1><span>WE SHIP NATIONWIDE!</span></h1>
-          <div>
-            <div>
-              <div>
-                <div>
-                  <div>
-                    cards
+    <main className='products_page_main'>
+      <div className='products_page_products_wrapper'>
+        <div className='products_page_products_container'>
+          <h1><span>WE SHIP NATIONWIDE</span></h1>
+          <div className='products_page_items_wrapper'>
+            <div className='products_page_items_container'>
+              <div className='products_page_items_column_wrapper'>
+                <div className='products_page_items_column_container'>
+                  <div className='products_page_item_wrapper'>
+
+                    <div className='products_page_item_container'>
+                      <div className='products_page_item_info_container'>
+                        <div className='products_page_item_image_wrapper'>
+                          <div>
+                            <div className='products_page_item_image'>
+                              <a href="">
+                                <img src="" alt="" />
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div className='products_page_item_text_wrapper'>
+                          <form action="post">
+                            <input type="hidden" />
+                            <div className='products_page_item_details_wrapper'>
+                              <div className='products_page_item_details_container'>
+                                <div className='products_page_item_price_container'>
+                                  <span className='products_page_item_price'>$44.95</span>
+                                </div>
+                                <h3 className='products_page_item_name'>
+                                  <a href="/products/beef-&-cheese">DUMPLINGS</a>
+                                </h3>
+                              </div>
+                              <div className='products_page_add_button_container'>
+                                <button className='products_page_add_button'>
+                                  <span>ADD TO CART</span>
+                                  <span>
+                                    <div>
+                                      <div></div>
+                                    </div>
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </div>
