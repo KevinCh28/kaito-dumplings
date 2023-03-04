@@ -213,6 +213,19 @@ const Products = () => {
                                 <h3 className='products_page_item_name'>
                                   <a href="/products/beef-&-cheese">DUMPLINGS</a>
                                 </h3>
+                                <div>
+                                  <ul className='products_page_item_descriptions'>
+                                    <li className='products_page_item_description'>
+                                      <p>50 Dumplings (Good for 6 Meals!)</p>
+                                    </li>
+                                    <li className='products_page_item_description'>
+                                      <p>Ready in Just 11 Minutes</p>
+                                    </li>
+                                    <li className='products_page_item_description'>
+                                      <p>Steamer Liners Included</p>
+                                    </li>
+                                  </ul>
+                                </div>
                               </div>
                               <div className='products_page_add_button_container'>
                                 <button className='products_page_add_button'>
