@@ -77,7 +77,7 @@ const Cart = (userId: string) => {
                       </div>
                     </div>
 
-                    <div>
+                    <div className='item_total_price'>
                       <div>
                         <span></span>
                       </div>
