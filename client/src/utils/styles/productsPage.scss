@@ -296,3 +296,49 @@
   font-weight: 600;
   color: #1b2137;
 }
+
+.products_page_subscribe_container {
+  background-image: url("https://cdn.shopify.com/s/files/1/0042/3834/4321/files/subscribe-section-image.png?v=1613163587");
+  margin-right: -1px;
+  background-size: 650px;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-color: #ec1c24;
+  background-repeat: no-repeat;
+}
+
+.products_page_subscribe {
+  max-width: 1350px;
+  width: 100%;
+  padding: 0 30px;
+  padding-top: 6.3%;
+  padding-bottom: 450px;
+  margin: 0 auto!important;
+}
+
+.products_page_subscribe_content {
+  margin: 0;
+  margin-top: 35px;
+  font-size: 100px;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: left;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.products_page_subscribe_button {
+  display: block;
+  padding: 15px 27px;
+  letter-spacing: 1px;
+  background: 0 center no-repeat url("https://cdn.shopify.com/s/files/1/0042/3834/4321/t/124/assets/menu-item-bg.png?v=79876390329209793441668510373");
+  background-size: 90%;
+  transition: all 0.3s ease-in-out !important;
+  width: fit-content;
+  min-width: 200px;
+  margin-top: 75px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1b2137;
+  background-position: 15px center;
+}
