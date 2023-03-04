@@ -46,14 +46,16 @@ const Cart = (userId: string) => {
     if (cart.length > 0) {
       return cart.map((item: any) => {
         <div className='cart_items_container'>
-          <ul>
+          <ul className='cart_items'>
             {cart.map((item: any) => {
               return (
                 <li key={item._id}>
-                  <div className="cart-item-image">
-                    <img src={item.imageUrl} alt="" />
+                  <div className='item_image_container'>
+                    <a href="" >
+                      <img src={item.imageUrl} alt={item.name} />
+                    </a>
                   </div>
-                  <div className="cart-item-info">
+                  <div className='cart_item_info'>
                     <h4>{item.category}</h4>
                     <h5>{item.name}</h5>
                     <div>
@@ -62,9 +64,6 @@ const Cart = (userId: string) => {
                       <button onClick={handleAddQuantity} value={item.quanity}>+</button>
                     </div>
                     <p>{item.price * item.quanity}</p>
-                  </div>
-                  <div className="cart_item_remove">
-                    <button>REMOVE</button>
                   </div>
                 </li>
               )}

@@ -133,3 +133,50 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.cart_items {
+  border-color: #e3e3e3;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+
+  li {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    margin: 0 20px;
+    padding: 20px 0;
+    border-style: solid;
+    border-width: 0;
+    border-color: #eee;
+  }
+}
+
+.item_image_container {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  width: 90px;
+
+  a {
+    display: block;
+
+    img {
+      border-style: none;
+      width: 100%;
+      box-sizing: border-box;
+      display: block;
+      margin: 0;
+      padding: 0;
+      width: auto;
+      height: auto;
+      min-width: auto;
+      max-width: 100%;
+    }
+  }
+}
