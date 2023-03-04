@@ -17,12 +17,13 @@ const Cart = (userId: string) => {
       })
   }, []);
 
-  // Updates cart's modal free shipping progress bar to red
+  // Updates free shipping progress bar
   useEffect(() => {
     const progressBar = document.getElementById('free_shipping_status_bar_progress');
     progressBar.style.width = totalAmount > 98.99 ? '100%' : `${totalAmount}%`;
   }, [])
 
+  // Updates free shipping progress text
   const handleCartFreeShippingMessage = () => {
     if (totalAmount < 90) {
       return (
@@ -44,27 +45,43 @@ const Cart = (userId: string) => {
   const handleCartItems = () => {
     if (cart.length > 0) {
       return cart.map((item: any) => {
-        <div>
-          <div className="cart-item-image">
-            <img src={item.imageUrl} alt="" />
-          </div>
-          <div className="cart-item-info">
-            <h4>{item.category}</h4>
-            <h5>{item.name}</h5>
-            <div>
-              <button onClick={handleMinusQuantity} value={item.quanity}>-</button>
-              <p>{item.quanity}</p>
-              <button onClick={handleAddQuantity} value={item.quanity}>+</button>
-            </div>
-            <p>{item.price * item.quanity}</p>
-          </div>
-          <div className="cart-item-remove">
-            <button>REMOVE</button>
-          </div>
+        <div className='cart_items_container'>
+          <ul>
+            {cart.map((item: any) => {
+              return (
+                <li key={item._id}>
+                  <div className="cart-item-image">
+                    <img src={item.imageUrl} alt="" />
+                  </div>
+                  <div className="cart-item-info">
+                    <h4>{item.category}</h4>
+                    <h5>{item.name}</h5>
+                    <div>
+                      <button onClick={handleMinusQuantity} value={item.quanity}>-</button>
+                      <p>{item.quanity}</p>
+                      <button onClick={handleAddQuantity} value={item.quanity}>+</button>
+                    </div>
+                    <p>{item.price * item.quanity}</p>
+                  </div>
+                  <div className="cart_item_remove">
+                    <button>REMOVE</button>
+                  </div>
+                </li>
+              )}
+            )}
+          </ul>
         </div>
       })
     } else {
-      return null;
+      return (
+        <div className="cart_empty">
+          <h4>YOUR CART IS EMPTY!</h4>
+          <p>Add some dumplings and gyozas.</p>
+          <p>
+            <a href="/products" className='cart_empty_shop_now_button'>Shop Now</a>
+          </p>
+        </div>
+      )
     }
   };
 
@@ -89,40 +106,14 @@ const Cart = (userId: string) => {
         </div>
       </div>
 
-      <div className='cart-items'>
-        <div className='cart-item'>
-          {handleCartItems()}
-        </div>
-      </div>
+      {handleCartItems()}
       <div className="cart-total">
         <p>Total</p>
-        <p>$10.00</p>
+        <p>${totalAmount.toFixed(2)}</p>
       </div>
       <div className="cart-buttons">
         <button>CHECKOUT</button>
         <button>CONTINUE SHOPPING</button>
-      </div>
-      <div className="cart-empty">
-        <p>Your cart is empty</p>
-        <div className="cart-empty-image">
-          IMAGE
-        </div>
-      </div>
-      <div className="cart-suggested-products">
-        <div className="cart-suggested-product">
-          <div className="cart-suggested-product-image">
-            IMAGE
-          </div>
-          <div className="cart-suggested-product-info">
-            <p>Product Name</p>
-            <p>Product description</p>
-            <p>Product description</p>
-            <p>Product description</p>
-          </div>
-          <div className="cart-suggested-product-button">
-            <button>ADD TO CART</button>
-          </div>
-        </div>
       </div>
     </div>
   );
