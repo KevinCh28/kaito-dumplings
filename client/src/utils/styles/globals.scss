@@ -8,6 +8,7 @@ body {
   font-size: 25px;
   text-size-adjust: 100%;
   text-shadow: rgba(0, 0, 0, 0.004) 1px 1px 1px;
+  line-height: 1.5em;
 }
 
 #__next {
@@ -55,4 +56,11 @@ img {
   padding: 0;
   position: absolute;
   width: 1px;
+}
+
+button {
+  cursor: pointer;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
 }
