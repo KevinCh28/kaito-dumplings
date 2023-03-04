@@ -226,6 +226,30 @@ const Products = () => {
                                     </li>
                                   </ul>
                                 </div>
+
+                              <div>
+                                <div>
+                                  <div>
+                                    <div>
+                                      <input type="hidden" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className='products_page_product_rating_container'>
+                                <div className='products_page_product_ratings'>
+                                  <div className='products_page_product_rating'>
+                                    <svg className='products_page_product_rating_star'><use></use></svg>
+                                    <svg className='products_page_product_rating_star'><use></use></svg>
+                                    <svg className='products_page_product_rating_star'><use></use></svg>
+                                    <svg className='products_page_product_rating_star'><use></use></svg>
+                                    <svg className='products_page_product_rating_star'><use></use></svg>
+                                    <span className='products_page_product_rating_amount'>(2018)</span>
+                                  </div>
+                                </div>
+                              </div>
+
                               </div>
                               <div className='products_page_add_button_container'>
                                 <button className='products_page_add_button'>
