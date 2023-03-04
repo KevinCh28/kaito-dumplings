@@ -1,24 +1,33 @@
-import { useState } from "react";
 import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { getProducts } from "../../utils/productApiUtils";
 
 const Products = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getProducts().then((res) => {
+      setProducts(res);
+    });
+  }, []);
+
   const [ dumpling, setDumpling ] = useState({
     name: "Pork & Chieves",
     price: "$44.95",
     imageUrl: "",
-    link: "/products/pork-&-chieves"
+    url: "/products/pork-&-chieves"
   });
   const [ gyoza, setGyoza ] = useState({
     name: "Gyoza",
     price: "$44.95",
     imageUrl: "",
-    link: "/products/pork-&-chieves"
+    url: "/products/pork-&-chieves"
   });
   const [ sauces, setSauces ] = useState({
     name: "KAITO'S SPECIAL SAUCES",
     price: "$44.95",
     imageUrl: "",
-    link: "/products/hot-chili-oil"
+    url: "/products/hot-chili-oil"
   });
 
   const handleDumplingClick = (e: {preventDefault: () => void; target: { innerText: string; }; }) => {
@@ -29,28 +38,28 @@ const Products = () => {
         name: "Pork & Chieves",
         price: "$44.95",
         imageUrl: "",
-        link: "/products/pork-&-chieves"
+        url: "/products/pork-&-chieves"
       });
     } else if (flavor === "CHICKEN & CABBAGE") {
       setDumpling({
         name: "Chicken & Cabbage",
         price: "$44.95",
         imageUrl: "",
-        link: "/products/chicken-&-cabbage"
+        url: "/products/chicken-&-cabbage"
       });
     } else if (flavor === "BEEF & CHEESE") {
       setDumpling({
         name: "Beef & Cheese",
         price: "$44.95",
         imageUrl: "",
-        link: "/products/beef-&-cheese"
+        url: "/products/beef-&-cheese"
       });
     } else if (flavor === "VEGGIE (VEGAN)") {
       setDumpling({
         name: "Veggie (Vegan)",
         price: "$44.95",
         imageUrl: "",
-        link: "/products/veggie"
+        url: "/products/veggie"
       });
     }
   };
@@ -64,28 +73,28 @@ const Products = () => {
         name: "Pork & Chieves",
         price: "$44.95",
         imageUrl: "",
-        link: "/products/pork-&-chieves"
+        url: "/products/pork-&-chieves"
       });
     } else if (flavor === "CHICKEN & CABBAGE") {
       setGyoza({
         name: "Chicken & Cabbage",
         price: "$44.95",
         imageUrl: "",
-        link: "/products/chicken-&-cabbage"
+        url: "/products/chicken-&-cabbage"
       });
     } else if (flavor === "BEEF & CHEESE") {
       setGyoza({
         name: "Beef & Cheese",
         price: "$44.95",
         imageUrl: "",
-        link: "/products/beef-&-cheese"
+        url: "/products/beef-&-cheese"
       });
     } else if (flavor === "VEGGIE (VEGAN)") {
       setGyoza({
         name: "Veggie (Vegan)",
         price: "$44.95",
         imageUrl: "",
-        link: "/products/veggie"
+        url: "/products/veggie"
       });
     }
   };
@@ -172,16 +181,51 @@ const Products = () => {
   };
 
   return (
-    <div>
-      <h1>WE SHIP NATIONWIDE</h1>
+    <main>
+      <div className='products_page_products_container'>
+        <div className='products_page_products_wrapper'>
+          <h1><span>WE SHIP NATIONWIDE!</span></h1>
+          <div>
+            <div>
+              <div>
+                <div>
+                  <div>
+                    cards
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className='products_page_subscribe_container'>
+        <div>
+          <div>
+            <h3><p>JOIN OUR VIP DUMPLING CLUB FOR DISCOUNTS</p></h3>
+            <a href="">SUBSCRIBE FOR 10% OFF</a>
+          </div>
+        </div>
+      </div>
+
+      <div className='products_page_socialmedia_container'>
+        <div>
+          <div><a href=""></a></div>
+          <div><a href=""></a></div>
+          <div><a href=""></a></div>
+          <div><a href=""></a></div>
+          <div><a href=""></a></div>
+        </div>
+      </div>
+
       <div>
         <div>
-          <Link href={dumpling.link}>
+          <Link href={dumpling.url}>
             <img src={dumpling.imageUrl} alt={dumpling.name} />
           </Link>
         </div>
         <div>{dumpling.price}</div>
-        <div><Link href={dumpling.link}>Dumplings (50 PC)</Link></div>
+        <div><Link href={dumpling.url}>Dumplings (50 PC)</Link></div>
         <div>
           <ul>
             <li>50 Dumplings (Good for 6 Meals!)</li>
@@ -200,12 +244,12 @@ const Products = () => {
 
       <div>
         <div>
-          <Link href={gyoza.link}>
+          <Link href={gyoza.url}>
             <img src={gyoza.imageUrl} alt={gyoza.name} />
           </Link>
         </div>
         <div>{gyoza.price}</div>
-        <div><Link href={gyoza.link}>Gyoza (50 PC)</Link></div>
+        <div><Link href={gyoza.url}>Gyoza (50 PC)</Link></div>
         <div>
           <ul>
             <li>50 Dumplings (Good for 6 Meals!)</li>
@@ -223,12 +267,12 @@ const Products = () => {
 
       <div>
         <div>
-          <Link href={sauces.link}>
+          <Link href={sauces.url}>
             <img src={sauces.imageUrl} alt={sauces.name} />
           </Link>
         </div>
         <div>{sauces.price}</div>
-        <div><Link href={sauces.link}>KAITO'S SPECIAL SAUCES</Link></div>
+        <div><Link href={sauces.url}>KAITO'S SPECIAL SAUCES</Link></div>
         <div>
           <ul>
             <li>5Choose from Kaito's 3 Signature Sauces (6.5oz. jars): Ginger & Scallion, Spicy Chili Crisp, Classic Black Vinegar</li>
@@ -244,7 +288,7 @@ const Products = () => {
         </div>
       </div>
 
-    </div>
+    </main>
   );
 };
 
