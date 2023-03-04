@@ -23,9 +23,6 @@ const Navbar = (props: { auth: boolean,
           <div onClick={() => setShowModal(true)} className="navbar_cart_container">
             <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
           </div>
-          { showModal && <Modal onClose={() => setShowModal(false)} >
-            <Cart userId={props.user._id} />
-          </Modal> }
         </div>
       )
     } else {
@@ -39,7 +36,6 @@ const Navbar = (props: { auth: boolean,
             >LOGIN
             </Link>
           </div>
-          
           <div className='navbar-right-buttons-container'>
             <Link
               href="/products"
@@ -52,31 +48,37 @@ const Navbar = (props: { auth: boolean,
           <div onClick={() => setShowModal(true)} className="navbar_cart_container">
             <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
           </div>
-          {showModal && <Modal onClose={() => setShowModal(false)} >
-            <Cart userId={props.user._id} />
-          </Modal>}
         </div>
       )
     }
   };
 
+  const handleCartModal = () => {
+    if (!showModal) return null
+    return (
+      <Modal onClose={() => setShowModal(false)} >
+        <Cart userId={props.user._id} />
+      </Modal>
+  )};
+
   return (
     <>
       <nav className="navbar">
-          <div className="navbar_left_container">
-            <Link href="/">
-              <img src="/favicon.png" alt="logo" className='navbar_logo'/>
-            </Link>
+        <div className="navbar_left_container">
+          <Link href="/">
+            <img src="/favicon.png" alt="logo" className='navbar_logo'/>
+          </Link>
+        </div>
+        <div className="navbar_middle_container">
+          <div className="navbar_middle_buttons_container">
+            <Link href="/products" className="nav_middle_button">PRODUCTS</Link>
+            <Link href="/faq" className="nav_middle_button">FAQ</Link>
+            <Link href="/blog" className="nav_middle_button">BLOG</Link>
           </div>
-          <div className="navbar_middle_container">
-            <div className="navbar_middle_buttons_container">
-              <Link href="/products" className="nav_middle_button">PRODUCTS</Link>
-              <Link href="/faq" className="nav_middle_button">FAQ</Link>
-              <Link href="/blog" className="nav_middle_button">BLOG</Link>
-            </div>
-          </div>
-          { userLinks() }
+        </div>
+        {userLinks()}
       </nav>
+      {handleCartModal()}
     </>
   )
 };

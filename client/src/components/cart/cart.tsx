@@ -93,12 +93,14 @@ const Cart = (userId: string) => {
       })
     } else {
       return (
-        <div className="cart_empty">
-          <h4>YOUR CART IS EMPTY!</h4>
-          <p>Add some dumplings and gyozas.</p>
-          <p>
-            <a href="/products" className='cart_empty_shop_now_button'>Shop Now</a>
-          </p>
+        <div className='cart_items_container'>
+          <div className="cart_empty">
+            <h4>YOUR CART IS EMPTY!</h4>
+            <p>Add some dumplings and gyozas.</p>
+            <p>
+              <a href="/products" className='cart_empty_shop_now_button'>Shop Now</a>
+            </p>
+          </div>
         </div>
       )
     }

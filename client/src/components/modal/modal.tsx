@@ -1,19 +1,18 @@
 import { faTimes, faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useEffect, useRef } from 'react';
 
 const Modal = ({ onClose = () => {}, children }) => {
-
   return (
-    <div className="modal_overlay">
+    <div>
       <div className="modal_container">
-        <div className='modal_header'>
+        <div className='modal_header_container'>
           <div>
             <h2 className='modal_header_text'>YOUR CART</h2>
           </div>
-          <div className='modal_header_close_button' onClick={onClose}>
+          <button className='modal_header_close_button' onClick={onClose}>
             <i><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></i>
-          </div>
+            <span>Close Cart</span>
+          </button>
         </div>
         {children}
         <div className='cart_summary_container'>
@@ -61,7 +60,7 @@ const Modal = ({ onClose = () => {}, children }) => {
           </div>
         </div>
       </div>
-      {/* <div className='modal_background'></div> */}
+      <div className='modal_background'></div>
     </div>
   )
 };
