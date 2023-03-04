@@ -56,14 +56,33 @@ const Cart = (userId: string) => {
                     </a>
                   </div>
                   <div className='cart_item_info'>
-                    <h4>{item.category}</h4>
-                    <h5>{item.name}</h5>
-                    <div>
-                      <button onClick={handleMinusQuantity} value={item.quanity}>-</button>
-                      <p>{item.quanity}</p>
-                      <button onClick={handleAddQuantity} value={item.quanity}>+</button>
+                    <button className='cart_item_remove_button'>
+                      <i className='fa-trash'></i>
+                      <span className='hiddenSpan'>Remove {item.category} {item.name} from Cart</span>
+                    </button>
+                    <a href="" className='cart_item_category'>{item.category}</a>
+                    <div className='cart_item_name'>{item.name}</div>
+
+                    <div className='item_quantity_container'>
+                      <div className='item_quantity_wrapper'>
+                        <button className='item_quantity_button'>
+                          <i className='fa-minus'></i>
+                          <span className='hiddenSpan'></span>
+                        </button>
+                        <span className='item_quantity_button'></span>
+                        <button className='item_quantity_button'>
+                          <i className='fa-plus'></i>
+                          <span className='hiddenSpan'></span>
+                        </button>
+                      </div>
                     </div>
-                    <p>{item.price * item.quanity}</p>
+
+                    <div>
+                      <div>
+                        <span></span>
+                      </div>
+                    </div>
+
                   </div>
                 </li>
               )}
