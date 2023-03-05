@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Modal from '../modal/modal';
-import Cart from '../cart/cart';
-import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 
 const Navbar = (props: { auth: boolean,
   user: { firstname: string; lastname: string; email: string; _id: string; }
@@ -10,13 +8,6 @@ const Navbar = (props: { auth: boolean,
   const [showModal, setShowModal] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
-  // const [currenteUser, setCurrentUser] = useState(props.user);
-
-  // useEffect(() => {
-  //   getCurrentUser().then((res) => {
-  //     setCurrentUser(res);
-  //   });
-  // }, []);
   
   // Selectively render navbar links based on user authentication
   const userLinks = () => {

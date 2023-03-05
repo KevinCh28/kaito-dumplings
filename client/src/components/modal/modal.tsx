@@ -6,7 +6,6 @@ import Cart from '../cart/cart';
 const Modal = ({ onClose = () => {} }) => {
   const [total, setTotal] = useState(0);
 
-
   return (
     <div>
       <div className="modal_container">
@@ -20,7 +19,6 @@ const Modal = ({ onClose = () => {} }) => {
           </button>
         </div>
         <Cart />
-        {/* {children} */}
         <div className='cart_summary_container'>
           <div className='cart_sub_total'>
             <div className='sub_total_text'>
