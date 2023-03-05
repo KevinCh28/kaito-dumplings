@@ -10,13 +10,13 @@ const Navbar = (props: { auth: boolean,
   const [showModal, setShowModal] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
-  const [currenteUser, setCurrentUser] = useState(props.user);
+  // const [currenteUser, setCurrentUser] = useState(props.user);
 
-  useEffect(() => {
-    getCurrentUser().then((res) => {
-      setCurrentUser(res);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getCurrentUser().then((res) => {
+  //     setCurrentUser(res);
+  //   });
+  // }, []);
   
   // Selectively render navbar links based on user authentication
   const userLinks = () => {
