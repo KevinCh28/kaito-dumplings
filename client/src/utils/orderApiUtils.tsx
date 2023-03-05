@@ -6,6 +6,6 @@ export const getOrders = async (userId: any) => {
 };
 
 export const createOrder = async (cartInfo: any) => {
-  const response = await axios.post("/api/create", cartInfo);
+  const response = await axios.post("/api/orders/create", cartInfo);
   return response.data;
 }
