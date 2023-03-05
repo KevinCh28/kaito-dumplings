@@ -22,7 +22,6 @@ const Cart = () => {
   useEffect(() => {
     getCart(userId)
       .then((res) => {
-        console.log(res.data.products);
         setCart(res.data.products);
       })
       .catch((err) => {
@@ -33,7 +32,6 @@ const Cart = () => {
   // Gets all products
   useEffect(() => {
     getProducts().then((res) => {
-      console.log(res);
       setProducts(res);
     })
   }, []);
