@@ -32,7 +32,7 @@ router.post("/create", validateOrderInput, async (req: Request, res: Response, n
   let newOrderNum = "W" + Math.floor(Math.random() * 1000000000).toString()
   const order = await Order.find({ orderNumber: newOrderNum });
 
-  if (order) {
+  while (!order) {
     newOrderNum = "W" + Math.floor(Math.random() * 1000000000).toString()
   }
 
