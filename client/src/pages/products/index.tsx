@@ -1,9 +1,8 @@
-import Link from 'next/link';
 import { useState, useEffect } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
+import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import Modal from '../../components/modal/modal';
 import Cart from '../../components/cart/cart';
-import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 
 const Products = () => {
   const dumplings = {

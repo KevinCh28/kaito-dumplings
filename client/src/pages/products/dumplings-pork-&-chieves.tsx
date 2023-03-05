@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const Veggie = () => {
+const DumplingsGyozaPorkChieves = () => {
   const router = useRouter();
   const productName = router.query.productName;
   const flavors = [
@@ -15,20 +15,21 @@ const Veggie = () => {
     return flavors.map((flavor) => {
       if (flavor === productName) {
         return <div key={flavor}>{flavor.split('-').join(' ').toUpperCase()}</div>
-    } else {
-      return (
-        <div key={flavor}>
-          <Link href={`/products/${flavor}`}>
-            {flavor.split('-').join(' ').toUpperCase()}
-          </Link>
-        </div>
-      )}
+      } else {
+        return (
+          <div key={flavor}>
+            <Link href={`/products/${flavor}`}>
+              {flavor.split('-').join(' ').toUpperCase()}
+            </Link>
+          </div>
+        );
+      }
     });
   };
 
   return (
     <div>
-      <h1>VEGGIE (VEGAN) (50PC)</h1>
+      <h1>PORK & CHIEVES (50PC)</h1>
       <div>$44.95</div>
       <div>{renderFlavors()}</div>
       <div>Description</div>
@@ -36,4 +37,4 @@ const Veggie = () => {
   );
 };
 
-export default Veggie;
+export default DumplingsGyozaPorkChieves;
