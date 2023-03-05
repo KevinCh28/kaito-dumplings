@@ -16,7 +16,7 @@ export const increaseItemQuantity = async (userId: string, productId: string) =>
   return await axios.put(`/api/carts/${userId}/increase`, { userId, productId });
 }
 
-export const lowerItemQuantity = async (userId: string, productId: string) => {
-  return await axios.put(`/api/carts/${userId}/lower`, { productId });
+export const decreaseItemQuantity = async (userId: string, productId: string) => {
+  return await axios.put(`/api/carts/${userId}/decrease`, { productId });
 }
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, SyntheticEvent } from 'react';
-import { getCart } from '../../utils/cartApiUtils';
+import { getCart, increaseItemQuantity, decreaseItemQuantity, removeItemFromCart } from '../../utils/cartApiUtils';
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import { getProducts } from '@/src/utils/productApiUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -102,12 +102,12 @@ const Cart = () => {
 
                         <div className='item_quantity_container'>
                           <div className='item_quantity_wrapper'>
-                            <button className='item_quantity_button'>
+                            <button className='item_quantity_button' onClick={() => handleMinusQuantity(userId, item.productId)}>
                               <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
                               <span className='hiddenSpan'></span>
                             </button>
                             <span className='item_quantity_button'>{item.quantity}</span>
-                            <button className='item_quantity_button'>
+                            <button className='item_quantity_button' onClick={() => handleAddQuantity(userId, item.productId)}>
                               <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
                               <span className='hiddenSpan'></span>
                             </button>
@@ -134,14 +134,24 @@ const Cart = () => {
     }
   }
 
-  const handleAddQuantity = (e: SyntheticEvent) => {
-    e.preventDefault();
-    // setCart();
+  const handleAddQuantity = ( userId: any, productId: any ) => {
+    increaseItemQuantity(userId, productId).then((res) => {
+      getCart(userId)
+        .then((res) => {
+          setCart(res.data.products);
+        }
+      )
+    })
   };
 
-  const handleMinusQuantity = (e: SyntheticEvent) => {
-    e.preventDefault();
-    // setCart();
+  const handleMinusQuantity = (userId: any, productId: any) => {
+    decreaseItemQuantity(userId, productId).then((res) => {
+      getCart(userId)
+        .then((res) => {
+          setCart(res.data.products);
+        }
+      )
+    })
   };
 
   return (
