@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
-import Modal from '../../components/modal/modal';
 import Cart from '../../components/cart/cart';
 
 const Products = () => {
@@ -59,9 +58,7 @@ const Products = () => {
   const handleCartModal = () => {
     if (!showModal) return null
     return (
-      <Modal onClose={() => setShowModal(false)} >
-        <Cart userId={user._id} />
-      </Modal>
+      <Cart onClose={() => setShowModal(false)} />
     )
   };
 

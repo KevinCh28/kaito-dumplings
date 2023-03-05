@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import Modal from '../modal/modal';
+import Cart from '../cart/cart';
 
 const Navbar = (props: { auth: boolean,
   user: { firstname: string; lastname: string; email: string; _id: string; }
@@ -55,7 +55,7 @@ const Navbar = (props: { auth: boolean,
   const handleCartModal = () => {
     if (!showModal) return null
     return (
-      <Modal onClose={() => setShowModal(false)} ></Modal>
+      <Cart onClose={() => setShowModal(false)} ></Cart>
   )};
 
   return (
