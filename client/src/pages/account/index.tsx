@@ -68,7 +68,7 @@ const AccountPage: NextPage = () => {
                 <div>
                   <p>Order Number: {order.orderNumber}</p>
                   <p>Order Date: {newDate}</p>
-                  <p>Order Total: ${order.total}</p>
+                  <p>Order Total: ${(order.total).toFixed(2)}</p>
                   <p>Order Status: {order.orderStatus.toUpperCase()}</p>
                 </div>
                 {order.orderStatus === 'pending' ? <button onClick={() => handleCancel(order.orderNumber)}>cancel</button> : null}
