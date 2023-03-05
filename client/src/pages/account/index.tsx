@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
-import { getCurrentUser } from '@/src/utils/sessionApiUtils';
-import { getOrders } from '@/src/utils/orderApiUtils';
-import { logout } from '@/src/utils/sessionApiUtils';
+import { getCurrentUser, logout } from '@/src/utils/sessionApiUtils';
+import { getOrders, cancelOrder } from '@/src/utils/orderApiUtils';
 import { useRouter } from 'next/router';
 
 const AccountPage: NextPage = () => {
@@ -19,7 +18,7 @@ const AccountPage: NextPage = () => {
         });
       })
       .catch((err) => {
-        router.reload();
+        router.push('/login');
       }
     );
   }, []);
@@ -41,6 +40,14 @@ const AccountPage: NextPage = () => {
       })
   };
 
+  const handleCancel = async (orderNum: any) => {
+    cancelOrder(user.id, orderNum).then((res) => {
+      getOrders(user.id).then((res) => {
+        setOrders(res);
+      })
+    })
+  };
+
   const handleOrderHistory = () => {
     if (orders.length === 0) {
       return (
@@ -58,10 +65,13 @@ const AccountPage: NextPage = () => {
 
             return (
               <div key={order._id}>
-                <p>Order Number: {order.orderNumber}</p>
-                <p>Order Date: {newDate}</p>
-                <p>Order Total: ${order.orderTotal}</p>
-                <p>Order Status: {order.orderStatus}</p>
+                <div>
+                  <p>Order Number: {order.orderNumber}</p>
+                  <p>Order Date: {newDate}</p>
+                  <p>Order Total: ${order.total}</p>
+                  <p>Order Status: {order.orderStatus.toUpperCase()}</p>
+                </div>
+                {order.orderStatus === 'pending' ? <button onClick={() => handleCancel(order.orderNumber)}>cancel</button> : null}
               </div>
             )
           })}

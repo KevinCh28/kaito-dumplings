@@ -60,25 +60,18 @@ router.post("/create", async (req: Request, res: Response, next: NextFunction) =
 
 // Update an order's status (User)
 // PUT /api/orders/user/:id/:orderNumber
-router.put("/user/:id/:orderNumber", validateOrderInput, async (req: Request, res: Response) => {
-  Order.findByIdAndUpdate(
-    req.params.id,
-    {
-      owner: req.body.owner,
-      orderNumber: req.body.orderNumber,
-      orderStatus: req.body.orderStatus,
-      total: req.body.total,
-      products: req.body.products,
-      date: req.body.date,
-    },
-    { new: true }
-  )
-  .then(order => {
-    return res.json(order)
-  })
-  .catch(err => {
-    return res.status(404).json("Order not found");
-  });
+router.put("/user/:id/:orderNumber", async (req: Request, res: Response, next: NextFunction) => {
+  console.log(req.body)
+  const { userId, orderNumber } = req.body;
+  const order = await Order.findOne({ owner: userId, orderNumber });
+  
+  if (!order) {
+    return res.status(400).json({ err: "Order does not exist" });
+  } else {
+    order.orderStatus = "canceled";
+    order.save();
+    return res.status(200).json(order);
+  }
 });
 
 // Update an order's status (User)
