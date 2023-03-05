@@ -5,8 +5,7 @@ export const getOrders = async (userId: any) => {
   return response.data;
 };
 
-export const getOrder = async (orderNumber: any) => {
-  const data = await fetch(`/api/user/userId/${orderNumber}`);
-  const res = await data.json();
-  return res;
-};
+export const createOrder = async (cartInfo: any) => {
+  const response = await axios.post("/api/create", cartInfo);
+  return response.data;
+}

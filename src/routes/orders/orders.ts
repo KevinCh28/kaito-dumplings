@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import Order from "../../database/schemas/Order";
+import Cart from "../../database/schemas/Cart";
 import validateOrderInput from "../../validation/order";
 import { Request, Response, NextFunction } from "express";
 
@@ -47,10 +48,14 @@ router.post("/create", validateOrderInput, async (req: Request, res: Response, n
 
   try {
     const makeOrder = await newOrder.save();
-    return res.status(200).json(makeOrder);
+    const updateCart = await Cart.findOneAndUpdate({ owner: req.body.owner }, { products: [] });
+
+    if (makeOrder && updateCart) {
+      return res.status(200).json(makeOrder);
+    }
   } catch (err) {
     return next(err);
-  };
+  }
 });
 
 // Update an order's status (User)
