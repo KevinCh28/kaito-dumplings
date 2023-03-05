@@ -62,7 +62,7 @@ const Cart = () => {
     if (totalAmount < 90) {
       return (
         <div className='free_shipping_text'>
-          You are ${99 - totalAmount} away from
+          You are ${(99 - totalAmount).toFixed(2)} away from
           <b> FREE SHIPPING</b>
         </div>
       )
@@ -93,7 +93,7 @@ const Cart = () => {
                         </a>
                       </div>
                       <div className='cart_item_info'>
-                        <button className='cart_item_remove_button'>
+                        <button className='cart_item_remove_button' onClick={() => handleRemoveItem(userId, item.productId)}>
                           <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
                           <span className='hiddenSpan'>Remove {product.category} {product.name} from Cart</span>
                         </button>
@@ -146,6 +146,16 @@ const Cart = () => {
 
   const handleMinusQuantity = (userId: any, productId: any) => {
     decreaseItemQuantity(userId, productId).then((res) => {
+      getCart(userId)
+        .then((res) => {
+          setCart(res.data.products);
+        }
+      )
+    })
+  };
+
+  const handleRemoveItem = (userId: any, productId: any) => {
+    removeItemFromCart(userId, productId).then((res) => {
       getCart(userId)
         .then((res) => {
           setCart(res.data.products);

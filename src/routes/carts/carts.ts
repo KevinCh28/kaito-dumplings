@@ -68,4 +68,52 @@ router.put("/:id/increase", async (req: Request, res: Response, next: NextFuncti
   };
 });
 
+// Update Cart to decrease a product quantity
+// Put /api/carts/:id/decrease
+router.put("/:id/decrease", async (req: Request, res: Response, next: NextFunction) => {
+  const { userId, productId } = req.body;
+  try {
+    let products: { quantity: number; productId?: Types.ObjectId | undefined; }[] = [];
+    const cart = await Cart.findOne({ owner: userId });
+
+    if (cart) products = cart.products;
+
+    for (let product of products) {
+      if (Object(product.productId).equals(productId) && product.quantity === 1) {
+        products.splice(products.indexOf(product), 1);
+        await cart?.save();
+        return res.status(200).json(cart);
+      } else if (Object(product.productId).equals(productId)) {
+        product.quantity -= 1;
+        await cart?.save();
+        return res.status(200).json(cart);
+      }
+    };
+  } catch (err) {
+    return next(err);
+  };
+});
+
+// Update Cart to remove a product quantity
+// Put /api/carts/:id/remove
+router.put("/:id/remove", async (req: Request, res: Response, next: NextFunction) => {
+  const { userId, productId } = req.body;
+  try {
+    let products: { quantity: number; productId?: Types.ObjectId | undefined; }[] = [];
+    const cart = await Cart.findOne({ owner: userId });
+
+    if (cart) products = cart.products;
+
+    for (let product of products) {
+      if (Object(product.productId).equals(productId)) {
+        products.splice(products.indexOf(product), 1);
+        await cart?.save();
+        return res.status(200).json(cart);
+      };
+    };
+  } catch (err) {
+    return next(err);
+  };
+});
+
 export default router;

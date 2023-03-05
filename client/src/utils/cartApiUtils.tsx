@@ -9,7 +9,7 @@ export const getCart = async (userId: string) => {
 };
 
 export const removeItemFromCart = async (userId: string, productId: string) => {
-  return await axios.delete(`/api/carts/${userId}/${productId}`);
+  return await axios.put(`/api/carts/${userId}/remove`, { userId, productId });
 };
 
 export const increaseItemQuantity = async (userId: string, productId: string) => {
@@ -17,6 +17,6 @@ export const increaseItemQuantity = async (userId: string, productId: string) =>
 }
 
 export const decreaseItemQuantity = async (userId: string, productId: string) => {
-  return await axios.put(`/api/carts/${userId}/decrease`, { productId });
+  return await axios.put(`/api/carts/${userId}/decrease`, { userId, productId });
 }
 
