@@ -64,9 +64,7 @@ const Navbar = (props: { auth: boolean,
   const handleCartModal = () => {
     if (!showModal) return null
     return (
-      <Modal onClose={() => setShowModal(false)} >
-        <Cart userId={props.user._id} />
-      </Modal>
+      <Modal onClose={() => setShowModal(false)} ></Modal>
   )};
 
   return (

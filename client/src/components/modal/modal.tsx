@@ -1,7 +1,12 @@
 import { faTimes, faLock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState, useEffect } from 'react';
+import Cart from '../cart/cart';
 
-const Modal = ({ onClose = () => {}, children }) => {
+const Modal = ({ onClose = () => {} }) => {
+  const [total, setTotal] = useState(0);
+
+
   return (
     <div>
       <div className="modal_container">
@@ -14,7 +19,8 @@ const Modal = ({ onClose = () => {}, children }) => {
             <span>Close Cart</span>
           </button>
         </div>
-        {children}
+        <Cart />
+        {/* {children} */}
         <div className='cart_summary_container'>
           <div className='cart_sub_total'>
             <div className='sub_total_text'>
