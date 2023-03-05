@@ -8,22 +8,15 @@ import { useRouter } from 'next/router';
 const AccountPage: NextPage = () => {
   const router = useRouter();
   const [orders, setOrders] = useState([]);
-  const [user, setUser] = useState({
-    id: '',
-    firstname: '',
-    ordered: false,
-  });
+  const [user, setUser] = useState({ id: '', firstname: '' });
 
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
-        if (res) {
-          setUser({
-            id: res._id,
-            firstname: res.firstname,
-            ordered: res.orders.length === 0 ? false : true,
-          })
-        }
+        setUser({
+          id: res._id,
+          firstname: res.firstname
+        });
       })
       .catch((err) => {
         router.reload();
@@ -32,16 +25,14 @@ const AccountPage: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    if (user.ordered) {
-      getOrders(user.id)
-        .then((res) => {
-          setOrders(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-    }
-  }, [user.ordered]);
+    getOrders(user.id)
+      .then((res) => {
+        setOrders(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }, [user]);
 
   const handleLogout = async () => {
     await logout()
@@ -51,7 +42,7 @@ const AccountPage: NextPage = () => {
   };
 
   const handleOrderHistory = () => {
-    if (!user.ordered) {
+    if (orders.length === 0) {
       return (
         <div>
           <p>You have no orders associated with this email address.</p>
