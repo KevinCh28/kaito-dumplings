@@ -1,6 +1,7 @@
 import { useState, useEffect, SyntheticEvent } from 'react';
 import { getCart, increaseItemQuantity, decreaseItemQuantity, removeItemFromCart } from '../../utils/cartApiUtils';
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
+import { createOrder } from '@/src/utils/orderApiUtils';
 import { getProducts } from '@/src/utils/productApiUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -8,9 +9,9 @@ import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-sol
 const Cart = ({ onClose = () => { } }) => {
   const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
   const [userId, setUserId] = useState('');
   const [products, setProducts] = useState([]);
-  const [total, setTotal] = useState(0);
 
   // Gets user's id
   useEffect(() => {
@@ -37,17 +38,22 @@ const Cart = ({ onClose = () => { } }) => {
     })
   }, []);
 
-  // Calculates $ subtotal of cart
+  // Calculates subtotal items and amount in cart
   useEffect(() => {
     let total = 0;
+    let totalCartItems = 0
+
     cart.forEach((item: any) => {
+      totalCartItems += item.quantity;
+
       products.forEach((product: any) => {
         if (item.productId === product._id) {
           total += product.price * item.quantity;
         }
       })
     })
-    setTotalAmount(total);
+    setTotalItems(totalCartItems);
+    setTotalAmount(total.toFixed(2));
   }, [cart, products]);
 
   // Updates free shipping progress bar
@@ -92,7 +98,7 @@ const Cart = ({ onClose = () => { } }) => {
                         </a>
                       </div>
                       <div className='cart_item_info'>
-                        <button className='cart_item_remove_button' onClick={() => handleRemoveItem(userId, item.productId)}>
+                        <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.productId)}>
                           <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
                           <span className='hiddenSpan'>Remove {product.category} {product.name} from Cart</span>
                         </button>
@@ -101,12 +107,12 @@ const Cart = ({ onClose = () => { } }) => {
 
                         <div className='item_quantity_container'>
                           <div className='item_quantity_wrapper'>
-                            <button className='item_quantity_button' onClick={() => handleMinusQuantity(userId, item.productId)}>
+                            <button className='item_quantity_button' onClick={() => handleMinusQuantity(item.productId)}>
                               <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
                               <span className='hiddenSpan'></span>
                             </button>
                             <span className='item_quantity_button'>{item.quantity}</span>
-                            <button className='item_quantity_button' onClick={() => handleAddQuantity(userId, item.productId)}>
+                            <button className='item_quantity_button' onClick={() => handleAddQuantity(item.productId)}>
                               <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
                               <span className='hiddenSpan'></span>
                             </button>
@@ -133,7 +139,7 @@ const Cart = ({ onClose = () => { } }) => {
     }
   }
 
-  const handleAddQuantity = ( userId: any, productId: any ) => {
+  const handleAddQuantity = ( productId: any ) => {
     increaseItemQuantity(userId, productId).then((res) => {
       getCart(userId)
         .then((res) => {
@@ -143,7 +149,7 @@ const Cart = ({ onClose = () => { } }) => {
     })
   };
 
-  const handleMinusQuantity = (userId: any, productId: any) => {
+  const handleMinusQuantity = ( productId: any ) => {
     decreaseItemQuantity(userId, productId).then((res) => {
       getCart(userId)
         .then((res) => {
@@ -153,13 +159,19 @@ const Cart = ({ onClose = () => { } }) => {
     })
   };
 
-  const handleRemoveItem = (userId: any, productId: any) => {
+  const handleRemoveItem = ( productId: any ) => {
     removeItemFromCart(userId, productId).then((res) => {
       getCart(userId)
         .then((res) => {
           setCart(res.data.products);
         }
       )
+    })
+  };
+
+  const handleCheckOut = () => {
+    createOrder({ userId, totalAmount, cart }).then((res) => {
+      console.log(res);
     })
   };
 
@@ -185,23 +197,28 @@ const Cart = ({ onClose = () => { } }) => {
           </div>
           {handleCartItems()}
         </div>
-        <div className='cart_summary_container'>
-          <div className='cart_sub_total'>
-            <div className='sub_total_text'>
-              <span>Subtotal ( items)</span>
-            </div>
-            <div className='subtotal_amount'>$</div>
-          </div>
 
-          <div className='cart_action_buttons_container'>
-            <button className='cart_checkout_button'>
-              <span><i className='cart_checkout_button_image'><FontAwesomeIcon icon={faLock}></FontAwesomeIcon></i> Checkout </span>
-            </button>
-            <button className='cart_continue_shopping_button' onClick={onClose}>
-              <span>Continue Shopping</span>
-            </button>
+        {totalItems > 0 ? 
+          <div className='cart_summary_container'>
+            <div className='cart_sub_total'>
+              <div className='sub_total_text'>
+                <span>Subtotal ({totalItems} items)</span>
+              </div>
+              <div className='subtotal_amount'>${totalAmount}</div>
+            </div>
+
+            <div className='cart_action_buttons_container'>
+              <button className='cart_checkout_button' onClick={handleCheckOut}>
+                <span><i className='cart_checkout_button_image'><FontAwesomeIcon icon={faLock}></FontAwesomeIcon></i> Checkout </span>
+              </button>
+              <button className='cart_continue_shopping_button' onClick={onClose}>
+                <span>Continue Shopping</span>
+              </button>
+            </div>
           </div>
-        </div>
+          :
+          null
+        } 
 
         <div className='cart_footer_container'>
           <div className='cart_footer_image'>
