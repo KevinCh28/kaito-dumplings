@@ -57,6 +57,11 @@ router.put("/:id/increase", async (req: Request, res: Response, next: NextFuncti
         await cart?.save();
         return res.status(200).json(cart);
       };
+      if (!Object(product.productId).equals(productId)) {
+        products.push({ productId: productId, quantity: 1 });
+        await cart?.save();
+        return res.status(200).json(cart);
+      }
     };
   } catch (err) {
     return next(err);

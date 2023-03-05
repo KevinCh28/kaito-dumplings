@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const BeefCheese = () => {
+const DumplingsBeefCheese = () => {
   const router = useRouter();
   const productName = router.query.productName;
   const flavors = [
@@ -37,4 +37,4 @@ const BeefCheese = () => {
   );
 };
 
-export default BeefCheese;
+export default DumplingsBeefCheese;

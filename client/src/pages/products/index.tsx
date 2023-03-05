@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import Modal from '../../components/modal/modal';
 import Cart from '../../components/cart/cart';
+import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 
 const Products = () => {
   const dumplings = {
@@ -18,23 +19,24 @@ const Products = () => {
     'veggie': '63efa9259010d97ce174715f'
   }
   const [showModal, setShowModal] = useState(false);
-  const [userId, setUserId] = useState('6402bbea4526f7ce1ddf7470');
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
+  const [user, setUser] = useState({});
 
-  // useEffect(() => {
-  //   getCurrentUser()
-  //     .then((res) => {
-  //       setUserId(res.data._id);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  useEffect(() => {
+    getCurrentUser()
+      .then((res) => {
+        setUser(res);
+        console.log(user)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  const handleAddToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
+  const handleAddDumplingsToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
     e.preventDefault();
-    increaseItemQuantity(userId, dumplingsId)
+    increaseItemQuantity(user._id, dumplingsId)
       .then((res) => {
         setShowModal(true);
       })
@@ -44,11 +46,23 @@ const Products = () => {
     );
   };
 
+  const handleAddGyozaToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
+    e.preventDefault();
+    increaseItemQuantity(user._id, gyozaId)
+      .then((res) => {
+        setShowModal(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      }
+      );
+  };
+
   const handleCartModal = () => {
     if (!showModal) return null
     return (
       <Modal onClose={() => setShowModal(false)} >
-        <Cart userId={props.user._id} />
+        <Cart userId={user._id} />
       </Modal>
     )
   };
@@ -62,8 +76,8 @@ const Products = () => {
             <div className='products_page_items_container'>
               <div className='products_page_items_column_wrapper'>
                 <div className='products_page_items_column_container'>
-
                   <div className='products_page_item_wrapper'>
+
                     <div className='products_page_item_container'>
                       <div className='products_page_item_info_container'>
                         <div className='products_page_item_image_wrapper'>
@@ -125,7 +139,7 @@ const Products = () => {
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddToCart}>
+                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>
@@ -159,7 +173,7 @@ const Products = () => {
                                   <span className='products_page_item_price'>$44.95</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/beef-&-cheese">DUMPLINGS (50 PC)</a>
+                                  <a href="/products/dumplings-beef-&-cheese">DUMPLINGS (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -200,7 +214,7 @@ const Products = () => {
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddToCart}>
+                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>
@@ -234,7 +248,7 @@ const Products = () => {
                                   <span className='products_page_item_price'>$44.95</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/beef-&-cheese">GYOZAS (50 PC)</a>
+                                  <a href="/products/dumplings-beef-&-cheese">GYOZAS (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -275,7 +289,7 @@ const Products = () => {
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddToCart}>
+                                <button className='products_page_add_button' onClick={handleAddGyozaToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>
