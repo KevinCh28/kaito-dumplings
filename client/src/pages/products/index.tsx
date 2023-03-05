@@ -26,7 +26,6 @@ const Products = () => {
     getCurrentUser()
       .then((res) => {
         setUser(res);
-        console.log(user)
       })
       .catch((err) => {
         console.log(err);

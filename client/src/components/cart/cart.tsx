@@ -8,9 +8,11 @@ const Cart = (userId: string) => {
   useEffect(() => {
     getCart(userId)
       .then((res) => {
+        // console.log(res)
         if (res.products.length > 0) {
           setCart(res.products);
         }
+        // console.log(cart)
       })
       .catch((err) => {
         console.log(err);
