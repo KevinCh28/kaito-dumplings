@@ -171,6 +171,7 @@ const Cart = ({ onClose = () => { } }) => {
 
   const handleCheckOut = () => {
     createOrder({ userId, totalAmount, cart }).then((res) => {
+      console.log('Order created successfully')
       console.log(res);
     })
   };

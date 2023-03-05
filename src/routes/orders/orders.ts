@@ -29,7 +29,7 @@ router.get("/user/:id/:orderNumber", async (req: Request, res: Response) => {
 
 // Create a new order
 // POST /api/orders/create
-router.post("/create", validateOrderInput, async (req: Request, res: Response, next: NextFunction) => {
+router.post("/create", async (req: Request, res: Response, next: NextFunction) => {
   let newOrderNum = "W" + Math.floor(Math.random() * 1000000000).toString()
   const order = await Order.find({ orderNumber: newOrderNum });
 
@@ -38,17 +38,17 @@ router.post("/create", validateOrderInput, async (req: Request, res: Response, n
   }
 
   const newOrder = new Order({
-    owner: req.body.owner,
+    owner: req.body.userId,
     orderNumber: newOrderNum,
     orderStatus: "pending",
-    total: req.body.total,
-    products: req.body.products,
+    total: req.body.totalAmount,
+    products: req.body.cart,
     date: new Date().toString(),
   });
 
   try {
     const makeOrder = await newOrder.save();
-    const updateCart = await Cart.findOneAndUpdate({ owner: req.body.owner }, { products: [] });
+    const updateCart = await Cart.findOneAndUpdate({ owner: req.body.userId }, { products: [] });
 
     if (makeOrder && updateCart) {
       return res.status(200).json(makeOrder);
