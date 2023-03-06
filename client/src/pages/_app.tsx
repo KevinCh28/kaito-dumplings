@@ -5,6 +5,7 @@ import '../utils/styles/homepage.scss'
 import '../utils/styles/modal.scss'
 import '../utils/styles/cart.scss'
 import '../utils/styles/productsPage.scss'
+import '../utils/styles/productShowPage.scss'
 import type { AppProps } from 'next/app'
 import { Oswald } from '@next/font/google'
 import { useState, useEffect } from 'react';
