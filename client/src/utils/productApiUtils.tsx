@@ -22,6 +22,6 @@ export const getProductsByIds = async (cart: any) => {
   return await Promise.all(promises);
 };
 
-export const getProduct = async (productName: string) => {
-  return await axios.get(`/api/products/${productName}`);
+export const getProduct = async (productId: string) => {
+  return await axios.get(`/api/products/${productId}`);
 };

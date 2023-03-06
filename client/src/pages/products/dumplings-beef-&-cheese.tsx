@@ -1,24 +1,32 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { getProduct } from '../../utils/productApiUtils';
 
 const DumplingsBeefCheese = () => {
-  const router = useRouter();
-  const productName = router.query.productName;
-  const flavors = [
-    'dumplings-veggie',
-    'dumplings-chicken-&-cabbage',
-    'dumplings-beef-&-cheese',
-    'dumplings-pork-&-chieves'
-  ];
+  const flavors = {
+    'beef-&-cheese': '63efa9419010d97ce1747161',
+    'chicken-&-cabbage': '63efa96f9010d97ce1747163',
+    'pork-&-chieves': '63efa8d89010d97ce1747159',
+    'veggie': '63efa9119010d97ce174715c'
+  };
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [style, setStyle] = useState('beef-&-cheese');
+  
+  useEffect(() => {
+    getProduct('63efa9419010d97ce1747161').then((res) => {
+      setProduct(res.data);
+    });
+  }, []);
 
   const renderFlavors = () => {
-    return flavors.map((flavor) => {
-      if (flavor === productName) {
+    return Object.entries(flavors).map(([flavor, value]) => {
+      if (flavor === product.name) {
         return <div key={flavor}>{flavor.split('-').join(' ').toUpperCase()}</div>
       } else {
         return (
           <div key={flavor}>
-            <Link href={`/products/${flavor}`}>
+            <Link href={`/products/dumplings-${flavor}`}>
               {flavor.split('-').join(' ').toUpperCase()}
             </Link>
           </div>
