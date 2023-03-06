@@ -1,8 +1,11 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { getProduct } from '../../utils/productApiUtils';
 
 const DumplingsBeefCheese = () => {
+  const router = useRouter();
+  const productLinkRoute = router.query.productName;
   const flavors = {
     'beef-&-cheese': '63efa9419010d97ce1747161',
     'chicken-&-cabbage': '63efa96f9010d97ce1747163',
@@ -36,274 +39,273 @@ const DumplingsBeefCheese = () => {
   };
 
   return (
-    <main>
+    <main className='product_page_main'>
       <div>
-        <div>
+        <div className='product_page_wrapper'>
+          <div className='product_page_container'>
+            <div className='product_page_maincontent'>
+              <div className='product_page_maincontent_breadcrumbs'>
+                <a href="/products">ALL PRODUCTS</a>
+                <span> &gt; </span>
+                <a href="/products/dumplings-beef-&-cheese">{product.category} (50 PC)</a>
+                <span> &gt; </span>
+                <a href={`/products/${productLinkRoute}`}>{product.name}</a>
+              </div>
+              <div className='product_page_maincontent_wrapper'>
+                <div className='product_page_maincontent_sideimages_wrapper'>
+                  <div className='product_page_maincontent_sideimages_container'>
+                    <div className='product_page_maincontent_sideimages_image_wrapper'>
+                      <div className='product_page_maincontent_sideimages_image_container'>
+                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
+                      </div>
+                      <div className='product_page_maincontent_sideimages_image_container'>
+                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/beefXLB-wide_1.png?v=1675392284" alt="" />
+                      </div>
+                      <div className='product_page_maincontent_sideimages_image_container'>
+                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/beefxlb-closeup_1.png?v=1675392284" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-          <div>
-            <div>
-              <div>
-                <div>
+                <div className='product_page_mainpicture_modal'>
                   <div>
                     <div>
-                      <a href="">ALL PRODUCTS</a>
-                      <span> &gt; </span>
-                      <a href="">DUMPLINGS (50 PC)</a>
-                      <span> &gt; </span>
-                      <a href="">BEEF & CHEESE</a>
+                      <a href="">
+                        <div className='product_page_mainpicture_container'>
+                          <div className='product_page_mainpicture_image_wrapper'>
+                            <div className='product_page_mainpicture_image_container'>
+                              <img className='product_page_mainpicture_image' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
+                            </div>
+                          </div>
+                        </div>
+                      </a>
                     </div>
+                  </div>
+                </div>
+
+                <div className='product_page_info_container'>
+                  <div className='product_page_info_header_wrapper'>
+                    <div>
+                      <h2 className='product_page_info_header_container'>
+                        {product.name}
+                        <br />
+                        {product.category} (50PC)
+                      </h2>
+                      <div className='product_page_info_header_info_container'>
+                        <div className='product_page_info_header_price_container'>
+                          <div className='roduct_page_info_header_price'>${product.price}</div>
+                        </div>
+                        <a className='product_page_info_header_reviews' href="">
+                          STARS & REVIEWS
+                        </a>
+                      </div>
+                      <div className='product_page_price_per'>Just $6.49 per meal</div>
+                    </div>
+                    <div>
+                      <div></div>
+                    </div>
+                  </div>
+
+                  <div>
                     <div>
                       <div>
                         <div>
+                        </div>
+                          <div>Style</div>
                           <div>
-                            <div><img src="" alt="" /></div>
-                            <div><img src="" alt="" /></div>
-                            <div><img src="" alt="" /></div>
+                            <div>
+                              <span>BEEF & CHEESE</span>
+                              svg
+                            </div>
                           </div>
+                      </div>
+
+                      <div>
+                        <div>
+                          <div>Quantity</div>
+                        </div>
+                        <div>
+                          <div></div>
+                          <span></span>
+                          <div></div>
                         </div>
                       </div>
 
                       <div>
                         <div>
                           <div>
-                            <a href="">
+                            <div>
                               <div>
                                 <div>
                                   <div>
-                                    <img src="" alt="" />
+                                    <span>Buy with </span>
+                                    <span>svg</span>
                                   </div>
                                 </div>
                               </div>
-                            </a>
+                              <button></button>
+                            </div>
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
 
+                  <div>
+                    <div>
                       <div>
+                        <img src="" alt="" />
+                      </div>
+                      <div>
+                        <img src="" alt="" />
+                      </div>
+                      <div>
+                        <img src="" alt="" />
+                      </div>
+                    </div>
+                    <div>Our new limited-edition dumplings feature a rich beef filling with a savory 
+                      beef and creamy cheese. Enveloped in a tender dumpling skin, each bite 
+                      delivers the splendid flavors of our favorite comfort food - Cheese Burger - 
+                      minus the bun.
+                    </div>
+                  </div>
+
+                  <div>
+                    <div>
+                      <div>
+                        <p>HOW TO MAKE</p>
                         <div>
-                          <div>
-                            <h2>
-                              BEEF & CHEESE
-                              <br />
-                              DUMPLINGS (50PC)
-                            </h2>
-                            <div>
-                              <div>
-                                <div>$44.95</div>
-                              </div>
-                              <a href="">
-                                STARS & REVIEWS
-                              </a>
-                            </div>
-                            <div>Just $6.49 per meal</div>
-                          </div>
-                          <div>
-                            <div></div>
-                          </div>
+                          <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                          </ul>
                         </div>
-
+                      </div>
+                      <div>
+                        <p>PRODUCT HIGHLIGHT</p>
                         <div>
-                          <div>
-                            <div>
-                              <div>
-                              </div>
-                                <div>Style</div>
-                                <div>
-                                  <div>
-                                    <span>BEEF & CHEESE</span>
-                                    svg
-                                  </div>
-                                </div>
-                            </div>
-
-                            <div>
-                              <div>
-                                <div>Quantity</div>
-                              </div>
-                              <div>
-                                <div></div>
-                                <span></span>
-                                <div></div>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div>
-                                <div>
-                                  <div>
-                                    <div>
-                                      <div>
-                                        <div>
-                                          <span>Buy with </span>
-                                          <span>svg</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <button></button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                          <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                          </ul>
                         </div>
-
+                      </div>
+                      <div>
+                        <p>NUTRITION FACTS & INGREDIENTS</p>
                         <div>
-                          <div>
-                            <div>
-                              <img src="" alt="" />
-                            </div>
-                            <div>
-                              <img src="" alt="" />
-                            </div>
-                            <div>
-                              <img src="" alt="" />
-                            </div>
-                          </div>
-                          <div>Our new limited-edition dumplings feature a rich beef filling with a savory 
-                            beef and creamy cheese. Enveloped in a tender dumpling skin, each bite 
-                            delivers the splendid flavors of our favorite comfort food - Cheese Burger - 
-                            minus the bun.
-                          </div>
+                          <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                          </ul>
                         </div>
-
+                      </div>
+                      <div>
+                        <p>FAQS</p>
                         <div>
-                          <div>
-                            <div>
-                              <p>HOW TO MAKE</p>
-                              <div>
-                                <ul>
-                                  <li></li>
-                                  <li></li>
-                                  <li></li>
-                                  <li></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div>
-                              <p>PRODUCT HIGHLIGHT</p>
-                              <div>
-                                <ul>
-                                  <li></li>
-                                  <li></li>
-                                  <li></li>
-                                  <li></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div>
-                              <p>NUTRITION FACTS & INGREDIENTS</p>
-                              <div>
-                                <ul>
-                                  <li></li>
-                                  <li></li>
-                                  <li></li>
-                                  <li></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div>
-                              <p>FAQS</p>
-                              <div>
-                                <ul>
-                                  <li></li>
-                                  <li></li>
-                                  <li></li>
-                                  <li></li>
-                                </ul>
-                                <div></div>
-                              </div>
-                            </div>
-                          </div>
+                          <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                          </ul>
+                          <div></div>
                         </div>
-
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
           </div>
-
-          <div>
-            <div>
-              <div>
-                <div>
-                  <h3>THE ORIGIN OF SOUP DUMPLINGS</h3>
-                  <div>
-                    <p>
-                      Soup dumplings (小笼包, Xiao Long Bao) originate in Shanghai, where they’re the stuff of legend: some focus on a royal Chinese emperor who traveled by river for a taste of these steamed delicacies; others involve an inventive chef looking to wow his guests with this new creation. While their true history may never be known, we can all agree on one thing: We love having soup dumplings ready at home in just 10 minutes!
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <img src="" alt="" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div>
-              <h4>OUR FAVORITES</h4>
-              <div>
-                <div>
-                  <a href=""></a>
-                  <div>
-                    <p></p>
-                    <div>
-                      <div></div>
-                      <div></div>
-                    </div>
-                    <a href=""></a>
-                  </div>
-                </div>
-                <div>
-                  <a href=""></a>
-                  <div>
-                    <p></p>
-                    <div>
-                      <div></div>
-                      <div></div>
-                    </div>
-                    <a href=""></a>
-                  </div>
-                </div>
-                <div>
-                  <a href=""></a>
-                  <div>
-                    <p></p>
-                    <div>
-                      <div></div>
-                      <div></div>
-                    </div>
-                    <a href=""></a>
-                  </div>
-                </div>
-                <div>
-                  <a href=""></a>
-                  <div>
-                    <p></p>
-                    <div>
-                      <div></div>
-                      <div></div>
-                    </div>
-                    <a href=""></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div>
-              <div>
-                <div></div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
+
+      <div>
+        <div>
+          <div>
+            <div>
+              <h3>THE ORIGIN OF SOUP DUMPLINGS</h3>
+              <div>
+                <p>
+                  Soup dumplings (小笼包, Xiao Long Bao) originate in Shanghai, where they’re the stuff of legend: some focus on a royal Chinese emperor who traveled by river for a taste of these steamed delicacies; others involve an inventive chef looking to wow his guests with this new creation. While their true history may never be known, we can all agree on one thing: We love having soup dumplings ready at home in just 10 minutes!
+                </p>
+              </div>
+            </div>
+            <div>
+              <img src="" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <h4>OUR FAVORITES</h4>
+          <div>
+            <div>
+              <a href=""></a>
+              <div>
+                <p></p>
+                <div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a href=""></a>
+              </div>
+            </div>
+            <div>
+              <a href=""></a>
+              <div>
+                <p></p>
+                <div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a href=""></a>
+              </div>
+            </div>
+            <div>
+              <a href=""></a>
+              <div>
+                <p></p>
+                <div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a href=""></a>
+              </div>
+            </div>
+            <div>
+              <a href=""></a>
+              <div>
+                <p></p>
+                <div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <a href=""></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+
     </main>
   );
 };
