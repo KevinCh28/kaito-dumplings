@@ -152,18 +152,7 @@ const DumplingsBeefCheese = () => {
                     </div>
                   </div>
 
-                  <div>
-                    <div>
-                      <div>
-                        <img src="" alt="" />
-                      </div>
-                      <div>
-                        <img src="" alt="" />
-                      </div>
-                      <div>
-                        <img src="" alt="" />
-                      </div>
-                    </div>
+                  <div className='product_page_description_container'>
                     <div>Our new limited-edition dumplings feature a rich beef filling with a savory 
                       beef and creamy cheese. Enveloped in a tender dumpling skin, each bite 
                       delivers the splendid flavors of our favorite comfort food - Cheese Burger - 
