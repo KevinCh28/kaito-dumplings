@@ -2,8 +2,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { getProduct } from '../../utils/productApiUtils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 const DumplingsBeefCheese = () => {
   const router = useRouter();
@@ -124,9 +122,9 @@ const DumplingsBeefCheese = () => {
                           <div className='product_page_style_header'>Style</div>
                           <div className='product_page_styles_wrapper'>
                             <div className='product_page_styles_container'>
-                              <span>BEEF & CHEESE</span>
-                              <button className='product_page_styles_arrow'>
-                                <i><FontAwesomeIcon icon={faArrowDown}></FontAwesomeIcon></i>
+                              <span className='product_page_style'>BEEF & CHEESE</span>
+                              <button>
+                                <img className='product_page_styles_arrow' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/t/124/assets/arrow-down-dark.svg?v=75058491936605126901668510372" alt="" />
                               </button>
                             </div>
                           </div>
@@ -173,11 +171,11 @@ const DumplingsBeefCheese = () => {
                     </div>
                   </div>
 
-                  <div>
+                  <div className='product_page_tabs_wrapper'>
                     <div>
-                      <div>
-                        <p>HOW TO MAKE</p>
-                        <div>
+                      <div className='product_page_tab'>
+                        <p className='product_page_tab_header'>HOW TO MAKE</p>
+                        <div className='product_page_tab_info_container'>
                           <ul>
                             <li></li>
                             <li></li>
@@ -186,9 +184,9 @@ const DumplingsBeefCheese = () => {
                           </ul>
                         </div>
                       </div>
-                      <div>
-                        <p>PRODUCT HIGHLIGHT</p>
-                        <div>
+                      <div className='product_page_tab'>
+                        <p className='product_page_tab_header'>PRODUCT HIGHLIGHT</p>
+                        <div className='product_page_tab_info_container'>
                           <ul>
                             <li></li>
                             <li></li>
@@ -197,9 +195,9 @@ const DumplingsBeefCheese = () => {
                           </ul>
                         </div>
                       </div>
-                      <div>
-                        <p>NUTRITION FACTS & INGREDIENTS</p>
-                        <div>
+                      <div className='product_page_tab'>
+                        <p className='product_page_tab_header'>NUTRITION FACTS & INGREDIENTS</p>
+                        <div className='product_page_tab_info_container'>
                           <ul>
                             <li></li>
                             <li></li>
@@ -208,9 +206,9 @@ const DumplingsBeefCheese = () => {
                           </ul>
                         </div>
                       </div>
-                      <div>
-                        <p>FAQS</p>
-                        <div>
+                      <div className='product_page_tab'>
+                        <p className='product_page_tab_header'>FAQS</p>
+                        <div className='product_page_tab_info_container'>
                           <ul>
                             <li></li>
                             <li></li>
