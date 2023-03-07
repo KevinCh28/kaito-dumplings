@@ -40,6 +40,12 @@ const DumplingsBeefCheese = () => {
       }
     });
   };
+  
+  const handleSubtractQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   return (
     <main className='product_page_main'>
@@ -130,9 +136,9 @@ const DumplingsBeefCheese = () => {
                         <div className='product_page_input_quantity_container'>
                           <div className='product_page_input_quantity_header'>Quantity</div>
                           <div className='product_page_input_quantity_buttons'>
-                            <div className='product_page_input_quantity_remove'>-</div>
+                            <div className='product_page_input_quantity_remove' onClick={handleSubtractQuantity}>-</div>
                             <span className='product_page_input_quantity_amount'>{quantity}</span>
-                            <div className='product_page_input_quantity_add'>+</div>
+                            <div className='product_page_input_quantity_add' onClick={() => setQuantity(quantity + 1)}>+</div>
                           </div>
                         </div>
                         <div className='product_page_product_addtocart_button_wrapper'>
