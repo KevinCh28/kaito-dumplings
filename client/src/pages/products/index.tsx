@@ -72,7 +72,7 @@ const Products = () => {
               <div className='products_page_items_column_wrapper'>
                 <div className='products_page_items_column_container'>
                   <div className='products_page_item_wrapper'>
-
+                    {/* FEATURED PRODUCTS, CURRENTLY DUMPLINGS */}
                     <div className='products_page_item_container'>
                       <div className='products_page_item_info_container'>
                         <div className='products_page_item_image_wrapper'>
@@ -93,7 +93,7 @@ const Products = () => {
                                   <span className='products_page_item_price'>$44.95</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/beef-&-cheese">DUMPLINGS (50 PC)</a>
+                                  <a href="/products/dumplings-beef-&-cheese">DUMPLINGS (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -148,6 +148,7 @@ const Products = () => {
                         </div>
                       </div>
                     </div>
+                    {/* DUMPLINGS */}
                     <div className='products_page_item_container'>
                       <div className='products_page_item_info_container'>
                         <div className='products_page_item_image_wrapper'>
@@ -223,6 +224,7 @@ const Products = () => {
                         </div>
                       </div>
                     </div>
+                    {/* GYOZAS */}
                     <div className='products_page_item_container'>
                       <div className='products_page_item_info_container'>
                         <div className='products_page_item_image_wrapper'>
@@ -243,7 +245,7 @@ const Products = () => {
                                   <span className='products_page_item_price'>$44.95</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/dumplings-beef-&-cheese">GYOZAS (50 PC)</a>
+                                  <a href="/products/gyoza-beef-&-cheese">GYOZAS (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -299,7 +301,6 @@ const Products = () => {
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
