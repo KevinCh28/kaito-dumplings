@@ -229,18 +229,18 @@ const DumplingsBeefCheese = () => {
       </div>
 
       <div>
-        <div>
-          <div>
-            <div>
-              <h3>THE ORIGIN OF SOUP DUMPLINGS</h3>
+        <div className='product_show_page_origin_container'>
+          <div className='product_show_page_origin_info_container'>
+            <div className='product_show_page_origin_content_container'>
+              <h3 className='product_show_page_origin_content_header'>THE ORIGIN OF SOUP DUMPLINGS</h3>
               <div>
-                <p>
+                <p className='product_show_page_origin_content_body'>
                   Soup dumplings (小笼包, Xiao Long Bao) originate in Shanghai, where they’re the stuff of legend: some focus on a royal Chinese emperor who traveled by river for a taste of these steamed delicacies; others involve an inventive chef looking to wow his guests with this new creation. While their true history may never be known, we can all agree on one thing: We love having soup dumplings ready at home in just 10 minutes!
                 </p>
               </div>
             </div>
-            <div>
-              <img src="" alt="" />
+            <div className='product_show_page_origin_image_container'>
+              <img className='product_show_page_origin_image' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Region-shanghai_480x.png?v=1663723126" alt="" />
             </div>
           </div>
         </div>
