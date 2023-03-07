@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { getProduct } from '../../utils/productApiUtils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 const DumplingsBeefCheese = () => {
   const router = useRouter();
@@ -15,6 +17,7 @@ const DumplingsBeefCheese = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [style, setStyle] = useState('beef-&-cheese');
+  const [hiddenStyle, setHiddenStyle] = useState(true);
   
   useEffect(() => {
     getProduct('63efa9419010d97ce1747161').then((res) => {
@@ -112,23 +115,30 @@ const DumplingsBeefCheese = () => {
                       <div>
                         <div>
                         </div>
-                          <div>Style</div>
-                          <div>
-                            <div>
+                          <div className='product_page_style_header'>Style</div>
+                          <div className='product_page_styles_wrapper'>
+                            <div className='product_page_styles_container'>
                               <span>BEEF & CHEESE</span>
-                              svg
+                              <button className='product_page_styles_arrow'>
+                                <i><FontAwesomeIcon icon={faArrowDown}></FontAwesomeIcon></i>
+                              </button>
                             </div>
                           </div>
                       </div>
 
-                      <div>
-                        <div>
-                          <div>Quantity</div>
+                      <div className='product_page_input_information_container'>
+                        <div className='product_page_input_quantity_container'>
+                          <div className='product_page_input_quantity_header'>Quantity</div>
+                          <div className='product_page_input_quantity_buttons'>
+                            <div className='product_page_input_quantity_remove'>-</div>
+                            <span className='product_page_input_quantity_amount'>{quantity}</span>
+                            <div className='product_page_input_quantity_add'>+</div>
+                          </div>
                         </div>
-                        <div>
-                          <div></div>
-                          <span></span>
-                          <div></div>
+                        <div className='product_page_product_addtocart_button_wrapper'>
+                          <button className='product_page_product_addtocart_button'>
+                            <span>ADD TO CART</span>
+                          </button>
                         </div>
                       </div>
 
@@ -152,7 +162,7 @@ const DumplingsBeefCheese = () => {
                     </div>
                   </div>
 
-                  <div className='product_page_description_container'>
+                  <div className='product_page_product_description_container'>
                     <div>Our new limited-edition dumplings feature a rich beef filling with a savory 
                       beef and creamy cheese. Enveloped in a tender dumpling skin, each bite 
                       delivers the splendid flavors of our favorite comfort food - Cheese Burger - 
