@@ -40,7 +40,7 @@ const DumplingsBeefCheese = () => {
       }
     });
   };
-  
+
   const handleSubtractQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
@@ -148,23 +148,20 @@ const DumplingsBeefCheese = () => {
                         </div>
                       </div>
 
-                      <div>
-                        <div>
-                          <div>
-                            <div>
-                              <div>
-                                <div>
-                                  <div>
-                                    <span>Buy with </span>
-                                    <span>svg</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <button></button>
+                      <div className='product_page_payment_buttons_container'>
+                        <div className='product_page_shoppay_button_wrapper'>
+                          <div className='product_page_shoppay_button_container'>
+                            <div className='product_page_shoppay_button_info'>
+                              <span className='product_page_shoppay_button_text'>Buy with </span>
+                              <span className='product_page_shoppay_button_image'>
+                                <img className='shoppay_image' src="/ShopPayWhite.png" alt="" />
+                              </span>
                             </div>
                           </div>
                         </div>
+                        <button></button>
                       </div>
+
                     </div>
                   </div>
 

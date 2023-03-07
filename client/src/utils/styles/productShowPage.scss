@@ -325,7 +325,68 @@
   font-weight: 600;
 }
 
-//
+.product_page_payment_buttons_container {
+  margin: 12px 0;
+  text-align: center;
+}
+
+.product_page_shoppay_button_wrapper {
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 44px;
+  position: relative;
+  z-index: 1;
+}
+
+.product_page_shoppay_button_container {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.product_page_shoppay_button_info {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-width: 1px !important;
+  border-style: solid !important;
+  line-height: 16px !important;
+  text-align: center !important;
+  width: 100% !important;
+  outline: 0 none !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  flex: 1 !important;
+  flex-wrap: wrap !important;
+  padding: 4px !important;
+  max-height: 60px !important;
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+  min-height: 48px !important;
+  background-color: #1b2137 !important;
+  border-color: #1b2137 !important;
+}
+
+.product_page_shoppay_button_text {
+  white-space: pre !important;
+}
+
+.shoppay_image {
+  margin-top: 5px;
+  height: 18px;
+  width: 82px;
+  max-width: 100%;
+  max-height: 100%;
+  
+}
 
 .product_page_product_description_container {
   margin-top: 12px;
