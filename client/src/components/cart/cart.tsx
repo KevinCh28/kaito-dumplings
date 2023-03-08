@@ -84,58 +84,61 @@ const Cart = ({ onClose = () => { } }) => {
   // Renders cart items
   const handleCartItems = () => {
     if (cart.length > 0) {
-      return cart.map((item: any) => {
-        return (
-          <div className='cart_items_container'>
-            <ul className='cart_items'>
-              {products.map(product => {
-                if (item.productId === product._id) {
-                  return (
-                    <li key={product._id}>
-                      <div className='item_image_container'>
-                        <a href="" >
-                          <img src={product.imageUrl} alt={product.name} />
-                        </a>
-                      </div>
-                      <div className='cart_item_info'>
-                        <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.productId)}>
-                          <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
-                          <span className='hiddenSpan'>Remove {product.category} {product.name} from Cart</span>
-                        </button>
-                        <a href="" className='cart_item_category'>{product.category}</a>
-                        <div className='cart_item_name'>{product.name}</div>
-
-                        <div className='item_quantity_container'>
-                          <div className='item_quantity_wrapper'>
-                            <button className='item_quantity_button' onClick={() => handleMinusQuantity(item.productId)}>
-                              <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
-                              <span className='hiddenSpan'></span>
-                            </button>
-                            <span className='item_quantity_button'>{item.quantity}</span>
-                            <button className='item_quantity_button' onClick={() => handleAddQuantity(item.productId)}>
-                              <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
-                              <span className='hiddenSpan'></span>
-                            </button>
-                          </div>
+      return (
+        <div className='cart_items_container'>
+          {cart.map((item: any) => {
+            return (
+              <ul className='cart_items'>
+                {products.map(product => {
+                  if (item.productId === product._id) {
+                    return (
+                      <li className='cart_item_container' key={product._id}>
+                        <div className='item_image_container'>
+                          <a href="" >
+                            <img src={product.imageUrl} alt={product.name} />
+                          </a>
                         </div>
+                        <div className='cart_item_info'>
+                          <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.productId)}>
+                            <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
+                            <span className='hiddenSpan'>Remove {product.category} {product.name} from Cart</span>
+                          </button>
+                          <a href="" className='cart_item_category'>{product.category}</a>
+                          <div className='cart_item_name'>{product.name}</div>
 
-                        <div className='item_total_price'>
-                          <div>
-                            <span>${(product.price * item.quantity).toFixed(2)}</span>
+                          <div className='item_quantity_container'>
+                            <div className='item_quantity_wrapper'>
+                              <button className='item_quantity_button' onClick={() => handleMinusQuantity(item.productId)}>
+                                <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
+                                <span className='hiddenSpan'></span>
+                              </button>
+                              <span className='item_quantity_button'>{item.quantity}</span>
+                              <button className='item_quantity_button' onClick={() => handleAddQuantity(item.productId)}>
+                                <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
+                                <span className='hiddenSpan'></span>
+                              </button>
+                            </div>
                           </div>
-                        </div>
 
-                      </div>
-                    </li>
-                  )
-                }
-              })
-              };
-            </ul>
-            <div className='cart _products_recommendations_container'>Recommendations</div>
-          </div>
-        )
-      })
+                          <div className='item_total_price'>
+                            <div>
+                              <span>${(product.price * item.quantity).toFixed(2)}</span>
+                            </div>
+                          </div>
+
+                        </div>
+                      </li>
+                    )
+                  }
+                })
+              }
+              </ul>
+            )
+            }
+          )
+        }
+        </div>
+      )
     }
   }
 
@@ -197,6 +200,7 @@ const Cart = ({ onClose = () => { } }) => {
             </div>
           </div>
           {handleCartItems()}
+          <div className='cart _products_recommendations_container'>Recommendations</div>
         </div>
 
         {totalItems > 0 ? 
