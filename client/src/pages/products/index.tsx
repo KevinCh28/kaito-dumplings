@@ -114,17 +114,16 @@ const Products = () => {
                     <div className='products_page_item_container'>
                       <div className='products_page_item_info_container'>
                         <div className='products_page_item_image_wrapper'>
-                          <div>
-                            <div className='products_page_item_image'>
-                              <a href="/products/dumplings-beef-&-cheese">
-                                <img src={product1.imageUrl} alt="" />
-                              </a>
-                            </div>
+                          <div className='products_page_item_image_container'>
+                            <a className="products_page_item_image_link" href="/products/dumplings-beef-&-cheese">
+                              <div className="products_page_item_image_content">
+                                <img className="products_page_item_image" src={product1.imageUrl} alt="" />
+                              </div>
+                            </a>
                           </div>
                         </div>
                         <div className='products_page_item_text_wrapper'>
-                          <form action="post">
-                            <input type="hidden" />
+                          <div>
                             <div className='products_page_item_details_wrapper'>
                               <div className='products_page_item_details_container'>
                                 <div className='products_page_item_price_container'>
@@ -132,158 +131,6 @@ const Products = () => {
                                 </div>
                                 <h3 className='products_page_item_name'>
                                   <a href="/products/dumplings-beef-&-cheese">{product1.category} (50 PC)</a>
-                                </h3>
-                                <div>
-                                  <ul className='products_page_item_descriptions'>
-                                    <li className='products_page_item_description'>
-                                      <p>50 Dumplings (Good for 6 Meals!)</p>
-                                    </li>
-                                    <li className='products_page_item_description'>
-                                      <p>Ready in Just 11 Minutes</p>
-                                    </li>
-                                    <li className='products_page_item_description'>
-                                      <p>Steamer Liners Included</p>
-                                    </li>
-                                  </ul>
-                                </div>
-
-                              <div>
-                                <div>
-                                  <div>
-                                    <div>
-                                      <input type="hidden" />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className='products_page_product_rating_container'>
-                                <div className='products_page_product_ratings'>
-                                  <div className='products_page_product_rating'>
-                                    <svg className='products_page_product_rating_star'><use></use></svg>
-                                    <svg className='products_page_product_rating_star'><use></use></svg>
-                                    <svg className='products_page_product_rating_star'><use></use></svg>
-                                    <svg className='products_page_product_rating_star'><use></use></svg>
-                                    <svg className='products_page_product_rating_star'><use></use></svg>
-                                    <span className='products_page_product_rating_amount'>(2018)</span>
-                                  </div>
-                                </div>
-                              </div>
-
-                              </div>
-                              <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
-                                  <span>ADD TO CART</span>
-                                  <span>
-                                    <div>
-                                      <div></div>
-                                    </div>
-                                  </span>
-                                </button>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                    {/* DUMPLINGS */}
-                    <div className='products_page_item_container'>
-                      <div className='products_page_item_info_container'>
-                        <div className='products_page_item_image_wrapper'>
-                          <div>
-                            <div className='products_page_item_image'>
-                              <a href="/products/dumplings-beef-&-cheese">
-                                <img src={product2.imageUrl} alt="" />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className='products_page_item_text_wrapper'>
-                          <form action="post">
-                            <input type="hidden" />
-                            <div className='products_page_item_details_wrapper'>
-                              <div className='products_page_item_details_container'>
-                                <div className='products_page_item_price_container'>
-                                  <span className='products_page_item_price'>${product2.price}</span>
-                                </div>
-                                <h3 className='products_page_item_name'>
-                                  <a href="/products/dumplings-beef-&-cheese">{product2.category} (50 PC)</a>
-                                </h3>
-                                <div>
-                                  <ul className='products_page_item_descriptions'>
-                                    <li className='products_page_item_description'>
-                                      <p>50 Dumplings (Good for 6 Meals!)</p>
-                                    </li>
-                                    <li className='products_page_item_description'>
-                                      <p>Ready in Just 11 Minutes</p>
-                                    </li>
-                                    <li className='products_page_item_description'>
-                                      <p>Steamer Liners Included</p>
-                                    </li>
-                                  </ul>
-                                </div>
-
-                                <div>
-                                  <div>
-                                    <div>
-                                      <div>
-                                        <input type="hidden" />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
-                                <div className='products_page_product_rating_container'>
-                                  <div className='products_page_product_ratings'>
-                                    <div className='products_page_product_rating'>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <span className='products_page_product_rating_amount'>(2018)</span>
-                                    </div>
-                                  </div>
-                                </div>
-
-                              </div>
-                              <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
-                                  <span>ADD TO CART</span>
-                                  <span>
-                                    <div>
-                                      <div></div>
-                                    </div>
-                                  </span>
-                                </button>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                    {/* GYOZAS */}
-                    <div className='products_page_item_container'>
-                      <div className='products_page_item_info_container'>
-                        <div className='products_page_item_image_wrapper'>
-                          <div>
-                            <div className='products_page_item_image'>
-                              <a href="/products/gyoza-beef-&-cheese">
-                                <img src={product3.imageUrl} alt="" />
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                        <div className='products_page_item_text_wrapper'>
-                          <form action="post">
-                            <input type="hidden" />
-                            <div className='products_page_item_details_wrapper'>
-                              <div className='products_page_item_details_container'>
-                                <div className='products_page_item_price_container'>
-                                  <span className='products_page_item_price'>${product3.price}</span>
-                                </div>
-                                <h3 className='products_page_item_name'>
-                                  <a href="/products/gyoza-beef-&-cheese">{product3.category} (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -303,7 +150,7 @@ const Products = () => {
                                   <div>
                                     <div>
                                       <div>
-                                        <input type="hidden" />
+
                                       </div>
                                     </div>
                                   </div>
@@ -334,7 +181,157 @@ const Products = () => {
                                 </button>
                               </div>
                             </div>
-                          </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* DUMPLINGS */}
+                    <div className='products_page_item_container'>
+                      <div className='products_page_item_info_container'>
+                        <div className='products_page_item_image_wrapper'>
+                          <div className='products_page_item_image_container'>
+                            <a className="products_page_item_image_link" href="/products/dumplings-beef-&-cheese">
+                              <div className="products_page_item_image_content">
+                                <img className="products_page_item_image" src={product2.imageUrl} alt="" />
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                        <div className='products_page_item_text_wrapper'>
+                          <div>
+                            <div className='products_page_item_details_wrapper'>
+                              <div className='products_page_item_details_container'>
+                                <div className='products_page_item_price_container'>
+                                  <span className='products_page_item_price'>${product2.price}</span>
+                                </div>
+                                <h3 className='products_page_item_name'>
+                                  <a href="/products/dumplings-beef-&-cheese">{product2.category} (50 PC)</a>
+                                </h3>
+                                <div>
+                                  <ul className='products_page_item_descriptions'>
+                                    <li className='products_page_item_description'>
+                                      <p>50 Gyozas (Good for 6 Meals!)</p>
+                                    </li>
+                                    <li className='products_page_item_description'>
+                                      <p>Ready in Just 11 Minutes</p>
+                                    </li>
+                                    <li className='products_page_item_description'>
+                                      <p>Steamer Liners Included</p>
+                                    </li>
+                                  </ul>
+                                </div>
+
+                                <div>
+                                  <div>
+                                    <div>
+                                      <div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className='products_page_product_rating_container'>
+                                  <div className='products_page_product_ratings'>
+                                    <div className='products_page_product_rating'>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <span className='products_page_product_rating_amount'>(2018)</span>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                              <div className='products_page_add_button_container'>
+                                <button className='products_page_add_button' onClick={handleAddGyozaToCart}>
+                                  <span>ADD TO CART</span>
+                                  <span>
+                                    <div>
+                                      <div></div>
+                                    </div>
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {/* GYOZAS */}
+                    <div className='products_page_item_container'>
+                      <div className='products_page_item_info_container'>
+                        <div className='products_page_item_image_wrapper'>
+                          <div className='products_page_item_image_container'>
+                            <a className="products_page_item_image_link" href="/products/gyoza-beef-&-cheese">
+                              <div className="products_page_item_image_content">
+                                <img className="products_page_item_image" src={product3.imageUrl} alt="" />
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                        <div className='products_page_item_text_wrapper'>
+                          <div>
+                            <div className='products_page_item_details_wrapper'>
+                              <div className='products_page_item_details_container'>
+                                <div className='products_page_item_price_container'>
+                                  <span className='products_page_item_price'>${product3.price}</span>
+                                </div>
+                                <h3 className='products_page_item_name'>
+                                  <a href="/products/gyoza-beef-&-cheese">{product3.category} (50 PC)</a>
+                                </h3>
+                                <div>
+                                  <ul className='products_page_item_descriptions'>
+                                    <li className='products_page_item_description'>
+                                      <p>50 Gyozas (Good for 6 Meals!)</p>
+                                    </li>
+                                    <li className='products_page_item_description'>
+                                      <p>Ready in Just 11 Minutes</p>
+                                    </li>
+                                    <li className='products_page_item_description'>
+                                      <p>Steamer Liners Included</p>
+                                    </li>
+                                  </ul>
+                                </div>
+
+                                <div>
+                                  <div>
+                                    <div>
+                                      <div>
+          
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className='products_page_product_rating_container'>
+                                  <div className='products_page_product_ratings'>
+                                    <div className='products_page_product_rating'>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <span className='products_page_product_rating_amount'>(2018)</span>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              </div>
+                              <div className='products_page_add_button_container'>
+                                <button className='products_page_add_button' onClick={handleAddGyozaToCart}>
+                                  <span>ADD TO CART</span>
+                                  <span>
+                                    <div>
+                                      <div></div>
+                                    </div>
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
