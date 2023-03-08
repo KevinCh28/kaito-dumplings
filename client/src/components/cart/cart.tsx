@@ -7,6 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = ({ onClose = () => { } }) => {
+  const recommended = {
+    'dumplings': true,
+    'soup dumplings': true,
+    'gyoza': true,
+    'noodles': true,
+    'sauces': true,
+  };
   const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -37,6 +44,14 @@ const Cart = ({ onClose = () => { } }) => {
       setProducts(res);
     })
   }, []);
+
+  // Update recommended category
+  // useEffect(() => {
+  //   cart.map((cartProduct: any) => {
+  //     console.log(cartProduct)
+  //     recommended[cartProduct.category] = false;
+  //   })
+  // }, [cart]);
 
   // Calculates subtotal items and amount in cart
   useEffect(() => {
@@ -80,6 +95,40 @@ const Cart = ({ onClose = () => { } }) => {
       )
     }
   };
+
+  // Renders recommended products based on empty cart
+  const mapProducts = (
+    products.map((product: any) => {
+      if (recommended[product.category] === true) {
+        recommended[product.category] = false;
+        return (
+          <div className='cart_product_recommendation_container'>
+            <div className='cart_product_recommendation_image_container'>
+              <a href="">
+                <img src={product.imageUrl} alt={product.name} />
+              </a>
+            </div>
+            <div className='cart_product_recommendation_info'>
+              <a href="" className='cart_product_recommendation_category'>{product.category}</a>
+            </div>
+            <div className='cart_product_recommendation_other_flavors_container'>
+              <select name="" id="">
+                <option value="">BEEF & CHEESE</option>
+                <option value="">PORK & CHIEVES</option>
+                <option value="">CHICKEN & CABBAGE</option>
+                <option value="">VEGGIE</option>
+              </select>
+            </div>
+            <div className='cart_product_recommendation_add_to_cart_button_container'>
+              <button className='cart_product_recommendation_add_to_cart_button'>
+                <span>ADD</span>
+              </button>
+            </div>
+          </div>
+        )
+      }
+    })
+  );
 
   // Renders cart items
   const handleCartItems = () => {
@@ -137,7 +186,14 @@ const Cart = ({ onClose = () => { } }) => {
             }
           )
         }
-        <div className='cart_products_recommendations_container'>YOU MAY ALSO LIKE</div>
+          <div className='cart_products_recommendations_wrapper'>
+            <div className='cart_products_recommendations_container'>
+              <h3 className='cart_products_recommendations_header'>YOU MAY ALSO LIKE</h3>
+              <div>
+                
+              </div>
+            </div>
+          </div>
         </div>
       )
     } else {
@@ -150,8 +206,17 @@ const Cart = ({ onClose = () => { } }) => {
               <a href="">Shop Now</a>
             </p>
           </div>
-          <div></div>
-          <div className='cart_products_recommendations_container'>YOU MAY ALSO LIKE</div>
+          <div className='empty_cart_footer_container'>
+            <div></div>
+          </div>
+          <div className='cart_products_recommendations_wrapper'>
+            <div className='cart_products_recommendations_container'>
+              <h3 className='cart_products_recommendations_header'>YOU MAY ALSO LIKE</h3>
+              <div className='cart_products_recommendations_grid'>
+                {mapProducts}
+              </div>
+            </div>
+          </div>
         </div>
       )
     }
