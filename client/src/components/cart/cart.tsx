@@ -137,6 +137,21 @@ const Cart = ({ onClose = () => { } }) => {
             }
           )
         }
+        <div className='cart_products_recommendations_container'>YOU MAY ALSO LIKE</div>
+        </div>
+      )
+    } else {
+      return (
+        <div className='cart_items_container'>
+          <div className='empty_cart_container'>
+            <h4 className='empty_cart_header'>YOUR CART IS EMPTY!</h4>
+            <p className='empty_cart_text'>Add some dumplings and gyozas.</p>
+            <p className='empty_cart_button'>
+              <a href="">Shop Now</a>
+            </p>
+          </div>
+          <div></div>
+          <div className='cart_products_recommendations_container'>YOU MAY ALSO LIKE</div>
         </div>
       )
     }
@@ -200,7 +215,6 @@ const Cart = ({ onClose = () => { } }) => {
             </div>
           </div>
           {handleCartItems()}
-          <div className='cart _products_recommendations_container'>Recommendations</div>
         </div>
 
         {totalItems > 0 ? 
