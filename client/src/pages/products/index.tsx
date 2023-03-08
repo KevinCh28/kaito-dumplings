@@ -33,7 +33,7 @@ const Products = () => {
 
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
     e.preventDefault();
-    increaseItemQuantity(user._id, dumplingsId)
+    increaseItemQuantity(user._id, dumplingsId, 1)
       .then((res) => {
         setShowModal(true);
       })
@@ -45,7 +45,7 @@ const Products = () => {
 
   const handleAddGyozaToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
     e.preventDefault();
-    increaseItemQuantity(user._id, gyozaId)
+    increaseItemQuantity(user._id, gyozaId, 1)
       .then((res) => {
         setShowModal(true);
       })

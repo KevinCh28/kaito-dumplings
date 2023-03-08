@@ -140,7 +140,7 @@ const Cart = ({ onClose = () => { } }) => {
   }
 
   const handleAddQuantity = ( productId: any ) => {
-    increaseItemQuantity(userId, productId).then((res) => {
+    increaseItemQuantity(userId, productId, 1).then((res) => {
       getCart(userId)
         .then((res) => {
           setCart(res.data.products);

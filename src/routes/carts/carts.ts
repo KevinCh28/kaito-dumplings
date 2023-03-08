@@ -39,21 +39,21 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
 // Update Cart to increase a product quantity
 // Put /api/carts/:id/increase
 router.put("/:id/increase", async (req: Request, res: Response, next: NextFunction) => {
-  const { userId, productId } = req.body;
+  const { userId, productId, amount } = req.body;
   try {
     let products: { quantity: number; productId?: Types.ObjectId | undefined; }[] = [];
     const cart = await Cart.findOne({ owner: userId });
 
     if (cart) products = cart.products;
     if (products.length === 0) {
-      products.push({ productId: productId, quantity: 1 });
+      products.push({ productId: productId, quantity: amount });
       await cart?.save();
       return res.status(200).json(cart);
     }
 
     for (let product of products) {
       if (Object(product.productId).equals(productId)) {
-        product.quantity += 1;
+        product.quantity += amount;
         await cart?.save();
         return res.status(200).json(cart);
       }

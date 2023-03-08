@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { getProduct } from '../../utils/productApiUtils';
+import { increaseItemQuantity } from "../../utils/cartApiUtils";
+import Cart from '../../components/cart/cart';
+import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 
 const GyozaBeefCheese = () => {
   const router = useRouter();
@@ -16,6 +19,19 @@ const GyozaBeefCheese = () => {
   const [quantity, setQuantity] = useState(1);
   const [style, setStyle] = useState('beef-&-cheese');
   const [hiddenStyle, setHiddenStyle] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState({});
+  const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
+
+  useEffect(() => {
+    getCurrentUser()
+      .then((res) => {
+        setUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     getProduct(flavors[pathName]).then((res) => {
@@ -44,6 +60,25 @@ const GyozaBeefCheese = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
+  };
+
+  const handleCartModal = () => {
+    if (!showModal) return null
+    return (
+      <Cart onClose={() => setShowModal(false)} />
+    )
+  };
+
+  const handleAddGyozaToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
+    e.preventDefault();
+    increaseItemQuantity(user._id, gyozaId, quantity)
+      .then((res) => {
+        setShowModal(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      }
+      );
   };
 
   return (
@@ -141,7 +176,7 @@ const GyozaBeefCheese = () => {
                           </div>
                         </div>
                         <div className='product_page_product_addtocart_button_wrapper'>
-                          <button className='product_page_product_addtocart_button'>
+                          <button className='product_page_product_addtocart_button' onClick={handleAddGyozaToCart}>
                             <span>ADD TO CART</span>
                           </button>
                         </div>
@@ -307,6 +342,7 @@ const GyozaBeefCheese = () => {
         </div>
       </div>
 
+      {handleCartModal()}
     </main>
   );
 };
