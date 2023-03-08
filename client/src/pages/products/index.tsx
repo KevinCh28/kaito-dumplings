@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import Cart from '../../components/cart/cart';
+import { getProduct } from "@/src/utils/productApiUtils";
 
 const Products = () => {
   const dumplings = {
@@ -17,10 +18,14 @@ const Products = () => {
     'veggie': '63efa9259010d97ce174715f'
   }
   const [showModal, setShowModal] = useState(false);
+  const [product1, setProduct1] = useState({});
+  const [product2, setProduct2] = useState({});
+  const [product3, setProduct3] = useState({});
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
   const [user, setUser] = useState({});
 
+  // Get User
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
@@ -30,6 +35,39 @@ const Products = () => {
         console.log(err);
       });
   }, []);
+
+  // Get Product 1
+  useEffect(() => {
+    getProduct(dumplingsId)
+      .then((res) => {
+        setProduct1(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [dumplingsId]);
+
+  // Get Product 2
+  useEffect(() => {
+    getProduct(dumplingsId)
+      .then((res) => {
+        setProduct2(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [dumplingsId]);
+
+  // Get Product 3
+  useEffect(() => {
+    getProduct(gyozaId)
+      .then((res) => {
+        setProduct3(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [gyozaId]);
 
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
     e.preventDefault();
@@ -78,8 +116,8 @@ const Products = () => {
                         <div className='products_page_item_image_wrapper'>
                           <div>
                             <div className='products_page_item_image'>
-                              <a href="">
-                                <img src="" alt="" />
+                              <a href="/products/dumplings-beef-&-cheese">
+                                <img src={product1.imageUrl} alt="" />
                               </a>
                             </div>
                           </div>
@@ -90,10 +128,10 @@ const Products = () => {
                             <div className='products_page_item_details_wrapper'>
                               <div className='products_page_item_details_container'>
                                 <div className='products_page_item_price_container'>
-                                  <span className='products_page_item_price'>$44.95</span>
+                                  <span className='products_page_item_price'>${product1.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/dumplings-beef-&-cheese">DUMPLINGS (50 PC)</a>
+                                  <a href="/products/dumplings-beef-&-cheese">{product1.category} (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -154,8 +192,8 @@ const Products = () => {
                         <div className='products_page_item_image_wrapper'>
                           <div>
                             <div className='products_page_item_image'>
-                              <a href="">
-                                <img src="" alt="" />
+                              <a href="/products/dumplings-beef-&-cheese">
+                                <img src={product2.imageUrl} alt="" />
                               </a>
                             </div>
                           </div>
@@ -166,10 +204,10 @@ const Products = () => {
                             <div className='products_page_item_details_wrapper'>
                               <div className='products_page_item_details_container'>
                                 <div className='products_page_item_price_container'>
-                                  <span className='products_page_item_price'>$44.95</span>
+                                  <span className='products_page_item_price'>${product2.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/dumplings-beef-&-cheese">DUMPLINGS (50 PC)</a>
+                                  <a href="/products/dumplings-beef-&-cheese">{product2.category} (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -230,8 +268,8 @@ const Products = () => {
                         <div className='products_page_item_image_wrapper'>
                           <div>
                             <div className='products_page_item_image'>
-                              <a href="">
-                                <img src="" alt="" />
+                              <a href="/products/gyoza-beef-&-cheese">
+                                <img src={product3.imageUrl} alt="" />
                               </a>
                             </div>
                           </div>
@@ -242,10 +280,10 @@ const Products = () => {
                             <div className='products_page_item_details_wrapper'>
                               <div className='products_page_item_details_container'>
                                 <div className='products_page_item_price_container'>
-                                  <span className='products_page_item_price'>$44.95</span>
+                                  <span className='products_page_item_price'>${product3.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/gyoza-beef-&-cheese">GYOZAS (50 PC)</a>
+                                  <a href="/products/gyoza-beef-&-cheese">{product3.category} (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
