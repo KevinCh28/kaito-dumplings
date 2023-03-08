@@ -45,6 +45,7 @@ router.put("/:id/increase", async (req: Request, res: Response, next: NextFuncti
     const cart = await Cart.findOne({ owner: userId });
 
     if (cart) products = cart.products;
+    console.log(products)
     if (products.length === 0) {
       products.push({ productId: productId, quantity: amount });
       await cart?.save();
@@ -53,11 +54,15 @@ router.put("/:id/increase", async (req: Request, res: Response, next: NextFuncti
 
     for (let product of products) {
       if (Object(product.productId).equals(productId)) {
+        console.log('matched')
         product.quantity += amount;
         await cart?.save();
         return res.status(200).json(cart);
       }
     };
+    products.push({ productId: productId, quantity: amount });
+    await cart?.save();
+    return res.status(200).json(cart);
   } catch (err) {
     return next(err);
   };

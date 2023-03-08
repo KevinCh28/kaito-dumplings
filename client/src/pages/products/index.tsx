@@ -71,6 +71,9 @@ const Products = () => {
 
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
     e.preventDefault();
+    console.log(e)
+    console.log(user._id)
+    console.log(dumplingsId)
     increaseItemQuantity(user._id, dumplingsId, 1)
       .then((res) => {
         setShowModal(true);
@@ -171,7 +174,7 @@ const Products = () => {
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddGyozaToCart}>
+                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>
@@ -246,7 +249,7 @@ const Products = () => {
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddGyozaToCart}>
+                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>
