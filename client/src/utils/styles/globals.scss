@@ -2,13 +2,15 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-style: normal;
   font-weight: 400;
   height: 100%;
-  font-size: 25px;
+  font-size: 24px;
   text-size-adjust: 100%;
+  font-style: normal;
   text-shadow: rgba(0, 0, 0, 0.004) 1px 1px 1px;
   line-height: 1.5em;
+  margin: -0.25em 0;
+  -webkit-font-smoothing: antialiased;
 }
 
 #__next {
@@ -82,4 +84,8 @@ button {
 
 main {
   display: block;
+}
+
+ul {
+  list-style: none;
 }
