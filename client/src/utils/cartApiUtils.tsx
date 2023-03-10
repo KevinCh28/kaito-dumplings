@@ -12,11 +12,11 @@ export const removeItemFromCart = async (userId: string, productId: string) => {
   return await axios.put(`/api/carts/${userId}/remove`, { userId, productId });
 };
 
-export const increaseItemQuantity = async (userId: string, productId: string, amount: number) => {
-  return await axios.put(`/api/carts/${userId}/increase`, { userId, productId, amount });
+export const increaseItemQuantity = async (userId: string, product: any, amount: number ) => {
+  return await axios.put(`/api/carts/${userId}/increase`, { userId, product, amount });
 }
 
-export const decreaseItemQuantity = async (userId: string, productId: string) => {
-  return await axios.put(`/api/carts/${userId}/decrease`, { userId, productId });
+export const decreaseItemQuantity = async (userId: string, product: any) => {
+  return await axios.put(`/api/carts/${userId}/decrease`, { userId, product });
 }
 

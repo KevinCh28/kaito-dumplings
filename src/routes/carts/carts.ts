@@ -39,28 +39,38 @@ router.post("/", async (req: Request, res: Response, next: NextFunction) => {
 // Update Cart to increase a product quantity
 // Put /api/carts/:id/increase
 router.put("/:id/increase", async (req: Request, res: Response, next: NextFunction) => {
-  const { userId, productId, amount } = req.body;
+  const { userId, product, amount } = req.body;
   try {
-    let products: { quantity: number; productId?: Types.ObjectId | undefined; }[] = [];
+    let newProducts: {
+      quantity: number;
+      product: Object;
+      productId?: Types.ObjectId | undefined;
+    }[] = [];
     const cart = await Cart.findOne({ owner: userId });
 
-    if (cart) products = cart.products;
-    console.log(products)
-    if (products.length === 0) {
-      products.push({ productId: productId, quantity: amount });
+    if (cart) newProducts = cart.products;
+    if (newProducts.length === 0) {
+      newProducts.push({
+        productId: product._id,
+        product,
+        quantity: amount 
+      });
       await cart?.save();
       return res.status(200).json(cart);
     }
 
-    for (let product of products) {
-      if (Object(product.productId).equals(productId)) {
-        console.log('matched')
-        product.quantity += amount;
+    for (let cartProduct of newProducts) {
+      if (Object(cartProduct.productId).equals(product.productId)) {
+        cartProduct.quantity += amount;
         await cart?.save();
         return res.status(200).json(cart);
       }
     };
-    products.push({ productId: productId, quantity: amount });
+    newProducts.push({
+      productId: product._id,
+      product,
+      quantity: amount
+    });
     await cart?.save();
     return res.status(200).json(cart);
   } catch (err) {
@@ -71,20 +81,24 @@ router.put("/:id/increase", async (req: Request, res: Response, next: NextFuncti
 // Update Cart to decrease a product quantity
 // Put /api/carts/:id/decrease
 router.put("/:id/decrease", async (req: Request, res: Response, next: NextFunction) => {
-  const { userId, productId } = req.body;
+  const { userId, product } = req.body;
   try {
-    let products: { quantity: number; productId?: Types.ObjectId | undefined; }[] = [];
+    let newProducts: {
+      quantity: number;
+      product: Object;
+      productId?: Types.ObjectId | undefined;
+    }[] = [];
     const cart = await Cart.findOne({ owner: userId });
 
-    if (cart) products = cart.products;
+    if (cart) newProducts = cart.products;
 
-    for (let product of products) {
-      if (Object(product.productId).equals(productId) && product.quantity === 1) {
-        products.splice(products.indexOf(product), 1);
+    for (let cartProduct of newProducts) {
+      if (Object(cartProduct.productId).equals(product.productId) && cartProduct.quantity === 1) {
+        newProducts.splice(newProducts.indexOf(product.productId), 1);
         await cart?.save();
         return res.status(200).json(cart);
-      } else if (Object(product.productId).equals(productId)) {
-        product.quantity -= 1;
+      } else if (Object(cartProduct.productId).equals(product.productId)) {
+        cartProduct.quantity -= 1;
         await cart?.save();
         return res.status(200).json(cart);
       }
@@ -99,14 +113,14 @@ router.put("/:id/decrease", async (req: Request, res: Response, next: NextFuncti
 router.put("/:id/remove", async (req: Request, res: Response, next: NextFunction) => {
   const { userId, productId } = req.body;
   try {
-    let products: { quantity: number; productId?: Types.ObjectId | undefined; }[] = [];
+    let newProducts: { quantity: number; productId?: Types.ObjectId | undefined; }[] = [];
     const cart = await Cart.findOne({ owner: userId });
 
-    if (cart) products = cart.products;
+    if (cart) newProducts = cart.products;
 
-    for (let product of products) {
-      if (Object(product.productId).equals(productId)) {
-        products.splice(products.indexOf(product), 1);
+    for (let cartProduct of newProducts) {
+      if (Object(cartProduct.productId).equals(productId)) {
+        newProducts.splice(newProducts.indexOf(cartProduct), 1);
         await cart?.save();
         return res.status(200).json(cart);
       };

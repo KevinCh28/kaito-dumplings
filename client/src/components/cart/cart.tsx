@@ -60,16 +60,11 @@ const Cart = ({ onClose = () => { } }) => {
 
     cart.forEach((item: any) => {
       totalCartItems += item.quantity;
-
-      products.forEach((product: any) => {
-        if (item.productId === product._id) {
-          total += product.price * item.quantity;
-        }
-      })
+      total += item.product.price * item.quantity;
     })
     setTotalItems(totalCartItems);
     setTotalAmount(total.toFixed(2));
-  }, [cart, products]);
+  }, [cart]);
 
   // Updates free shipping progress bar
   useEffect(() => {
@@ -138,31 +133,28 @@ const Cart = ({ onClose = () => { } }) => {
           {cart.map((item: any) => {
             return (
               <ul className='cart_items'>
-                {products.map(product => {
-                  if (item.productId === product._id) {
-                    return (
-                      <li className='cart_item_container' key={product._id}>
+                      <li className='cart_item_container' key={item.productId}>
                         <div className='item_image_container'>
                           <a href="" >
-                            <img src={product.imageUrl} alt={product.name} />
+                            <img src={item.product.imageUrl} alt={item.product.name} />
                           </a>
                         </div>
                         <div className='cart_item_info'>
                           <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.productId)}>
                             <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
-                            <span className='hiddenSpan'>Remove {product.category} {product.name} from Cart</span>
+                            <span className='hiddenSpan'>Remove {item.product.category} {item.product.name} from Cart</span>
                           </button>
-                          <a href="" className='cart_item_category'>{product.category}</a>
-                          <div className='cart_item_name'>{product.name}</div>
+                          <a href="" className='cart_item_category'>{item.product.category}</a>
+                          <div className='cart_item_name'>{item.product.name}</div>
 
                           <div className='item_quantity_container'>
                             <div className='item_quantity_wrapper'>
-                              <button className='item_quantity_button' onClick={() => handleMinusQuantity(item.productId)}>
+                              <button className='item_quantity_button' onClick={() => handleMinusQuantity(item)}>
                                 <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
                                 <span className='hiddenSpan'></span>
                               </button>
                               <span className='item_quantity_button'>{item.quantity}</span>
-                              <button className='item_quantity_button' onClick={() => handleAddQuantity(item.productId)}>
+                              <button className='item_quantity_button' onClick={() => handleAddQuantity(item)}>
                                 <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
                                 <span className='hiddenSpan'></span>
                               </button>
@@ -171,16 +163,12 @@ const Cart = ({ onClose = () => { } }) => {
 
                           <div className='item_total_price'>
                             <div>
-                              <span>${(product.price * item.quantity).toFixed(2)}</span>
+                              <span>${(item.product.price * item.quantity).toFixed(2)}</span>
                             </div>
                           </div>
 
                         </div>
                       </li>
-                    )
-                  }
-                })
-              }
               </ul>
             )
             }
@@ -222,8 +210,8 @@ const Cart = ({ onClose = () => { } }) => {
     }
   }
 
-  const handleAddQuantity = ( productId: any ) => {
-    increaseItemQuantity(userId, productId, 1).then((res) => {
+  const handleAddQuantity = ( product: any ) => {
+    increaseItemQuantity(userId, product, 1).then((res) => {
       getCart(userId)
         .then((res) => {
           setCart(res.data.products);
@@ -232,8 +220,8 @@ const Cart = ({ onClose = () => { } }) => {
     })
   };
 
-  const handleMinusQuantity = ( productId: any ) => {
-    decreaseItemQuantity(userId, productId).then((res) => {
+  const handleMinusQuantity = (product: any ) => {
+    decreaseItemQuantity(userId, product).then((res) => {
       getCart(userId)
         .then((res) => {
           setCart(res.data.products);

@@ -71,10 +71,7 @@ const Products = () => {
 
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
     e.preventDefault();
-    console.log(e)
-    console.log(user._id)
-    console.log(dumplingsId)
-    increaseItemQuantity(user._id, dumplingsId, 1)
+    increaseItemQuantity(user._id, product2, 1)
       .then((res) => {
         setShowModal(true);
       })
@@ -86,7 +83,7 @@ const Products = () => {
 
   const handleAddGyozaToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
     e.preventDefault();
-    increaseItemQuantity(user._id, gyozaId, 1)
+    increaseItemQuantity(user._id, product3, 1)
       .then((res) => {
         setShowModal(true);
       })
