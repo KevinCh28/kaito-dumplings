@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import Cart from '../../components/cart/cart';
-import { getProduct } from "@/src/utils/productApiUtils";
+import { getProduct, getProducts } from "@/src/utils/productApiUtils";
 
 const Products = () => {
   const dumplings = {

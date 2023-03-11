@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
+import { getCurrentUser } from '../utils/sessionApiUtils';
 
 const Home: NextPage = () => {
   const [formName, setFormName] = useState('');

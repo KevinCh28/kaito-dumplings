@@ -18,35 +18,11 @@ const oswald = Oswald({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    _id: ''
-  });
-
-  useEffect(() => {
-    (
-      async () => {
-        try {
-          const response = await getCurrentUser();
-          setUser(response);
-          setAuth(true);
-        } catch (err) {
-          console.log(err);
-          setAuth(false);
-        }
-      }
-    )();
-  }, []);
-  
   return (
     <div className={`${oswald.className}`} style={{ backgroundColor: '#a9dde3' }}>
-      <Navbar auth={auth} user={user} />
+      <Navbar />
       <Component {...pageProps} />
       <Footer />
     </div>
-    
   );
 };

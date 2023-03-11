@@ -1,18 +1,29 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Cart from '../cart/cart';
+import { getCurrentUser } from '../../utils/sessionApiUtils';
 
-const Navbar = (props: { auth: boolean,
-  user: { firstname: string; lastname: string; email: string; _id: string; }
-}) => {
+const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
+  const [auth, setAuth] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    getCurrentUser().then((response) => {
+      setUser(response);
+      setAuth(true);
+    }).catch((err) => {
+      console.log(err);
+      setAuth(false);
+    });
+  }, []);
   
   // Selectively render navbar links based on user authentication
   const userLinks = () => {
-    if (props.auth) {
+    if (auth) {
       return (
         <div className='navbar-right-wrapper'>
           <Link href="/account"
@@ -70,9 +81,9 @@ const Navbar = (props: { auth: boolean,
           <div className='navbar'>
             <div className="navbar_left_wrapper">
               <div className="navbar_logo_wrapper">
-                <Link className='navbar_logo' href="/">
+                <a className='navbar_logo' href="/">
                   <img src="/favicon.png" alt="logo" className='navbar_logo_image' />
-                </Link>
+                </a>
               </div>
             </div>
             <div className="navbar_middle_wrapper">

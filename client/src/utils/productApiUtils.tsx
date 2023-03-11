@@ -1,9 +1,8 @@
 import axios from "axios";
 
 export const getProducts = async () => {
-  const data = await fetch("/api/products");
-  const res = await data.json();
-  return res;
+  const response = await axios.get("/api/products");
+  return response.data;
 };
 
 // Get products based user's cart
