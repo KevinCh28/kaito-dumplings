@@ -20,11 +20,16 @@ const GyozaBeefCheese = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [style, setStyle] = useState('beef-&-cheese');
-  const [hiddenStyle, setHiddenStyle] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState({});
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
   const [flavorsHidden, setFlavorsHidden] = useState(true);
+  const [hiddenTab, setHiddenTab] = useState({
+    0: true,
+    1: true,
+    2: true,
+    3: true,
+  });
 
   // Get current user
   useEffect(() => {
@@ -49,12 +54,12 @@ const GyozaBeefCheese = () => {
     const handleOutsideClick = (e) => {
       if (e.target.className !== 'product_page_styles_wrapper' && flavorsHidden === false) {
         const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0];
-        const arrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0];
+        const productsArrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0];
 
         const parent = e.target.closest('.product_page_styles_wrapper');
         if (!parent && flavorsHidden === false) {
           element.style.display = 'none';
-          arrowUpDown.style.transform = '';
+          productsArrowUpDown.style.transform = '';
           setFlavorsHidden(true);
         }
       }
@@ -67,15 +72,38 @@ const GyozaBeefCheese = () => {
   // Render current flavor and all other flavors
   const handleRenderFlavors = () => {
     const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0];
-    const arrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0];
+    const productsArrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0];
     if (flavorsHidden) {
       element.style.display = 'block';
-      arrowUpDown.style.transform = 'rotate(180deg)';
+      productsArrowUpDown.style.transform = 'rotate(180deg)';
       setFlavorsHidden(false);
     } else {
       element.style.display = 'none';
-      arrowUpDown.style.transform = '';
+      productsArrowUpDown.style.transform = '';
       setFlavorsHidden(true);
+    }
+  };
+
+  // Render info tabs
+  const handleRenderInfoTabs = (index: number) => {
+    const element = window.document.getElementsByClassName('product_page_tab_info_container')[index];
+    const tabArrowUpDown = window.document.getElementsByClassName('product_page_tab_header_arrow')[index];
+    if (hiddenTab[index]) {
+      element.style.display = 'block';
+      tabArrowUpDown.style.transform = 'rotate(180deg)';
+      setHiddenTab((prevState) => ({
+        ...prevState,
+        [index]: false,
+        }
+      ));
+    } else {
+      element.style.display = 'none';
+      tabArrowUpDown.style.transform = '';
+      setHiddenTab((prevState) => ({
+        ...prevState,
+        [index]: true,
+        }
+      ));
     }
   };
 
@@ -270,8 +298,11 @@ const GyozaBeefCheese = () => {
 
                   <div className='product_page_tabs_wrapper'>
                     <div>
-                      <div className='product_page_tab'>
-                        <p className='product_page_tab_header'>HOW TO MAKE</p>
+                      <div className='product_page_tab' onClick={() => handleRenderInfoTabs(0)}>
+                        <div className='product_page_tab_header'>
+                          <p>HOW TO MAKE</p>
+                          <div className='product_page_tab_header_arrow'></div>
+                        </div>
                         <div className='product_page_tab_info_container'>
                           <ul>
                             <li></li>
@@ -281,8 +312,11 @@ const GyozaBeefCheese = () => {
                           </ul>
                         </div>
                       </div>
-                      <div className='product_page_tab'>
-                        <p className='product_page_tab_header'>PRODUCT HIGHLIGHT</p>
+                      <div className='product_page_tab' onClick={() => handleRenderInfoTabs(1)}>
+                        <div className='product_page_tab_header'>
+                          <p>PRODUCT HIGHLIGHT</p>
+                          <div className='product_page_tab_header_arrow'></div>
+                        </div>
                         <div className='product_page_tab_info_container'>
                           <ul>
                             <li></li>
@@ -292,8 +326,11 @@ const GyozaBeefCheese = () => {
                           </ul>
                         </div>
                       </div>
-                      <div className='product_page_tab'>
-                        <p className='product_page_tab_header'>NUTRITION FACTS & INGREDIENTS</p>
+                      <div className='product_page_tab' onClick={() => handleRenderInfoTabs(2)}>
+                        <div className='product_page_tab_header'>
+                          <p>NUTRITION FACTS & INGREDIENTS</p>
+                          <div className='product_page_tab_header_arrow'></div>
+                        </div>
                         <div className='product_page_tab_info_container'>
                           <ul>
                             <li></li>
@@ -303,8 +340,11 @@ const GyozaBeefCheese = () => {
                           </ul>
                         </div>
                       </div>
-                      <div className='product_page_tab'>
-                        <p className='product_page_tab_header'>FAQS</p>
+                      <div className='product_page_tab' onClick={() => handleRenderInfoTabs(3)}>
+                        <div className='product_page_tab_header'>
+                          <p>FAQS</p>
+                          <div className='product_page_tab_header_arrow'></div>
+                        </div>
                         <div className='product_page_tab_info_container'>
                           <ul>
                             <li></li>

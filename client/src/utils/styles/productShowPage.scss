@@ -484,20 +484,24 @@
 }
 
 .product_page_tab_header {
-  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-weight: 700;
-}
+  margin: 0;
 
-.product_page_tab_header::after {
-  content: url("https://cdn.shopify.com/s/files/1/0042/3834/4321/t/124/assets/arrow-down-dark.svg?v=75058491936605126901668510372");
+  p {
+    margin: 0;
+  }
+
+  .product_page_tab_header_arrow {
+    content: url("https://cdn.shopify.com/s/files/1/0042/3834/4321/t/124/assets/arrow-down-dark.svg?v=75058491936605126901668510372");
+  }
 }
 
 .product_page_tab_info_container {
   display: none;
-  padding-top: 22px;
+  padding-top: 20px;
 }
 
 // 
