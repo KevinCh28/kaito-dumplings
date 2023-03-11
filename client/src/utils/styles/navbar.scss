@@ -1,5 +1,5 @@
 .navbar_main {
-  height: 80px;
+  background-color: rgb(246, 22, 31);
 }
 
 .navbar_wrapper {
@@ -17,6 +17,10 @@
   width: 100%;
   padding: 10px;
 	background-color: #ffffff;
+}
+
+.navbar_hidden {
+  transform: translateY(-100%);
 }
 
 @media only screen and (min-width: 768px) {

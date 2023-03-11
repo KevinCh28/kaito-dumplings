@@ -74,10 +74,24 @@ const Navbar = () => {
       <Cart onClose={() => setShowModal(false)} ></Cart>
   )};
 
+  const handleHiddenNav = () => {
+    let header = document.getElementsByClassName("navbar_container")[0];
+    if (window.scrollY > 500) {
+      header.className = "navbar_container navbar_hidden";
+    } else {
+      header.className = "navbar_container";
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleHiddenNav);
+    return () => window.removeEventListener("scroll", handleHiddenNav);
+  }, []);
+
   return (
     <div className='navbar_main'>
       <div className='navbar_wrapper'>
-        <header className="navbar_container">
+        <header className={`navbar_container`}>
           <div className='navbar'>
             <div className="navbar_left_wrapper">
               <div className="navbar_logo_wrapper">
