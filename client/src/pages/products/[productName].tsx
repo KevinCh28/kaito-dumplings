@@ -6,10 +6,14 @@ const ProductDetail = () => {
   const router = useRouter();
   const productName = router.query.productName
   const products = {
-    'veggie': true,
-    'chicken-&-cabbage': true,
-    'beef-&-cheese': true,
-    'pork-&-chieves': true
+    'dumplings-veggie': true,
+    'dumplings-chicken-&-cabbage': true,
+    'dumplings-beef-&-cheese': true,
+    'dumplings-pork-&-chieves': true,
+    'gyoza-veggie': true,
+    'gyoza-chicken-&-cabbage': true,
+    'gyoza-beef-&-cheese': true,
+    'gyoza-pork-&-chieves': true
   };
 
   useEffect(() => {
