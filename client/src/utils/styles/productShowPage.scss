@@ -327,8 +327,8 @@
 
 .product_page_input_quantity_buttons {
   display: flex;
-  height: 47px;
   justify-content: flex-start;
+  height: 47px;
   align-items: unset;
   margin-top: 0;
   text-align: center;
@@ -338,16 +338,16 @@
 .product_page_input_quantity_remove {
   width: 40px;
   border: 1px solid;
-  font-size: 25px;
-  line-height: 1.5;
+  font-size: 20px;
+  line-height: 2;
   cursor: pointer;
 }
 
 .product_page_input_quantity_add {
   width: 40px;
+  font-size: 20px;
   border: 1px solid;
-  font-size: 25px;
-  line-height: 1.5;
+  line-height: 2;
   cursor: pointer;
 }
 
@@ -356,8 +356,8 @@
   width: 65px;
   border-top: 1px solid;
   border-bottom: 1px solid;
-  font-size: 25px;
-  line-height: 1.5;
+  line-height: 2.4;
+  font-size: 18px;
 }
 
 .product_page_product_addtocart_button_wrapper {
@@ -442,12 +442,27 @@
   
 }
 
+.product_page_product_description_images_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.product_page_product_description_images_container div {
+  padding: 0px 7px;
+}
+
+.product_page_product_description_images_container img {
+  vertical-align: middle;
+  max-width: 100%;
+  max-height: 100px;
+}
+
 .product_page_product_description_container {
   margin-top: 12px;
   color: #000000;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
+  font-family: 'Trade Gothic Next', sans-serif;
 }
 
 //

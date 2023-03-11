@@ -5,6 +5,8 @@ import { getProduct } from '../../utils/productApiUtils';
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import Cart from '../../components/cart/cart';
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const GyozaBeefCheese = () => {
   const router = useRouter();
@@ -41,6 +43,26 @@ const GyozaBeefCheese = () => {
       setProduct(res.data);
     });
   }, []);
+
+  // Hide flavors when clicking outside of the flavors container
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (e.target.className !== 'product_page_styles_wrapper' && flavorsHidden === false) {
+        const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0];
+        const arrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0];
+
+        const parent = e.target.closest('.product_page_styles_wrapper');
+        if (!parent && flavorsHidden === false) {
+          element.style.display = 'none';
+          arrowUpDown.style.transform = '';
+          setFlavorsHidden(true);
+        }
+      }
+    };
+
+    window.addEventListener('click', handleOutsideClick);
+    return () => window.removeEventListener('click', handleOutsideClick);
+  }, [flavorsHidden]);
 
   // Render current flavor and all other flavors
   const handleRenderFlavors = () => {
@@ -193,9 +215,13 @@ const GyozaBeefCheese = () => {
                         <div className='product_page_input_quantity_container'>
                           <div className='product_page_input_quantity_header'>Quantity</div>
                           <div className='product_page_input_quantity_buttons'>
-                            <div className='product_page_input_quantity_remove' onClick={handleSubtractQuantity}>-</div>
+                            <div className='product_page_input_quantity_remove' onClick={handleSubtractQuantity}>
+                              <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
+                            </div>
                             <span className='product_page_input_quantity_amount'>{quantity}</span>
-                            <div className='product_page_input_quantity_add' onClick={() => setQuantity(quantity + 1)}>+</div>
+                            <div className='product_page_input_quantity_add' onClick={() => setQuantity(quantity + 1)}>
+                              <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
+                            </div>
                           </div>
                         </div>
                         <div className='product_page_product_addtocart_button_wrapper'>
@@ -222,11 +248,23 @@ const GyozaBeefCheese = () => {
                     </div>
                   </div>
 
+                  <div className='product_page_product_description_images_container'>
+                    <div>
+                      <img src="https://cdn.shopify.com/s/files/1/0687/9045/2519/files/4.png?v=1675410709" alt="" />
+                    </div>
+                    <div>
+                      <img src="https://cdn.shopify.com/s/files/1/0687/9045/2519/files/6.png?v=1675410708" alt="" />
+                    </div>
+                    <div>
+                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/5.png?v=1676529631" alt="" />
+                    </div>
+                  </div>
+
                   <div className='product_page_product_description_container'>
                     <div>Our new limited-edition dumplings feature a rich beef filling with a savory
                       beef and creamy cheese. Enveloped in a tender dumpling skin, each bite
                       delivers the splendid flavors of our favorite comfort food - Cheese Burger -
-                      minus the bun.
+                      minus the buns.
                     </div>
                   </div>
 
