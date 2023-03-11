@@ -45,9 +45,9 @@ const Home: NextPage = () => {
                 <li>Made fresh daily with high-quality ingredients</li>
                 <li>Steams up in just 11 minutes at home</li>
               </ul>
-              <div className="featured_product_button_container">
-                <Link href="/products" className="featured_product_button_text">ORDER NOW</Link>
-              </div>
+              <Link href="/products" className="featured_product_button_container">
+                <span className="featured_product_button_text">ORDER NOW</span>
+              </Link>
             </div>
             <div className="featured_product_image_container">
               <img

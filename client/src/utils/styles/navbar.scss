@@ -1,5 +1,5 @@
 .navbar_main {
-  // height: 80px;
+  height: 80px;
 }
 
 .navbar_wrapper {
@@ -15,8 +15,26 @@
   z-index: 1000;
   transition: transform .15s ease-out;
   width: 100%;
-  padding: 0;
+  padding: 10px;
 	background-color: #ffffff;
+}
+
+@media only screen and (min-width: 768px) {
+  .navbar_container {
+    padding: 20px 0;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .navbar_container {
+    padding: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar_container {
+    padding: 0;
+  }
 }
 
 .navbar {
