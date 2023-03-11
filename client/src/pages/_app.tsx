@@ -19,7 +19,8 @@ const oswald = Oswald({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${oswald.className}`} style={{ backgroundColor: '#a9dde3' }}>
+    <div className={`${oswald.className}`} >
+    {/* <div className={`${oswald.className}`} style={{ backgroundColor: '#a9dde3' }}> */}
       <Navbar />
       <Component {...pageProps} />
       <Footer />
