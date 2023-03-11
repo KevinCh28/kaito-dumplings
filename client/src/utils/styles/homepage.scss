@@ -854,3 +854,13 @@
 		overflow: clip;
 	}
 }
+
+.featured-blog-post {
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+  margin-top: 0;
+  background-color: #fff;
+  padding: 160px 0 145px;
+}
+

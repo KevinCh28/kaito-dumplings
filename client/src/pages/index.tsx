@@ -376,12 +376,22 @@ const Home: NextPage = () => {
       <div className="featured-blog-post-block">
         <div className="featured-blog-post">
           <div className="featured-blog-post-image">
-            BLOG IMAGE
-          </div>
-          <div className="featured-blog-post-info">
-            <h3>Featured Blog Post</h3>
-            <p>Blog post description</p>
-            <Link href={''}>READ MORE</Link>
+            <div>
+              <div>BLOG IMAGE</div>
+              <div>
+                <div>
+                  <div>
+                    <div>
+                      <p>NOTE FROM THE FOUNDERS</p>
+                    </div>
+                    <div>
+                      <p></p>
+                      <a href="">OUR STORY</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
