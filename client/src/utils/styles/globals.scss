@@ -122,3 +122,26 @@ main {
   width: 100%;
   top: 0;
 }
+
+table {
+  border-collapse: separate;
+  text-indent: initial;
+  border-spacing: 2px;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}

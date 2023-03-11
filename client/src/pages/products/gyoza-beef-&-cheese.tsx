@@ -86,7 +86,13 @@ const GyozaBeefCheese = () => {
 
   // Render info tabs
   const handleRenderInfoTabs = (index: number) => {
-    const element = window.document.getElementsByClassName('product_page_tab_info_container')[index];
+    const tabNames = {
+      0: 'product_page_tab_howtomake_container',
+      1: 'product_page_tab_highlight_container',
+      2: 'product_page_tab_nutrition_container',
+      3: 'product_page_tab_faqs_container',
+    }
+    const element = window.document.getElementsByClassName(tabNames[index])[0];
     const tabArrowUpDown = window.document.getElementsByClassName('product_page_tab_header_arrow')[index];
     if (hiddenTab[index]) {
       element.style.display = 'block';
@@ -303,13 +309,31 @@ const GyozaBeefCheese = () => {
                           <p>HOW TO MAKE</p>
                           <div className='product_page_tab_header_arrow'></div>
                         </div>
-                        <div className='product_page_tab_info_container'>
+                        <div className='product_page_tab_howtomake_container'>
                           <ul>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li>
+                              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/water_boiling.svg?v=1663759606" alt="" />
+                              In a large wok or pan, bring 2-3 inches of water to a rolling boil.
+                            </li>
+                            <li>
+                              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/place_dumplings.svg?v=1663759606" alt="" />
+                              Place dumplings in lined steamer basket. Make sure to leave a 1 inch gap between dumplings.
+                            </li>
+                            <li>
+                              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/timer.svg?v=1663759605" alt="" />
+                              Steam dumplings for 11 minutes (until internal temp. reaches 165°F).
+                            </li>
+                            <li>
+                              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/serve-dumplings.svg?v=1663759605" alt="" />
+                              Remove from heat and rest, covered, for 2 minutes. Serve with your favorite sauces and enjoy!
+                            </li>
                           </ul>
+                          <div className='product_page_tab_info_video_container'>
+                            <video src="">
+                              <source />
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
                         </div>
                       </div>
                       <div className='product_page_tab' onClick={() => handleRenderInfoTabs(1)}>
@@ -317,13 +341,14 @@ const GyozaBeefCheese = () => {
                           <p>PRODUCT HIGHLIGHT</p>
                           <div className='product_page_tab_header_arrow'></div>
                         </div>
-                        <div className='product_page_tab_info_container'>
-                          <ul>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                          </ul>
+                        <div className='product_page_tab_highlight_container'>
+                          <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formatteddumpling-lifestyle3.png?v=1663979284" alt="" />
+                          <b>MONDAKO FLOUR</b>
+                          <p>Milled from a blend of premium northern winter and spring wheats, this flour helps create a supple, delicate dumpling skin.</p>
+                          <b>FILLING</b>
+                          <p>Ground beef is mixed with fresh aromatics including garlic and scallion, a blend of soy sauces and aged broad bean paste for a rich, umami-forward filling.</p>
+                          <b>BROTH</b>
+                          <p>The soup in this limited-edition soup dumpling is inspired by the deep, savory flavors of Taiwanese braised beef noodle soup—without the noodles.</p>
                         </div>
                       </div>
                       <div className='product_page_tab' onClick={() => handleRenderInfoTabs(2)}>
@@ -331,13 +356,103 @@ const GyozaBeefCheese = () => {
                           <p>NUTRITION FACTS & INGREDIENTS</p>
                           <div className='product_page_tab_header_arrow'></div>
                         </div>
-                        <div className='product_page_tab_info_container'>
-                          <ul>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                          </ul>
+                        <div className='product_page_tab_nutrition_container'>
+                          <b>Serving size</b>
+                          <p>3 pieces (100g) - 17 servings per container</p>
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td><b>Calories</b></td>
+                                <td>140</td>
+                                <td></td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><b>Total Fat</b></td>
+                                <td>5g</td>
+                                <td>6%</td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><span>Saturated Fat</span></td>
+                                <td>1.5g</td>
+                                <td>8%</td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><b>Cholesterol</b></td>
+                                <td>15mg</td>
+                                <td>5%</td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><b>Sodium</b></td>
+                                <td>320mg</td>
+                                <td>14%</td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><b>Total Carb</b></td>
+                                <td>15mg</td>
+                                <td>5%</td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><b>Protein</b></td>
+                                <td>8g</td>
+                                <td></td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><b>Dietary Fiber</b></td>
+                                <td>1g</td>
+                                <td>4%</td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><b>Calcium</b></td>
+                                <td>7mg</td>
+                                <td>0%</td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><b>Iron</b></td>
+                                <td>2mg</td>
+                                <td>10%</td>
+                              </tr>
+                            </tbody>
+                            <tbody>
+                              <tr>
+                                <td><b>Potassium</b></td>
+                                <td>76mg</td>
+                                <td>2%</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <span className='product_page_tab_nutrition_daily_info'>* The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</span>
+                          <p className='product_page_tab_nutrition_product_ingredients_container'>
+                            <b>INGREDIENTS: </b>
+                            <br />
+                            <b>[FILLING]: </b>
+                            BEEF, WATER, BEAN PASTE, FERMENTED SOYBEAN PASTE, GELATIN, GREEN ONION, COOKING WINE, TOMATO PASTE, CONTAINS 2% OR LESS OF SOYBEAN OIL, BROWN SUGAR, SOY SAUCE, OYSTER SAUCE, CHICKEN BASE, GARLIC, GROUND GINGER, SESAME OIL, SPICES, WHITE PEPPER, NATURAL GARLIC EXTRACT, ONION FLAVOR, WHEY PROTEIN CONCENTRATE, EGG POWDER.
+                            <br />
+                            <b>[WRAPPER]: </b>
+                            ENRICHED BLEACHED WHEAT FLOUR, WATER, SOYBEAN OIL, SALT.
+                            <br />
+                          </p>
+                          <p className='product_page_tab_nutrition_product_ingredients_container'>
+                            <b>ALLERGEN STATEMENT: </b>
+                            CONTAINS EGG, MILK, SESAME, SOY, WHEAT, SHELLFISH, MOLLUSK
+                          </p>
                         </div>
                       </div>
                       <div className='product_page_tab' onClick={() => handleRenderInfoTabs(3)}>
@@ -345,19 +460,21 @@ const GyozaBeefCheese = () => {
                           <p>FAQS</p>
                           <div className='product_page_tab_header_arrow'></div>
                         </div>
-                        <div className='product_page_tab_info_container'>
-                          <ul>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                          </ul>
-                          <div></div>
+                        <div className='product_page_tab_faqs_container'>
+                          <b>HOW ARE YOUR PRODUCTS SHIPPED?</b>
+                          Our dumplings are packaged with temperature-stabilizing dry ice and wrapped in an insulated liner. Your order is backed by our “Melt-Free Guarantee” — if there’s a delay in transit that affects the quality of your product, we’ll reship your order and make things right.
+                          <b>DO I NEED TO DEFROST ANYTHING BEFORE COOKING?</b>
+                          Nope! Our dumplings are designed and packaged specifically to be cooked straight from frozen, in just 11 minutes. It’s that easy.
+                          <b>WHERE ARE YOUR PRODUCTS SOURCED FROM?</b>
+                          All XCJ products are made locally in our manufacturing facilities located in Monterey Park, CA and Auburn, WA. All of our ingredients are sourced from the US, except for a handful of specialty items from China.
+                          <b>ARE STEAMER LINERS INCLUDED?</b>
+                          Yes, steamer liners are included inside every bag of dumplings! If you don’t see them right away, check the bottom of the bag—sometimes during packaging and shipping, they can get pushed down.
+                          <b>HOW MUCH SPACE DOES IT TAKE IN MY FREEZER?</b>
+                          9x12x4. An average freezer shelf can fit 8 bags.
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
