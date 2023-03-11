@@ -22,7 +22,9 @@ const GyozaBeefCheese = () => {
   const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState({});
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
+  const [flavorsHidden, setFlavorsHidden] = useState(true);
 
+  // Get current user
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
@@ -33,27 +35,26 @@ const GyozaBeefCheese = () => {
       });
   }, []);
 
+  // Get product
   useEffect(() => {
     getProduct(flavors[pathName]).then((res) => {
-      console.log(res.data);
       setProduct(res.data);
     });
   }, []);
 
-  const renderFlavors = () => {
-    return Object.entries(flavors).map(([flavor, value]) => {
-      if (flavor === product.name) {
-        return <div key={flavor}>{flavor.split('-').join(' ').toUpperCase()}</div>
-      } else {
-        return (
-          <div key={flavor}>
-            <Link href={`/products/gyoza-${flavor}`}>
-              {flavor.split('-').join(' ').toUpperCase()}
-            </Link>
-          </div>
-        );
-      }
-    });
+  // Render current flavor and all other flavors
+  const handleRenderFlavors = () => {
+    const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0];
+    const arrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0];
+    if (flavorsHidden) {
+      element.style.display = 'block';
+      arrowUpDown.style.transform = 'rotate(180deg)';
+      setFlavorsHidden(false);
+    } else {
+      element.style.display = 'none';
+      arrowUpDown.style.transform = '';
+      setFlavorsHidden(true);
+    }
   };
 
   const handleSubtractQuantity = () => {
@@ -71,7 +72,7 @@ const GyozaBeefCheese = () => {
 
   const handleAddGyozaToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
     e.preventDefault();
-    increaseItemQuantity(user._id, gyozaId, quantity)
+    increaseItemQuantity(user._id, product, quantity)
       .then((res) => {
         setShowModal(true);
       })
@@ -139,31 +140,53 @@ const GyozaBeefCheese = () => {
                         <div className='product_page_info_header_price_container'>
                           <div className='roduct_page_info_header_price'>${product.price}</div>
                         </div>
-                        <a className='product_page_info_header_reviews' href="">
-                          STARS & REVIEWS
+                        <a className='product_page_info_header_reviews_container' href="">
+                          <img src="" alt="STARS" />
+                          <span className='product_page_info_header_reviews_text'>
+                            <span className='product_page_info_header_reviews_text_left'>3497 </span>
+                            <span className='product_page_info_header_reviews_text_right'>Reviews</span>
+                          </span>
                         </a>
                       </div>
                       <div className='product_page_price_per'>Just $6.49 per meal</div>
                     </div>
-                    <div>
+                    <div className='product_page_description_wrapper'>
                       <div></div>
                     </div>
                   </div>
 
                   <div>
-                    <div>
+                    <div className='product_page_cart_info_container'>
                       <div>
-                        <div>
-                        </div>
-                        <div className='product_page_style_header'>Style</div>
-                        <div className='product_page_styles_wrapper'>
-                          <div className='product_page_styles_container'>
-                            <span className='product_page_style'>BEEF & CHEESE</span>
-                            <button>
-                              <img className='product_page_styles_arrow' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/t/124/assets/arrow-down-dark.svg?v=75058491936605126901668510372" alt="" />
-                            </button>
+                        <div className='product_page_cart_info_top_container'>
+                          <div className='product_page_style_header'>Style</div>
+                          <div className='product_page_styles_wrapper' onClick={handleRenderFlavors}>
+                            <div className='product_page_styles_container'>
+                              <span>{style.split('-').join(' ')}</span>
+                              <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg" className='svg_arrow_updown'>
+                                <path d="M7.29289 17.7071C7.68342 18.0976 8.31658 18.0976 8.70711 17.7071L15.0711 11.3431C15.4616 10.9526 15.4616 10.3195 15.0711 9.92893C14.6805 9.53841 14.0474 9.53841 13.6569 9.92893L8 15.5858L2.34315 9.92893C1.95262 9.53841 1.31946 9.53841 0.928932 9.92893C0.538407 10.3195 0.538407 10.9526 0.928932 11.3431L7.29289 17.7071ZM7 -3.95663e-08L7 17L9 17L9 3.95663e-08L7 -3.95663e-08Z" fill="#FF0303"></path>
+                              </svg>
+                            </div>
+                            <ul className='product_page_hidden_flavors'>
+                              {
+                                Object.entries(flavors).map(([flavor, value]) => {
+                                  if (Object.keys(product).length === 0) return null
+                                  if (flavor.split('-').join(' ') !== product.name.toLowerCase()) {
+                                    return (
+                                      <div key={flavor}>
+                                        <Link className='product_page_hidden_flavor_container' href={`/products/gyoza-${flavor}` }>
+                                          {flavor.split('-').join(' ').toUpperCase()}
+                                        </Link>
+                                      </div>
+                                    )
+                                  }
+                                })
+                              }
+                            </ul>
                           </div>
+
                         </div>
+                        
                       </div>
 
                       <div className='product_page_input_information_container'>
