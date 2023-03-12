@@ -69,10 +69,16 @@ const Navbar = () => {
   };
 
   const handleCartModal = () => {
-    if (!showModal) return null
-    return (
-      <Cart onClose={() => setShowModal(false)} ></Cart>
-  )};
+    if (!showModal) {
+      return null
+    } else {
+      const body = document.getElementsByTagName("body")[0];
+      body.style.overflow = "hidden";
+      return (
+        <Cart onClose={() => setShowModal(false)} ></Cart>
+      )
+    }
+  };
 
   const handleHiddenNav = () => {
     let header = document.getElementsByClassName("navbar_container")[0];
@@ -87,6 +93,13 @@ const Navbar = () => {
     window.addEventListener("scroll", handleHiddenNav);
     return () => window.removeEventListener("scroll", handleHiddenNav);
   }, []);
+
+  useEffect(() => {
+    if (!showModal) {
+      const body = document.getElementsByTagName("body")[0];
+      body.style.overflow = "";
+    }
+  }, [showModal]);
 
   return (
     <div className='navbar_main'>

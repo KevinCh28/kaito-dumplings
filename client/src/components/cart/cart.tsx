@@ -1,4 +1,4 @@
-import { useState, useEffect, SyntheticEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { getCart, increaseItemQuantity, decreaseItemQuantity, removeItemFromCart } from '../../utils/cartApiUtils';
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import { createOrder } from '@/src/utils/orderApiUtils';
@@ -319,7 +319,7 @@ const Cart = ({ onClose = () => { } }) => {
           </div>
         </div>
       </div>
-      <div className='modal_background'></div>
+      <div className='cart_modal_background_is_visible'></div>
     </div>
   );
 };
