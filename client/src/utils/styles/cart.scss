@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Trade+Gothic+Next:wght@400;700&display=swap');
+
 .cart_container {
   flex: 1 1 auto;
   display: flex;
@@ -8,11 +10,13 @@
   padding: 0;
   background: #fff;
   overflow: hidden;
+  font-family: 'Trade Gothic Next', sans-serif;
 }
 
 .cart_free_shipping_container {
   margin: 0;
   padding: 20px;
+  transition: background .25s ease;
   background-color: rgba(236, 29, 35, 0.2);
 }
 
@@ -22,29 +26,20 @@
   font-size: 13px;
   line-height: 20px;
   text-align: center;
+}
 
-  b {
-    font-weight: bolder;
-  }
+.free_shipping_text b {
+  font-weight: bolder;
 }
 
 .free_shipping_status_bar {
   position: relative;
   margin: 10px 0 0 0;
   padding: 0;
-  width: 99%;
+  width: 100%;
   height: 10px;
   border-radius: 10px;
   background-color: #eee;
-
-  span {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    font-size: 8px;
-    line-height: 10px;
-    opacity: 0;
-  }
 }
 
 .free_shipping_status_bar_progress {
@@ -53,6 +48,7 @@
   left: 0;
   bottom: 0;
   right: auto;
+  margin: 0;
   padding: 0 10px;
   height: 10px;
   text-align: right;
@@ -60,10 +56,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  opacity: 1;
-  transition: all 0.25s ease;
-  color: #ffffff;
-  background-color: #ec1d23;
+  transition: all .25s ease;
+  color: #fff;
+  background: #ec1d23;
+  opacity: 0;
   width: 0%;
 }
 
@@ -148,15 +144,15 @@
 .cart_item_container {
   list-style: none;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
   align-items: center;
   align-content: center;
   margin: 0 20px;
   padding: 20px 0;
   border-style: solid;
-  border-width: 0;
-  border-color: #eee;
+  border-width: 1px 0 0 0;
+  border-color: #e3e3e3;
 }
 
 .item_image_container {
@@ -213,6 +209,9 @@
   box-shadow: none;
   outline: none;
   z-index: 1;
+}
+
+.cart_item_remove_button i {
   color: #999;
 }
 
@@ -225,6 +224,7 @@
   width: 100%;
   background-color: transparent;
   text-transform: capitalize;
+  transition: color 0.2s ease;
 }
 
 .cart_item_name {
@@ -237,7 +237,7 @@
 }
 
 .item_quantity_container {
-  margin: 10px, 0 0 0;
+  margin: 10px 0 0 0;
   padding: 0;
   width: 50%;
   text-align: left;
@@ -257,7 +257,6 @@
 }
 
 .item_quantity_button {
-  display: block;
   margin: 0;
   padding: 0;
   width: 36px;
@@ -269,17 +268,20 @@
   font-weight: bold;
   text-align: center;
   border-radius: 0;
-  border: none;
-  box-shadow: none;
-  outline: none;
   background: #fff;
   color: #232323;
-  border-style: solid;
-  background-color: #e3e3e3;
+}
 
-  i {
-    cursor: pointer;
-  }
+.item_quantity_number {
+  width: 36px;
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  border-style: solid;
+  border-width: 0 1px 0 1px;
+  border-color: #e3e3e3;
 }
 
 .item_total_price {
@@ -349,14 +351,8 @@
   border-style: solid;
   border-width: 0;
   background: #fafafa;
-  border-color: #eee;
+  border-color: #e3e3e3;
   padding-top: 0px;
-  height: 100%;
-}
-
-.cart_products_recommendations_container {
-  margin: 0;
-  padding: 0;
 }
 
 .cart_products_recommendations_header {
@@ -365,18 +361,142 @@
   padding: 0;
   text-align: center;
   margin: 15px 0 0 0;
-  font-size: 15px;
+  font-size: 14px;
+  font-family: 'Oswald';
   color: #ed1d24;
 }
 
 .cart_products_recommendations_grid {
-  
+  margin: 0;
+  padding: 0;
 }
 
 .cart_product_recommendation_container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: stretch;
+  align-items: center;
+  align-content: center;
   width: 100%;
   margin: 0;
   padding: 20px 0; 
   border-style: solid;
+  border-width: 0;
   border-color: #e3e3e3;
+}
+
+.cart_product_recommendation_image_container {
+  order: 1;
+  flex: 0 0 auto;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  width: 90px;
+}
+
+.cart_product_recommendation_image_container a {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  width: auto;
+  max-width: 100%;
+  font-size: 0;
+  line-height: 0;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.cart_product_recommendation_image_container a img {
+  display: block;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0px;
+}
+
+.cart_product_recommendation_info {
+  order: 2;
+  flex: 1 1 auto;
+  text-align: left;
+  margin: 0;
+  padding: 0 20px;
+  width: calc(100% - 170px);
+}
+
+.cart_product_recommendation_info a {
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cart_product_recommendation_info_price {
+  margin: 5px 0 0 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #737373;
+}
+
+.cart_product_recommendation_other_flavors_container {
+  text-align: center;
+  order: 4;
+  flex: 0 0 auto;
+  display: block;
+  margin: 10px 0 0 0;
+  padding: 0;
+  width: 100%;
+}
+
+.cart_product_recommendation_other_flavors_container select {
+  border: 1px solid #eaeaea;
+  max-width: 100%;
+  text-indent: 0.01px;
+  letter-spacing: 1px;
+  text-transform: none;
+  display: block;
+  margin: 0;
+  padding: 10px 40px 10px 15px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  outline: none;
+  appearance: none;
+  background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+  color: #232323;
+  background-color: #ffffff;
+  border-color: #cccccc;
+  border-radius: 0px;
+  background-image: linear-gradient(45deg, transparent 50%, #cccccc 50%), linear-gradient(135deg, #cccccc 50%, transparent 50%), linear-gradient(to right, #cccccc, #cccccc);
+}
+
+.cart_product_recommendation_add_to_cart_button_container {
+  order: 3;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  width: 80px;
+}
+
+.cart_product_recommendation_add_to_cart_button {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-style: solid;
+  margin: 0;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #ffffff;
+  background: #4fcbcd;
+  border-color: #4fcbcd;
+  border-width: 0px;
+  border-radius: 0px;
 }

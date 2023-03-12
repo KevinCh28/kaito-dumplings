@@ -9,10 +9,7 @@ import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-sol
 const Cart = ({ onClose = () => { } }) => {
   const recommended = {
     'dumplings': true,
-    'soup dumplings': true,
     'gyoza': true,
-    'noodles': true,
-    'sauces': true,
   };
   const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -68,8 +65,15 @@ const Cart = ({ onClose = () => { } }) => {
 
   // Updates free shipping progress bar
   useEffect(() => {
-    const progressBar = document.getElementById('free_shipping_status_bar_progress');
-    progressBar.style.width = totalAmount > 98.99 ? '100%' : `${totalAmount}%`;
+    const element = document.getElementsByClassName('free_shipping_status_bar_progress')[0];
+    
+    if (totalAmount === 0) {
+      element.style.width = '0%';
+      element.style.opacity = '0';
+    } else {
+      element.style.width = totalAmount > 98.99 ? '100%' : `${(totalAmount / 99) * 100}%`;
+      element.style.opacity = '1';
+    }
   }, [totalAmount])
 
   // Updates free shipping progress text
@@ -99,19 +103,25 @@ const Cart = ({ onClose = () => { } }) => {
         return (
           <div className='cart_product_recommendation_container'>
             <div className='cart_product_recommendation_image_container'>
-              <a href="">
+              <a href={`/products/${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>
                 <img src={product.imageUrl} alt={product.name} />
               </a>
             </div>
             <div className='cart_product_recommendation_info'>
-              <a href="" className='cart_product_recommendation_category'>{product.category}</a>
+              <a href={`/products/${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>{product.category}</a>
+              <div className='cart_product_recommendation_info_price'>
+                <div>
+                  <span>${product.price}</span>
+                  <span></span>
+                </div>
+              </div>
             </div>
             <div className='cart_product_recommendation_other_flavors_container'>
               <select name="" id="">
-                <option value="">BEEF & CHEESE</option>
-                <option value="">PORK & CHIEVES</option>
-                <option value="">CHICKEN & CABBAGE</option>
-                <option value="">VEGGIE</option>
+                <option value="">Beef & Cheese</option>
+                <option value="">Pork & Chieves</option>
+                <option value="">Chicken & Cabbage</option>
+                <option value="">Veggie</option>
               </select>
             </div>
             <div className='cart_product_recommendation_add_to_cart_button_container'>
@@ -130,56 +140,52 @@ const Cart = ({ onClose = () => { } }) => {
     if (cart.length > 0) {
       return (
         <div className='cart_items_container'>
-          {cart.map((item: any) => {
-            return (
-              <ul className='cart_items'>
-                      <li className='cart_item_container' key={item.productId}>
-                        <div className='item_image_container'>
-                          <a href="" >
-                            <img src={item.product.imageUrl} alt={item.product.name} />
-                          </a>
-                        </div>
-                        <div className='cart_item_info'>
-                          <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.productId)}>
-                            <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
-                            <span className='hiddenSpan'>Remove {item.product.category} {item.product.name} from Cart</span>
-                          </button>
-                          <a href="" className='cart_item_category'>{item.product.category}</a>
-                          <div className='cart_item_name'>{item.product.name}</div>
+          <ul className='cart_items'>
+            {cart.map((item: any) => {
+              return (
+                <li className='cart_item_container' key={item.productId}>
+                  <div className='item_image_container'>
+                    <a href="" >
+                      <img src={item.product.imageUrl} alt={item.product.name} />
+                    </a>
+                  </div>
+                  <div className='cart_item_info'>
+                    <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.productId)}>
+                      <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
+                      <span className='hiddenSpan'>Remove {item.product.category} {item.product.name} from Cart</span>
+                    </button>
+                    <a href="" className='cart_item_category'>{item.product.category}</a>
+                    <div className='cart_item_name'>{item.product.name}</div>
 
-                          <div className='item_quantity_container'>
-                            <div className='item_quantity_wrapper'>
-                              <button className='item_quantity_button' onClick={() => handleMinusQuantity(item)}>
-                                <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
-                                <span className='hiddenSpan'></span>
-                              </button>
-                              <span className='item_quantity_button'>{item.quantity}</span>
-                              <button className='item_quantity_button' onClick={() => handleAddQuantity(item)}>
-                                <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
-                                <span className='hiddenSpan'></span>
-                              </button>
-                            </div>
-                          </div>
+                    <div className='item_quantity_container'>
+                      <div className='item_quantity_wrapper'>
+                        <button className='item_quantity_button' onClick={() => handleMinusQuantity(item)}>
+                          <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
+                          <span className='hiddenSpan'></span>
+                        </button>
+                        <span className='item_quantity_number'>{item.quantity}</span>
+                        <button className='item_quantity_button' onClick={() => handleAddQuantity(item)}>
+                          <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
+                          <span className='hiddenSpan'></span>
+                        </button>
+                      </div>
+                    </div>
 
-                          <div className='item_total_price'>
-                            <div>
-                              <span>${(item.product.price * item.quantity).toFixed(2)}</span>
-                            </div>
-                          </div>
+                    <div className='item_total_price'>
+                      <div>
+                        <span>${(item.product.price * item.quantity).toFixed(2)}</span>
+                      </div>
+                    </div>
 
-                        </div>
-                      </li>
-              </ul>
-            )
-            }
-          )
-        }
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
           <div className='cart_products_recommendations_wrapper'>
-            <div className='cart_products_recommendations_container'>
-              <h3 className='cart_products_recommendations_header'>YOU MAY ALSO LIKE</h3>
-              <div>
-                
-              </div>
+            <h3 className='cart_products_recommendations_header'>YOU MAY ALSO LIKE</h3>
+            <div className='cart_products_recommendations_grid'>
+              {mapProducts}
             </div>
           </div>
         </div>
@@ -198,11 +204,9 @@ const Cart = ({ onClose = () => { } }) => {
             <div></div>
           </div>
           <div className='cart_products_recommendations_wrapper'>
-            <div className='cart_products_recommendations_container'>
-              <h3 className='cart_products_recommendations_header'>YOU MAY ALSO LIKE</h3>
-              <div className='cart_products_recommendations_grid'>
-                {mapProducts}
-              </div>
+            <h3 className='cart_products_recommendations_header'>YOU MAY ALSO LIKE</h3>
+            <div className='cart_products_recommendations_grid'>
+              {mapProducts}
             </div>
           </div>
         </div>
@@ -263,8 +267,7 @@ const Cart = ({ onClose = () => { } }) => {
           <div className='cart_free_shipping_container'>
             {handleCartFreeShippingMessage()}
             <div className='free_shipping_status_bar'>
-              <span></span>
-              <div id='free_shipping_status_bar_progress' className='free_shipping_status_bar_progress'></div>
+              <div className='free_shipping_status_bar_progress'></div>
             </div>
           </div>
           {handleCartItems()}
