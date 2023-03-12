@@ -384,7 +384,7 @@ const Products = () => {
                                   <span className='products_page_item_price'>${product3.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/dumplings-beef-&-cheese">{product3.category} (50 PC)</a>
+                                  <a href="/products/gyoza-beef-&-cheese">{product3.category} (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
