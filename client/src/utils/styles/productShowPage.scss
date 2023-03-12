@@ -634,8 +634,6 @@
   line-height: 1.4;
 }
 
-//
-
 .product_show_page_origin_container {
   border-top: 5px solid #FA0F0C;
   border-bottom: 5px solid #FA0F0C;
@@ -691,4 +689,104 @@
   max-width: 100%;
   width: 100%;
   margin-bottom: 13px;
+}
+
+.favorite_products h4 {
+  margin: 20px auto;
+  text-align: center;
+  color: #FA0F0C;
+}
+
+.favorite_products_block {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #FA0F0C;
+  border-bottom: 1px solid #FA0F0C;
+}
+
+.favorite_products_item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 275px;
+  width: 100%;
+  padding: 20px 32px 40px;
+  text-align: center;
+  border-left: 1px solid #FA0F0C;
+}
+
+.favorite_products_item a {
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+}
+
+.favorite_products_item_image_wrapper {
+  position: relative;
+  max-width: 125px;
+  width: 1308px;
+}
+
+.favorite_products_item_image_container {
+  max-width: 100%;
+  position: relative;
+  padding-top: 100%;
+}
+
+.favorite_products_item_image_container img {
+  max-width: 100%;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
+}
+
+.favorite_products_item_content {
+  margin-top: 16px;
+}
+
+.favorite_products_item_name {
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.favorite_products_item_price {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.favorite_products_item_price_current {
+  letter-spacing: 1px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.favorite_products_item_price_original {
+  color: #3b4878;
+  letter-spacing: 1px;
+  line-height: 1.35;
+  margin-left: 3px;
+  text-decoration: line-through;
+}
+
+.favorite_products_item_button {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration-line: underline;
+  color: #FA0F0C;
 }
