@@ -19,7 +19,6 @@ body {
   margin: 0;
   padding: 0;
   padding-top: 0;
-  background-color: #ed1c24;
 }
 
 #__next {
@@ -125,11 +124,8 @@ button {
   outline: none;
 }
 
-main {
-  display: block;
-}
-
 .off_canvas_main_content {
+  background-color: #a9dde3;
   min-height: inherit;
   width: 100%;
 }
