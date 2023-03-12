@@ -100,11 +100,99 @@ const Products = () => {
     )
   };
 
+  // Render gyoza buttons that are selected or not
+  const handleGyozaButtons = () => {
+    return Object.entries(gyoza).map(([name, id]) => {
+      if (gyozaId === id) {
+        return (
+          <div className="products_page_item_flavor">
+            <span className="products_page_item_flavor_text_selected" key={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
+          </div>
+        );
+      } else {
+        return (
+          <div className="products_page_item_flavor" onClick={handleGyozaChange}>
+            <span className="products_page_item_flavor_text_unselected" key={id} id={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
+          </div>
+        );
+      }
+    });
+  };
+
+  // Handle gyoza button click
+  const handleGyozaChange = (e: { preventDefault: () => void; target: { id: string; }; }) => {
+    console.log(e.target.id);
+    e.preventDefault();
+    setGyozaId(e.target.id);
+  };
+
+  // Render dumpling buttons that are selected or not
+  const handleDumplingButtons = () => {
+    return Object.entries(dumplings).map(([name, id]) => {
+      if (dumplingsId === id) {
+        return (
+          <div className="products_page_item_flavor">
+            <span className="products_page_item_flavor_text_selected" key={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
+          </div>
+        );
+      } else {
+        return (
+          <div className="products_page_item_flavor" onClick={handleDumplingChange}>
+            <span className="products_page_item_flavor_text_unselected" key={id} id={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
+          </div>
+        );
+      }
+    });
+  };
+
+  // Handle dumpling button click
+  const handleDumplingChange = (e: { preventDefault: () => void; target: { id: string; }; }) => {
+    console.log(e.target.id);
+    e.preventDefault();
+    setDumplingsId(e.target.id);
+  };
+
   return (
     <main className='products_page_main'>
       <div className='products_page_products_wrapper'>
         <div className='products_page_products_container'>
-          <h1><span>WE SHIP NATIONWIDE</span></h1>
+          <h1 className='title_with_rounds'><span>WE SHIP NATIONWIDE</span></h1>
+          <div className='title_with_mini_images'>
+            <div className='title_with_mini_images_container'>
+              <div className='title_with_mini_image_container'>
+                <div className='title_with_mini_image'>
+                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/chef-crafted.png?v=1677475404" alt="" />
+                </div>
+                <div className='title_with_mini_image_text'>
+                  <h5>CHEF-CRAFTED</h5>
+                </div>
+              </div>
+              <div className='title_with_mini_image_container'>
+                <div className='title_with_mini_image'>
+                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Star_10_Stroke.png?v=1677475405" alt="" />
+                </div>
+                <div className='title_with_mini_image_text'>
+                  <h5>
+                    5000+
+                    <br />
+                    5-STAR REVIEWS
+                  </h5>
+                </div>
+              </div>
+              <div className='title_with_mini_image_container'>
+                <div className='title_with_mini_image'>
+                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/mfg.png?v=1677475404" alt="" />
+                </div>
+                <div className='title_with_mini_image_text'>
+                  <h5>
+                    MELT-FREE
+                    <br />
+                    GUARANTEE
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className='products_page_items_wrapper'>
             <div className='products_page_items_container'>
               <div className='products_page_items_column_wrapper'>
@@ -115,15 +203,15 @@ const Products = () => {
                       <div className='products_page_item_info_container'>
                         <div className='products_page_item_image_wrapper'>
                           <div className='products_page_item_image_container'>
-                            <a className="products_page_item_image_link" href="/products/dumplings-beef-&-cheese">
-                              <div className="products_page_item_image_content">
+                            <div className="products_page_item_image_content">
+                              <a href="/products/dumplings-beef-&-cheese">
                                 <img className="products_page_item_image" src={product1.imageUrl} alt="" />
-                              </div>
-                            </a>
+                              </a>
+                            </div>
                           </div>
                         </div>
                         <div className='products_page_item_text_wrapper'>
-                          <div>
+                          <div className="products_page_item_text_container">
                             <div className='products_page_item_details_wrapper'>
                               <div className='products_page_item_details_container'>
                                 <div className='products_page_item_price_container'>
@@ -146,12 +234,10 @@ const Products = () => {
                                   </ul>
                                 </div>
 
-                                <div>
-                                  <div>
-                                    <div>
-                                      <div>
-
-                                      </div>
+                                <div className="products_page_item_flavors">
+                                  <div className="products_page_item_flavors_wrapper">
+                                    <div className="products_page_item_flavors_container">
+                                      {handleDumplingButtons()}
                                     </div>
                                   </div>
                                 </div>
@@ -159,11 +245,21 @@ const Products = () => {
                                 <div className='products_page_product_rating_container'>
                                   <div className='products_page_product_ratings'>
                                     <div className='products_page_product_rating'>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
                                       <span className='products_page_product_rating_amount'>(2018)</span>
                                     </div>
                                   </div>
@@ -171,7 +267,7 @@ const Products = () => {
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
+                                <button className='products_page_add_button __className_b17307' onClick={handleAddDumplingsToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>
@@ -190,15 +286,15 @@ const Products = () => {
                       <div className='products_page_item_info_container'>
                         <div className='products_page_item_image_wrapper'>
                           <div className='products_page_item_image_container'>
-                            <a className="products_page_item_image_link" href="/products/dumplings-beef-&-cheese">
-                              <div className="products_page_item_image_content">
+                            <div className="products_page_item_image_content">
+                              <a href="/products/dumplings-beef-&-cheese">
                                 <img className="products_page_item_image" src={product2.imageUrl} alt="" />
-                              </div>
-                            </a>
+                              </a>
+                            </div>
                           </div>
                         </div>
                         <div className='products_page_item_text_wrapper'>
-                          <div>
+                          <div className="products_page_item_text_container">
                             <div className='products_page_item_details_wrapper'>
                               <div className='products_page_item_details_container'>
                                 <div className='products_page_item_price_container'>
@@ -221,12 +317,10 @@ const Products = () => {
                                   </ul>
                                 </div>
 
-                                <div>
-                                  <div>
-                                    <div>
-                                      <div>
-
-                                      </div>
+                                <div className="products_page_item_flavors">
+                                  <div className="products_page_item_flavors_wrapper">
+                                    <div className="products_page_item_flavors_container">
+                                      {handleDumplingButtons()}
                                     </div>
                                   </div>
                                 </div>
@@ -234,11 +328,21 @@ const Products = () => {
                                 <div className='products_page_product_rating_container'>
                                   <div className='products_page_product_ratings'>
                                     <div className='products_page_product_rating'>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
                                       <span className='products_page_product_rating_amount'>(2018)</span>
                                     </div>
                                   </div>
@@ -246,7 +350,7 @@ const Products = () => {
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
+                                <button className='products_page_add_button __className_b17307' onClick={handleAddDumplingsToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>
@@ -265,22 +369,22 @@ const Products = () => {
                       <div className='products_page_item_info_container'>
                         <div className='products_page_item_image_wrapper'>
                           <div className='products_page_item_image_container'>
-                            <a className="products_page_item_image_link" href="/products/gyoza-beef-&-cheese">
-                              <div className="products_page_item_image_content">
+                            <div className="products_page_item_image_content">
+                              <a href="/products/dumplings-beef-&-cheese">
                                 <img className="products_page_item_image" src={product3.imageUrl} alt="" />
-                              </div>
-                            </a>
+                              </a>
+                            </div>
                           </div>
                         </div>
                         <div className='products_page_item_text_wrapper'>
-                          <div>
+                          <div className="products_page_item_text_container">
                             <div className='products_page_item_details_wrapper'>
                               <div className='products_page_item_details_container'>
                                 <div className='products_page_item_price_container'>
                                   <span className='products_page_item_price'>${product3.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/gyoza-beef-&-cheese">{product3.category} (50 PC)</a>
+                                  <a href="/products/dumplings-beef-&-cheese">{product3.category} (50 PC)</a>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -295,13 +399,11 @@ const Products = () => {
                                     </li>
                                   </ul>
                                 </div>
-
-                                <div>
-                                  <div>
-                                    <div>
-                                      <div>
-          
-                                      </div>
+                                
+                                <div className="products_page_item_flavors">
+                                  <div className="products_page_item_flavors_wrapper">
+                                    <div className="products_page_item_flavors_container">
+                                      {handleGyozaButtons()}
                                     </div>
                                   </div>
                                 </div>
@@ -309,19 +411,29 @@ const Products = () => {
                                 <div className='products_page_product_rating_container'>
                                   <div className='products_page_product_ratings'>
                                     <div className='products_page_product_rating'>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <svg className='products_page_product_rating_star'><use></use></svg>
-                                      <span className='products_page_product_rating_amount'>(2018)</span>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <div className='products_page_product_rating_star'>
+                                        <img src="/star.png" alt="" />
+                                      </div>
+                                      <span className='products_page_product_rating_amount'>(1987)</span>
                                     </div>
                                   </div>
                                 </div>
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddGyozaToCart}>
+                                <button className='products_page_add_button __className_b17307' onClick={handleAddGyozaToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>
