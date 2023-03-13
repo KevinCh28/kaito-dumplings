@@ -3,6 +3,8 @@ import type { NextPage } from 'next';
 import { getCurrentUser, logout } from '@/src/utils/sessionApiUtils';
 import { getOrders, cancelOrder } from '@/src/utils/orderApiUtils';
 import { useRouter } from 'next/router';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBan } from '@fortawesome/free-solid-svg-icons';
 
 const AccountPage: NextPage = () => {
   const router = useRouter();
@@ -12,6 +14,8 @@ const AccountPage: NextPage = () => {
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
+        const element = window.document.getElementsByClassName('navbar_main')[0];
+        element.style.backgroundColor = 'rgb(246, 22, 31)';
         setUser({
           id: res._id,
           firstname: res.firstname
@@ -26,6 +30,7 @@ const AccountPage: NextPage = () => {
   useEffect(() => {
     getOrders(user.id)
       .then((res) => {
+        console.log(orders)
         setOrders(res);
       })
       .catch((err) => {
@@ -36,7 +41,7 @@ const AccountPage: NextPage = () => {
   const handleLogout = async () => {
     await logout()
       .then((res) => {
-        router.push('/');
+        window.location.reload();
       })
   };
 
@@ -57,21 +62,43 @@ const AccountPage: NextPage = () => {
         </div>
       )};
       return (
-        <div>
-          <h2>YOUR ORDERS:</h2>
+        <div className='account_page_orders_container'>
+          <h2 className='account_page_orders_header'>YOUR ORDERS</h2>
           {orders.map((order: any) => {
             const date = order.date.split(' ')
             const newDate = date[1] + " " + date[2] + ", " + date[3]
 
             return (
-              <div key={order._id}>
-                <div>
-                  <p>Order Number: {order.orderNumber}</p>
-                  <p>Order Date: {newDate}</p>
-                  <p>Order Total: ${(order.total).toFixed(2)}</p>
-                  <p>Order Status: {order.orderStatus.toUpperCase()}</p>
+              <div className='account_page_order' key={order._id}>
+                <div className='account_page_order_info'>
+                  <table>
+                    <thead>
+                      <tr>
+                        <td>Order</td>
+                        <td>Date</td>
+                        <td>Payment status</td>
+                        <td>Fulfillment status</td>
+                        <td>Total</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>{order.orderNumber}</td>
+                        <td>{newDate}</td>
+                        <td></td>
+                        <td>{order.orderStatus.toUpperCase()}</td>
+                        <td>${(order.total).toFixed(2)}</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                {order.orderStatus === 'pending' ? <button onClick={() => handleCancel(order.orderNumber)}>cancel</button> : null}
+                {
+                  order.orderStatus === 'pending' ?
+                  <button className='account_page_buttons' onClick={() => handleCancel(order.orderNumber)}>
+                    <i><FontAwesomeIcon icon={faBan}></FontAwesomeIcon></i>
+                    Cancel
+                  </button> : null
+                }
               </div>
             )
           })}
@@ -79,13 +106,17 @@ const AccountPage: NextPage = () => {
   )};
 
   return (
-    <div className='account_page_container'>
-      <div className='account_orders_container'>
-        <h3>HI {user.firstname}!</h3>
-        {handleOrderHistory()}
-      </div>
-      <div className='account_logout_button_container'>
-        <button onClick={handleLogout}>Logout</button>
+    <div className='account_page_main'>
+      <div className='account_page_main_wrapper'>
+        <div className='account_page_main_container'>
+          <div className='account_page_header'>
+            <h3 className='account_page_greeting'>Hi {user.firstname}!</h3>
+            <button className='account_page_buttons' onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+          {handleOrderHistory()}
+        </div>
       </div>
     </div>
   );

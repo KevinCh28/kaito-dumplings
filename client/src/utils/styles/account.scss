@@ -1,0 +1,68 @@
+.account_page_main {
+  position: relative;
+}
+
+.account_page_main_wrapper {
+  padding: 15px 20px 25px 20px;
+  min-height: auto;
+  background-color: rgb(246, 22, 31);
+}
+
+.account_page_main_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.account_page_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.account_page_greeting {
+  font-family: 'Trade Gothic Next', sans-serif;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.account_page_orders_header {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.account_page_order {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color: #e3e3e3;
+}
+
+.account_page_buttons {
+  min-height: 47px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgb(17, 17, 17);
+  padding: 14px 20px;
+  border-radius: 8px;
+  outline: 0px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  min-width: 140px;
+  max-height: 47px;
+  font-family: Arial;
+}
+
+.account_page_buttons i {
+  margin-right: 12px;
+  height: 16px;
+  width: 16px;
+}
