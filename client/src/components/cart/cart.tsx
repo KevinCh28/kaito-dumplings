@@ -7,10 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = ({ onClose = () => { } }) => {
-  const recommended = {
+  const [recommended, setRecommended] = useState({
     'dumplings': true,
     'gyoza': true,
-  };
+  });
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
@@ -42,13 +43,15 @@ const Cart = ({ onClose = () => { } }) => {
     })
   }, []);
 
-  // Update recommended category
-  // useEffect(() => {
-  //   cart.map((cartProduct: any) => {
-  //     console.log(cartProduct)
-  //     recommended[cartProduct.category] = false;
-  //   })
-  // }, [cart]);
+  useEffect(() => {
+    if (recommended.dumplings && recommended.gyoza) {
+      setRecommendedProducts([products[0], products[6]]);
+    } else if (recommended.dumplings) {
+      setRecommendedProducts([products[6]]);
+    } else if (recommended.gyoza) {
+      setRecommendedProducts([products[0]]);
+    }
+  }, [recommended]);
 
   // Calculates subtotal items and amount in cart
   useEffect(() => {
@@ -97,41 +100,38 @@ const Cart = ({ onClose = () => { } }) => {
 
   // Renders recommended products based on empty cart
   const mapProducts = (
-    products.map((product: any) => {
-      if (recommended[product.category] === true) {
-        recommended[product.category] = false;
-        return (
-          <div className='cart_product_recommendation_container'>
-            <div className='cart_product_recommendation_image_container'>
-              <a href={`/products/${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>
-                <img src={product.imageUrl} alt={product.name} />
-              </a>
-            </div>
-            <div className='cart_product_recommendation_info'>
-              <a href={`/products/${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>{product.category}</a>
-              <div className='cart_product_recommendation_info_price'>
-                <div>
-                  <span>${product.price}</span>
-                  <span></span>
-                </div>
+    recommendedProducts.map((product: any) => {
+      return (
+        <div className='cart_product_recommendation_container'>
+          <div className='cart_product_recommendation_image_container'>
+            <a href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>
+              <img src={product.imageUrl} alt={product.name} />
+            </a>
+          </div>
+          <div className='cart_product_recommendation_info'>
+            <a href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>{product.category}</a>
+            <div className='cart_product_recommendation_info_price'>
+              <div>
+                <span>${product.price}</span>
+                <span></span>
               </div>
             </div>
-            <div className='cart_product_recommendation_other_flavors_container'>
-              <select name="" id="">
-                <option value="">Beef & Cheese</option>
-                <option value="">Pork & Chieves</option>
-                <option value="">Chicken & Cabbage</option>
-                <option value="">Veggie</option>
-              </select>
-            </div>
-            <div className='cart_product_recommendation_add_to_cart_button_container'>
-              <button className='cart_product_recommendation_add_to_cart_button'>
-                <span>ADD</span>
-              </button>
-            </div>
           </div>
-        )
-      }
+          <div className='cart_product_recommendation_other_flavors_container'>
+            <select name="" id="">
+              <option value="">Beef & Cheese</option>
+              <option value="">Pork & Chieves</option>
+              <option value="">Chicken & Cabbage</option>
+              <option value="">Veggie</option>
+            </select>
+          </div>
+          <div className='cart_product_recommendation_add_to_cart_button_container'>
+            <button className='cart_product_recommendation_add_to_cart_button'>
+              <span>ADD</span>
+            </button>
+          </div>
+        </div>
+      )
     })
   );
 
@@ -142,6 +142,7 @@ const Cart = ({ onClose = () => { } }) => {
         <div className='cart_items_container'>
           <ul className='cart_items'>
             {cart.map((item: any) => {
+              if (recommended[item.product.category] === true) setRecommended({ ...recommended, [item.product.category]: false });
               return (
                 <li className='cart_item_container' key={item.productId}>
                   <div className='item_image_container'>
@@ -216,6 +217,7 @@ const Cart = ({ onClose = () => { } }) => {
 
   const handleAddQuantity = ( product: any ) => {
     increaseItemQuantity(userId, product, 1).then((res) => {
+      if (recommended[product.category] === true) setRecommended({ ...recommended, [product.category]: false });
       getCart(userId)
         .then((res) => {
           setCart(res.data.products);
@@ -236,6 +238,7 @@ const Cart = ({ onClose = () => { } }) => {
 
   const handleRemoveItem = ( productId: any ) => {
     removeItemFromCart(userId, productId).then((res) => {
+      if (recommended[product.category] === false) setRecommended({ ...recommended, [product.category]: true });
       getCart(userId)
         .then((res) => {
           setCart(res.data.products);
