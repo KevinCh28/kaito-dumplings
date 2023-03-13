@@ -60,7 +60,8 @@ router.put("/:id/increase", async (req: Request, res: Response, next: NextFuncti
     }
 
     for (let cartProduct of newProducts) {
-      if (Object(cartProduct.productId).equals(product.productId)) {
+      if (Object(cartProduct.productId).equals(product._id) || Object(cartProduct.productId).equals(product.productId)) {
+        console.log("we are in line 65")
         cartProduct.quantity += amount;
         await cart?.save();
         return res.status(200).json(cart);

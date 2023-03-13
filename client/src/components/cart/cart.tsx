@@ -3,6 +3,7 @@ import { getCart, increaseItemQuantity, decreaseItemQuantity, removeItemFromCart
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import { createOrder } from '@/src/utils/orderApiUtils';
 import { getProducts } from '@/src/utils/productApiUtils';
+import { checkout } from '@/src/utils/sessionsApiUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -260,10 +261,10 @@ const Cart = ({ onClose = () => { } }) => {
   };
 
   const handleCheckOut = () => {
-    createOrder({ userId, totalAmount, cart }).then((res) => {
-      console.log('Order created successfully')
+    checkout(cart).then((res) => {
+      console.log('Checkout successful')
       console.log(res);
-    })
+    });
   };
 
   return (
