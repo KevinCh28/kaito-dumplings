@@ -43,6 +43,13 @@ const Cart = ({ onClose = () => { } }) => {
     })
   }, []);
 
+  // useEffect(() => {
+  //   cart.map((item: any) => {
+  //     if (recommended[item.product.category] === true) setRecommended({ ...recommended, [item.product.category]: false });
+  //   })
+  // }, [cart]);
+
+  // Gets recommended products
   useEffect(() => {
     if (recommended.dumplings && recommended.gyoza) {
       setRecommendedProducts([products[0], products[6]]);
@@ -69,8 +76,8 @@ const Cart = ({ onClose = () => { } }) => {
   // Updates free shipping progress bar
   useEffect(() => {
     const element = document.getElementsByClassName('free_shipping_status_bar_progress')[0];
-    
-    if (totalAmount === 0) {
+
+    if (totalAmount < 1) {
       element.style.width = '0%';
       element.style.opacity = '0';
     } else {
@@ -99,41 +106,46 @@ const Cart = ({ onClose = () => { } }) => {
   };
 
   // Renders recommended products based on empty cart
-  const mapProducts = (
-    recommendedProducts.map((product: any) => {
-      return (
-        <div className='cart_product_recommendation_container'>
-          <div className='cart_product_recommendation_image_container'>
-            <a href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>
-              <img src={product.imageUrl} alt={product.name} />
-            </a>
-          </div>
-          <div className='cart_product_recommendation_info'>
-            <a href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>{product.category}</a>
-            <div className='cart_product_recommendation_info_price'>
-              <div>
-                <span>${product.price}</span>
-                <span></span>
-              </div>
-            </div>
-          </div>
-          <div className='cart_product_recommendation_other_flavors_container'>
-            <select name="" id="">
-              <option value="">Beef & Cheese</option>
-              <option value="">Pork & Chieves</option>
-              <option value="">Chicken & Cabbage</option>
-              <option value="">Veggie</option>
-            </select>
-          </div>
-          <div className='cart_product_recommendation_add_to_cart_button_container'>
-            <button className='cart_product_recommendation_add_to_cart_button'>
-              <span>ADD</span>
-            </button>
-          </div>
-        </div>
-      )
-    })
-  );
+  // const mapProducts = () => {
+  //   recommendedProducts.map((product: any) => {
+  //     if (recommendedProducts.length === 0) {
+  //       return (
+  //         <div className='cart_product_recommendation_container'></div>
+  //       )
+  //     }
+  //     return (
+  //       <div className='cart_product_recommendation_container'>
+  //         <div className='cart_product_recommendation_image_container'>
+  //           <a href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>
+  //             <img src={product.imageUrl} alt={product.name} />
+  //           </a>
+  //         </div>
+  //         <div className='cart_product_recommendation_info'>
+  //           <a href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>{product.category}</a>
+  //           <div className='cart_product_recommendation_info_price'>
+  //             <div>
+  //               <span>${product.price}</span>
+  //               <span></span>
+  //             </div>
+  //           </div>
+  //         </div>
+  //         <div className='cart_product_recommendation_other_flavors_container'>
+  //           <select name="" id="">
+  //             <option value="">Beef & Cheese</option>
+  //             <option value="">Pork & Chieves</option>
+  //             <option value="">Chicken & Cabbage</option>
+  //             <option value="">Veggie</option>
+  //           </select>
+  //         </div>
+  //         <div className='cart_product_recommendation_add_to_cart_button_container'>
+  //           <button className='cart_product_recommendation_add_to_cart_button' onClick={handleAddQuantity(product)}>
+  //             <span>ADD</span>
+  //           </button>
+  //         </div>
+  //       </div>
+  //     )
+  //   })
+  // };
 
   // Renders cart items
   const handleCartItems = () => {
@@ -186,7 +198,7 @@ const Cart = ({ onClose = () => { } }) => {
           <div className='cart_products_recommendations_wrapper'>
             <h3 className='cart_products_recommendations_header'>YOU MAY ALSO LIKE</h3>
             <div className='cart_products_recommendations_grid'>
-              {mapProducts}
+              {/* {mapProducts()} */}
             </div>
           </div>
         </div>
@@ -198,7 +210,7 @@ const Cart = ({ onClose = () => { } }) => {
             <h4 className='empty_cart_header'>YOUR CART IS EMPTY!</h4>
             <p className='empty_cart_text'>Add some dumplings and gyozas.</p>
             <p className='empty_cart_button'>
-              <a href="">Shop Now</a>
+              <a href="/products">Shop Now</a>
             </p>
           </div>
           <div className='empty_cart_footer_container'>
@@ -207,7 +219,7 @@ const Cart = ({ onClose = () => { } }) => {
           <div className='cart_products_recommendations_wrapper'>
             <h3 className='cart_products_recommendations_header'>YOU MAY ALSO LIKE</h3>
             <div className='cart_products_recommendations_grid'>
-              {mapProducts}
+              {/* {mapProducts()} */}
             </div>
           </div>
         </div>
@@ -238,7 +250,7 @@ const Cart = ({ onClose = () => { } }) => {
 
   const handleRemoveItem = ( productId: any ) => {
     removeItemFromCart(userId, productId).then((res) => {
-      if (recommended[product.category] === false) setRecommended({ ...recommended, [product.category]: true });
+      // if (recommended[product.category] === false) setRecommended({ ...recommended, [product.category]: true });
       getCart(userId)
         .then((res) => {
           setCart(res.data.products);

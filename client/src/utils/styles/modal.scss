@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Trade+Gothic+Next:wght@400;700&display=swap');
+
 .modal_background {
   position: fixed;
   margin: 0;
@@ -90,6 +92,7 @@
 }
 
 .cart_summary_container {
+  font-family: 'Trade Gothic Next', sans-serif;
   flex: 0 0 auto;
   margin: 0;
   padding: 20px;

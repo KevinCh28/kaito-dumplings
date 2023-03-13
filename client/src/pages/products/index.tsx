@@ -267,7 +267,7 @@ const Products = () => {
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button __className_b17307' onClick={handleAddDumplingsToCart}>
+                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>

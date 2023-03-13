@@ -82,7 +82,7 @@ const Navbar = () => {
 
   const handleHiddenNav = () => {
     let header = document.getElementsByClassName("navbar_container")[0];
-    if (window.scrollY > 500) {
+    if (window.scrollY > 250) {
       header.className = "navbar_container navbar_hidden";
     } else {
       header.className = "navbar_container";
