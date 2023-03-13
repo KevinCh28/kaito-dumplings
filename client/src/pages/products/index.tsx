@@ -29,6 +29,8 @@ const Products = () => {
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
+        const element = window.document.getElementsByClassName('navbar_main')[0];
+        element.style.backgroundColor = 'rgb(27, 33, 55)';
         setUser(res);
       })
       .catch((err) => {
@@ -105,13 +107,13 @@ const Products = () => {
     return Object.entries(gyoza).map(([name, id]) => {
       if (gyozaId === id) {
         return (
-          <div className="products_page_item_flavor">
+          <div className="products_page_item_flavor" key={id}>
             <span className="products_page_item_flavor_text_selected" key={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
           </div>
         );
       } else {
         return (
-          <div className="products_page_item_flavor" onClick={handleGyozaChange}>
+          <div className="products_page_item_flavor" onClick={handleGyozaChange} key={id}>
             <span className="products_page_item_flavor_text_unselected" key={id} id={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
           </div>
         );
@@ -131,13 +133,13 @@ const Products = () => {
     return Object.entries(dumplings).map(([name, id]) => {
       if (dumplingsId === id) {
         return (
-          <div className="products_page_item_flavor">
+          <div className="products_page_item_flavor" key={id}>
             <span className="products_page_item_flavor_text_selected" key={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
           </div>
         );
       } else {
         return (
-          <div className="products_page_item_flavor" onClick={handleDumplingChange}>
+          <div className="products_page_item_flavor" onClick={handleDumplingChange} key={id}>
             <span className="products_page_item_flavor_text_unselected" key={id} id={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
           </div>
         );

@@ -45,7 +45,6 @@ const GyozaBeefCheese = () => {
   // Get product
   useEffect(() => {
     getProduct(flavors[pathName]).then((res) => {
-      // set className navbar_main background-color #a9dde3;
       const element = window.document.getElementsByClassName('navbar_main')[0];
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
