@@ -8,6 +8,7 @@ import '../utils/styles/cart.scss'
 import '../utils/styles/productsPage.scss'
 import '../utils/styles/productShowPage.scss'
 import '../utils/styles/account.scss'
+import '../utils/styles/footer.scss'
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 // import { Oswald } from '@next/font/google'
