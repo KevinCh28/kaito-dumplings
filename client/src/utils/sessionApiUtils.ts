@@ -1,4 +1,5 @@
 import axios from 'axios';
+const baseUrl = "https://kaito-five.vercel.app/";
 
 export const setAuthToken = (token: string) => {
   if (token) {
@@ -9,18 +10,18 @@ export const setAuthToken = (token: string) => {
 };
 
 export const register = async (userData: object) => {
-  return await axios.post('/api/users/register', userData);
+  return await axios.post(`${baseUrl}/api/users/register`, userData);
 };
 
 export const login = async (userData: object) => {
-  return await axios.post('/api/users/login', userData);
+  return await axios.post(`${baseUrl}/api/users/login`, userData);
 };
 
 export const logout = async () => {
-  await axios.post('/api/users/logout');
+  await axios.post(`${baseUrl}/api/users/logout`);
 };
 
 export const getCurrentUser = async () => {
-  const response = await axios.get('/api/users/current');
+  const response = await axios.get(`${baseUrl}/api/users/current`);
   return response.data;
 };
