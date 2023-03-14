@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, SyntheticEvent } from 'react';
 import { getProduct } from '../../utils/productApiUtils';
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import Cart from '../../components/cart/cart';
@@ -11,20 +11,34 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 const GyozaBeefCheese = () => {
   const router = useRouter();
   const pathName = router.pathname.split('-').slice(1).join('-');
-  const flavors = {
+  const flavors: { [key: string]: string } = {
     'beef-&-cheese': '63efa8319010d97ce1747153',
     'chicken-&-cabbage': '63efa8b49010d97ce1747155',
     'pork-&-chieves': '63efa8d19010d97ce1747157',
-    'veggie': '63efa9259010d97ce174715f'
+    'veggie': '63efa9259010d97ce174715f',
   };
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({
+    _id: '',
+    name: '',
+    price: 0,
+    description: '',
+    imageUrl: '',
+    category: '',
+  });
   const [quantity, setQuantity] = useState(1);
   const [style, setStyle] = useState('beef-&-cheese');
   const [showModal, setShowModal] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    _id: '',
+    email: '',
+    firstname: '',
+    lastname: '',
+    cart: {},
+    orders: {},
+  });
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
   const [flavorsHidden, setFlavorsHidden] = useState(true);
-  const [hiddenTab, setHiddenTab] = useState({
+  const [hiddenTab, setHiddenTab] = useState<{ [key: number]: boolean }>({
     0: true,
     1: true,
     2: true,
@@ -53,12 +67,13 @@ const GyozaBeefCheese = () => {
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (e.target.className !== 'product_page_styles_wrapper' && flavorsHidden === false) {
+    const handleOutsideClick = (e: SyntheticEvent) => {
+      const className = (e.target as HTMLSpanElement).getAttribute('className');
+      if (className !== 'product_page_styles_wrapper' && flavorsHidden === false) {
         const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0] as HTMLDivElement;
         const productsArrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0] as HTMLDivElement;
 
-        const parent = e.target.closest('.product_page_styles_wrapper');
+        const parent = (e.target as HTMLSpanElement).closest('.product_page_styles_wrapper');
         if (!parent && flavorsHidden === false) {
           element.style.display = 'none';
           productsArrowUpDown.style.transform = '';
@@ -88,7 +103,7 @@ const GyozaBeefCheese = () => {
 
   // Render info tabs
   const handleRenderInfoTabs = (index: number) => {
-    const tabNames = {
+    const tabNames: { [key: number]: string } = {
       0: 'product_page_tab_howtomake_container',
       1: 'product_page_tab_highlight_container',
       2: 'product_page_tab_nutrition_container',
