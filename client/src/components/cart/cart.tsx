@@ -76,7 +76,7 @@ const Cart = ({ onClose = () => { } }) => {
 
   // Updates free shipping progress bar
   useEffect(() => {
-    const element = document.getElementsByClassName('free_shipping_status_bar_progress')[0];
+    const element = document.getElementsByClassName('free_shipping_status_bar_progress')[0] as HTMLDivElement;
 
     if (totalAmount < 1) {
       element.style.width = '0%';

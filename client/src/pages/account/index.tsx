@@ -15,7 +15,6 @@ const AccountPage: NextPage = () => {
     getCurrentUser()
       .then((res) => {
         const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
-        let style = element.style as CSSStyleDeclaration;
         element.style.backgroundColor = 'rgb(246, 22, 31)';
         setUser({
           id: res._id,

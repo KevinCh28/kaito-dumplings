@@ -45,7 +45,7 @@ const GyozaBeefCheese = () => {
   // Get product
   useEffect(() => {
     getProduct(flavors[pathName]).then((res) => {
-      const element = window.document.getElementsByClassName('navbar_main')[0];
+      const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
@@ -55,8 +55,8 @@ const GyozaBeefCheese = () => {
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (e.target.className !== 'product_page_styles_wrapper' && flavorsHidden === false) {
-        const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0];
-        const productsArrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0];
+        const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0] as HTMLDivElement;
+        const productsArrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0] as HTMLDivElement;
 
         const parent = e.target.closest('.product_page_styles_wrapper');
         if (!parent && flavorsHidden === false) {
@@ -73,8 +73,8 @@ const GyozaBeefCheese = () => {
 
   // Render current flavor and all other flavors
   const handleRenderFlavors = () => {
-    const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0];
-    const productsArrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0];
+    const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0] as HTMLDivElement;
+    const productsArrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0] as HTMLDivElement;
     if (flavorsHidden) {
       element.style.display = 'block';
       productsArrowUpDown.style.transform = 'rotate(180deg)';
@@ -94,8 +94,8 @@ const GyozaBeefCheese = () => {
       2: 'product_page_tab_nutrition_container',
       3: 'product_page_tab_faqs_container',
     }
-    const element = window.document.getElementsByClassName(tabNames[index])[0];
-    const tabArrowUpDown = window.document.getElementsByClassName('product_page_tab_header_arrow')[index];
+    const element = window.document.getElementsByClassName(tabNames[index])[0] as HTMLDivElement;
+    const tabArrowUpDown = window.document.getElementsByClassName('product_page_tab_header_arrow')[index] as HTMLDivElement;
     if (hiddenTab[index]) {
       element.style.display = 'block';
       tabArrowUpDown.style.transform = 'rotate(180deg)';

@@ -29,7 +29,7 @@ const Products = () => {
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
-        const element = window.document.getElementsByClassName('navbar_main')[0];
+        const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
         element.style.backgroundColor = 'rgb(27, 33, 55)';
         setUser(res);
       })
