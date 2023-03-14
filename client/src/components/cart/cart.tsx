@@ -66,12 +66,12 @@ const Cart = ({ onClose = () => { } }) => {
     let total = 0;
     let totalCartItems = 0
 
-    cart.forEach((item: object) => {
+    cart.forEach((item: { quantity: number, product: { price: number } }) => {
       totalCartItems += item.quantity;
       total += item.product.price * item.quantity;
     })
     setTotalItems(totalCartItems);
-    setTotalAmount(total.toFixed(2));
+    setTotalAmount(Number(total.toFixed(2)));
   }, [cart]);
 
   // Updates free shipping progress bar

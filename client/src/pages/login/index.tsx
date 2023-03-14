@@ -47,9 +47,17 @@ const Login = () => {
       });
   };
 
-  const handleErrors = (key: object) => {
-    if (errors[key] !== "") {
-      return <div>{errors[key]}</div>;
+  const handleEmailError = () => {
+    if (errors.email !== "") {
+      return <div>{errors.email}</div>;
+    } else {
+      return null;
+    }
+  };
+
+  const handlePasswordError = () => {
+    if (errors.password !== "") {
+      return <div>{errors.password}</div>;
     } else {
       return null;
     }
@@ -67,7 +75,7 @@ const Login = () => {
             value={user.email}
             onChange={handleChange}
           />
-          {handleErrors("email")}
+          {handleEmailError()}
         </div>
         <div>
           <label htmlFor="password">Password</label>
@@ -77,7 +85,7 @@ const Login = () => {
             value={user.password}
             onChange={handleChange}
           />
-          {handleErrors("password")}
+          {handlePasswordError()}
         </div>
         <button type="submit">Login</button>
       </form>
