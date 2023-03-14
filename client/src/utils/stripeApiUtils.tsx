@@ -1,8 +1,8 @@
 const keys = require("../../../config/keys");
 const stripeKey = keys.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
 
-import { loadStripe } from "@stripe/stripe-js";
-const stripePromise = loadStripe(stripeKey);
+import { Stripe, loadStripe } from "@stripe/stripe-js";
+let stripePromise: Promise<Stripe | null>;
 
 export const checkout = async (items: []) => {
   try {
@@ -15,14 +15,20 @@ export const checkout = async (items: []) => {
       body: JSON.stringify({ lineItems }),
     }).then((res) => res.json())
 
+    if (!stripePromise) {
+      stripePromise = loadStripe(stripeKey);
+    }
+
     const stripe = await stripePromise;
-    const { error } = await stripe.redirectToCheckout({ sessionId: session.id });
-    if (error) {
-      if (error instanceof Error) throw new Error(error.message);
-    } else {
-      throw error
+    if (stripe) {
+      const { error } = await stripe.redirectToCheckout({ sessionId: session.id });
+      if (error) {
+        if (error instanceof Error) throw new Error(error.message);
+      } else {
+        throw error
+      }
     }
   } catch (error) {
     console.log(error);
   }
-};
+}
