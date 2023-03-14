@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
-const keys = require("../../../../../config/keys");
+import "dotenv/config";
 import Stripe from 'stripe';
-const stripe = new Stripe(keys.STRIPE_SECRET_KEY, { apiVersion: "2022-11-15" });
+
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY as string;
+const stripe = new Stripe(stripeSecretKey, { apiVersion: "2022-11-15" });
 
 export default async function handler(req: Request, res: Response) {
   if (req.method === 'POST') {

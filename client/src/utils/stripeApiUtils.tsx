@@ -1,5 +1,5 @@
-const keys = require("../../../config/keys");
-const stripeKey = keys.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+import "dotenv/config";
+const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
 
 import { Stripe, loadStripe } from "@stripe/stripe-js";
 let stripePromise: Promise<Stripe | null>;
