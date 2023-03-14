@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, SyntheticEvent } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import Cart from '../../components/cart/cart';
@@ -18,12 +18,39 @@ const Products = () => {
     'veggie': '63efa9259010d97ce174715f'
   }
   const [showModal, setShowModal] = useState(false);
-  const [product1, setProduct1] = useState({});
-  const [product2, setProduct2] = useState({});
-  const [product3, setProduct3] = useState({});
+  const [product1, setProduct1] = useState({
+    _id: '',
+    name: '',
+    description: '',
+    price: 0,
+    imageUrl: '',
+    category: '',
+  });
+  const [product2, setProduct2] = useState({
+    _id: '',
+    name: '',
+    description: '',
+    price: 0,
+    imageUrl: '',
+    category: '',
+  });
+  const [product3, setProduct3] = useState({
+    _id: '',
+    name: '',
+    description: '',
+    price: 0,
+    imageUrl: '',
+    category: '',
+  });
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    _id: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    cart: [],
+  });
 
   // Get User
   useEffect(() => {
@@ -122,10 +149,10 @@ const Products = () => {
   };
 
   // Handle gyoza button click
-  const handleGyozaChange = (e: { preventDefault: () => void; target: { id: string; }; }) => {
-    console.log(e.target.id);
+  const handleGyozaChange = (e: SyntheticEvent) => {
     e.preventDefault();
-    setGyozaId(e.target.id);
+    const key = (e.target as HTMLSpanElement).getAttribute('id');
+    setGyozaId(key as string);
   };
 
   // Render dumpling buttons that are selected or not
@@ -148,10 +175,10 @@ const Products = () => {
   };
 
   // Handle dumpling button click
-  const handleDumplingChange = (e: { preventDefault: () => void; target: { id: string; }; }) => {
-    console.log(e.target.id);
+  const handleDumplingChange = (e: SyntheticEvent) => {
     e.preventDefault();
-    setDumplingsId(e.target.id);
+    const key = (e.target as HTMLSpanElement).getAttribute('id');
+    setDumplingsId(key as string);
   };
 
   return (
