@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 const keys = require("../../../../../config/keys");
 import Stripe from 'stripe';
-const stripe = new Stripe(keys.STRIPE_SECRET_KEY);
+const stripe = new Stripe(keys.STRIPE_SECRET_KEY, { apiVersion: "2022-11-15" });
 
 export default async function handler(req: Request, res: Response) {
   if (req.method === 'POST') {
@@ -15,8 +15,8 @@ export default async function handler(req: Request, res: Response) {
         cancel_url: `${req.headers.origin}/?canceled=true`,
       });
       res.status(200).json({ session });
-    } catch (err: Error) {
-      res.status(err.statusCode || 500).json(err.message);
+    } catch (error) {
+      res.status(500).json('Internal Server Error');
     }
   } else {
     res.setHeader('Allow', 'POST');
