@@ -8,12 +8,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = ({ onClose = () => { } }) => {
-  const [recommended, setRecommended] = useState({
+  const [recommended, setRecommended] = useState<{ [key: string]: boolean }>({
     'dumplings': true,
     'gyoza': true,
   });
   const [recommendedProducts, setRecommendedProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([{
+    quantity: 0,
+    product: {
+      _id: '',
+      name: '',
+      category: '',
+      price: 0,
+      imageUrl: '',
+      description: '',
+    },
+    productId: '',
+  }]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [userId, setUserId] = useState('');
@@ -154,7 +165,7 @@ const Cart = ({ onClose = () => { } }) => {
       return (
         <div className='cart_items_container'>
           <ul className='cart_items'>
-            {cart.map((item: object) => {
+            {cart.map((item: { product: { category: string, name: string, imageUrl: string, price: number }, productId: string, quantity: number }) => {
               if (recommended[item.product.category] === true) setRecommended({ ...recommended, [item.product.category]: false });
               return (
                 <li className='cart_item_container' key={item.productId}>
@@ -228,9 +239,9 @@ const Cart = ({ onClose = () => { } }) => {
     }
   }
 
-  const handleAddQuantity = ( product: object ) => {
+  const handleAddQuantity = (product: object ) => {
     increaseItemQuantity(userId, product, 1).then((res) => {
-      if (recommended[product.category] === true) setRecommended({ ...recommended, [product.category]: false });
+      // if (recommended[product.category] === true) setRecommended({ ...recommended, [product.category]: false });
       getCart(userId)
         .then((res) => {
           setCart(res.data.products);
@@ -249,7 +260,7 @@ const Cart = ({ onClose = () => { } }) => {
     })
   };
 
-  const handleRemoveItem = ( productId: object ) => {
+  const handleRemoveItem = ( productId: string ) => {
     removeItemFromCart(userId, productId).then((res) => {
       // if (recommended[product.category] === false) setRecommended({ ...recommended, [product.category]: true });
       getCart(userId)
