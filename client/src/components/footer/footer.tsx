@@ -19,15 +19,15 @@ export default function Footer() {
                   </p>
                 </div>
                 <div className='footer_socials_icons'>
-                  <a href="">
+                  <Link href="">
                     <i><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon></i>
-                  </a>
-                  <a href="https://www.instagram.com/kaitobubbletea/">
+                  </Link>
+                  <Link href="https://www.instagram.com/kaitobubbletea/">
                     <i><FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon></i>
-                  </a>
-                  <a href="">
+                  </Link>
+                  <Link href="">
                     <i><FontAwesomeIcon icon={faTiktok}></FontAwesomeIcon></i>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -38,12 +38,12 @@ export default function Footer() {
               <div className='footer_info_block_header'>INFO</div>
               <div className='footer_info_block_container'>
                 <ul>
-                  <li><a href="">About Us</a></li>
-                  <li><a href="">Careers</a></li>
-                  <li><a href="/faq">FAQs</a></li>
-                  <li><a href="">Terms of Service</a></li>
-                  <li><a href="">Privacy Policy</a></li>
-                  <li><a href="">Refund Policy</a></li>
+                  <li><Link href="">About Us</Link></li>
+                  <li><Link href="">Careers</Link></li>
+                  <li><Link href="/faq">FAQs</Link></li>
+                  <li><Link href="">Terms of Service</Link></li>
+                  <li><Link href="">Privacy Policy</Link></li>
+                  <li><Link href="">Refund Policy</Link></li>
                 </ul>
               </div>
             </div>
