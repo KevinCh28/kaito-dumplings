@@ -11,17 +11,11 @@ import '../utils/styles/account.scss'
 import '../utils/styles/footer.scss'
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
-// import { Oswald } from '@next/font/google'
-
-// const oswald = Oswald({
-//   subsets: ['latin'],
-//   weight: ['200', '300', '400', '500', '600', '700']
-// });
+import React from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className='off_canvas_main_content'>
-    {/* <div className={`${oswald.className}`} style={{ backgroundColor: '#a9dde3' }}> */}
       <Navbar />
       <Component {...pageProps} />
       <Footer />

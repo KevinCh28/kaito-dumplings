@@ -3,7 +3,7 @@ import { getCart, increaseItemQuantity, decreaseItemQuantity, removeItemFromCart
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import { createOrder } from '@/src/utils/orderApiUtils';
 import { getProducts } from '@/src/utils/productApiUtils';
-import { checkout } from '@/src/utils/sessionsApiUtils';
+import { checkout } from '@/src/utils/stripeApiUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
