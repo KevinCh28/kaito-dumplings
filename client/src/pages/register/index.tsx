@@ -6,12 +6,6 @@ import { useRouter } from "next/router";
 
 const Register = () => {
   const router = useRouter();
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
-
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -46,13 +40,6 @@ const Register = () => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    setUser({
-      firstname,
-      lastname,
-      email,
-      password,
-      password2,
-    });
     setErrors(emptyInfo);
     register(user)
       .then((res) => {
@@ -74,9 +61,41 @@ const Register = () => {
     )
   };
 
-  const handleErrors = (key: string) => {
-    if (errors[key] !== "") {
-      return <div>{errors[key]}</div>;
+  const handleFirstNameError = () => {
+    if (errors.email !== "") {
+      return <div>{errors.email}</div>;
+    } else {
+      return null;
+    }
+  };
+
+  const handleLastNameError = () => {
+    if (errors.email !== "") {
+      return <div>{errors.email}</div>;
+    } else {
+      return null;
+    }
+  };
+
+  const handleEmailError = () => {
+    if (errors.email !== "") {
+      return <div>{errors.email}</div>;
+    } else {
+      return null;
+    }
+  };
+
+  const handlePasswordError = () => {
+    if (errors.email !== "") {
+      return <div>{errors.email}</div>;
+    } else {
+      return null;
+    }
+  };
+
+  const handlePassword2Error = () => {
+    if (errors.email !== "") {
+      return <div>{errors.email}</div>;
     } else {
       return null;
     }
@@ -95,7 +114,7 @@ const Register = () => {
               value={user.firstname}
               onChange={handleChange}
             />
-            {handleErrors("firstname")}
+            {handleFirstNameError()}
           </div>
           <div>
             <label htmlFor="lastname">Last Name</label>
@@ -105,7 +124,7 @@ const Register = () => {
               value={user.lastname}
               onChange={handleChange}
             />
-            {handleErrors("lastname")}
+            {handleLastNameError()}
           </div>
           <div>
             <label htmlFor="email">Email</label>
@@ -115,7 +134,7 @@ const Register = () => {
               value={user.email}
               onChange={handleChange}
             />
-            {handleErrors("email")}
+            {handleEmailError()}
           </div>
           <div>
             <label htmlFor="password">Password</label>
@@ -125,7 +144,7 @@ const Register = () => {
               value={user.password}
               onChange={handleChange}
             />
-            {handleErrors("password")}
+            {handlePasswordError()}
           </div>
           <div>
             <label htmlFor="password2">Confirm Password</label>
@@ -135,7 +154,7 @@ const Register = () => {
               value={user.password2}
               onChange={handleChange}
             />
-            {handleErrors("password2")}
+            {handlePassword2Error()}
           </div>
           <button type="submit">Register</button>
         </form>
