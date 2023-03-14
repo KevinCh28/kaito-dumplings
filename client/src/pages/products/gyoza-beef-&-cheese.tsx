@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect, SyntheticEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { getProduct } from '../../utils/productApiUtils';
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import Cart from '../../components/cart/cart';
@@ -67,7 +67,7 @@ const GyozaBeefCheese = () => {
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
-    const handleOutsideClick = (e: SyntheticEvent) => {
+    const handleOutsideClick = (e: MouseEvent) => {
       const className = (e.target as HTMLSpanElement).getAttribute('className');
       if (className !== 'product_page_styles_wrapper' && flavorsHidden === false) {
         const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0] as HTMLDivElement;
@@ -82,8 +82,9 @@ const GyozaBeefCheese = () => {
       }
     };
 
-    window.addEventListener('click', handleOutsideClick);
-    return () => window.removeEventListener('click', handleOutsideClick);
+    const options = { capture: true };
+    const removeListener = window.addEventListener('click', handleOutsideClick, options);
+    return () => window.removeEventListener('click', handleOutsideClick, options);
   }, [flavorsHidden]);
 
   // Render current flavor and all other flavors

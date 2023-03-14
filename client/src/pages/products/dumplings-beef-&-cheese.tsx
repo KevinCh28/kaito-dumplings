@@ -11,20 +11,34 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 const DumplingsBeefCheese = () => {
   const router = useRouter();
   const pathName = router.pathname.split('-').slice(1).join('-');
-  const flavors = {
+  const flavors: { [key: string]: string } = {
     'beef-&-cheese': '63efa9419010d97ce1747161',
     'chicken-&-cabbage': '63efa96f9010d97ce1747163',
     'pork-&-chieves': '63efa8d89010d97ce1747159',
     'veggie': '63efa9119010d97ce174715c'
   };
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({
+    _id: '',
+    name: '',
+    price: 0,
+    description: '',
+    imageUrl: '',
+    category: '',
+  });
   const [quantity, setQuantity] = useState(1);
   const [style, setStyle] = useState('beef-&-cheese');
   const [showModal, setShowModal] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    _id: '',
+    email: '',
+    firstname: '',
+    lastname: '',
+    cart: {},
+    orders: {},
+  });
   const [dumplingId, setDumplingId] = useState('63efa9419010d97ce1747161');
   const [flavorsHidden, setFlavorsHidden] = useState(true);
-  const [hiddenTab, setHiddenTab] = useState({
+  const [hiddenTab, setHiddenTab] = useState<{ [key: number]: boolean }>({
     0: true,
     1: true,
     2: true,
@@ -45,18 +59,21 @@ const DumplingsBeefCheese = () => {
   // Get product
   useEffect(() => {
     getProduct(flavors[pathName]).then((res) => {
+      const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
+      element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
   }, []);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (e.target.className !== 'product_page_styles_wrapper' && flavorsHidden === false) {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const className = (e.target as HTMLSpanElement).getAttribute('className');
+      if (className !== 'product_page_styles_wrapper' && flavorsHidden === false) {
         const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0] as HTMLDivElement;
         const productsArrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0] as HTMLDivElement;
 
-        const parent = e.target.closest('.product_page_styles_wrapper');
+        const parent = (e.target as HTMLSpanElement).closest('.product_page_styles_wrapper');
         if (!parent && flavorsHidden === false) {
           element.style.display = 'none';
           productsArrowUpDown.style.transform = '';
@@ -65,8 +82,9 @@ const DumplingsBeefCheese = () => {
       }
     };
 
-    window.addEventListener('click', handleOutsideClick);
-    return () => window.removeEventListener('click', handleOutsideClick);
+    const options = { capture: true };
+    const removeListener = window.addEventListener('click', handleOutsideClick, options);
+    return () => window.removeEventListener('click', handleOutsideClick, options);
   }, [flavorsHidden]);
 
   // Render current flavor and all other flavors
@@ -86,7 +104,7 @@ const DumplingsBeefCheese = () => {
 
   // Render info tabs
   const handleRenderInfoTabs = (index: number) => {
-    const tabNames = {
+    const tabNames: { [key: number]: string } = {
       0: 'product_page_tab_howtomake_container',
       1: 'product_page_tab_highlight_container',
       2: 'product_page_tab_nutrition_container',
