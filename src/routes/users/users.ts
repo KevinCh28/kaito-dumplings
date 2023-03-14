@@ -37,11 +37,7 @@ router.post("/register", validateRegisterInput, async (req: Request, res: Respon
   const user = await User.findOne({ email: req.body.email });
   if (user) {
     const errors = { email: "Email already exists" };
-    const err = Error("Validation Error.");
-    (err as Error).errors = errors;
-    (err as Error).statusCode = 400;
-    (err as Error).title = "Validation Error.";
-    return res.status(400).json({ err });
+    return res.status(400).json({ errors });
   }
 
   const newUser = new User({
@@ -87,11 +83,7 @@ router.post("/login", validateLoginInput, async (req: Request, res: Response) =>
     .then(user => {
       if (!user) {
         const errors = { email: "No account found with this email" };
-        const err = Error("Validation Error.");
-        (err as Error).errors = errors;
-        (err as Error).statusCode = 400;
-        (err as Error).title = "Validation Error.";
-        return res.status(400).json({ err });
+        return res.status(400).json({ errors });
       }
 
       bcrypt.compare(password, user.password)
@@ -106,12 +98,7 @@ router.post("/login", validateLoginInput, async (req: Request, res: Response) =>
             })
             res.send({ success: true });
           } else {
-            const errors = { password: "Incorrect password" };
-            const err = Error("Validation Error.");
-            (err as Error).errors = errors;
-            (err as Error).statusCode = 400;
-            (err as Error).title = "Validation Error.";
-            return res.status(400).json({ err });
+            return res.status(400).json("Validation Error.");
           }
         });
       });
