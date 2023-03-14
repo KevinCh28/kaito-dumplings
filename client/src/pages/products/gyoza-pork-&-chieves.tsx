@@ -164,11 +164,11 @@ const GyozaPorkChieves = () => {
           <div className='product_page_container'>
             <div className='product_page_maincontent'>
               <div className='product_page_maincontent_breadcrumbs'>
-                <a href="/products">ALL PRODUCTS</a>
+                <Link href="/products">ALL PRODUCTS</Link>
                 <span> &gt; </span>
-                <a href="/products/gyoza-beef-&-cheese">{product.category} (50 PC)</a>
+                <Link href="/products/gyoza-beef-&-cheese">{product.category} (50 PC)</Link>
                 <span> &gt; </span>
-                <a href={`/products/${product.category}-${pathName}`}>{product.name}</a>
+                <Link href={`/products/${product.category}-${pathName}`}>{product.name}</Link>
               </div>
               <div className='product_page_maincontent_wrapper'>
                 <div className='product_page_maincontent_sideimages_wrapper'>
@@ -190,7 +190,7 @@ const GyozaPorkChieves = () => {
                 <div className='product_page_mainpicture_modal'>
                   <div>
                     <div>
-                      <a href="">
+                      <Link href="">
                         <div className='product_page_mainpicture_container'>
                           <div className='product_page_mainpicture_image_wrapper'>
                             <div className='product_page_mainpicture_image_container'>
@@ -198,7 +198,7 @@ const GyozaPorkChieves = () => {
                             </div>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -215,13 +215,13 @@ const GyozaPorkChieves = () => {
                         <div className='product_page_info_header_price_container'>
                           <div className='roduct_page_info_header_price'>${product.price}</div>
                         </div>
-                        <a className='product_page_info_header_reviews_container' href="">
+                        <Link className='product_page_info_header_reviews_container' href="">
                           <img src="" alt="STARS" />
                           <span className='product_page_info_header_reviews_text'>
                             <span className='product_page_info_header_reviews_text_left'>3497 </span>
                             <span className='product_page_info_header_reviews_text_right'>Reviews</span>
                           </span>
-                        </a>
+                        </Link>
                       </div>
                       <div className='product_page_price_per'>Just $6.49 per meal</div>
                     </div>
@@ -524,71 +524,71 @@ const GyozaPorkChieves = () => {
           <h4>OUR FAVORITES</h4>
           <div className='favorite_products_block'>
             <div className='favorite_products_item'>
-              <a href="">
+              <Link href="">
                 <div className='favorite_products_item_image_wrapper'>
                   <div className='favorite_products_item_image_container'>
                     <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedtrio_2_295x.png?v=1669601795" alt="" />
                   </div>
                 </div>
-              </a>
+              </Link>
               <div className='favorite_products_item_content'>
                 <p className='favorite_products_item_name'>KAITO SPECIAL SAUCES</p>
                 <div className='favorite_products_item_price'>
                   <div className='favorite_products_item_price_current'>$24.95</div>
                   <div className='favorite_products_item_price_original'></div>
                 </div>
-                <a className='favorite_products_item_button' href="">SHOP NOW</a>
+                <Link className='favorite_products_item_button' href="">SHOP NOW</Link>
               </div>
             </div>
             <div className='favorite_products_item'>
-              <a href="">
+              <Link href="">
                 <div className='favorite_products_item_image_wrapper'>
                   <div className='favorite_products_item_image_container'>
                     <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/XCJSteamerShots_295x.png?v=1651605454" alt="" />
                   </div>
                 </div>
-              </a>
+              </Link>
               <div className='favorite_products_item_content'>
                 <p className='favorite_products_item_name'>STEAMER BASKET</p>
                 <div className='favorite_products_item_price'>
                   <div className='favorite_products_item_price_current'>$29.95</div>
                   <div className='favorite_products_item_price_original'></div>
                 </div>
-                <a className='favorite_products_item_button' href="">SHOP NOW</a>
+                <Link className='favorite_products_item_button' href="">SHOP NOW</Link>
               </div>
             </div>
             <div className='favorite_products_item'>
-              <a href="">
+              <Link href="">
                 <div className='favorite_products_item_image_wrapper'>
                   <div className='favorite_products_item_image_container'>
                     <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/bowl-profile2_295x.png?v=1669777702" alt="" />
                   </div>
                 </div>
-              </a>
+              </Link>
               <div className='favorite_products_item_content'>
                 <p className='favorite_products_item_name'>DUMPLING BOWLS (2-PACK)</p>
                 <div className='favorite_products_item_price'>
                   <div className='favorite_products_item_price_current'>12.95</div>
                   <div className='favorite_products_item_price_original'></div>
                 </div>
-                <a className='favorite_products_item_button' href="">SHOP NOW</a>
+                <Link className='favorite_products_item_button' href="">SHOP NOW</Link>
               </div>
             </div>
             <div className='favorite_products_item'>
-              <a href="">
+              <Link href="">
                 <div className='favorite_products_item_image_wrapper'>
                   <div className='favorite_products_item_image_container'>
                     <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedCYB-3_1_295x.png?v=1663966317" alt="" />
                   </div>
                 </div>
-              </a>
+              </Link>
               <div className='favorite_products_item_content'>
                 <p className='favorite_products_item_name'>KAITO NOODLES</p>
                 <div className='favorite_products_item_price'>
                   <div className='favorite_products_item_price_current'>35.95</div>
                   <div className='favorite_products_item_price_original'>44.95</div>
                 </div>
-                <a className='favorite_products_item_button' href="">SHOP NOW</a>
+                <Link className='favorite_products_item_button' href="">SHOP NOW</Link>
               </div>
             </div>
           </div>

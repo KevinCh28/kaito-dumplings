@@ -73,17 +73,17 @@ const Home: NextPage = () => {
             <div className="product_card_container">
               <div className='product_card_wrapper'>
                 <div className="product_card_image">
-                  <a href="products/dumplings-beef-&-cheese">
+                  <Link href="products/dumplings-beef-&-cheese">
                     <div className='product_image_wrapper'>
                       <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedbeef-xlb_2_590x.png?v=1675392214" alt="" />
                     </div>
-                  </a>
+                  </Link>
                 </div>
                 
                 <div className="product_card_info_container">
                   <div className='product_card_info_wrapper'>
                     <div className='product_card_info_column'>
-                      <h3><a href="products/dumplings-beef-&-cheese">BEEF & CHEESE</a></h3>
+                      <h3><Link href="products/dumplings-beef-&-cheese">BEEF & CHEESE</Link></h3>
                       <div className='product_review'>
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
                           <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
@@ -139,9 +139,9 @@ const Home: NextPage = () => {
                       <div className='product_card_price'>
                         <span>$44.95</span>
                       </div>
-                      <a href="products/dumplings-beef-&-cheese" className='product_card_button'>
+                      <Link href="products/dumplings-beef-&-cheese" className='product_card_button'>
                         ORDER NOW
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -151,17 +151,17 @@ const Home: NextPage = () => {
             <div className="product_card_container">
               <div className='product_card_wrapper'>
                 <div className="product_card_image">
-                  <a href="products/dumplings-beef-&-cheese">
+                  <Link href="products/dumplings-beef-&-cheese">
                     <div className='product_image_wrapper'>
                       <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/product-1_f30f9493-ef96-446c-8dc1-e3dfce797f30_360x.png?v=1664295187" alt="" />
                     </div>
-                  </a>
+                  </Link>
                 </div>
                 
                 <div className="product_card_info_container">
                   <div className='product_card_info_wrapper'>
                     <div className='product_card_info_column'>
-                      <h3><a href="products/dumplings-beef-&-cheese">SOUP DUMPLINGS</a></h3>
+                      <h3><Link href="products/dumplings-beef-&-cheese">SOUP DUMPLINGS</Link></h3>
                       <div className='product_review'>
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
                           <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
@@ -199,9 +199,9 @@ const Home: NextPage = () => {
                       <div className='product_card_price'>
                         <span>$44.95</span>
                       </div>
-                      <a href="products/dumplings-beef-&-cheese" className='product_card_button'>
+                      <Link href="products/dumplings-beef-&-cheese" className='product_card_button'>
                         PICK MY FLAVOR
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -211,17 +211,17 @@ const Home: NextPage = () => {
             <div className="product_card_container">
               <div className='product_card_wrapper'>
                 <div className="product_card_image">
-                  <a href="products/dumplings-beef-&-cheese">
+                  <Link href="products/dumplings-beef-&-cheese">
                     <div className='product_image_wrapper'>
                       <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedDDM-3_2_360x.png?v=1665654399" alt="" />
                     </div>
-                  </a>
+                  </Link>
                 </div>
                 
                 <div className="product_card_info_container">
                   <div className='product_card_info_wrapper'>
                     <div className='product_card_info_column'>
-                      <h3><a href="products/dumplings-beef-&-cheese">NOODLES</a></h3>
+                      <h3><Link href="products/dumplings-beef-&-cheese">NOODLES</Link></h3>
                       <div className='product_review'>
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
                           <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
@@ -259,9 +259,9 @@ const Home: NextPage = () => {
                       <div className='product_card_price'>
                         <span>$44.95</span>
                       </div>
-                      <a href="/products/dumplings-beef-&-cheese" className='product_card_button'>
+                      <Link href="/products/dumplings-beef-&-cheese" className='product_card_button'>
                         PICK MY FLAVOR
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -270,23 +270,23 @@ const Home: NextPage = () => {
           </div>
         </div>
 
-        <a href="/products" className='shop_all_button'>
+        <Link href="/products" className='shop_all_button'>
           <span>SHOP ALL PRODUCTS</span>
-        </a>
+        </Link>
       </div>
 
       <div className="shop_gyozas_container">
         <section>
           <div className='shop_gyoza_image_container'>
-            <a href="/products/gyoza-beef-&-cheese">
+            <Link href="/products/gyoza-beef-&-cheese">
               <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/topdown-edited_2_bcefcd16-4d37-494e-afd9-86a87317b0df_720x_1_1512x.jpg?v=1665763652" alt="gyozas" />
-            </a>
+            </Link>
             <div className="shop_gyozas_info_container">
               <div className='shop_gyoza_info_wrapper'>
                 <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Group_9_1a01c87c-f83a-4cc8-b48e-24d01839df03_180x.png?v=1664992473" alt="image new" />
                 <p>CHINESE DUMPLINGS</p>
                 <h3>ENJOY THE FLAVORS OF SHANGHAI, SICHUAN & BEIJING</h3>
-                <a href="/products/dumplings-beef-&-cheese">SHOP DUMPLINGS</a>
+                <Link href="/products/dumplings-beef-&-cheese">SHOP DUMPLINGS</Link>
               </div>
             </div>
           </div>
@@ -387,7 +387,7 @@ const Home: NextPage = () => {
                     </div>
                     <div>
                       <p></p>
-                      <a href="">OUR STORY</a>
+                      <Link href="">OUR STORY</Link>
                     </div>
                   </div>
                 </div>

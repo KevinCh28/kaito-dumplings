@@ -109,9 +109,9 @@ const Navbar = () => {
           <div className='navbar'>
             <div className="navbar_left_wrapper">
               <div className="navbar_logo_wrapper">
-                <a className='navbar_logo' href="/">
+                <Link className='navbar_logo' href="/">
                   <Image src="/favicon.png" alt="logo" className='navbar_logo_image' />
-                </a>
+                </Link>
               </div>
             </div>
             <div className="navbar_middle_wrapper">

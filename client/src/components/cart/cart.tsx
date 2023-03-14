@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getCart, increaseItemQuantity, decreaseItemQuantity, removeItemFromCart } from '../../utils/cartApiUtils';
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
@@ -129,12 +130,12 @@ const Cart = ({ onClose = () => { } }) => {
   //     return (
   //       <div className='cart_product_recommendation_container'>
   //         <div className='cart_product_recommendation_image_container'>
-  //           <a href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>
+  //           <Link href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>
   //             <Image src={product.imageUrl} alt={product.name} />
-  //           </a>
+  //           </Link>
   //         </div>
   //         <div className='cart_product_recommendation_info'>
-  //           <a href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>{product.category}</a>
+  //           <Link href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>{product.category}</Link>
   //           <div className='cart_product_recommendation_info_price'>
   //             <div>
   //               <span>${product.price}</span>
@@ -171,16 +172,16 @@ const Cart = ({ onClose = () => { } }) => {
               return (
                 <li className='cart_item_container' key={item.productId}>
                   <div className='item_image_container'>
-                    <a href="" >
+                    <Link href="" >
                       <Image src={item.product.imageUrl} alt={item.product.name} />
-                    </a>
+                    </Link>
                   </div>
                   <div className='cart_item_info'>
                     <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.productId)}>
                       <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
                       <span className='hiddenSpan'>Remove {item.product.category} {item.product.name} from Cart</span>
                     </button>
-                    <a href="" className='cart_item_category'>{item.product.category}</a>
+                    <Link href="" className='cart_item_category'>{item.product.category}</Link>
                     <div className='cart_item_name'>{item.product.name}</div>
 
                     <div className='item_quantity_container'>
@@ -223,7 +224,7 @@ const Cart = ({ onClose = () => { } }) => {
             <h4 className='empty_cart_header'>YOUR CART IS EMPTY!</h4>
             <p className='empty_cart_text'>Add some dumplings and gyozas.</p>
             <p className='empty_cart_button'>
-              <a href="/products">Shop Now</a>
+              <Link href="/products">Shop Now</Link>
             </p>
           </div>
           <div className='empty_cart_footer_container'>

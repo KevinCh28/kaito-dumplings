@@ -234,9 +234,9 @@ const Products = () => {
                         <div className='products_page_item_image_wrapper'>
                           <div className='products_page_item_image_container'>
                             <div className="products_page_item_image_content">
-                              <a href="/products/dumplings-beef-&-cheese">
+                              <Link href="/products/dumplings-beef-&-cheese">
                                 <img className="products_page_item_image" src={product1.imageUrl} alt="" />
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -248,7 +248,7 @@ const Products = () => {
                                   <span className='products_page_item_price'>${product1.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/dumplings-beef-&-cheese">{product1.category} (50 PC)</a>
+                                  <Link href="/products/dumplings-beef-&-cheese">{product1.category} (50 PC)</Link>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -317,9 +317,9 @@ const Products = () => {
                         <div className='products_page_item_image_wrapper'>
                           <div className='products_page_item_image_container'>
                             <div className="products_page_item_image_content">
-                              <a href="/products/dumplings-beef-&-cheese">
+                              <Link href="/products/dumplings-beef-&-cheese">
                                 <img className="products_page_item_image" src={product2.imageUrl} alt="" />
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -331,7 +331,7 @@ const Products = () => {
                                   <span className='products_page_item_price'>${product2.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/dumplings-beef-&-cheese">{product2.category} (50 PC)</a>
+                                  <Link href="/products/dumplings-beef-&-cheese">{product2.category} (50 PC)</Link>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -400,9 +400,9 @@ const Products = () => {
                         <div className='products_page_item_image_wrapper'>
                           <div className='products_page_item_image_container'>
                             <div className="products_page_item_image_content">
-                              <a href="/products/dumplings-beef-&-cheese">
+                              <Link href="/products/dumplings-beef-&-cheese">
                                 <img className="products_page_item_image" src={product3.imageUrl} alt="" />
-                              </a>
+                              </Link>
                             </div>
                           </div>
                         </div>
@@ -414,7 +414,7 @@ const Products = () => {
                                   <span className='products_page_item_price'>${product3.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <a href="/products/gyoza-beef-&-cheese">{product3.category} (50 PC)</a>
+                                  <Link href="/products/gyoza-beef-&-cheese">{product3.category} (50 PC)</Link>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
@@ -491,18 +491,18 @@ const Products = () => {
             <h3><p className='products_page_subscribe_content'>
               JOIN OUR VIP DUMPLING CLUB FOR DISCOUNTS
             </p></h3>
-            <a href="/subsciption" className='products_page_subscribe_button'>SUBSCRIBE FOR 10% OFF</a>
+            <Link href="/subsciption" className='products_page_subscribe_button'>SUBSCRIBE FOR 10% OFF</Link>
           </div>
         </div>
       </div>
 
       <div className='products_page_socialmedia_container'>
         <div>
-          <div><a href=""></a></div>
-          <div><a href=""></a></div>
-          <div><a href=""></a></div>
-          <div><a href=""></a></div>
-          <div><a href=""></a></div>
+          <div><Link href=""></Link></div>
+          <div><Link href=""></Link></div>
+          <div><Link href=""></Link></div>
+          <div><Link href=""></Link></div>
+          <div><Link href=""></Link></div>
         </div>
       </div>
       {handleCartModal()}
