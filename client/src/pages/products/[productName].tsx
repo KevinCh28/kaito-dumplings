@@ -22,8 +22,7 @@ const ProductDetail = () => {
     } else {
       {productName};
     };
-    // { productName }
-  }, [productName, router.isReady]);
+  }, [productName, products, router.isReady]);
 };
 
 export default ProductDetail;
