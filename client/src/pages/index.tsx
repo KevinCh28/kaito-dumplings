@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { getCurrentUser } from '../utils/sessionApiUtils';
 
@@ -50,7 +51,7 @@ const Home: NextPage = () => {
               </Link>
             </div>
             <div className="featured_product_image_container">
-              <img
+              <Image
                 src="//cdn.shopify.com/s/files/1/0042/3834/4321/files/assets_bc154811e83d4532a4f4f57c9d96f6c3_a16e5f1e74a34f049e81832530bf9734.png?v=1670451362"
                 alt="featured product image"
                 className="featured_product_image"
@@ -74,7 +75,7 @@ const Home: NextPage = () => {
                 <div className="product_card_image">
                   <a href="products/dumplings-beef-&-cheese">
                     <div className='product_image_wrapper'>
-                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedbeef-xlb_2_590x.png?v=1675392214" alt="" />
+                      <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedbeef-xlb_2_590x.png?v=1675392214" alt="" />
                     </div>
                   </a>
                 </div>
@@ -152,7 +153,7 @@ const Home: NextPage = () => {
                 <div className="product_card_image">
                   <a href="products/dumplings-beef-&-cheese">
                     <div className='product_image_wrapper'>
-                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/product-1_f30f9493-ef96-446c-8dc1-e3dfce797f30_360x.png?v=1664295187" alt="" />
+                      <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/product-1_f30f9493-ef96-446c-8dc1-e3dfce797f30_360x.png?v=1664295187" alt="" />
                     </div>
                   </a>
                 </div>
@@ -212,7 +213,7 @@ const Home: NextPage = () => {
                 <div className="product_card_image">
                   <a href="products/dumplings-beef-&-cheese">
                     <div className='product_image_wrapper'>
-                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedDDM-3_2_360x.png?v=1665654399" alt="" />
+                      <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedDDM-3_2_360x.png?v=1665654399" alt="" />
                     </div>
                   </a>
                 </div>
@@ -278,11 +279,11 @@ const Home: NextPage = () => {
         <section>
           <div className='shop_gyoza_image_container'>
             <a href="/products/gyoza-beef-&-cheese">
-              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/topdown-edited_2_bcefcd16-4d37-494e-afd9-86a87317b0df_720x_1_1512x.jpg?v=1665763652" alt="gyozas" />
+              <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/topdown-edited_2_bcefcd16-4d37-494e-afd9-86a87317b0df_720x_1_1512x.jpg?v=1665763652" alt="gyozas" />
             </a>
             <div className="shop_gyozas_info_container">
               <div className='shop_gyoza_info_wrapper'>
-                <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Group_9_1a01c87c-f83a-4cc8-b48e-24d01839df03_180x.png?v=1664992473" alt="image new" />
+                <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Group_9_1a01c87c-f83a-4cc8-b48e-24d01839df03_180x.png?v=1664992473" alt="image new" />
                 <p>CHINESE DUMPLINGS</p>
                 <h3>ENJOY THE FLAVORS OF SHANGHAI, SICHUAN & BEIJING</h3>
                 <a href="/products/dumplings-beef-&-cheese">SHOP DUMPLINGS</a>
@@ -300,7 +301,7 @@ const Home: NextPage = () => {
               <p>Made daily and shipped directly to your door. Enjoy our melt-free guarantee!</p>
             </div>
             <div className='shipping_description_gif'>
-              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/mila2.gif?v=1673460859" alt="" />
+              <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/mila2.gif?v=1673460859" alt="" />
             </div>
           </div>
         </div>
@@ -411,10 +412,10 @@ const Home: NextPage = () => {
           </div>
           <div className='contact_us_image_container'>
             <div className='contact_us_image1'>
-              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/baby-alt-min_590x.png?v=1658852252" alt="" />
+              <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/baby-alt-min_590x.png?v=1658852252" alt="" />
             </div>
             <div className='contact_us_image2'>
-              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/background-image-2_360x.png?v=1613163280" alt="" />
+              <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/background-image-2_360x.png?v=1613163280" alt="" />
             </div>
           </div>
         </div>

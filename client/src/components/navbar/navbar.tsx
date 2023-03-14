@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Cart from '../cart/cart';
 import { getCurrentUser } from '../../utils/sessionApiUtils';
@@ -40,7 +41,7 @@ const Navbar = () => {
             <span className='navbar_right_buttons_text'>ORDER NOW</span>
           </Link>
           <div onClick={() => setShowModal(true)} className="navbar_cart_container">
-            <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
+            <Image src="/cart.png" alt="cart" className="navbar_cart_image"/>
           </div>
         </div>
       )
@@ -61,7 +62,7 @@ const Navbar = () => {
             <span className='navbar_right_buttons_text'>ORDER NOW</span>
           </Link>
           <div onClick={() => setShowModal(true)} className="navbar_cart_container">
-            <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
+            <Image src="/cart.png" alt="cart" className="navbar_cart_image"/>
           </div>
         </div>
       )
@@ -109,7 +110,7 @@ const Navbar = () => {
             <div className="navbar_left_wrapper">
               <div className="navbar_logo_wrapper">
                 <a className='navbar_logo' href="/">
-                  <img src="/favicon.png" alt="logo" className='navbar_logo_image' />
+                  <Image src="/favicon.png" alt="logo" className='navbar_logo_image' />
                 </a>
               </div>
             </div>

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useState, useEffect, SyntheticEvent } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
