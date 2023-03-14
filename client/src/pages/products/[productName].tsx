@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { getProducts } from "@/src/utils/productApiUtils";
 
 const ProductDetail = () => {
   const router = useRouter();
-  const productName = router.query.productName
-  const products = {
+  const productName = (router.query.productName as string);
+  const products: { [key: string]: boolean } = {
     'dumplings-veggie': true,
     'dumplings-chicken-&-cabbage': true,
     'dumplings-beef-&-cheese': true,
@@ -17,12 +16,13 @@ const ProductDetail = () => {
   };
 
   useEffect(() => {
-    if (!products.productName) {
+    if (!products[productName]) {
       console.log('Product not found');
       router.push('/products');
     } else {
-      return {productName};
+      {productName};
     };
+    // { productName }
   }, [productName, router.isReady]);
 };
 
