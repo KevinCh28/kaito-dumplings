@@ -5,15 +5,13 @@ import passport from "passport";
 import store from "connect-mongo";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-const db = require("../../config/keys").mongoURI;
-
-import { config } from "dotenv";
-config();
-
 import usersRouter from "../routes/users/users";
 import productsRouter from "../routes/products/products";
 import ordersRouter from "../routes/orders/orders";
 import cartsRouter from "../routes/carts/carts";
+import "dotenv/config";
+
+const mongoURI = process.env.mongoURI;
 
 function createApp(): Express {
   const app = express();
@@ -30,7 +28,7 @@ function createApp(): Express {
       resave: false,
       saveUninitialized: false,
       cookie: { maxAge: 60000 * 60 * 24 * 30, },
-      store: store.create({ mongoUrl: db })
+      store: store.create({ mongoUrl: mongoURI })
     })
   );
 

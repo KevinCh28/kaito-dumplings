@@ -6,14 +6,14 @@ import validateLoginInput from "../../validation/login";
 import validateRegisterInput from "../../validation/register";
 import User from "../../database/schemas/User";
 import { Request, Response, NextFunction } from "express";
-const keys = require("../../../config/keys");
+import "dotenv/config";
 
 // Private Auth Route for accessing user data on the frontend once logged in
 // Get /api/users/current
 router.get("/current", async (req: Request, res: Response) => {
   try {
     const cookie = req.cookies['jwt'];
-    const claims = jwt.verify(cookie, keys.secretOrKey) as JwtPayload;
+    const claims = jwt.verify(cookie, process.env.secretOrKey as string) as JwtPayload;
 
     if (!claims) {
       return res.status(401).send({ err: "Unauthenticated" });
@@ -55,7 +55,7 @@ router.post("/register", validateRegisterInput, async (req: Request, res: Respon
         newUser.password = hashedPassword;
         const user = await newUser.save();
         const userInfo = { _id: user._id };
-        const token = jwt.sign(userInfo, keys.secretOrKey);
+        const token = jwt.sign(userInfo, process.env.secretOrKey as string);
 
         res.cookie('jwt', token, {
           httpOnly: true,
@@ -90,7 +90,7 @@ router.post("/login", validateLoginInput, async (req: Request, res: Response) =>
         .then(isMatch => {
           if (isMatch) {
             const userInfo = { _id: user._id };
-            const token = jwt.sign(userInfo, keys.secretOrKey);
+            const token = jwt.sign(userInfo, process.env.secretOrKey as string);
 
             res.cookie('jwt', token, {
               httpOnly: true,
