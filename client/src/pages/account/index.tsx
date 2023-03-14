@@ -30,7 +30,6 @@ const AccountPage: NextPage = () => {
   useEffect(() => {
     getOrders(user.id)
       .then((res) => {
-        console.log(orders)
         setOrders(res);
       })
       .catch((err) => {

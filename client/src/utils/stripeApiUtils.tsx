@@ -4,7 +4,7 @@ const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
 import { Stripe, loadStripe } from "@stripe/stripe-js";
 let stripePromise: Promise<Stripe | null>;
 
-export const checkout = async (items: []) => {
+export const checkout = async (items: [{ quantity: number, product: { stripeId: string } }]) => {
   try {
     const lineItems = items.map((item: { product: { stripeId: string }, quantity: number }) => ({ price: item.product.stripeId, quantity: item.quantity }));
     const { session } = await fetch('/api/stripe/sessions', {

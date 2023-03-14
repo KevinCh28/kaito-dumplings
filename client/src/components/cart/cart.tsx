@@ -14,23 +14,38 @@ const Cart = ({ onClose = () => { } }) => {
     'dumplings': true,
     'gyoza': true,
   });
-  const [recommendedProducts, setRecommendedProducts] = useState([]);
+  // const [recommendedProducts, setRecommendedProducts] = useState([{
+  //   _id: '',
+  //   name: '',
+  //   category: '',
+  //   price: 0,
+  //   imageUrl: '',
+  //   description: '',
+  //   stripeId: '',
+  // }]);
   const [cart, setCart] = useState([{
-    quantity: 0,
+    quantity: 1,
     product: {
       _id: '',
       name: '',
       category: '',
-      price: 0,
+      price: 44.95,
       imageUrl: '',
       description: '',
-    },
-    productId: '',
+      stripeId: '',
+    }
   }]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [userId, setUserId] = useState('');
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([{
+    name: '',
+    category: '',
+    price: 44.95,
+    imageUrl: '',
+    description: '',
+    stripeId: '',
+  }]);
 
   // Gets user's id
   useEffect(() => {
@@ -64,15 +79,15 @@ const Cart = ({ onClose = () => { } }) => {
   // }, [cart]);
 
   // Gets recommended products
-  useEffect(() => {
-    if (recommended.dumplings && recommended.gyoza) {
-      setRecommendedProducts([products[0], products[6]]);
-    } else if (recommended.dumplings) {
-      setRecommendedProducts([products[6]]);
-    } else if (recommended.gyoza) {
-      setRecommendedProducts([products[0]]);
-    }
-  }, [recommended]);
+  // useEffect(() => {
+  //   if (recommended.dumplings && recommended.gyoza) {
+  //     setRecommendedProducts([products[0], products[6]]);
+  //   } else if (recommended.dumplings) {
+  //     setRecommendedProducts([products[6]]);
+  //   } else if (recommended.gyoza) {
+  //     setRecommendedProducts([products[0]]);
+  //   }
+  // }, [recommended]);
 
   // Calculates subtotal items and amount in cart
   useEffect(() => {
@@ -167,17 +182,17 @@ const Cart = ({ onClose = () => { } }) => {
       return (
         <div className='cart_items_container'>
           <ul className='cart_items'>
-            {cart.map((item: { product: { category: string, name: string, imageUrl: string, price: number }, productId: string, quantity: number }) => {
+            {cart.map((item: { product: { _id: string, category: string, name: string, imageUrl: string, price: number }, quantity: number }) => {
               if (recommended[item.product.category] === true) setRecommended({ ...recommended, [item.product.category]: false });
               return (
-                <li className='cart_item_container' key={item.productId}>
+                <li className='cart_item_container' key={item.product._id}>
                   <div className='item_image_container'>
                     <Link href="" >
                       <Image src={item.product.imageUrl} alt={item.product.name} />
                     </Link>
                   </div>
                   <div className='cart_item_info'>
-                    <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.productId)}>
+                    <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.product._id)}>
                       <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
                       <span className='hiddenSpan'>Remove {item.product.category} {item.product.name} from Cart</span>
                     </button>
