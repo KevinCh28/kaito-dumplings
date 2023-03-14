@@ -71,7 +71,7 @@ const Products = () => {
       });
   }, [gyozaId]);
 
-  const handleAddDumplingsToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
+  const handleAddDumplingsToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     increaseItemQuantity(user._id, product2, 1)
       .then((res) => {
@@ -83,7 +83,7 @@ const Products = () => {
     );
   };
 
-  const handleAddGyozaToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
+  const handleAddGyozaToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     increaseItemQuantity(user._id, product3, 1)
       .then((res) => {

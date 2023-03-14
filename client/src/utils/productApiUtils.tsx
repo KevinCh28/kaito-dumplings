@@ -6,8 +6,8 @@ export const getProducts = async () => {
 };
 
 // Get products based user's cart
-export const getProductsByIds = async (cart: any) => {
-  const promises = cart.products.map(async (product: any) => {
+export const getProductsByIds = async (cart: object) => {
+  const promises = cart.products.map(async (product: object) => {
     const { data } = await axios.get(`/api/products/${product.productId}`);
     const cart = {
       productId: data._id,

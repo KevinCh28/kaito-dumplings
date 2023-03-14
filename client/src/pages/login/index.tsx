@@ -18,7 +18,7 @@ const Login = () => {
     password: "",
   };
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: { target: { name: string; value: string; }; }) => {
     const { name, value } = e.target;
     setUser((prevState) => ({
       ...prevState,
@@ -38,7 +38,7 @@ const Login = () => {
       .catch((err) => {
         console.log(err.response.data)
         const newErrors = err.response.data.err.errors;
-        Object.keys(newErrors).forEach(function (key: any) {
+        Object.keys(newErrors).forEach(function (key: string) {
           setErrors((prevState) => ({
             ...prevState,
             [key]: newErrors[key],
@@ -47,7 +47,7 @@ const Login = () => {
       });
   };
 
-  const handleErrors = (key: any) => {
+  const handleErrors = (key: object) => {
     if (errors[key] !== "") {
       return <div>{errors[key]}</div>;
     } else {

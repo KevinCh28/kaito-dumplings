@@ -45,7 +45,7 @@ const AccountPage: NextPage = () => {
       })
   };
 
-  const handleCancel = async (orderNum: any) => {
+  const handleCancel = async (orderNum: string) => {
     cancelOrder(user.id, orderNum).then((res) => {
       getOrders(user.id).then((res) => {
         setOrders(res);
@@ -64,7 +64,7 @@ const AccountPage: NextPage = () => {
       return (
         <div className='account_page_orders_container'>
           <h2 className='account_page_orders_header'>YOUR ORDERS</h2>
-          {orders.map((order: any) => {
+          {orders.map((order: object) => {
             const date = order.date.split(' ')
             const newDate = date[1] + " " + date[2] + ", " + date[3]
 

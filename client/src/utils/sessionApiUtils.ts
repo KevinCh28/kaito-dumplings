@@ -8,11 +8,11 @@ export const setAuthToken = (token: string) => {
   }
 };
 
-export const register = async (userData: any) => {
+export const register = async (userData: object) => {
   return await axios.post('/api/users/register', userData);
 };
 
-export const login = async (userData: any) => {
+export const login = async (userData: object) => {
   return await axios.post('/api/users/login', userData);
 };
 

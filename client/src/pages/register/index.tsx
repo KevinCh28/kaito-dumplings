@@ -36,7 +36,7 @@ const Register = () => {
     password2: "",
   };
 
-  const handleChange = (e: { target: { name: any; value: any; } } ) => {
+  const handleChange = (e: { target: { name: string; value: string; } } ) => {
     const { name, value } = e.target;
     setUser((prevState) => ({
       ...prevState,
@@ -64,7 +64,7 @@ const Register = () => {
       .catch((err) => {
         console.log(err)
         const newErrors = err.response.data.err.errors;
-        Object.keys(newErrors).forEach(function (key: any, value: any) {
+        Object.keys(newErrors).forEach(function (key: string) {
           setErrors((prevState) => ({
             ...prevState,
             [key]: newErrors[key],

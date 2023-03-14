@@ -45,7 +45,7 @@ const Cart = ({ onClose = () => { } }) => {
   }, []);
 
   // useEffect(() => {
-  //   cart.map((item: any) => {
+  //   cart.map((item: object) => {
   //     if (recommended[item.product.category] === true) setRecommended({ ...recommended, [item.product.category]: false });
   //   })
   // }, [cart]);
@@ -108,7 +108,7 @@ const Cart = ({ onClose = () => { } }) => {
 
   // Renders recommended products based on empty cart
   // const mapProducts = () => {
-  //   recommendedProducts.map((product: any) => {
+  //   recommendedProducts.map((product: object) => {
   //     if (recommendedProducts.length === 0) {
   //       return (
   //         <div className='cart_product_recommendation_container'></div>

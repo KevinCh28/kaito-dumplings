@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   const [formEmail, setFormEmail] = useState('');
   const [formQuestion, setFormQuestion] = useState('');
 
-  const handleChange = (e: { target: { name: any; value: any; } }) => {
+  const handleChange = (e: { target: { name: string; value: string; } }) => {
     console.log(e.target)
     const { name, value } = e.target;
 

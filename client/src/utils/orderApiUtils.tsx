@@ -1,21 +1,21 @@
 import axios from "axios";
 
-export const getOrders = async (userId: any) => {
+export const getOrders = async (userId: string) => {
   const response = await axios.get(`/api/orders/user/${userId}`);
   return response.data;
 };
 
-export const createOrder = async (cartInfo: any) => {
+export const createOrder = async (cartInfo: object) => {
   const response = await axios.post("/api/orders/create", cartInfo);
   return response.data;
 }
 
-// export const cancelOrder = async (userId: any, orderNumber: any) => {
+// export const cancelOrder = async (userId: string, orderNumber: string) => {
 //   const response = await axios.put(`/api/orders/user/${userId}/${orderNumber}`, { userId, orderNumber });
 //   return response.data;
 // }
 
-export const cancelOrder = async (userId: any, orderNumber: any) => {
+export const cancelOrder = async (userId: string, orderNumber: string) => {
   console.log(userId)
   console.log(orderNumber)
   return await axios.put(`/api/orders/user/${userId}/${orderNumber}`, { userId, orderNumber });

@@ -15,7 +15,7 @@ export default async function handler(req: Request, res: Response) {
         cancel_url: `${req.headers.origin}/?canceled=true`,
       });
       res.status(200).json({ session });
-    } catch (err: any) {
+    } catch (err: Error) {
       res.status(err.statusCode || 500).json(err.message);
     }
   } else {
