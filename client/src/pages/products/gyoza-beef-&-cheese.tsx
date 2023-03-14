@@ -128,7 +128,7 @@ const GyozaBeefCheese = () => {
     )
   };
 
-  const handleAddGyozaToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
+  const handleAddGyozaToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     increaseItemQuantity(user._id, product, quantity)
       .then((res) => {

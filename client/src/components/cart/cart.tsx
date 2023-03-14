@@ -66,7 +66,7 @@ const Cart = ({ onClose = () => { } }) => {
     let total = 0;
     let totalCartItems = 0
 
-    cart.forEach((item: any) => {
+    cart.forEach((item: object) => {
       totalCartItems += item.quantity;
       total += item.product.price * item.quantity;
     })
@@ -154,7 +154,7 @@ const Cart = ({ onClose = () => { } }) => {
       return (
         <div className='cart_items_container'>
           <ul className='cart_items'>
-            {cart.map((item: any) => {
+            {cart.map((item: object) => {
               if (recommended[item.product.category] === true) setRecommended({ ...recommended, [item.product.category]: false });
               return (
                 <li className='cart_item_container' key={item.productId}>
@@ -228,7 +228,7 @@ const Cart = ({ onClose = () => { } }) => {
     }
   }
 
-  const handleAddQuantity = ( product: any ) => {
+  const handleAddQuantity = ( product: object ) => {
     increaseItemQuantity(userId, product, 1).then((res) => {
       if (recommended[product.category] === true) setRecommended({ ...recommended, [product.category]: false });
       getCart(userId)
@@ -239,7 +239,7 @@ const Cart = ({ onClose = () => { } }) => {
     })
   };
 
-  const handleMinusQuantity = (product: any ) => {
+  const handleMinusQuantity = (product: object ) => {
     decreaseItemQuantity(userId, product).then((res) => {
       getCart(userId)
         .then((res) => {
@@ -249,7 +249,7 @@ const Cart = ({ onClose = () => { } }) => {
     })
   };
 
-  const handleRemoveItem = ( productId: any ) => {
+  const handleRemoveItem = ( productId: object ) => {
     removeItemFromCart(userId, productId).then((res) => {
       // if (recommended[product.category] === false) setRecommended({ ...recommended, [product.category]: true });
       getCart(userId)

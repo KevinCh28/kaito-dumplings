@@ -126,7 +126,7 @@ const DumplingsBeefCheese = () => {
     )
   };
 
-  const handleAddDumplingToCart = (e: { preventDefault: () => void; target: { value: any; }; }) => {
+  const handleAddDumplingToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     increaseItemQuantity(user._id, product, quantity)
       .then((res) => {
