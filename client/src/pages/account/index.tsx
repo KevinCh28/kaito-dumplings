@@ -14,7 +14,8 @@ const AccountPage: NextPage = () => {
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
-        const element = window.document.getElementsByClassName('navbar_main')[0];
+        const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
+        let style = element.style as CSSStyleDeclaration;
         element.style.backgroundColor = 'rgb(246, 22, 31)';
         setUser({
           id: res._id,
@@ -64,7 +65,7 @@ const AccountPage: NextPage = () => {
       return (
         <div className='account_page_orders_container'>
           <h2 className='account_page_orders_header'>YOUR ORDERS</h2>
-          {orders.map((order: object) => {
+          {orders.map((order: { orderNumber: string, date: string, _id: string, orderStatus: string, total: number }) => {
             const date = order.date.split(' ')
             const newDate = date[1] + " " + date[2] + ", " + date[3]
 
