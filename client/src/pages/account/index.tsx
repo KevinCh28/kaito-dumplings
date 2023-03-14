@@ -21,19 +21,13 @@ const AccountPage: NextPage = () => {
           firstname: res.firstname
         });
       })
-      .catch((err) => {
-        router.push('/login');
-      }
-    );
+    router.push('/login');
   }, []);
 
   useEffect(() => {
     getOrders(user.id)
       .then((res) => {
         setOrders(res);
-      })
-      .catch((err) => {
-        console.log(err);
       })
   }, [user]);
 
