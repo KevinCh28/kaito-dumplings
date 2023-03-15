@@ -2,7 +2,6 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { getCurrentUser } from '../utils/sessionApiUtils';
 
 const Home: NextPage = () => {
   const [formName, setFormName] = useState('');
@@ -10,7 +9,6 @@ const Home: NextPage = () => {
   const [formQuestion, setFormQuestion] = useState('');
 
   const handleChange = (e: { target: { name: string; value: string; } }) => {
-    console.log(e.target)
     const { name, value } = e.target;
 
     switch (name) {
@@ -35,11 +33,11 @@ const Home: NextPage = () => {
           <div className="featured_product">
             <div className="featured_product_header">
               <h1>
-                GRANDMA CALLED.
+                {`GRANDMA CALLED.`}
                 <br />
                 SHE WANTS HER
                 <br />
-                DUMPLINGS BACK.
+                {`DUMPLINGS BACK.`}
               </h1>
               <ul className="featured_product_description">
                 <li>Authentic Chinese soup dumplings</li>
@@ -66,7 +64,7 @@ const Home: NextPage = () => {
       </div>
 
       <div className="top3_products_container">
-        <h3>EASY, FAST, DELISH.</h3>
+        <h3>{`EASY, FAST, DELISH.`}</h3>
         <div className="product_carousel_container">
           <div className="product_carousel_cards">
 
@@ -83,7 +81,7 @@ const Home: NextPage = () => {
                 <div className="product_card_info_container">
                   <div className='product_card_info_wrapper'>
                     <div className='product_card_info_column'>
-                      <h3><Link href="products/dumplings-beef-&-cheese">BEEF & CHEESE</Link></h3>
+                      <h3><Link href="products/dumplings-beef-&-cheese">{`BEEF & CHEESE`}</Link></h3>
                       <div className='product_review'>
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
                           <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
@@ -113,31 +111,13 @@ const Home: NextPage = () => {
                         </svg>
                       </div>
                       <div className='product_card_info_product_description'>
-                        <p>Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.</p>
+                        <p>{`Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.`}</p>
                       </div>
-                      {/* <div className='product_card_info_variants'>
-                        <div className='product_card_variants_container'>
-                          <div className='product_card_variants_wrapper'>
-                            <div className='product_card_variant'>
-                              <button>BEEF & CHEESE,</button>
-                            </div>
-                            <div className='product_card_variant'>
-                              <button>PORK & CHIEVES,</button>
-                            </div>
-                            <div className='product_card_variant'>
-                              <button>CHICKEN & CABBAGE,</button>
-                            </div>
-                            <div className='product_card_variant'>
-                              <button>and VEGE</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
                     </div>
 
                     <div className='product_card_price_and_button'>
                       <div className='product_card_price'>
-                        <span>$44.95</span>
+                        <span>{`$44.95`}</span>
                       </div>
                       <Link href="products/dumplings-beef-&-cheese" className='product_card_button'>
                         ORDER NOW
@@ -191,7 +171,7 @@ const Home: NextPage = () => {
                         </svg>
                       </div>
                       <div className='product_card_info_product_description'>
-                        <p>Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.</p>
+                        <p>{`Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.`}</p>
                       </div>
                     </div>
 
@@ -251,7 +231,7 @@ const Home: NextPage = () => {
                         </svg>
                       </div>
                       <div className='product_card_info_product_description'>
-                        <p>Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.</p>
+                        <p>{`Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.`}</p>
                       </div>
                     </div>
 
@@ -285,7 +265,7 @@ const Home: NextPage = () => {
               <div className='shop_gyoza_info_wrapper'>
                 <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Group_9_1a01c87c-f83a-4cc8-b48e-24d01839df03_180x.png?v=1664992473" alt="image new" />
                 <p>CHINESE DUMPLINGS</p>
-                <h3>ENJOY THE FLAVORS OF SHANGHAI, SICHUAN & BEIJING</h3>
+                <h3>{`ENJOY THE FLAVORS OF SHANGHAI, SICHUAN & BEIJING`}</h3>
                 <Link href="/products/dumplings-beef-&-cheese">SHOP DUMPLINGS</Link>
               </div>
             </div>
@@ -298,7 +278,7 @@ const Home: NextPage = () => {
           <div className='shipping_description_wrapper'>
             <div className='shipping_descrpition_text'>
               <h2>SHIPPED FROZEN TO YOUR DOOR</h2>
-              <p>Made daily and shipped directly to your door. Enjoy our melt-free guarantee!</p>
+              <p>{`Made daily and shipped directly to your door. Enjoy our melt-free guarantee!`}</p>
             </div>
             <div className='shipping_description_gif'>
               <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/mila2.gif?v=1673460859" alt="" />
@@ -351,7 +331,7 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                   <span className='five_star_reviews'>
-                    5-STAR REVIEWS
+                    {`5-STAR REVIEWS`}
                   </span>
                 </div>
               </div>
@@ -401,7 +381,7 @@ const Home: NextPage = () => {
         <div className="contact_us_wrapper">
           <div className='contact_us_form_container'>
             <div className='contact_us_form_header'>
-              <h3>QUESTIONS, COMMENTS, FEEDBACK?</h3>
+              <h3>{`QUESTIONS, COMMENTS, FEEDBACK?`}</h3>
             </div>
             <form className='contact_us_form'>
               <input type="text" placeholder='Name' value={formName} onChange={handleChange}/>
