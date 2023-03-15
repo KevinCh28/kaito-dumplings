@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getProduct } from '../../utils/productApiUtils';
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import Cart from '../../components/cart/cart';
@@ -64,7 +64,7 @@ const GyozaVeggie = () => {
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
-  }, [flavors, pathName]);
+  }, [flavors[pathName]]);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
