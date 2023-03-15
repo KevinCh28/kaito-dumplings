@@ -39,7 +39,7 @@ const GyozaVeggie = () => {
     cart: {},
     orders: {},
   });
-  const [gyozaId, setGyozaId] = useState('63efa9259010d97ce174715f');
+  const [gyozaId, setGyozaId] = useState(flavors[pathName]);
   const [flavorsHidden, setFlavorsHidden] = useState(true);
   const [hiddenTab, setHiddenTab] = useState<{ [key: number]: boolean }>({
     0: true,
@@ -61,12 +61,12 @@ const GyozaVeggie = () => {
 
   // Get product
   useEffect(() => {
-    getProduct(flavors[pathName]).then((res) => {
+    getProduct(gyozaId).then((res) => {
       const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
-  }, [flavors]);
+  }, []);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
