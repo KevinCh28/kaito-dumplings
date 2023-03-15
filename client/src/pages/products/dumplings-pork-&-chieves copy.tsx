@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getProduct } from '../../utils/productApiUtils';
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import Cart from '../../components/cart/cart';
@@ -12,12 +12,14 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 const DumplingsBeefCheese = () => {
   const router = useRouter();
   const pathName = router.pathname.split('-').slice(1).join('-');
-  const flavors: { [key: string]: string } = {
-    'beef-&-cheese': '63efa9419010d97ce1747161',
-    'chicken-&-cabbage': '63efa96f9010d97ce1747163',
-    'pork-&-chieves': '63efa8d89010d97ce1747159',
-    'veggie': '63efa9119010d97ce174715c'
-  };
+  const flavors: { [key: string]: string } = useMemo(() => {
+    return {
+      'beef-&-cheese': '63efa8319010d97ce1747153',
+      'chicken-&-cabbage': '63efa8b49010d97ce1747155',
+      'pork-&-chieves': '63efa8d19010d97ce1747157',
+      'veggie': '63efa9259010d97ce174715f',
+    };
+  }, []);
   const [product, setProduct] = useState({
     _id: '',
     name: '',
