@@ -64,7 +64,7 @@ const GyozaVeggie = () => {
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
-  }, []);
+  }, [flavors, pathName]);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
