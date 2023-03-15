@@ -102,6 +102,12 @@ img {
   overflow: clip;
 }
 
+Image {
+  border-style: none;
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
 .hiddenSpan {
   border: 0;
   clip: rect(0 0 0 0);
