@@ -66,7 +66,7 @@ const GyozaBeefCheese = () => {
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
-  }, [flavors[pathName]]);
+  }, [pathName]);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
