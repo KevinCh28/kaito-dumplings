@@ -61,7 +61,7 @@ const DumplingsVeggie = () => {
 
   // Get product
   useEffect(() => {
-    getProduct(flavors[pathName]).then((res) => {
+    getProduct(dumplingId).then((res) => {
       const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
