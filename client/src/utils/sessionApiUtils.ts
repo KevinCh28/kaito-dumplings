@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = "https://kaito-five.vercel.app/";
+const baseUrl = process.env.NODE_ENV === 'development' ? "" : "https://kaito-five.vercel.app/";
 
 export const setAuthToken = (token: string) => {
   if (token) {
