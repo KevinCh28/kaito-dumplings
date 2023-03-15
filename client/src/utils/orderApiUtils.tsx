@@ -7,14 +7,9 @@ export const getOrders = async (userId: string) => {
 };
 
 export const createOrder = async (cartInfo: object) => {
-  const response = await axios.post('${baseUrl}/api/orders/create', cartInfo);
+  const response = await axios.post(`${baseUrl}/api/orders/create`, cartInfo);
   return response.data;
 }
-
-// export const cancelOrder = async (userId: string, orderNumber: string) => {
-//   const response = await axios.put(`/api/orders/user/${userId}/${orderNumber}`, { userId, orderNumber });
-//   return response.data;
-// }
 
 export const cancelOrder = async (userId: string, orderNumber: string) => {
   console.log(userId)
