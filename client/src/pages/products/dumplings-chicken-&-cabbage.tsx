@@ -175,13 +175,13 @@ const DumplingsBeefCheese = () => {
                   <div className='product_page_maincontent_sideimages_container'>
                     <div className='product_page_maincontent_sideimages_image_wrapper'>
                       <div className='product_page_maincontent_sideimages_image_container'>
-                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
+                        <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
                       </div>
                       <div className='product_page_maincontent_sideimages_image_container'>
-                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/beefXLB-wide_1.png?v=1675392284" alt="" />
+                        <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/beefXLB-wide_1.png?v=1675392284" alt="" />
                       </div>
                       <div className='product_page_maincontent_sideimages_image_container'>
-                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/beefxlb-closeup_1.png?v=1675392284" alt="" />
+                        <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/beefxlb-closeup_1.png?v=1675392284" alt="" />
                       </div>
                     </div>
                   </div>
@@ -194,7 +194,7 @@ const DumplingsBeefCheese = () => {
                         <div className='product_page_mainpicture_container'>
                           <div className='product_page_mainpicture_image_wrapper'>
                             <div className='product_page_mainpicture_image_container'>
-                              <img className='product_page_mainpicture_image' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
+                              <Image className='product_page_mainpicture_image' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
                             </div>
                           </div>
                         </div>
@@ -216,7 +216,7 @@ const DumplingsBeefCheese = () => {
                           <div className='roduct_page_info_header_price'>${product.price}</div>
                         </div>
                         <Link className='product_page_info_header_reviews_container' href="">
-                          <img src="" alt="STARS" />
+                          <Image src="" alt="STARS" />
                           <span className='product_page_info_header_reviews_text'>
                             <span className='product_page_info_header_reviews_text_left'>3497 </span>
                             <span className='product_page_info_header_reviews_text_right'>Reviews</span>
@@ -290,7 +290,7 @@ const DumplingsBeefCheese = () => {
                             <div className='product_page_shoppay_button_info'>
                               <span className='product_page_shoppay_button_text'>Buy with </span>
                               <span className='product_page_shoppay_button_image'>
-                                <img className='shoppay_image' src="/ShopPayWhite.png" alt="" />
+                                <Image className='shoppay_image' src="/ShopPayWhite.png" alt="" />
                               </span>
                             </div>
                           </div>
@@ -303,13 +303,13 @@ const DumplingsBeefCheese = () => {
 
                   <div className='product_page_product_description_images_container'>
                     <div>
-                      <img src="https://cdn.shopify.com/s/files/1/0687/9045/2519/files/4.png?v=1675410709" alt="" />
+                      <Image src="https://cdn.shopify.com/s/files/1/0687/9045/2519/files/4.png?v=1675410709" alt="" />
                     </div>
                     <div>
-                      <img src="https://cdn.shopify.com/s/files/1/0687/9045/2519/files/6.png?v=1675410708" alt="" />
+                      <Image src="https://cdn.shopify.com/s/files/1/0687/9045/2519/files/6.png?v=1675410708" alt="" />
                     </div>
                     <div>
-                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/5.png?v=1676529631" alt="" />
+                      <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/5.png?v=1676529631" alt="" />
                     </div>
                   </div>
 
@@ -331,19 +331,19 @@ const DumplingsBeefCheese = () => {
                         <div className='product_page_tab_howtomake_container'>
                           <ul>
                             <li>
-                              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/water_boiling.svg?v=1663759606" alt="" />
+                              <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/water_boiling.svg?v=1663759606" alt="" />
                               In a large wok or pan, bring 2-3 inches of water to a rolling boil.
                             </li>
                             <li>
-                              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/place_dumplings.svg?v=1663759606" alt="" />
+                              <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/place_dumplings.svg?v=1663759606" alt="" />
                               Place dumplings in lined steamer basket. Make sure to leave a 1 inch gap between dumplings.
                             </li>
                             <li>
-                              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/timer.svg?v=1663759605" alt="" />
+                              <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/timer.svg?v=1663759605" alt="" />
                               Steam dumplings for 11 minutes (until internal temp. reaches 165°F).
                             </li>
                             <li>
-                              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/serve-dumplings.svg?v=1663759605" alt="" />
+                              <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/serve-dumplings.svg?v=1663759605" alt="" />
                               Remove from heat and rest, covered, for 2 minutes. Serve with your favorite sauces and enjoy!
                             </li>
                           </ul>
@@ -361,7 +361,7 @@ const DumplingsBeefCheese = () => {
                           <div className='product_page_tab_header_arrow'></div>
                         </div>
                         <div className='product_page_tab_highlight_container'>
-                          <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formatteddumpling-lifestyle3.png?v=1663979284" alt="" />
+                          <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formatteddumpling-lifestyle3.png?v=1663979284" alt="" />
                           <b>MONDAKO FLOUR</b>
                           <p>Milled from a blend of premium northern winter and spring wheats, this flour helps create a supple, delicate dumpling skin.</p>
                           <b>FILLING</b>
@@ -513,7 +513,7 @@ const DumplingsBeefCheese = () => {
               </div>
             </div>
             <div className='product_show_page_origin_image_container'>
-              <img className='product_show_page_origin_image' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Region-shanghai_480x.png?v=1663723126" alt="" />
+              <Image className='product_show_page_origin_image' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Region-shanghai_480x.png?v=1663723126" alt="" />
             </div>
           </div>
         </div>
@@ -527,7 +527,7 @@ const DumplingsBeefCheese = () => {
               <Link href="">
                 <div className='favorite_products_item_image_wrapper'>
                   <div className='favorite_products_item_image_container'>
-                    <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedtrio_2_295x.png?v=1669601795" alt="" />
+                    <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedtrio_2_295x.png?v=1669601795" alt="" />
                   </div>
                 </div>
               </Link>
@@ -544,7 +544,7 @@ const DumplingsBeefCheese = () => {
               <Link href="">
                 <div className='favorite_products_item_image_wrapper'>
                   <div className='favorite_products_item_image_container'>
-                    <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/XCJSteamerShots_295x.png?v=1651605454" alt="" />
+                    <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/XCJSteamerShots_295x.png?v=1651605454" alt="" />
                   </div>
                 </div>
               </Link>
@@ -561,7 +561,7 @@ const DumplingsBeefCheese = () => {
               <Link href="">
                 <div className='favorite_products_item_image_wrapper'>
                   <div className='favorite_products_item_image_container'>
-                    <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/bowl-profile2_295x.png?v=1669777702" alt="" />
+                    <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/bowl-profile2_295x.png?v=1669777702" alt="" />
                   </div>
                 </div>
               </Link>
@@ -578,7 +578,7 @@ const DumplingsBeefCheese = () => {
               <Link href="">
                 <div className='favorite_products_item_image_wrapper'>
                   <div className='favorite_products_item_image_container'>
-                    <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedCYB-3_1_295x.png?v=1663966317" alt="" />
+                    <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedCYB-3_1_295x.png?v=1663966317" alt="" />
                   </div>
                 </div>
               </Link>
