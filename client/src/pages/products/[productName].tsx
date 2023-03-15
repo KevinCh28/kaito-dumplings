@@ -21,7 +21,7 @@ const ProductDetail = () => {
     } else {
       { productName };
     };
-  }, [productName, products, router]);
+  }, [productName, router]);
 };
 
 export default ProductDetail;
