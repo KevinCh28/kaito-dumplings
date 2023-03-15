@@ -39,7 +39,7 @@ const DumplingsVeggie = () => {
     cart: {},
     orders: {},
   });
-  const [dumplingId, setDumplingId] = useState('63efa9119010d97ce174715c');
+  const [dumplingId, setDumplingId] = useState(flavors[pathName]);
   const [flavorsHidden, setFlavorsHidden] = useState(true);
   const [hiddenTab, setHiddenTab] = useState<{ [key: number]: boolean }>({
     0: true,
@@ -66,7 +66,7 @@ const DumplingsVeggie = () => {
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
-  }, [flavors]);
+  }, [dumplingId]);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {

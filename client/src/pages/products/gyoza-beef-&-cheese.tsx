@@ -39,7 +39,7 @@ const GyozaBeefCheese = () => {
     cart: {},
     orders: {},
   });
-  const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
+  const [gyozaId, setGyozaId] = useState(flavors[pathName]);
   const [flavorsHidden, setFlavorsHidden] = useState(true);
   const [hiddenTab, setHiddenTab] = useState<{ [key: number]: boolean }>({
     0: true,
@@ -66,7 +66,7 @@ const GyozaBeefCheese = () => {
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
-  }, [flavors]);
+  }, [gyozaId]);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {

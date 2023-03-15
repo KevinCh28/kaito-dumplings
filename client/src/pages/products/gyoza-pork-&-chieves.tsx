@@ -66,7 +66,7 @@ const GyozaPorkChieves = () => {
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
-  }, [flavors]);
+  }, [gyozaId]);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
