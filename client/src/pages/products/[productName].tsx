@@ -17,12 +17,11 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (!products[productName]) {
-      console.log('Product not found');
       router.push('/products');
     } else {
-      {productName};
+      { productName };
     };
-  }, [productName, products, router.isReady]);
+  }, [productName, products, router]);
 };
 
 export default ProductDetail;
