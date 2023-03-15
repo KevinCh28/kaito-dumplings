@@ -23,18 +23,7 @@ const Cart = ({ onClose = () => { } }) => {
   //   description: '',
   //   stripeId: '',
   // }]);
-  const [cart, setCart] = useState([{
-    quantity: 1,
-    product: {
-      _id: '',
-      name: '',
-      category: '',
-      price: 44.95,
-      imageUrl: '',
-      description: '',
-      stripeId: '',
-    }
-  }]);
+  const [cart, setCart] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [userId, setUserId] = useState('');
@@ -289,10 +278,13 @@ const Cart = ({ onClose = () => { } }) => {
   };
 
   const handleCheckOut = () => {
-    checkout(cart).then((res) => {
-      console.log('Checkout successful')
-      console.log(res);
+    let items = cart.map((item: { quantity: number, product: { stripeId: string } }) => {
+      return {
+        quantity: item.quantity,
+        product: { stripeId: item.product.stripeId }
+      };
     });
+    checkout(items)
   };
 
   return (
