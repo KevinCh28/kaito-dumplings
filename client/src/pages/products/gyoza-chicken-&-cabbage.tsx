@@ -66,7 +66,7 @@ const GyozaChickenCabbage = () => {
       element.style.backgroundColor = '#a9dde3';
       setProduct(res.data);
     });
-  }, [pathName]);
+  }, [flavors]);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
