@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect, SyntheticEvent } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import Cart from '../../components/cart/cart';
-import { getProduct, getProducts } from "@/src/utils/productApiUtils";
+import { getProduct } from "@/src/utils/productApiUtils";
 
 const Products = () => {
   const dumplings = {
