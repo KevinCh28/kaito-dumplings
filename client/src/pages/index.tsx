@@ -292,7 +292,7 @@ const Home: NextPage = () => {
           <div className='reviews_carousel_info_container'>
 
             <div className='reviews_carousel_header'>
-              <p>DON'T JUST TAKE OUR WORD FOR IT</p>
+              <p>{`DON'T JUST TAKE OUR WORD FOR IT`}</p>
             </div>
 
             <div className='reviews_carousel_cards_stars'>
