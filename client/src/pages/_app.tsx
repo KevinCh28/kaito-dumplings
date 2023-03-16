@@ -14,8 +14,6 @@ import Footer from '../components/footer/footer';
 import React from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
-  console.log("in app")
-  console.log(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
   return (
     <div className='off_canvas_main_content'>
       <Navbar />
