@@ -2,7 +2,7 @@ import createApp from "./utils/createApp";
 import mongoose from "mongoose";
 import "dotenv/config";
 
-const PORT = process.env.PORT || 3001;
+const PORT = "https://kaito-five.vercel.app";
 
 async function main() {
   try {
