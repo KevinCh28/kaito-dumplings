@@ -1,4 +1,3 @@
-import "dotenv/config";
 const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
 
 import { Stripe, loadStripe } from "@stripe/stripe-js";

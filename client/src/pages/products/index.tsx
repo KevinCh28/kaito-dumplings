@@ -1,4 +1,4 @@
-import Image from 'next/image';
+
 import Link from 'next/link';
 import { useState, useEffect, SyntheticEvent } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
@@ -192,7 +192,7 @@ const Products = () => {
             <div className='title_with_mini_images_container'>
               <div className='title_with_mini_image_container'>
                 <div className='title_with_mini_image'>
-                  <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/chef-crafted.png?v=1677475404" alt="" />
+                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/chef-crafted.png?v=1677475404" alt="" />
                 </div>
                 <div className='title_with_mini_image_text'>
                   <h5>CHEF-CRAFTED</h5>
@@ -200,7 +200,7 @@ const Products = () => {
               </div>
               <div className='title_with_mini_image_container'>
                 <div className='title_with_mini_image'>
-                  <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Star_10_Stroke.png?v=1677475405" alt="" />
+                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Star_10_Stroke.png?v=1677475405" alt="" />
                 </div>
                 <div className='title_with_mini_image_text'>
                   <h5>
@@ -212,7 +212,7 @@ const Products = () => {
               </div>
               <div className='title_with_mini_image_container'>
                 <div className='title_with_mini_image'>
-                  <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/mfg.png?v=1677475404" alt="" />
+                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/mfg.png?v=1677475404" alt="" />
                 </div>
                 <div className='title_with_mini_image_text'>
                   <h5>
@@ -236,7 +236,7 @@ const Products = () => {
                           <div className='products_page_item_image_container'>
                             <div className="products_page_item_image_content">
                               <Link href="/products/dumplings-beef-&-cheese">
-                                <Image className="products_page_item_image" src={product1.imageUrl} alt="" />
+                                <img className="products_page_item_image" src={product1.imageUrl} alt="" />
                               </Link>
                             </div>
                           </div>
@@ -277,19 +277,19 @@ const Products = () => {
                                   <div className='products_page_product_ratings'>
                                     <div className='products_page_product_rating'>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <span className='products_page_product_rating_amount'>(2018)</span>
                                     </div>
@@ -319,7 +319,7 @@ const Products = () => {
                           <div className='products_page_item_image_container'>
                             <div className="products_page_item_image_content">
                               <Link href="/products/dumplings-beef-&-cheese">
-                                <Image className="products_page_item_image" src={product2.imageUrl} alt="" />
+                                <img className="products_page_item_image" src={product2.imageUrl} alt="" />
                               </Link>
                             </div>
                           </div>
@@ -360,19 +360,19 @@ const Products = () => {
                                   <div className='products_page_product_ratings'>
                                     <div className='products_page_product_rating'>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <span className='products_page_product_rating_amount'>(2018)</span>
                                     </div>
@@ -402,7 +402,7 @@ const Products = () => {
                           <div className='products_page_item_image_container'>
                             <div className="products_page_item_image_content">
                               <Link href="/products/dumplings-beef-&-cheese">
-                                <Image className="products_page_item_image" src={product3.imageUrl} alt="" />
+                                <img className="products_page_item_image" src={product3.imageUrl} alt="" />
                               </Link>
                             </div>
                           </div>
@@ -443,19 +443,19 @@ const Products = () => {
                                   <div className='products_page_product_ratings'>
                                     <div className='products_page_product_rating'>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <Image src="/star.png" alt="" />
+                                        <img src="/star.png" alt="" />
                                       </div>
                                       <span className='products_page_product_rating_amount'>(1987)</span>
                                     </div>

@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Cart from '../cart/cart';
 import { getCurrentUser } from '../../utils/sessionApiUtils';
+import favicon from '../../../public/favicon.png'
+import cartImage from '../../../public/cart.png'
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -41,7 +42,7 @@ const Navbar = () => {
             <span className='navbar_right_buttons_text'>ORDER NOW</span>
           </Link>
           <div onClick={() => setShowModal(true)} className="navbar_cart_container">
-            <Image src="/cart.png" alt="cart" className="navbar_cart_image"/>
+            <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
           </div>
         </div>
       )
@@ -62,7 +63,7 @@ const Navbar = () => {
             <span className='navbar_right_buttons_text'>ORDER NOW</span>
           </Link>
           <div onClick={() => setShowModal(true)} className="navbar_cart_container">
-            <Image src="/cart.png" alt="cart" className="navbar_cart_image"/>
+            <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
           </div>
         </div>
       )
@@ -110,7 +111,7 @@ const Navbar = () => {
             <div className="navbar_left_wrapper">
               <div className="navbar_logo_wrapper">
                 <Link className='navbar_logo' href="/">
-                  <Image src="/favicon.png" alt="logo" className='navbar_logo_image' />
+                  <img src="/favicon.png" alt="logo" className='navbar_logo_image' />
                 </Link>
               </div>
             </div>

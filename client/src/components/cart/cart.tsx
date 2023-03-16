@@ -1,4 +1,4 @@
-import Image from 'next/image';
+
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { getCart, increaseItemQuantity, decreaseItemQuantity, removeItemFromCart } from '../../utils/cartApiUtils';
@@ -135,7 +135,7 @@ const Cart = ({ onClose = () => { } }) => {
   //       <div className='cart_product_recommendation_container'>
   //         <div className='cart_product_recommendation_image_container'>
   //           <Link href={`${product.category}-${(product.name.split(' ').join('-')).toLowerCase()}`}>
-  //             <Image src={product.imageUrl} alt={product.name} />
+  //             <img src={product.imageUrl} alt={product.name} />
   //           </Link>
   //         </div>
   //         <div className='cart_product_recommendation_info'>
@@ -177,7 +177,7 @@ const Cart = ({ onClose = () => { } }) => {
                 <li className='cart_item_container' key={item.product._id}>
                   <div className='item_image_container'>
                     <Link href="" >
-                      <Image src={item.product.imageUrl} alt={item.product.name} />
+                      <img src={item.product.imageUrl} alt={item.product.name} />
                     </Link>
                   </div>
                   <div className='cart_item_info'>
@@ -333,7 +333,7 @@ const Cart = ({ onClose = () => { } }) => {
 
         <div className='cart_footer_container'>
           <div className='cart_footer_image'>
-            <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/ice-dark.png?v=1667978802" alt="" />
+            <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/ice-dark.png?v=1667978802" alt="" />
             <span>
               Melt-Free
               <br />
@@ -341,7 +341,7 @@ const Cart = ({ onClose = () => { } }) => {
             </span>
           </div>
           <div className='cart_footer_image'>
-            <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Star-dark.png?v=1667978802" alt="" />
+            <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/Star-dark.png?v=1667978802" alt="" />
             <span>
               5000+
               <br />
@@ -349,7 +349,7 @@ const Cart = ({ onClose = () => { } }) => {
             </span>
           </div>
           <div className='cart_footer_image'>
-            <Image src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/fast-delivery-dark.png?v=1667978802" alt="" />
+            <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/fast-delivery-dark.png?v=1667978802" alt="" />
             <span>
               Free Shipping on
               <br />
