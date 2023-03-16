@@ -45,24 +45,6 @@ function createApp(): Express {
   app.use('/api/orders', ordersRouter);
   app.use('/api/carts', cartsRouter);
 
-  // if (process.env.NODE_ENV === 'production') {
-  //   const path = require("path");
-  //   // Serve the frontend's index.html file at the root route
-  //   app.get("/", (req, res) => {
-  //     res.cookie("CSRF-TOKEN", req.csrfToken());
-  //     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
-  //   });
-
-  //   // Serve the static assets in the frontend's build folder
-  //   app.use(express.static(path.resolve("../client", "build")));
-
-  //   // Serve the frontend's index.html file at all other routes NOT starting with /api
-  //   app.get(/^(?!\/?api).*/, (req, res) => {
-  //     res.cookie("CSRF-TOKEN", req.csrfToken());
-  //     res.sendFile(path.resolve(__dirname, "../client", "build", "index.html"));
-  //   });
-  // }
-
   return app;
 };
 
