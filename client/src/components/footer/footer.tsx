@@ -15,14 +15,14 @@ export default function Footer() {
                   <p>
                     Instagram
                     <br />
-                    @kaitodumplings
+                    @kaito_dumplings
                   </p>
                 </div>
                 <div className='footer_socials_icons'>
                   <Link href="">
                     <i><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon></i>
                   </Link>
-                  <Link href="https://www.instagram.com/kaitobubbletea/">
+                  <Link href="https://www.instagram.com/kaito_dumplings/">
                     <i><FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon></i>
                   </Link>
                   <Link href="">
