@@ -11,7 +11,7 @@ import ordersRouter from "../routes/orders/orders";
 import cartsRouter from "../routes/carts/carts";
 import "dotenv/config";
 
-const mongoURI = process.env.mongoURI;
+const mongoURI = process.env.MONGODB_URI;
 
 function createApp(): Express {
   const app = express();
