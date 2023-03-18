@@ -1,8 +1,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect, SyntheticEvent } from "react";
-import { increaseItemQuantity } from "../../utils/cartApiUtils";
-import { getCurrentUser } from '@/src/utils/sessionApiUtils';
+// import { increaseItemQuantity } from "../../utils/cartApiUtils";
+// import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import Cart from '../../components/cart/cart';
 import clientPromise from "@/lib/mongodb"
 

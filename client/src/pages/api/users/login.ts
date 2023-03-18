@@ -49,7 +49,7 @@
 //   }
 // };
 
-import User from '@/src/models/User';
+// import User from '@/src/models/User';
 
 // export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 //   try {
@@ -77,8 +77,8 @@ import User from '@/src/models/User';
 //   }
 // };
 
-import { getSession, getAccessToken, setSession } from "@auth0/nextjs-auth0";
-import { NextApiRequest, NextApiResponse } from 'next';
+// import { getSession, getAccessToken } from "@auth0/nextjs-auth0";
+// import { NextApiRequest, NextApiResponse } from 'next';
 
 // export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 //   const { email, password } = req.body;
@@ -94,13 +94,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 //   return res.status(200).json({ accessToken });
 // };
 
-import Auth0 from '../auth/[...auth0]';
+// import Auth0 from '../auth/[...auth0]';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  try {
-    await Auth0.handleLogin(req, res);
-  } catch (error) {
-    console.error(error);
-    res.status(500).end({ error });
-  }
-};
+// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+//   try {
+//     await Auth0.handleLogin(req, res);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).end({ error });
+//   }
+// };
