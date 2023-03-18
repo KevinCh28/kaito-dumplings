@@ -2,8 +2,7 @@ import { Request, Response } from "express";
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { MongoClient } from "mongodb";
 import { connectToDatabase } from "../../../../lib/connectToDatabse";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { getSession, getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {

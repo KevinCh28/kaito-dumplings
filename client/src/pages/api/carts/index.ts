@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           ...fetchOptions,
           body: JSON.stringify({
             ...fetchBody,
-            filter: { _id: { $old: req.body._id } },
+            filter: { _id: { $oid: req.body._id } },
             update: {
               $set: {
                 product: [],
