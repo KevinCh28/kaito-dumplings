@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Link from 'next/link';
-import { login } from "../../utils/sessionApiUtils";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -29,23 +28,40 @@ const Login = () => {
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setErrors(emptyInfo);
-    login(user)
-      .then((res) => {
-        if (res.data.success === true) {
-          window.location.href = "/";
-        }
-      })
-      .catch((err) => {
-        console.log(err.response.data)
-        const newErrors = err.response.data.err.errors;
-        Object.keys(newErrors).forEach(function (key: string) {
-          setErrors((prevState) => ({
-            ...prevState,
-            [key]: newErrors[key],
-          }));
-        });
+
+    (async () => {
+      const response = await fetch('/api/users/login', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: user.email,
+          password: user.password,
+        })
       });
+      const data = await response.json();
+      console.log(data);
+    })();
   };
+
+
+  //   login(user)
+  //     .then((res) => {
+  //       if (res.data.success === true) {
+  //         window.location.href = "/";
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.response.data)
+  //       const newErrors = err.response.data.err.errors;
+  //       Object.keys(newErrors).forEach(function (key: string) {
+  //         setErrors((prevState) => ({
+  //           ...prevState,
+  //           [key]: newErrors[key],
+  //         }));
+  //       });
+  //     });
 
   const handleEmailError = () => {
     if (errors.email !== "") {

@@ -1,11 +1,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { getCart, increaseItemQuantity, decreaseItemQuantity, removeItemFromCart } from '../../utils/cartApiUtils';
-import { getCurrentUser } from '@/src/utils/sessionApiUtils';
-import { createOrder } from '@/src/utils/orderApiUtils';
-import { getProducts } from '@/src/utils/productApiUtils';
-import { checkout } from '@/src/utils/stripeApiUtils';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -57,6 +53,7 @@ const Cart = ({ onClose = () => { } }) => {
   // Gets all products
   useEffect(() => {
     getProducts().then((res) => {
+      console.log(res);
       setProducts(res);
     })
   }, []);

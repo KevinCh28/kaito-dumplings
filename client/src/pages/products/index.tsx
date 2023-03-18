@@ -4,9 +4,9 @@ import { useState, useEffect, SyntheticEvent } from "react";
 import { increaseItemQuantity } from "../../utils/cartApiUtils";
 import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import Cart from '../../components/cart/cart';
-import { getProduct } from "@/src/utils/productApiUtils";
+import clientPromise from "@/lib/mongodb"
 
-const Products = () => {
+const Products = ({ isConnected }) => {
   const dumplings = {
     'beef-&-cheese': '63efa9419010d97ce1747161',
     'chicken-&-cabbage': '63efa96f9010d97ce1747163',
@@ -20,6 +20,15 @@ const Products = () => {
     'veggie': '63efa9259010d97ce174715f'
   }
   const [showModal, setShowModal] = useState(false);
+  const [products, setProducts] = useState<{
+    _id: string,
+    name: string,
+    description: string,
+    price: number,
+    imageUrl: string,
+    category: string,
+    stripeId: string,
+  }[] | null>(null);
   const [product1, setProduct1] = useState({
     _id: '',
     name: '',
@@ -27,6 +36,7 @@ const Products = () => {
     price: 0,
     imageUrl: '',
     category: '',
+    stripeId: '',
   });
   const [product2, setProduct2] = useState({
     _id: '',
@@ -35,6 +45,7 @@ const Products = () => {
     price: 0,
     imageUrl: '',
     category: '',
+    stripeId: '',
   });
   const [product3, setProduct3] = useState({
     _id: '',
@@ -43,16 +54,25 @@ const Products = () => {
     price: 0,
     imageUrl: '',
     category: '',
+    stripeId: '',
   });
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
-  const [user, setUser] = useState({
-    _id: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    cart: [],
-  });
+  const [user, setUser] = useState<{
+    _id: string,
+    firstname: string,
+    lastname: string,
+    email: string,
+  }[] | null>(null);
+
+  // Get Products
+  useEffect(() => {
+    (async () => {
+      const results = await fetch('/api/products');
+      const data = await results.json();
+      setProducts(data)
+    })();
+  }, []);
 
   // Get User
   useEffect(() => {
@@ -67,61 +87,47 @@ const Products = () => {
       });
   }, []);
 
-  // Get Product 1
+  // Gets selected products
   useEffect(() => {
-    getProduct(dumplingsId)
-      .then((res) => {
-        setProduct1(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [dumplingsId]);
+    if (products) {
+      const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
+      const gyozaIndex = products.findIndex((product: { _id: string; }) => product._id === gyozaId);
+      const matchedProduct1 = products[dumplingIndex];
+      const matchedProduct2 = products[dumplingIndex];
+      const matchedProduct3 = products[gyozaIndex];
 
-  // Get Product 2
-  useEffect(() => {
-    getProduct(dumplingsId)
-      .then((res) => {
-        setProduct2(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [dumplingsId]);
-
-  // Get Product 3
-  useEffect(() => {
-    getProduct(gyozaId)
-      .then((res) => {
-        setProduct3(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [gyozaId]);
+      setProduct1(matchedProduct1);
+      setProduct2(matchedProduct2);
+      setProduct3(matchedProduct3);
+    }
+  }, [products]);
 
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    increaseItemQuantity(user._id, product2, 1)
-      .then((res) => {
-        setShowModal(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      }
-    );
+    if (user) {
+      increaseItemQuantity(user._id, product2, 1)
+        .then((res) => {
+          setShowModal(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        }
+      )
+    }
   };
 
   const handleAddGyozaToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    increaseItemQuantity(user._id, product3, 1)
-      .then((res) => {
-        setShowModal(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      }
-      );
+    if (user) {
+      increaseItemQuantity(user._id, product3, 1)
+        .then((res) => {
+          setShowModal(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        }
+      )
+    }
   };
 
   const handleCartModal = () => {
@@ -512,3 +518,16 @@ const Products = () => {
 };
 
 export default Products;
+
+export async function getServerSideProps() {
+  try {
+    await clientPromise;
+    return {
+      props: { isConnected: true },
+    }
+  } catch (error) {
+    return {
+      props: { isConnected: false },
+    }
+  }
+};

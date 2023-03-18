@@ -4,9 +4,10 @@ import bcrypt from "bcryptjs";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import validateLoginInput from "../../validation/login";
 import validateRegisterInput from "../../validation/register";
-import User from "../../database/schemas/User";
+import User from "../../../client/src/models/User";
 import { Request, Response, NextFunction } from "express";
-import "dotenv/config";
+const config = require('dotenv');
+config();
 
 // Private Auth Route for accessing user data on the frontend once logged in
 // Get /api/users/current

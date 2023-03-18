@@ -1,8 +1,7 @@
+import type { NextPage } from 'next'; 
 import { useState, useEffect } from 'react';
-import type { NextPage } from 'next';
-import { getCurrentUser, logout } from '@/src/utils/sessionApiUtils';
-import { getOrders, cancelOrder } from '@/src/utils/orderApiUtils';
 import { useRouter } from 'next/router';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
 
@@ -122,3 +121,5 @@ const AccountPage: NextPage = () => {
 };
 
 export default AccountPage;
+
+export const getServerSideProps = withPageAuthRequired();
