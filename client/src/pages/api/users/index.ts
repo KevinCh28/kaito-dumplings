@@ -7,9 +7,8 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
     const { accessToken } = await getAccessToken(req, res);
     const { user } = (await getSession(req, res)) as { user: typeof User }
     const baseUrl = `${process.env.MONGO_DATA_API_URL}/users`;
-
-    const readData = await fetch(baseUrl, {
-      method: "GET",
+    const readData = await fetch(`${baseUrl}`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Requested-Headers": "*",
@@ -23,7 +22,6 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
     });
     const readDataJson = await readData.json();
     res.status(200).json(readDataJson);
-
   } catch (error) {
     console.log(error);
     res.status(500).json(error);

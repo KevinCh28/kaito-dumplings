@@ -12,13 +12,16 @@ import '../utils/styles/footer.scss'
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 import React from 'react';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className='off_canvas_main_content'>
-      <Navbar />
-      <Component {...pageProps} />
-      <Footer />
+      <UserProvider>
+        <Navbar />
+        <Component {...pageProps} />
+        <Footer />
+      </UserProvider>
     </div>
   );
 };
