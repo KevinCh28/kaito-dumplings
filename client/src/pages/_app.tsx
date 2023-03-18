@@ -16,12 +16,12 @@ import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div className='off_canvas_main_content'>
-      <UserProvider>
+    <UserProvider>
+      <div className='off_canvas_main_content'>
         <Navbar />
         <Component {...pageProps} />
         <Footer />
-      </UserProvider>
-    </div>
+      </div>
+    </UserProvider>
   );
 };

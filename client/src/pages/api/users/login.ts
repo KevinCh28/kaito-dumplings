@@ -94,20 +94,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 //   return res.status(200).json({ accessToken });
 // };
 
+import Auth0 from '../auth/[...auth0]';
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { email, password } = req.body;
-  // const baseUrl = `${process.env.MONGO_DATA_API_URL}/api/auth/login`;
-  const baseUrl = `${process.env.AUTH0_BASE_URL}/api/auth/login`;
-  console.log(email)
-  console.log(password)
-
-  const user = await getSession(req.body, res);
-  if (!user) return res.status(401).json({ error: "Invalid credentials" });
-  const sessionOptions = {
-    maxAge: 7 * 24 * 60 * 60 * 1000, // Expires in seven days
-  };
-  setSession(user, sessionOptions);
-
-  const accessToken = getAccessToken(user, req, res);
-  return res.status(200).json({ accessToken });
+  try {
+    await Auth0.handleLogin(req, res);
+  } catch (error) {
+    console.error(error);
+    res.status(500).end({ error });
+  }
 };

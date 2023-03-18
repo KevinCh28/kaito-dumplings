@@ -49,12 +49,12 @@ const Navbar = () => {
     } else {
       return (
         <div className='navbar-right-wrapper'>
-          <Link href="/login"
+          <a href="/api/auth/login"
             className={loginHover ? 'navbar_right_button_hover' : 'navbar_right_button'}
             onMouseOver={() => setLoginHover(true)}
             onMouseOut={() => setLoginHover(false)}>
             <span className='navbar_right_buttons_text'>LOG IN</span>
-          </Link>
+          </a>
           <Link
             href="/products"
             className={orderHover ? 'navbar_right_button_hover' : 'navbar_right_button'}
