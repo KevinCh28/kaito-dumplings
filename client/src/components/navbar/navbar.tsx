@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Cart from '../cart/cart';
-import { getCurrentUser } from '../../utils/sessionApiUtils';
+// import { getCurrentUser } from '../../utils/sessionApiUtils';
 import favicon from '../../../public/favicon.png'
 import cartImage from '../../../public/cart.png'
 
@@ -13,15 +13,15 @@ const Navbar = () => {
   const [auth, setAuth] = useState(false);
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-    getCurrentUser().then((response) => {
-      setUser(response);
-      setAuth(true);
-    }).catch((err) => {
-      console.log(err);
-      setAuth(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getCurrentUser().then((response) => {
+  //     setUser(response);
+  //     setAuth(true);
+  //   }).catch((err) => {
+  //     console.log(err);
+  //     setAuth(false);
+  //   });
+  // }, []);
   
   // Selectively render navbar links based on user authentication
   const userLinks = () => {
