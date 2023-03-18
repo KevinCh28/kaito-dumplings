@@ -6,7 +6,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:slug*',
-        destination: 'https://kaito-five.vercel.app/api/:slug*'
+        destination: 'https://kaitodumplings.com/api/:slug*'
       },
     ]
   },
