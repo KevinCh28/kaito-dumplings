@@ -3,27 +3,18 @@ import { useState, useEffect } from 'react';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
-import { useUser } from '@auth0/nextjs-auth0/client';
 
 const AccountPage: NextPage = () => {
   const [orders, setOrders] = useState([]);
   const [currentUser, setCurrentUser] = useState({ id: '', firstname: '' });
-  const { user } = useUser();
 
   useEffect(() => {
     (async () => {
       const results = await fetch('/api/users');
       const data = await results.json();
-      console.log(data)
+      setCurrentUser(data)
     })();
   }, []);
-
-  // const handleLogout = async () => {
-  //   await logout()
-  //     .then((res) => {
-  //       window.location.reload();
-  //     })
-  // };
 
   // const handleCancel = async (orderNum: string) => {
   //   cancelOrder(user.id, orderNum).then((res) => {
