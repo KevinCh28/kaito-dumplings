@@ -38,16 +38,15 @@ const Cart = ({ onClose = () => { } }) => {
     (async () => {
       const results = await fetch('/api/users');
       const data = await results.json();
-      setUserId(data._id)
+      setUserId(data.id)
     })();
   }, []);
   
   // Gets user's cart
   useEffect(() => {
     (async () => {
-      const results = await fetch(`/api/carts`);
+      const results = await fetch(`/api/carts?userId=${userId}`);
       const data = await results.json();
-      console.log(data)
       setCart(data)
     })();
   }, [userId]);
@@ -79,17 +78,19 @@ const Cart = ({ onClose = () => { } }) => {
   // }, [recommended]);
 
   // Calculates subtotal items and amount in cart
-  // useEffect(() => {
-  //   let total = 0;
-  //   let totalCartItems = 0
+  useEffect(() => {
+    let total = 0;
+    let totalCartItems = 0
 
-  //   cart.forEach((item: { quantity: number, product: { price: number } }) => {
-  //     totalCartItems += item.quantity;
-  //     total += item.product.price * item.quantity;
-  //   })
-  //   setTotalItems(totalCartItems);
-  //   setTotalAmount(Number(total.toFixed(2)));
-  // }, [cart]);
+    if (cart.length > 0 ) {
+      cart.forEach((item: { quantity: number, product: { price: number } }) => {
+        totalCartItems += item.quantity;
+        total += item.product.price * item.quantity;
+      });
+    };
+    setTotalItems(totalCartItems);
+    setTotalAmount(Number(total.toFixed(2)));
+  }, [cart]);
 
   // Updates free shipping progress bar
   useEffect(() => {

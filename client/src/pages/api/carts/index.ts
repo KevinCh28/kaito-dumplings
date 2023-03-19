@@ -1,45 +1,42 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getSession, getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
+import { getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
 
 export default withApiAuthRequired(async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const userId = req.query.userId;
+  const { accessToken } = await getAccessToken(req, res);
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Request-Headers": "*",
+      jwtTokenString: accessToken as string,
+    },
+  };
+  const fetchBody = {
+    dataSource: process.env.MONGODB_DATA_SOURCE as string,
+    database: "test",
+    collection: "carts",
+  };
+  const baseUrl = `${process.env.MONGODB_DATA_API_URL}/action`;
+  
   try {
-    const { accessToken } = await getAccessToken(req, res);
-    const { user } = await getSession(req, res);
-    const baseUrl = `${process.env.MONGODB_DATA_API_URL}/action`;
-
     switch (req.method) {
-      case 'GET':
+      case "GET":
         const readData = await fetch(`${baseUrl}/findOne`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Request-Headers": "*",
-            jwtTokenString: accessToken as string,
-          },
+          ...fetchOptions,
           body: JSON.stringify({
-            dataSource: process.env.MONGODB_DATA_SOURCE as string,
-            database: "test",
-            collection: "carts",
+            ...fetchBody,
           }),
         });
         const readDataJson = await readData.json();
 
-        if (!readDataJson.document.email) {
+        if (!readDataJson.document.products) {
           await fetch(`${baseUrl}/updateOne`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Request-Headers": "*",
-              jwtTokenString: accessToken as string,
-            },
+            ...fetchOptions,
             body: JSON.stringify({
-              dataSource: process.env.MONGODB_DATA_SOURCE,
-              database: "test",
-              collection: "carts",
-              filter: { _id: { $oid: readDataJson.document._id } },
+              ...fetchBody,
               update: {
                 $set: {
-                  owner: user._id,
                   products: [],
                 },
               },
@@ -47,34 +44,23 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
           });
           readDataJson.document = {
             ...readDataJson.document,
-            owner: cart.owner,
-            products: cart.products,
+            products: [],
           };
         }
-
         res.status(200).json(readDataJson.document);
         break;
       case "PUT":
         const updateData = await fetch(`${baseUrl}/updateOne`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Request-Headers": "*",
-            jwtTokenString: accessToken as string,
-          },
+          ...fetchOptions,
           body: JSON.stringify({
-            dataSource: process.env.MONGODB_DATA_SOURCE,
-            database: "test",
-            collection: "carts",
-            filter: { _id: { $oid: req.body._id } },
+            ...fetchBody,
             update: {
               $set: {
-                products: req.body.products,
+                body: req.body.products,
               },
             },
           }),
         });
-
         const updateDataJson = await updateData.json();
         res.status(200).json(updateDataJson);
         break;

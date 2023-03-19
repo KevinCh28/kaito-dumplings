@@ -7,7 +7,8 @@ import Cart from '../../components/cart/cart';
 import clientPromise from "@/lib/mongodb"
 import { useUser } from '@auth0/nextjs-auth0/client';
 
-const Products = ({ isConnected }) => {
+// const Products = ({ isConnected }) => {
+const Products = () => {
   const dumplings = {
     'beef-&-cheese': '63efa9419010d97ce1747161',
     'chicken-&-cabbage': '63efa96f9010d97ce1747163',
@@ -59,13 +60,22 @@ const Products = ({ isConnected }) => {
   });
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
-  // const [user, setUser] = useState<{
-  //   _id: string,
-  //   firstname: string,
-  //   lastname: string,
-  //   email: string,
-  // }[] | null>(null);
+  const [currentUser, setCurrentUser] = useState<{
+    _id: string,
+    firstname: string,
+    lastname: string,
+    email: string,
+  }[] | null>(null);
   const { user } = useUser();
+
+  // Get User
+  useEffect(() => {
+    (async () => {
+      const results = await fetch('/api/users');
+      const data = await results.json();
+      setCurrentUser(data)
+    })();
+  }, [user]);
 
   // Get Products
   useEffect(() => {
@@ -76,11 +86,6 @@ const Products = ({ isConnected }) => {
       const data = await results.json();
       setProducts(data)
     })();
-  }, []);
-
-  // Get User
-  useEffect(() => {
-    console.log(user)
   }, []);
 
   // Gets selected products
@@ -515,15 +520,15 @@ const Products = ({ isConnected }) => {
 
 export default Products;
 
-export async function getServerSideProps() {
-  try {
-    await clientPromise;
-    return {
-      props: { isConnected: true },
-    }
-  } catch (error) {
-    return {
-      props: { isConnected: false },
-    }
-  }
-};
+// export async function getServerSideProps() {
+//   try {
+//     await clientPromise;
+//     return {
+//       props: { isConnected: true },
+//     }
+//   } catch (error) {
+//     return {
+//       props: { isConnected: false },
+//     }
+//   }
+// };
