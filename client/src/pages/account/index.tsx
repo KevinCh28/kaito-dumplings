@@ -1,55 +1,37 @@
 import type { NextPage } from 'next'; 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const AccountPage: NextPage = () => {
-  const router = useRouter();
   const [orders, setOrders] = useState([]);
-  const [user, setUser] = useState({ id: '', firstname: '' });
+  const [currentUser, setCurrentUser] = useState({ id: '', firstname: '' });
+  const { user } = useUser();
 
   useEffect(() => {
-    getCurrentUser()
-      .then((res) => {
-        const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
-        element.style.backgroundColor = 'rgb(246, 22, 31)';
-        setUser({
-          id: res._id,
-          firstname: res.firstname
-        });
-      })
-      .catch((err) => {
-        router.push('/login');
-      }
-    );
-  }, [router]);
+    (async () => {
+      const results = await fetch('/api/users');
+      const data = await results.json();
+      console.log(data)
+    })();
+  }, []);
 
-  useEffect(() => {
-    getOrders(user.id)
-      .then((res) => {
-        setOrders(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, [user]);
+  // const handleLogout = async () => {
+  //   await logout()
+  //     .then((res) => {
+  //       window.location.reload();
+  //     })
+  // };
 
-  const handleLogout = async () => {
-    await logout()
-      .then((res) => {
-        window.location.reload();
-      })
-  };
-
-  const handleCancel = async (orderNum: string) => {
-    cancelOrder(user.id, orderNum).then((res) => {
-      getOrders(user.id).then((res) => {
-        setOrders(res);
-      })
-    })
-  };
+  // const handleCancel = async (orderNum: string) => {
+  //   cancelOrder(user.id, orderNum).then((res) => {
+  //     getOrders(user.id).then((res) => {
+  //       setOrders(res);
+  //     })
+  //   })
+  // };
 
   const handleOrderHistory = () => {
     if (orders.length === 0) {
@@ -90,13 +72,13 @@ const AccountPage: NextPage = () => {
                     </tbody>
                   </table>
                 </div>
-                {
+                {/* {
                   order.orderStatus === 'pending' ?
                   <button className='account_page_buttons' onClick={() => handleCancel(order.orderNumber)}>
                     <i><FontAwesomeIcon icon={faBan}></FontAwesomeIcon></i>
                     Cancel
                   </button> : null
-                }
+                } */}
               </div>
             )
           })}
@@ -108,10 +90,13 @@ const AccountPage: NextPage = () => {
       <div className='account_page_main_wrapper'>
         <div className='account_page_main_container'>
           <div className='account_page_header'>
-            <h3 className='account_page_greeting'>Hi {user.firstname}!</h3>
-            <button className='account_page_buttons' onClick={handleLogout}>
+            <h3 className='account_page_greeting'>Hi {currentUser.firstname}!</h3>
+            {/* <button className='account_page_buttons' onClick={handleLogout}>
               Logout
-            </button>
+            </button> */}
+            <a className='account_page_buttons' href='/api/auth/logout'>
+              Logout
+            </a>
           </div>
           {handleOrderHistory()}
         </div>

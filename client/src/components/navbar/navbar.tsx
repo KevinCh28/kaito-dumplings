@@ -4,6 +4,7 @@ import Cart from '../cart/cart';
 // import { getCurrentUser } from '../../utils/sessionApiUtils';
 import favicon from '../../../public/favicon.png'
 import cartImage from '../../../public/cart.png'
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -11,7 +12,8 @@ const Navbar = () => {
   const [accountHover, setAccountHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
   const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
+  const user = useUser();
 
   // useEffect(() => {
   //   getCurrentUser().then((response) => {
@@ -25,7 +27,7 @@ const Navbar = () => {
   
   // Selectively render navbar links based on user authentication
   const userLinks = () => {
-    if (auth) {
+    if (user.user) {
       return (
         <div className='navbar-right-wrapper'>
           <Link href="/account"
