@@ -5,6 +5,7 @@ import { useState, useEffect, SyntheticEvent } from "react";
 // import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import Cart from '../../components/cart/cart';
 import clientPromise from "@/lib/mongodb"
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const Products = ({ isConnected }) => {
   const dumplings = {
@@ -58,16 +59,19 @@ const Products = ({ isConnected }) => {
   });
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
-  const [user, setUser] = useState<{
-    _id: string,
-    firstname: string,
-    lastname: string,
-    email: string,
-  }[] | null>(null);
+  // const [user, setUser] = useState<{
+  //   _id: string,
+  //   firstname: string,
+  //   lastname: string,
+  //   email: string,
+  // }[] | null>(null);
+  const { user } = useUser();
 
   // Get Products
   useEffect(() => {
     (async () => {
+      const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
+      element.style.backgroundColor = 'rgb(27, 33, 55)';
       const results = await fetch('/api/products');
       const data = await results.json();
       setProducts(data)
@@ -76,15 +80,7 @@ const Products = ({ isConnected }) => {
 
   // Get User
   useEffect(() => {
-    getCurrentUser()
-      .then((res) => {
-        const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
-        element.style.backgroundColor = 'rgb(27, 33, 55)';
-        setUser(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log(user)
   }, []);
 
   // Gets selected products

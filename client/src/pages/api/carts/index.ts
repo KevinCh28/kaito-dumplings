@@ -1,64 +1,89 @@
-import { getAccessToken } from '@auth0/nextjs-auth0';
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { getSession, getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { accessToken } = await getAccessToken(req, res);
-  const fetchOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Requested-Headers": "*",
-      jwtTokenString: accessToken as string,
-    },
-  };
-  const fetchBody = {
-    dataSources: process.env.MONGODB_DATA_SOURCE,
-    database: "test",
-    collection: "carts",
-  };
-
-  let baseUrl: string = '';
-  if (process.env.NODE_ENV === "development") {
-    baseUrl = "http://localhost:3000";
-  } else {
-    baseUrl = `${process.env.MONGODB_DATA_API_URL}`;
-  };
-
+export default withApiAuthRequired(async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
+    const { accessToken } = await getAccessToken(req, res);
+    const { user } = await getSession(req, res);
+    const baseUrl = `${process.env.MONGODB_DATA_API_URL}/action`;
+
     switch (req.method) {
-      case "GET":
-        const readData = await fetch(`${baseUrl}/api/carts`, {
-          ...fetchOptions,
+      case 'GET':
+        const readData = await fetch(`${baseUrl}/findOne`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Request-Headers": "*",
+            jwtTokenString: accessToken as string,
+          },
           body: JSON.stringify({
-            ...fetchBody,
-            sort: { createdAt: -1 },
+            dataSource: process.env.MONGODB_DATA_SOURCE as string,
+            database: "test",
+            collection: "carts",
           }),
         });
         const readDataJson = await readData.json();
-        res.status(200).json(readDataJson);
+
+        if (!readDataJson.document.email) {
+          await fetch(`${baseUrl}/updateOne`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Request-Headers": "*",
+              jwtTokenString: accessToken as string,
+            },
+            body: JSON.stringify({
+              dataSource: process.env.MONGODB_DATA_SOURCE,
+              database: "test",
+              collection: "carts",
+              filter: { _id: { $oid: readDataJson.document._id } },
+              update: {
+                $set: {
+                  owner: user._id,
+                  products: [],
+                },
+              },
+            }),
+          });
+          readDataJson.document = {
+            ...readDataJson.document,
+            owner: cart.owner,
+            products: cart.products,
+          };
+        }
+
+        res.status(200).json(readDataJson.document);
         break;
-      case "POST":
-        const updateData = await fetch(`${baseUrl}/api/carts`, {
-          ...fetchOptions,
+      case "PUT":
+        const updateData = await fetch(`${baseUrl}/updateOne`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Request-Headers": "*",
+            jwtTokenString: accessToken as string,
+          },
           body: JSON.stringify({
-            ...fetchBody,
+            dataSource: process.env.MONGODB_DATA_SOURCE,
+            database: "test",
+            collection: "carts",
             filter: { _id: { $oid: req.body._id } },
             update: {
               $set: {
-                product: [],
+                products: req.body.products,
               },
             },
           }),
         });
+
         const updateDataJson = await updateData.json();
         res.status(200).json(updateDataJson);
         break;
       default:
-        res.status(400).json({ message: "Invalid request method" });
+        res.status(405).end();
         break;
     }
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
-  };
-};
+  }
+});

@@ -3,18 +3,14 @@ import { useState, useEffect } from 'react';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const AccountPage: NextPage = () => {
+  const { user, error, isLoading } = useUser();
   const [orders, setOrders] = useState([]);
-  const [currentUser, setCurrentUser] = useState({ id: '', firstname: '' });
 
-  useEffect(() => {
-    (async () => {
-      const results = await fetch('/api/users');
-      const data = await results.json();
-      setCurrentUser(data)
-    })();
-  }, []);
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
 
   // const handleCancel = async (orderNum: string) => {
   //   cancelOrder(user.id, orderNum).then((res) => {
@@ -81,7 +77,7 @@ const AccountPage: NextPage = () => {
       <div className='account_page_main_wrapper'>
         <div className='account_page_main_container'>
           <div className='account_page_header'>
-            <h3 className='account_page_greeting'>Hi {currentUser.firstname}!</h3>
+            <h3 className='account_page_greeting'>Hi {user.given_name}!</h3>
             {/* <button className='account_page_buttons' onClick={handleLogout}>
               Logout
             </button> */}

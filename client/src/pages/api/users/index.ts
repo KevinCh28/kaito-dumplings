@@ -52,6 +52,27 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
             firstname: user.given_name,
             lastname: user.family_name,
           };
+
+          await fetch(`${baseUrl}/updateOne`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Request-Headers": "*",
+              jwtTokenString: accessToken as string,
+            },
+            body: JSON.stringify({
+              dataSource: process.env.MONGODB_DATA_SOURCE,
+              database: "test",
+              collection: "carts",
+              filter: { _id: { $oid: readDataJson.document._id } },
+              update: {
+                $set: {
+                  owner: readDataJson._id,
+                  products: [],
+                },
+              },
+            }),
+          });
         }
 
         res.status(200).json(readDataJson.document);

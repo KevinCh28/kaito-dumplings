@@ -23,39 +23,42 @@ const Cart = ({ onClose = () => { } }) => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [userId, setUserId] = useState('');
-  const [products, setProducts] = useState([{
-    name: '',
-    category: '',
-    price: 44.95,
-    imageUrl: '',
-    description: '',
-    stripeId: '',
-  }]);
+  const [products, setProducts] = useState<{
+    _id: string,
+    name: string,
+    description: string,
+    price: number,
+    imageUrl: string,
+    category: string,
+    stripeId: string,
+  }[] | null>(null);
 
   // Gets user's id
   useEffect(() => {
-    getCurrentUser().then((res) => {
-      setUserId(res._id);
-    })
+    (async () => {
+      const results = await fetch('/api/users');
+      const data = await results.json();
+      setUserId(data._id)
+    })();
   }, []);
   
   // Gets user's cart
   useEffect(() => {
-    getCart(userId)
-      .then((res) => {
-        setCart(res.data.products);
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    (async () => {
+      const results = await fetch(`/api/carts`);
+      const data = await results.json();
+      console.log(data)
+      setCart(data)
+    })();
   }, [userId]);
 
-  // Gets all products
+  // Get Products
   useEffect(() => {
-    getProducts().then((res) => {
-      console.log(res);
-      setProducts(res);
-    })
+    (async () => {
+      const results = await fetch('/api/products');
+      const data = await results.json();
+      setProducts(data)
+    })();
   }, []);
 
   // useEffect(() => {
@@ -76,17 +79,17 @@ const Cart = ({ onClose = () => { } }) => {
   // }, [recommended]);
 
   // Calculates subtotal items and amount in cart
-  useEffect(() => {
-    let total = 0;
-    let totalCartItems = 0
+  // useEffect(() => {
+  //   let total = 0;
+  //   let totalCartItems = 0
 
-    cart.forEach((item: { quantity: number, product: { price: number } }) => {
-      totalCartItems += item.quantity;
-      total += item.product.price * item.quantity;
-    })
-    setTotalItems(totalCartItems);
-    setTotalAmount(Number(total.toFixed(2)));
-  }, [cart]);
+  //   cart.forEach((item: { quantity: number, product: { price: number } }) => {
+  //     totalCartItems += item.quantity;
+  //     total += item.product.price * item.quantity;
+  //   })
+  //   setTotalItems(totalCartItems);
+  //   setTotalAmount(Number(total.toFixed(2)));
+  // }, [cart]);
 
   // Updates free shipping progress bar
   useEffect(() => {
@@ -178,7 +181,8 @@ const Cart = ({ onClose = () => { } }) => {
                     </Link>
                   </div>
                   <div className='cart_item_info'>
-                    <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.product._id)}>
+                    {/* <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.product._id)}> */}
+                    <button className='cart_item_remove_button'>
                       <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
                       <span className='hiddenSpan'>Remove {item.product.category} {item.product.name} from Cart</span>
                     </button>
@@ -187,12 +191,14 @@ const Cart = ({ onClose = () => { } }) => {
 
                     <div className='item_quantity_container'>
                       <div className='item_quantity_wrapper'>
-                        <button className='item_quantity_button' onClick={() => handleMinusQuantity(item)}>
+                        {/* <button className='item_quantity_button' onClick={() => handleMinusQuantity(item)}> */}
+                        <button className='item_quantity_button'>
                           <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
                           <span className='hiddenSpan'></span>
                         </button>
                         <span className='item_quantity_number'>{item.quantity}</span>
-                        <button className='item_quantity_button' onClick={() => handleAddQuantity(item)}>
+                        {/* <button className='item_quantity_button' onClick={() => handleAddQuantity(item)}> */}
+                        <button className='item_quantity_button'>
                           <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
                           <span className='hiddenSpan'></span>
                         </button>
@@ -242,47 +248,47 @@ const Cart = ({ onClose = () => { } }) => {
     }
   }
 
-  const handleAddQuantity = (product: object ) => {
-    increaseItemQuantity(userId, product, 1).then((res) => {
-      // if (recommended[product.category] === true) setRecommended({ ...recommended, [product.category]: false });
-      getCart(userId)
-        .then((res) => {
-          setCart(res.data.products);
-        }
-      )
-    })
-  };
+  // const handleAddQuantity = (product: object ) => {
+  //   increaseItemQuantity(userId, product, 1).then((res) => {
+  //     // if (recommended[product.category] === true) setRecommended({ ...recommended, [product.category]: false });
+  //     getCart(userId)
+  //       .then((res) => {
+  //         setCart(res.data.products);
+  //       }
+  //     )
+  //   })
+  // };
 
-  const handleMinusQuantity = (product: object ) => {
-    decreaseItemQuantity(userId, product).then((res) => {
-      getCart(userId)
-        .then((res) => {
-          setCart(res.data.products);
-        }
-      )
-    })
-  };
+  // const handleMinusQuantity = (product: object ) => {
+  //   decreaseItemQuantity(userId, product).then((res) => {
+  //     getCart(userId)
+  //       .then((res) => {
+  //         setCart(res.data.products);
+  //       }
+  //     )
+  //   })
+  // };
 
-  const handleRemoveItem = ( productId: string ) => {
-    removeItemFromCart(userId, productId).then((res) => {
-      // if (recommended[product.category] === false) setRecommended({ ...recommended, [product.category]: true });
-      getCart(userId)
-        .then((res) => {
-          setCart(res.data.products);
-        }
-      )
-    })
-  };
+  // const handleRemoveItem = ( productId: string ) => {
+  //   removeItemFromCart(userId, productId).then((res) => {
+  //     // if (recommended[product.category] === false) setRecommended({ ...recommended, [product.category]: true });
+  //     getCart(userId)
+  //       .then((res) => {
+  //         setCart(res.data.products);
+  //       }
+  //     )
+  //   })
+  // };
 
-  const handleCheckOut = () => {
-    let items = cart.map((item: { quantity: number, product: { stripeId: string } }) => {
-      return {
-        quantity: item.quantity,
-        product: { stripeId: item.product.stripeId }
-      };
-    });
-    checkout(items)
-  };
+  // const handleCheckOut = () => {
+  //   let items = cart.map((item: { quantity: number, product: { stripeId: string } }) => {
+  //     return {
+  //       quantity: item.quantity,
+  //       product: { stripeId: item.product.stripeId }
+  //     };
+  //   });
+  //   checkout(items)
+  // };
 
   return (
     <div>
@@ -316,7 +322,8 @@ const Cart = ({ onClose = () => { } }) => {
             </div>
 
             <div className='cart_action_buttons_container'>
-              <button className='cart_checkout_button' onClick={handleCheckOut}>
+              {/* <button className='cart_checkout_button' onClick={handleCheckOut}> */}
+              <button className='cart_checkout_button'>
                 <span><i className='cart_checkout_button_image'><FontAwesomeIcon icon={faLock}></FontAwesomeIcon></i> Checkout </span>
               </button>
               <button className='cart_continue_shopping_button' onClick={onClose}>
