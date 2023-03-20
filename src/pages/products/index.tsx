@@ -4,7 +4,6 @@ import { useState, useEffect, SyntheticEvent } from "react";
 import Cart from '../../components/cart/cart';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
-// const Products = ({ isConnected }) => {
 const Products = () => {
   const dumplings = {
     'beef-&-cheese': '63efa9419010d97ce1747161',
@@ -539,16 +538,3 @@ const Products = () => {
 };
 
 export default Products;
-
-// export async function getServerSideProps() {
-//   try {
-//     await clientPromise;
-//     return {
-//       props: { isConnected: true },
-//     }
-//   } catch (error) {
-//     return {
-//       props: { isConnected: false },
-//     }
-//   }
-// };
