@@ -8,7 +8,7 @@ const Navbar = () => {
   const [orderHover, setOrderHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
-  const { user } = useUser();
+const { user } = useUser();
   
   // Selectively render navbar links based on user authentication
   const userLinks = () => {

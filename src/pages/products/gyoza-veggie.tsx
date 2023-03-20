@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Cart from '../../components/cart/cart';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const GyozaVeggie = () => {
   const router = useRouter();
@@ -27,14 +28,7 @@ const GyozaVeggie = () => {
   const [quantity, setQuantity] = useState(1);
   const [style, setStyle] = useState('veggie');
   const [showModal, setShowModal] = useState(false);
-  const [user, setUser] = useState({
-    _id: '',
-    email: '',
-    firstname: '',
-    lastname: '',
-    cart: {},
-    orders: {},
-  });
+  const { user } = useUser();
   const [gyozaId, setGyozaId] = useState(flavors[pathName]);
   const [flavorsHidden, setFlavorsHidden] = useState(true);
   const [hiddenTab, setHiddenTab] = useState<{ [key: number]: boolean }>({
