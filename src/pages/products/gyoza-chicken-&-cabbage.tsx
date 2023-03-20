@@ -145,7 +145,7 @@ const GyozaChickenCabbage = () => {
     if (user) {
       fetch('/api/carts', {
         method: 'PUT',
-        body: JSON.stringify({ product: product, quantity: 1 })
+        body: JSON.stringify({ product: product, quantity: quantity })
       }).then(() => {
         setShowModal(true);
       })
