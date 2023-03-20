@@ -103,6 +103,33 @@ const Products = () => {
     }
   }, [products]);
 
+  // Update Product1
+  useEffect(() => {
+    if (products) {
+      const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
+      const matchedProduct = products[dumplingIndex];
+      setProduct1(matchedProduct);
+    }
+  }, [dumplingsId]);
+
+  // Update Product2
+  useEffect(() => {
+    if (products) {
+      const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
+      const matchedProduct = products[dumplingIndex];
+      setProduct2(matchedProduct);
+    }
+  }, [dumplingsId]);
+
+  // Update Product3
+  useEffect(() => {
+    if (products) {
+      const gyozaIndex = products.findIndex((product: { _id: string; }) => product._id === gyozaId);
+      const matchedProduct = products[gyozaIndex];
+      setProduct3(matchedProduct);
+    }
+  }, [gyozaId]);
+
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (user) {
