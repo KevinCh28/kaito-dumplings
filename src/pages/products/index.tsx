@@ -1,8 +1,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect, SyntheticEvent } from "react";
-import Cart from '../../components/cart/cart';
-import { useUser } from '@auth0/nextjs-auth0/client';
+import Cart from '../../components/cart/cart';import { useUser } from '@auth0/nextjs-auth0/client';
 
 const Products = () => {
   const dumplings = {

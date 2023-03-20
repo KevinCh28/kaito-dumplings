@@ -1,9 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState, useEffect, useMemo } from 'react';
-import { getProduct } from '../../utils/productApiUtils';
-import Cart from '../../components/cart/cart';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState, useEffect, useMemo } from 'react';import Cart from '../../components/cart/cart';import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const GyozaBeefCheese = () => {
