@@ -4,6 +4,7 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import Link from 'next/link';
 
 const AccountPage: NextPage = () => {
   const { user, error, isLoading } = useUser();
@@ -81,9 +82,9 @@ const AccountPage: NextPage = () => {
             {/* <button className='account_page_buttons' onClick={handleLogout}>
               Logout
             </button> */}
-            <a className='account_page_buttons' href='/api/auth/logout'>
+            <Link className='account_page_buttons' href='/api/auth/logout'>
               Logout
-            </a>
+            </Link>
           </div>
           {handleOrderHistory()}
         </div>
