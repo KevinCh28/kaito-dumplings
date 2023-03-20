@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
 
 export default withApiAuthRequired(async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const data = JSON.parse(req.body);
   const { accessToken } = await getAccessToken(req, res);
   const fetchOptions = {
     method: "POST",
@@ -51,6 +50,7 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
         res.status(200).json(readDataJson.document);
         break;
       case "PUT":
+        const data = JSON.parse(req.body);
         const updateData = await fetch(`${baseUrl}/findOne`, {
           ...fetchOptions,
           body: JSON.stringify({
@@ -117,9 +117,7 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
             },
           }),
         });
-
-        const updatedCartJson = await updatedCart.json();
-        res.status(200).json(updatedCartJson.document);
+        res.status(200).json({ filteredProducts });
         break;
       default:
         res.status(405).end();

@@ -1,7 +1,6 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -19,7 +18,20 @@ const Cart = ({ onClose = () => { } }) => {
   //   description: '',
   //   stripeId: '',
   // }]);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({
+    products: [{
+      quantity: 0,
+      product: {
+        _id: '',
+        name: '',
+        category: '',
+        price: 0,
+        imageUrl: '',
+        description: '',
+        stripeId: '',
+      }
+    }],
+  });
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [userId, setUserId] = useState('');
@@ -34,13 +46,13 @@ const Cart = ({ onClose = () => { } }) => {
   }[] | null>(null);
 
   // Gets user's id
-  useEffect(() => {
-    (async () => {
-      const results = await fetch('/api/users');
-      const data = await results.json();
-      setUserId(data.id)
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const results = await fetch('/api/users');
+  //     const data = await results.json();
+  //     setUserId(data.id)
+  //   })();
+  // }, []);
   
   // Gets user's cart
   useEffect(() => {
@@ -50,19 +62,19 @@ const Cart = ({ onClose = () => { } }) => {
       console.log(data)
       setCart(data)
     })();
-  }, [userId]);
-
-  // Get Products
-  useEffect(() => {
-    (async () => {
-      const results = await fetch('/api/products');
-      const data = await results.json();
-      setProducts(data)
-    })();
   }, []);
 
+  // Get Products
   // useEffect(() => {
-  //   cart.map((item: object) => {
+  //   (async () => {
+  //     const results = await fetch('/api/products');
+  //     const data = await results.json();
+  //     setProducts(data)
+  //   })();
+  // }, []);
+
+  // useEffect(() => {
+  //   cart.products.map((item: object) => {
   //     if (recommended[item.product.category] === true) setRecommended({ ...recommended, [item.product.category]: false });
   //   })
   // }, [cart]);
@@ -83,8 +95,8 @@ const Cart = ({ onClose = () => { } }) => {
     let total = 0;
     let totalCartItems = 0
 
-    if (cart.length > 0 ) {
-      cart.forEach((item: { quantity: number, product: { price: number } }) => {
+    if (cart.products.length > 0 ) {
+      cart.products.forEach((item: { quantity: number, product: { price: number } }) => {
         totalCartItems += item.quantity;
         total += item.product.price * item.quantity;
       });
@@ -169,11 +181,11 @@ const Cart = ({ onClose = () => { } }) => {
 
   // Renders cart items
   const handleCartItems = () => {
-    if (cart.length > 0) {
+    if (cart.products.length > 0) {
       return (
         <div className='cart_items_container'>
           <ul className='cart_items'>
-            {cart.map((item: { product: { _id: string, category: string, name: string, imageUrl: string, price: number }, quantity: number }) => {
+            {cart.products.map((item: { product: { _id: string, category: string, name: string, imageUrl: string, price: number }, quantity: number }) => {
               if (recommended[item.product.category] === true) setRecommended({ ...recommended, [item.product.category]: false });
               return (
                 <li className='cart_item_container' key={item.product._id}>
@@ -199,8 +211,7 @@ const Cart = ({ onClose = () => { } }) => {
                           <span className='hiddenSpan'></span>
                         </button>
                         <span className='item_quantity_number'>{item.quantity}</span>
-                        {/* <button className='item_quantity_button' onClick={() => handleAddQuantity(item)}> */}
-                        <button className='item_quantity_button'>
+                        <button className='item_quantity_button' onClick={() => handleAddQuantity(item.product)}>
                           <i><FontAwesomeIcon icon={faPlus}></FontAwesomeIcon></i>
                           <span className='hiddenSpan'></span>
                         </button>
@@ -250,16 +261,16 @@ const Cart = ({ onClose = () => { } }) => {
     }
   }
 
-  // const handleAddQuantity = (product: object ) => {
-  //   increaseItemQuantity(userId, product, 1).then((res) => {
-  //     // if (recommended[product.category] === true) setRecommended({ ...recommended, [product.category]: false });
-  //     getCart(userId)
-  //       .then((res) => {
-  //         setCart(res.data.products);
-  //       }
-  //     )
-  //   })
-  // };
+  const handleAddQuantity = (product: object ) => {
+    (async () => {
+      const results = await fetch('/api/carts', {
+        method: 'PUT',
+        body: JSON.stringify({ product, quantity: 1 })
+      })
+      const data = await results.json();
+      setCart({ ...cart, products: data.filteredProducts });
+    })();
+  };
 
   // const handleMinusQuantity = (product: object ) => {
   //   decreaseItemQuantity(userId, product).then((res) => {
