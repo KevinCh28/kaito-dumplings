@@ -136,7 +136,9 @@ const Products = () => {
       fetch('/api/carts', {
         method: 'PUT',
         body: JSON.stringify({ product: product2, quantity: 1 })
-      });
+      }).then(() => {
+        setShowModal(true);
+      })
     }
   };
 
@@ -146,7 +148,9 @@ const Products = () => {
       fetch('/api/carts', {
         method: 'PUT',
         body: JSON.stringify({ product: product3, quantity: 1 })
-      });
+      }).then(() => {
+        setShowModal(true);
+      })
     }
   };
 
