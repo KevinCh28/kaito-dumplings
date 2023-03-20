@@ -1,14 +1,37 @@
-import { Request, Response } from "express";
-import { MongoClient } from "mongodb";
-import { connectToDatabase } from "../../../../lib/connectToDatabse";
+import type { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req: Request, res: Response) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Request-Headers": "*",
+      "api-key": process.env.API_KEY as string,
+    },
+  };
+  const fetchBody = {
+    dataSource: process.env.MONGODB_DATA_SOURCE as string,
+    database: "test",
+    collection: "products",
+  };
+  const baseUrl = `${process.env.MONGODB_DATA_API_URL}/action`;
+
   try {
-    const mongoClient = await connectToDatabase() as MongoClient;
-    const db = mongoClient.db("test");
-    const productsCollection = db.collection("products");
-    const results = await productsCollection.find().toArray();
-    res.status(200).json(results);
+    switch (req.method) {
+      case "GET":
+        const readData = await fetch(`${baseUrl}/find`, {
+          ...fetchOptions,
+          body: JSON.stringify({
+            ...fetchBody,
+          }),
+        });
+        const readDataJson = await readData.json();
+        res.status(200).json(readDataJson.documents);
+        break;
+      default:
+        res.status(405).json({ message: "Method not allowed" });
+        break;
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
