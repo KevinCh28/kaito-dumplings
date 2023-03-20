@@ -73,23 +73,32 @@ const AccountPage: NextPage = () => {
         </div>
   )};
 
-  return (
-    <div className='account_page_main'>
-      <div className='account_page_main_wrapper'>
-        <div className='account_page_main_container'>
-          <div className='account_page_header'>
-            <h3 className='account_page_greeting'>Hi {user.given_name}!</h3>
-            {/* <button className='account_page_buttons' onClick={handleLogout}>
-              Logout
-            </button> */}
-            <Link className='account_page_buttons' href='/api/auth/logout'>
-              Logout
-            </Link>
+  const handleRender = () => {
+    if (user) {
+      return (
+        <div className='account_page_main'>
+          <div className='account_page_main_wrapper'>
+            <div className='account_page_main_container'>
+              <div className='account_page_header'>
+                <h3 className='account_page_greeting'>Hi {user.name}!</h3>
+                <Link className='account_page_buttons' href='/api/auth/logout'>
+                  Logout
+                </Link>
+              </div>
+              {handleOrderHistory()}
+            </div>
           </div>
-          {handleOrderHistory()}
         </div>
-      </div>
-    </div>
+      );
+    } else {
+      return (
+        <div className='account_page_main'></div>
+      )
+    }
+  };
+
+  return (
+    handleRender()
   );
 };
 
