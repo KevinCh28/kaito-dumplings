@@ -59,7 +59,6 @@ const Cart = ({ onClose = () => { } }) => {
     (async () => {
       const results = await fetch(`/api/carts?userId=${userId}`);
       const data = await results.json();
-      console.log(data)
       setCart(data)
     })();
   }, []);
@@ -205,8 +204,7 @@ const Cart = ({ onClose = () => { } }) => {
 
                     <div className='item_quantity_container'>
                       <div className='item_quantity_wrapper'>
-                        {/* <button className='item_quantity_button' onClick={() => handleMinusQuantity(item)}> */}
-                        <button className='item_quantity_button'>
+                        <button className='item_quantity_button' onClick={() => handleMinusQuantity(item.product)}>
                           <i><FontAwesomeIcon icon={faMinus}></FontAwesomeIcon></i>
                           <span className='hiddenSpan'></span>
                         </button>
@@ -272,15 +270,16 @@ const Cart = ({ onClose = () => { } }) => {
     })();
   };
 
-  // const handleMinusQuantity = (product: object ) => {
-  //   decreaseItemQuantity(userId, product).then((res) => {
-  //     getCart(userId)
-  //       .then((res) => {
-  //         setCart(res.data.products);
-  //       }
-  //     )
-  //   })
-  // };
+  const handleMinusQuantity = (product: object ) => {
+    (async () => {
+      const results = await fetch('/api/carts', {
+        method: 'PUT',
+        body: JSON.stringify({ product, quantity: -1 })
+      })
+      const data = await results.json();
+      setCart({ ...cart, products: data.filteredProducts });
+    })();
+  };
 
   // const handleRemoveItem = ( productId: string ) => {
   //   removeItemFromCart(userId, productId).then((res) => {
@@ -331,7 +330,7 @@ const Cart = ({ onClose = () => { } }) => {
               <div className='sub_total_text'>
                 <span>Subtotal ({totalItems} items)</span>
               </div>
-              <div className='subtotal_amount'>${totalAmount}</div>
+              <div className='subtotal_amount'>${totalAmount.toFixed(2)}</div>
             </div>
 
             <div className='cart_action_buttons_container'>
