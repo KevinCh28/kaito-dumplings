@@ -4,7 +4,13 @@ import { getSession, getAccessToken, withApiAuthRequired } from "@auth0/nextjs-a
 export default withApiAuthRequired(async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { accessToken } = await getAccessToken(req, res);
-    const { user } = await getSession(req, res);
+    const session = await getSession(req, res);
+    let user;
+    if (session) {
+      user = session.user;
+    } else {
+      res.status(401).end();
+    }
     const baseUrl = `${process.env.MONGODB_DATA_API_URL}/action`;
 
     switch (req.method) {
@@ -24,7 +30,7 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
         });
         const readDataJson = await readData.json();
 
-        if (!readDataJson.document.email) {
+        if (!readDataJson.document.email && user) {
           await fetch(`${baseUrl}/updateOne`, {
             method: "POST",
             headers: {
@@ -57,31 +63,33 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
         res.status(200).json(readDataJson.document);
         break;
       case "PUT":
-        const updateData = await fetch(`${baseUrl}/updateOne`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Request-Headers": "*",
-            jwtTokenString: accessToken as string,
-          },
-          body: JSON.stringify({
-            dataSource: process.env.MONGODB_DATA_SOURCE,
-            database: "test",
-            collection: "users",
-            filter: { _id: { $oid: req.body._id } },
-            update: {
-              $set: {
-                email: user.email,
-                firstname: user.given_name,
-                lastname: user.family_name,
-              },
+        if (user) {
+          const updateData = await fetch(`${baseUrl}/updateOne`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Request-Headers": "*",
+              jwtTokenString: accessToken as string,
             },
-          }),
-        });
+            body: JSON.stringify({
+              dataSource: process.env.MONGODB_DATA_SOURCE,
+              database: "test",
+              collection: "users",
+              filter: { _id: { $oid: req.body._id } },
+              update: {
+                $set: {
+                  email: user.email,
+                  firstname: user.given_name,
+                  lastname: user.family_name,
+                },
+              },
+            }),
+          });
 
-        const updateDataJson = await updateData.json();
-        res.status(200).json(updateDataJson);
-        break;
+          const updateDataJson = await updateData.json();
+          res.status(200).json(updateDataJson);
+          break;
+        }
       default:
         res.status(405).end();
         break;
