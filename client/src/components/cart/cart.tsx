@@ -47,6 +47,7 @@ const Cart = ({ onClose = () => { } }) => {
     (async () => {
       const results = await fetch(`/api/carts?userId=${userId}`);
       const data = await results.json();
+      console.log(data)
       setCart(data)
     })();
   }, [userId]);

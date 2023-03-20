@@ -106,28 +106,20 @@ const Products = () => {
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (user) {
-      increaseItemQuantity(user._id, product2, 1)
-        .then((res) => {
-          setShowModal(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        }
-      )
+      fetch('/api/carts', {
+        method: 'PUT',
+        body: JSON.stringify({ product: product2, quantity: 1 })
+      });
     }
   };
 
   const handleAddGyozaToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (user) {
-      increaseItemQuantity(user._id, product3, 1)
-        .then((res) => {
-          setShowModal(true);
-        })
-        .catch((err) => {
-          console.log(err);
-        }
-      )
+      fetch('/api/carts', {
+        method: 'PUT',
+        body: JSON.stringify({ product: product3, quantity: 1 })
+      });
     }
   };
 
