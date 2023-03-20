@@ -24,6 +24,7 @@ const DumplingsVeggie = () => {
     description: '',
     imageUrl: '',
     category: '',
+    stripeId: '',
   });
   const [quantity, setQuantity] = useState(1);
   const [style, setStyle] = useState('veggie');

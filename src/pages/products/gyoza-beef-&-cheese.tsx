@@ -22,6 +22,7 @@ const GyozaBeefCheese = () => {
     description: '',
     imageUrl: '',
     category: '',
+    stripeId: '',
   });
   const [quantity, setQuantity] = useState(1);
   const [style, setStyle] = useState('beef-&-cheese');

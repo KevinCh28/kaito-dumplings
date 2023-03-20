@@ -24,6 +24,7 @@ const GyozaVeggie = () => {
     description: '',
     imageUrl: '',
     category: '',
+    stripeId: '',
   });
   const [quantity, setQuantity] = useState(1);
   const [style, setStyle] = useState('veggie');
@@ -144,7 +145,7 @@ const GyozaVeggie = () => {
     if (user) {
       fetch('/api/carts', {
         method: 'PUT',
-        body: JSON.stringify({ product: product3, quantity: 1 })
+        body: JSON.stringify({ product: product, quantity: quantity })
       }).then(() => {
         setShowModal(true);
       })
