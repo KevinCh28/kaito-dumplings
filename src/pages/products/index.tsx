@@ -143,7 +143,7 @@ const Products = () => {
     if (user) {
       fetch('/api/carts', {
         method: 'PUT',
-        body: JSON.stringify({ product: product, quantity: quantity })
+        body: JSON.stringify({ product: product3, quantity: 1 })
       }).then(() => {
         setShowModal(true);
       })
