@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useMemo } from 'react';
 import { getProduct } from '../../utils/productApiUtils';
-import { increaseItemQuantity } from "../../utils/cartApiUtils";
+
 import Cart from '../../components/cart/cart';
-import { getCurrentUser } from '@/src/utils/sessionApiUtils';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
@@ -49,23 +49,25 @@ const DumplingsBeefCheese = () => {
   });
 
   // Get current user
-  useEffect(() => {
-    getCurrentUser()
-      .then((res) => {
-        setUser(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   getCurrentUser()
+  //     .then((res) => {
+  //       setUser(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   // Get product
   useEffect(() => {
-    getProduct(dumplingId).then((res) => {
+    (async () => {
       const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
       element.style.backgroundColor = '#a9dde3';
-      setProduct(res.data);
-    });
+      const results = await fetch(`/api/product?id=${dumplingId}`);
+      const data = await results.json();
+      setProduct(data)
+    })();
   }, [dumplingId]);
 
   // Hide flavors when clicking outside of the flavors container
@@ -149,14 +151,14 @@ const DumplingsBeefCheese = () => {
 
   const handleAddDumplingToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    increaseItemQuantity(user._id, product, quantity)
-      .then((res) => {
+    if (user) {
+      fetch('/api/carts', {
+        method: 'PUT',
+        body: JSON.stringify({ product: product, quantity: quantity })
+      }).then(() => {
         setShowModal(true);
       })
-      .catch((err) => {
-        console.log(err);
-      }
-      );
+    }
   };
 
   return (
