@@ -1,10 +1,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect, SyntheticEvent } from "react";
-// import { increaseItemQuantity } from "../../utils/cartApiUtils";
-// import { getCurrentUser } from '@/src/utils/sessionApiUtils';
 import Cart from '../../components/cart/cart';
-import clientPromise from "@/lib/mongodb"
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 // const Products = ({ isConnected }) => {
