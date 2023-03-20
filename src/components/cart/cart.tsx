@@ -57,7 +57,7 @@ const Cart = ({ onClose = () => { } }) => {
   // Gets user's cart
   useEffect(() => {
     (async () => {
-      const results = await fetch(`/api/carts?userId=${userId}`);
+      const results = await fetch('/api/carts');
       const data = await results.json();
       setCart(data)
     })();
