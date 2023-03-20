@@ -194,8 +194,7 @@ const Cart = ({ onClose = () => { } }) => {
                     </Link>
                   </div>
                   <div className='cart_item_info'>
-                    {/* <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.product._id)}> */}
-                    <button className='cart_item_remove_button'>
+                    <button className='cart_item_remove_button' onClick={() => handleRemoveItem(item.product)}>
                       <i><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon></i>
                       <span className='hiddenSpan'>Remove {item.product.category} {item.product.name} from Cart</span>
                     </button>
@@ -242,7 +241,7 @@ const Cart = ({ onClose = () => { } }) => {
             <h4 className='empty_cart_header'>YOUR CART IS EMPTY!</h4>
             <p className='empty_cart_text'>Add some dumplings and gyozas.</p>
             <p className='empty_cart_button'>
-              <Link href="/products">Shop Now</Link>
+              <a href="/products">Shop Now</a>
             </p>
           </div>
           <div className='empty_cart_footer_container'>
@@ -281,16 +280,16 @@ const Cart = ({ onClose = () => { } }) => {
     })();
   };
 
-  // const handleRemoveItem = ( productId: string ) => {
-  //   removeItemFromCart(userId, productId).then((res) => {
-  //     // if (recommended[product.category] === false) setRecommended({ ...recommended, [product.category]: true });
-  //     getCart(userId)
-  //       .then((res) => {
-  //         setCart(res.data.products);
-  //       }
-  //     )
-  //   })
-  // };
+  const handleRemoveItem = ( product: object ) => {
+    (async () => {
+      const results = await fetch('/api/carts', {
+        method: 'PUT',
+        body: JSON.stringify({ product, quantity: -999 })
+      })
+      const data = await results.json();
+      setCart({ ...cart, products: data.filteredProducts });
+    })();
+  };
 
   // const handleCheckOut = () => {
   //   let items = cart.map((item: { quantity: number, product: { stripeId: string } }) => {
