@@ -241,7 +241,7 @@ const Cart = ({ onClose = () => { } }) => {
             <h4 className='empty_cart_header'>YOUR CART IS EMPTY!</h4>
             <p className='empty_cart_text'>Add some dumplings and gyozas.</p>
             <p className='empty_cart_button'>
-              <a href="/products">Shop Now</a>
+              <Link href="/products">Shop Now</Link>
             </p>
           </div>
           <div className='empty_cart_footer_container'>
