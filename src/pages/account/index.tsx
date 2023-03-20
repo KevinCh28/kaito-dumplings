@@ -13,13 +13,17 @@ const AccountPage: NextPage = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  // const handleCancel = async (orderNum: string) => {
-  //   cancelOrder(user.id, orderNum).then((res) => {
-  //     getOrders(user.id).then((res) => {
-  //       setOrders(res);
-  //     })
-  //   })
-  // };
+  const handleCancel = (orderNum: string) => {
+    (async () => {
+      await fetch('/api/orders', {
+        method: 'PUT',
+        body: JSON.stringify({ orderNum: orderNum })
+      });
+      const results = await fetch('/api/orders');
+      const data = await results.json();
+      setOrders(data)
+    })();
+  };
 
   const handleOrderHistory = () => {
     if (orders.length === 0) {
@@ -60,13 +64,13 @@ const AccountPage: NextPage = () => {
                     </tbody>
                   </table>
                 </div>
-                {/* {
+                {
                   order.orderStatus === 'pending' ?
                   <button className='account_page_buttons' onClick={() => handleCancel(order.orderNumber)}>
                     <i><FontAwesomeIcon icon={faBan}></FontAwesomeIcon></i>
                     Cancel
                   </button> : null
-                } */}
+                }
               </div>
             )
           })}

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { checkout } from '@/src/utils/stripeApiUtils';
 
 const Cart = ({ onClose = () => { } }) => {
   const [recommended, setRecommended] = useState<{ [key: string]: boolean }>({
@@ -291,15 +292,15 @@ const Cart = ({ onClose = () => { } }) => {
     })();
   };
 
-  // const handleCheckOut = () => {
-  //   let items = cart.map((item: { quantity: number, product: { stripeId: string } }) => {
-  //     return {
-  //       quantity: item.quantity,
-  //       product: { stripeId: item.product.stripeId }
-  //     };
-  //   });
-  //   checkout(items)
-  // };
+  const handleCheckOut = () => {
+    let items = cart.products.map((item: { quantity: number, product: { stripeId: string } }) => {
+      return {
+        quantity: item.quantity,
+        product: { stripeId: item.product.stripeId }
+      };
+    });
+    checkout(items)
+  };
 
   return (
     <div>
@@ -333,8 +334,7 @@ const Cart = ({ onClose = () => { } }) => {
             </div>
 
             <div className='cart_action_buttons_container'>
-              {/* <button className='cart_checkout_button' onClick={handleCheckOut}> */}
-              <button className='cart_checkout_button'>
+              <button className='cart_checkout_button' onClick={handleCheckOut}>
                 <span><i className='cart_checkout_button_image'><FontAwesomeIcon icon={faLock}></FontAwesomeIcon></i> Checkout </span>
               </button>
               <button className='cart_continue_shopping_button' onClick={onClose}>
