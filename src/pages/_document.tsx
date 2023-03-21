@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <link rel="icon" href="/favicon.png" />
-        <meta content='Kaito | Dumplings | Frozen & Delivered Fresh'/>
+        <title>Kaito | Dumplings | Frozen & Delivered Fresh</title>
       </Head>
       <body>
         <Main />
