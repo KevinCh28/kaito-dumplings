@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Cart from '../cart/cart';
+import CartUnAuth from '../cartUnAuth/cartUnAuth';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 const Navbar = () => {
@@ -8,7 +9,7 @@ const Navbar = () => {
   const [orderHover, setOrderHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
-const { user } = useUser();
+  const { user } = useUser();
   
   // Selectively render navbar links based on user authentication
   const userLinks = () => {
@@ -60,11 +61,17 @@ const { user } = useUser();
   const handleCartModal = () => {
     if (!showModal) {
       return null
-    } else {
+    } else if (showModal && user) {
       const body = document.getElementsByTagName("body")[0];
       body.style.overflow = "hidden";
       return (
         <Cart onClose={() => setShowModal(false)} ></Cart>
+      )
+    } else {
+      const body = document.getElementsByTagName("body")[0];
+      body.style.overflow = "hidden";
+      return (
+        <CartUnAuth onClose={() => setShowModal(false)} ></CartUnAuth>
       )
     }
   };
