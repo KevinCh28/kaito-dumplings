@@ -40,6 +40,8 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
               document: {
                 _id: guestId,
                 products: [],
+                createdAt: new Date(),
+                updatedAt: new Date(),
               },
             }),
           });
@@ -70,6 +72,7 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
               update: {
                 $set: {
                   products: [{ product: data.product, quantity: data.quantity }],
+                  updatedAt: new Date(),
                 },
               },
             }),
@@ -92,6 +95,7 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
             return {
               ...item,
               quantity: newQuantity,
+              updatedAt: new Date(),
             };
           }
           return item;
@@ -116,6 +120,7 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
             update: {
               $set: {
                 products: filteredProducts,
+                updatedAt: new Date(),
               },
             },
           }),
