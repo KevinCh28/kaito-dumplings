@@ -65,7 +65,6 @@ const OrderSuccessPage: NextPage = () => {
     (async () => {
       const response = await fetch(URL);
       const data = await response.json();
-      console.log(data)
       setCheckoutSession(data);
     })();
   }, [sessionId]);
