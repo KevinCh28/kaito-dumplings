@@ -31,6 +31,42 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
         res.status(200).json(readDataJson.documents);
         break;
       case "PUT":
+        let randomNum = "K" + Math.floor(Math.random() * 1000000);
+        const createBody = JSON.parse(req.body);
+        const createData = await fetch(`${baseUrl}/findOne`, {
+          ...fetchOptions,
+          body: JSON.stringify({
+            ...fetchBody,
+            filter: {
+              stripePaymentIntentId: createBody.stripePaymentIntentId,
+              orderNum: randomNum,
+            },
+          }),
+        });
+        const createDataJson = await createData.json();
+
+        while (createDataJson.document.orderNum === randomNum) {
+          randomNum = "K" + Math.floor(Math.random() * 1000000);
+        };
+        
+        if (!createDataJson.document.stripePaymentIntentId && !createDataJson.document.orderNum) {
+          await fetch(`${baseUrl}/insertOne`, {
+            ...fetchOptions,
+            body: JSON.stringify({
+              ...fetchBody,
+              document: {
+                orderNum: randomNum,
+                ...createBody,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+              },
+            }),
+          });
+        }
+
+        res.status(200).json(createDataJson.document);
+        break;
+      case "DELETE":
         const data = JSON.parse(req.body);
         const updateData = await fetch(`${baseUrl}/findOne`, {
           ...fetchOptions,

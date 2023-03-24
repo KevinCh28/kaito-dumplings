@@ -53,6 +53,7 @@ const OrderSuccessPage: NextPage = () => {
     }
   });
 
+  // fetch checkout session data
   useEffect(() => {
     (async () => {
       const response = await fetch(URL);
@@ -60,21 +61,7 @@ const OrderSuccessPage: NextPage = () => {
       console.log(data)
       setCheckoutSession(data);
     })();
-  }, [sessionId]);
-
-  const customer = checkoutSession?.customer_details;
-  const products = checkoutSession?.line_items?.data?.map((item: { price: { product: object; unit_amount: number; }; quantity: number; }) => ({
-    ...item.price.product,
-    price: item.price.unit_amount,
-    quantity: item.quantity
-  }));
-  const payment = checkoutSession?.payment_intent?.charges?.data[0]?.payment_method_details?.card;
-  const subtotal = checkoutSession?.amount_subtotal;
-  const shipping = checkoutSession?.total_details?.amount_shipping;
-  const total = checkoutSession?.amount_total;
-  const currency = checkoutSession?.currency;
-  const discount = checkoutSession?.total_details?.amount_discount;
-  const tax = checkoutSession?.total_details?.amount_tax;
+  }, []);
 
   // reset cart
   useEffect(() => {
@@ -92,6 +79,45 @@ const OrderSuccessPage: NextPage = () => {
       })();
     }
   }, [checkoutSession]);
+
+  // create order
+  // useEffect(() => {
+  //   if (checkoutSession.payment_status === 'paid') {
+  //     (async () => {
+  //       await fetch('/api/orders', {
+  //         method: 'PUT',
+  //         headers: {
+  //           'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify({
+  //           stripePaymentIntentId: checkoutSession.payment_intent.id,
+  //           customer: checkoutSession.customer_details,
+  //           products,
+  //           subtotal,
+  //           shipping,
+  //           total,
+  //           currency,
+  //           discount,
+  //           tax
+  //         })
+  //       });
+  //     })();
+  //   }
+  // }, [checkoutSession]);
+
+  const customer = checkoutSession?.customer_details;
+  const products = checkoutSession?.line_items?.data?.map((item: { price: { product: object; unit_amount: number; }; quantity: number; }) => ({
+    ...item.price.product,
+    price: item.price.unit_amount,
+    quantity: item.quantity
+  }));
+  const payment = checkoutSession?.payment_intent?.charges?.data[0]?.payment_method_details?.card;
+  const subtotal = checkoutSession?.amount_subtotal;
+  const shipping = checkoutSession?.total_details?.amount_shipping;
+  const total = checkoutSession?.amount_total;
+  const currency = checkoutSession?.currency;
+  const discount = checkoutSession?.total_details?.amount_discount;
+  const tax = checkoutSession?.total_details?.amount_tax;
 
   return (
     <div>
