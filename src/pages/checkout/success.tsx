@@ -11,7 +11,13 @@ const OrderSuccessPage: NextPage = () => {
   const [checkoutSession, setCheckoutSession] = useState({
     customer_details: {
       email: '',
-      name: ''
+      name: '',
+      line1: '',
+      line2: '',
+      city: '',
+      state: '',
+      postal_code: '',
+      country: ''
     },
     currency: '',
     payment_status: '',
