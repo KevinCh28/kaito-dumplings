@@ -62,14 +62,12 @@ const OrderSuccessPage: NextPage = () => {
 
   // fetch checkout session data
   useEffect(() => {
-    if (sessionId) {
-      (async () => {
-        const response = await fetch(URL);
-        const data = await response.json();
-        setCheckoutSession(data);
-      })();
-    }
-  }, []);
+    (async () => {
+      const response = await fetch(URL);
+      const data = await response.json();
+      setCheckoutSession(data);
+    })();
+  }, [URL]);
 
   // reset cart
   useEffect(() => {
@@ -86,7 +84,7 @@ const OrderSuccessPage: NextPage = () => {
         });
       })();
     }
-  }, [checkoutSession]);
+  }, [checkoutSession, user]);
 
   const customer = checkoutSession?.customer_details;
   const products = checkoutSession?.line_items?.data?.map((item: { price: { product: object; unit_amount: number; }; quantity: number; }) => ({
