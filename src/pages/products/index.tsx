@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useState, useEffect, SyntheticEvent } from "react";
 import Cart from '../../components/cart/cart';
+import CartUnAuth from '../../components/cartUnAuth/cartUnAuth';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 const Products = () => {
@@ -151,10 +152,13 @@ const Products = () => {
   };
 
   const handleCartModal = () => {
-    if (!showModal) return null
-    return (
-      <Cart onClose={() => setShowModal(false)} />
-    )
+    if (!showModal) {
+      return null;
+    } else if (showModal && user) {
+      return <Cart onClose={() => setShowModal(false)} />
+    } else {
+      return <CartUnAuth onClose={() => setShowModal(false)} />
+    }
   };
 
   // Render gyoza buttons that are selected or not
