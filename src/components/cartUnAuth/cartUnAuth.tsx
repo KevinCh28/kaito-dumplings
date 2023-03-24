@@ -35,15 +35,17 @@ const CartUnAuth = ({ onClose = () => { } }) => {
     category: string,
     stripeId: string,
   }[] | null>(null);
+  
 
   // Gets user's cart
-  // useEffect(() => {
-  //   (async () => {
-  //     const results = await fetch('/api/carts');
-  //     const data = await results.json();
-  //     setCart(data)
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const results = await fetch('/api/guests');
+      const data = await results.json();
+      console.log(data)
+      // setCart(data)
+    })();
+  }, []);
 
   // Calculates subtotal items and amount in cart
   useEffect(() => {

@@ -15,8 +15,7 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
     collection: "guests",
   };
   const baseUrl = `${process.env.MONGODB_DATA_API_URL}/action`;
-  const guestId = req.query.id;
-
+  const guestId = req.cookies.guest;
 
   try {
     switch (req.method) {
