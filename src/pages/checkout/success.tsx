@@ -14,6 +14,7 @@ const OrderSuccessPage: NextPage = () => {
       name: ''
     },
     currency: '',
+    payment_status: '',
     payment_intent: {
       charges: {
         data: [
@@ -77,20 +78,20 @@ const OrderSuccessPage: NextPage = () => {
 
   // reset cart
   useEffect(() => {
-    if (user) {
+    if (user && checkoutSession.payment_status === 'paid') {
       (async () => {
-        await fetch('/api/cart', {
+        await fetch('/api/carts', {
           method: 'DELETE',
         });
       })();
-    } else {
+    } else if (checkoutSession.payment_status === 'paid') {
       (async () => {
-        await fetch('/api/guest', {
-          method: 'DELE',
+        await fetch('/api/guests', {
+          method: 'DELETE',
         });
       })();
     }
-  }, []);
+  }, [checkoutSession]);
 
   return (
     <div>

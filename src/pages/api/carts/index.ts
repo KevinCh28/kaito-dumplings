@@ -128,18 +128,24 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
         });
         const deleteDataJson = await deleteData.json();
 
-        await fetch(`${baseUrl}/updateOne`, {
-          ...fetchOptions,
-          body: JSON.stringify({
-            ...fetchBody,
-            filter: { _id: { $oid: deleteDataJson.document._id } },
-            update: {
-              $set: {
-                products: [],
+        if (deleteDataJson.document.products.length > 0) {
+          await fetch(`${baseUrl}/updateOne`, {
+            ...fetchOptions,
+            body: JSON.stringify({
+              ...fetchBody,
+              filter: { _id: { $oid: deleteDataJson.document._id } },
+              update: {
+                $set: {
+                  products: [],
+                },
               },
-            },
-          }),
-        });
+            }),
+          });
+        } else {
+          res.status(200).json({ message: "Cart is already empty" });
+          break;
+        }
+        res.status(200).json({ message: "Cart is empty" });
       default:
         res.status(405).end();
         break;

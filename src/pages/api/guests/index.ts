@@ -136,19 +136,25 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
           }),
         });
         const deleteDataJson = await deleteData.json();
+        console.log(deleteDataJson)
 
-        await fetch(`${baseUrl}/updateOne`, {
-          ...fetchOptions,
-          body: JSON.stringify({
-            ...fetchBody,
-            filter: { _id: { $oid: deleteDataJson.document._id } },
-            update: {
-              $set: {
-                products: [],
+        if (deleteDataJson.document.products.length > 0) {
+          await fetch(`${baseUrl}/updateOne`, {
+            ...fetchOptions,
+            body: JSON.stringify({
+              ...fetchBody,
+              filter: { _id: deleteDataJson.document._id },
+              update: {
+                $set: {
+                  products: [],
+                },
               },
-            },
-          }),
-        });
+            }),
+          });
+        } else {
+          res.status(200).json({ message: "No products in cart" });
+        }
+        res.status(200).json({ message: "Cart cleared" });
       default:
         res.status(405).end();
         break;
