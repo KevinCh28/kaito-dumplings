@@ -119,6 +119,27 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
         });
         res.status(200).json({ filteredProducts });
         break;
+      case "DELETE":
+        const deleteData = await fetch(`${baseUrl}/findOne`, {
+          ...fetchOptions,
+          body: JSON.stringify({
+            ...fetchBody,
+          }),
+        });
+        const deleteDataJson = await deleteData.json();
+
+        await fetch(`${baseUrl}/updateOne`, {
+          ...fetchOptions,
+          body: JSON.stringify({
+            ...fetchBody,
+            filter: { _id: { $oid: deleteDataJson.document._id } },
+            update: {
+              $set: {
+                products: [],
+              },
+            },
+          }),
+        });
       default:
         res.status(405).end();
         break;

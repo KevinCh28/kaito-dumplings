@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { checkout } from '@/src/utils/stripeApiUtils';
+import { checkout } from '@/src/lib/checkout';
 
 const CartUnAuth = ({ onClose = () => { } }) => {
   const [recommended, setRecommended] = useState<{ [key: string]: boolean }>({
