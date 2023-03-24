@@ -69,7 +69,7 @@ const OrderSuccessPage: NextPage = () => {
         setCheckoutSession(data);
       })();
     }
-  }, [sessionId]);
+  }, []);
 
   // reset cart
   useEffect(() => {
@@ -88,28 +88,6 @@ const OrderSuccessPage: NextPage = () => {
     }
   }, [checkoutSession]);
 
-  // create order
-  useEffect(() => {
-    if (checkoutSession.payment_status === 'paid') {
-      (async () => {
-        await fetch('/api/orders', {
-          method: 'PUT',
-          body: JSON.stringify({
-            stripePaymentIntentId: checkoutSession.payment_intent.id,
-            customer: checkoutSession.customer_details,
-            products,
-            subtotal: (subtotal / 100).toFixed(2),
-            shipping: (shipping / 100).toFixed(2),
-            total: (total / 100).toFixed(2),
-            currency: currency.toUpperCase(),
-            discount: (discount / 100).toFixed(2),
-            tax: (tax / 100).toFixed(2),
-          })
-        });
-      })();
-    }
-  }, [checkoutSession]);
-
   const customer = checkoutSession?.customer_details;
   const products = checkoutSession?.line_items?.data?.map((item: { price: { product: object; unit_amount: number; }; quantity: number; }) => ({
     ...item.price.product,
@@ -122,6 +100,28 @@ const OrderSuccessPage: NextPage = () => {
   const currency = checkoutSession?.currency;
   const discount = checkoutSession?.total_details?.amount_discount;
   const tax = checkoutSession?.total_details?.amount_tax;
+
+  // create order
+  useEffect(() => {
+    if (checkoutSession.payment_status === 'paid') {
+      (async () => {
+        await fetch('/api/orders', {
+          method: 'PUT',
+          body: JSON.stringify({
+            stripePaymentIntentId: checkoutSession.payment_intent.id,
+            customer: checkoutSession.customer_details,
+            products: checkoutSession,
+            subtotal: (checkoutSession.amount_subtotal / 100).toFixed(2),
+            shipping: (checkoutSession.total_details.amount_shipping / 100).toFixed(2),
+            total: (checkoutSession.amount_total / 100).toFixed(2),
+            currency: checkoutSession.currency.toUpperCase(),
+            discount: (checkoutSession.total_details.amount_discount / 100).toFixed(2),
+            tax: (checkoutSession.total_details.amount_tax / 100).toFixed(2),
+          })
+        });
+      })();
+    }
+  }, [checkoutSession]);
 
   return (
     <div>
