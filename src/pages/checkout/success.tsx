@@ -7,7 +7,7 @@ const OrderSuccessPage: NextPage = () => {
   const { query } = useRouter();
   const sessionId = query.success_id;
   const URL = `/api/stripe/sessions/${sessionId}`
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
   const [checkoutSession, setCheckoutSession] = useState({
     customer_details: {
       email: '',
@@ -62,24 +62,26 @@ const OrderSuccessPage: NextPage = () => {
 
   // fetch checkout session data
   useEffect(() => {
-    (async () => {
-      const response = await fetch(URL);
-      const data = await response.json();
-      setCheckoutSession(data);
-    })();
+    if (sessionId) {
+      (async () => {
+        const response = await fetch(URL);
+        const data = await response.json();
+        setCheckoutSession(data);
+      })();
+    }
   }, [sessionId]);
 
   // reset cart
   useEffect(() => {
-    if (user && checkoutSession.payment_status === 'paid') {
+    if (!user && checkoutSession.payment_status === 'paid') {
       (async () => {
-        await fetch('/api/carts', {
+        await fetch('/api/guests', {
           method: 'DELETE',
         });
       })();
-    } else if (checkoutSession.payment_status === 'paid') {
+    } else if (user && checkoutSession.payment_status === 'paid') {
       (async () => {
-        await fetch('/api/guests', {
+        await fetch('/api/carts', {
           method: 'DELETE',
         });
       })();
@@ -96,12 +98,12 @@ const OrderSuccessPage: NextPage = () => {
             stripePaymentIntentId: checkoutSession.payment_intent.id,
             customer: checkoutSession.customer_details,
             products,
-            subtotal,
-            shipping,
-            total,
-            currency,
-            discount,
-            tax
+            subtotal: (subtotal / 100).toFixed(2),
+            shipping: (shipping / 100).toFixed(2),
+            total: (total / 100).toFixed(2),
+            currency: currency.toUpperCase(),
+            discount: (discount / 100).toFixed(2),
+            tax: (tax / 100).toFixed(2),
           })
         });
       })();
@@ -114,7 +116,6 @@ const OrderSuccessPage: NextPage = () => {
     price: item.price.unit_amount,
     quantity: item.quantity
   }));
-  const payment = checkoutSession?.payment_intent?.charges?.data[0]?.payment_method_details?.card;
   const subtotal = checkoutSession?.amount_subtotal;
   const shipping = checkoutSession?.total_details?.amount_shipping;
   const total = checkoutSession?.amount_total;
