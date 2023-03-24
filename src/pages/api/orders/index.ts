@@ -1,14 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
+// import { getAccessToken, withApiAuthRequired } from "@auth0/nextjs-auth0";
 
-export default withApiAuthRequired(async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { accessToken } = await getAccessToken(req, res);
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // const { accessToken } = await getAccessToken(req, res);
   const fetchOptions = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       "Access-Control-Request-Headers": "*",
-      jwtTokenString: accessToken as string,
+      "api-key": process.env.API_KEY as string,
     },
   };
   const fetchBody = {
@@ -33,38 +33,38 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
       case "PUT":
         let randomNum = "K" + Math.floor(Math.random() * 1000000);
         const createBody = JSON.parse(req.body);
-        const createData = await fetch(`${baseUrl}/findOne`, {
+        const createData = await fetch(`${baseUrl}/find`, {
           ...fetchOptions,
           body: JSON.stringify({
             ...fetchBody,
-            filter: {
+            filter: { 
               stripePaymentIntentId: createBody.stripePaymentIntentId,
-              orderNum: randomNum,
-            },
+              orderNumber: randomNum,
+            }
           }),
         });
         const createDataJson = await createData.json();
-
-        while (createDataJson.document.orderNum === randomNum) {
-          randomNum = "K" + Math.floor(Math.random() * 1000000);
-        };
         
-        if (!createDataJson.document.stripePaymentIntentId && !createDataJson.document.orderNum) {
+        if (!createDataJson.documents.stripePaymentIntentId && !createDataJson.documents.orderNumber) {
           await fetch(`${baseUrl}/insertOne`, {
             ...fetchOptions,
             body: JSON.stringify({
               ...fetchBody,
-              document: {
-                orderNum: randomNum,
+              documents: {
                 ...createBody,
+                orderNumber: randomNum,
                 createdAt: new Date(),
                 updatedAt: new Date(),
               },
             }),
           });
+          createDataJson.documents = {
+            ...createBody,
+            orderNumber: randomNum,
+          };
         }
 
-        res.status(200).json(createDataJson.document);
+        res.status(200).json(createDataJson.documents);
         break;
       case "DELETE":
         const data = JSON.parse(req.body);
@@ -72,7 +72,7 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
           ...fetchOptions,
           body: JSON.stringify({
             ...fetchBody,
-            filter: { orderNum: data.orderNum },
+            filter: { orderNumber: data.orderNumber },
             update: {
               $set: {
                 status: "canceled",
@@ -91,4 +91,4 @@ export default withApiAuthRequired(async function handler(req: NextApiRequest, r
     console.log(error);
     res.status(500).json(error);
   }
-});
+};

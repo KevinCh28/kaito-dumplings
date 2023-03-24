@@ -82,7 +82,6 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
             ...updateDataJson.document,
             products: [{ product: data.product, quantity: data.quantity }],
           };
-          console.log(updateDataJson);
           res.status(200).json(updateDataJson.document);
           break;
         }
@@ -136,7 +135,6 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
           }),
         });
         const deleteDataJson = await deleteData.json();
-        console.log(deleteDataJson)
 
         if (deleteDataJson.document.products.length > 0) {
           await fetch(`${baseUrl}/updateOne`, {
