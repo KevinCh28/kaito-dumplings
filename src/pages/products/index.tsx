@@ -136,6 +136,13 @@ const Products = () => {
       }).then(() => {
         setShowModal(true);
       })
+    } else {
+      fetch('/api/guests', {
+        method: 'PUT',
+        body: JSON.stringify({ product: product2, quantity: 1 })
+      }).then(() => {
+        setShowModal(true);
+      })
     }
   };
 
@@ -143,6 +150,13 @@ const Products = () => {
     e.preventDefault();
     if (user) {
       fetch('/api/carts', {
+        method: 'PUT',
+        body: JSON.stringify({ product: product3, quantity: 1 })
+      }).then(() => {
+        setShowModal(true);
+      })
+    } else {
+      fetch('/api/guests', {
         method: 'PUT',
         body: JSON.stringify({ product: product3, quantity: 1 })
       }).then(() => {

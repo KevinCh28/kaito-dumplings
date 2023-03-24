@@ -36,14 +36,12 @@ const CartUnAuth = ({ onClose = () => { } }) => {
     stripeId: string,
   }[] | null>(null);
   
-
   // Gets user's cart
   useEffect(() => {
     (async () => {
       const results = await fetch('/api/guests');
       const data = await results.json();
-      console.log(data)
-      // setCart(data)
+      setCart(data)
     })();
   }, []);
 
@@ -96,6 +94,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
 
   // Renders cart items
   const handleCartItems = () => {
+    console.log(cart)
     if (cart.products.length > 0) {
       return (
         <div className='cart_items_container'>
@@ -176,7 +175,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
 
   const handleAddQuantity = (product: object) => {
     (async () => {
-      const results = await fetch('/api/carts', {
+      const results = await fetch('/api/guests', {
         method: 'PUT',
         body: JSON.stringify({ product, quantity: 1 })
       })
@@ -187,7 +186,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
 
   const handleMinusQuantity = (product: object) => {
     (async () => {
-      const results = await fetch('/api/carts', {
+      const results = await fetch('/api/guests', {
         method: 'PUT',
         body: JSON.stringify({ product, quantity: -1 })
       })
@@ -198,7 +197,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
 
   const handleRemoveItem = (product: object) => {
     (async () => {
-      const results = await fetch('/api/carts', {
+      const results = await fetch('/api/guests', {
         method: 'PUT',
         body: JSON.stringify({ product, quantity: -999 })
       })

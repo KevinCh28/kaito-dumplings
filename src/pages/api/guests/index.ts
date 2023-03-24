@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { verfiyGuest } from '../../../lib/guestAuth';
 
 export default (async function handler(req: NextApiRequest, res: NextApiResponse) {
   const fetchOptions = {
@@ -15,7 +16,9 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
     collection: "guests",
   };
   const baseUrl = `${process.env.MONGODB_DATA_API_URL}/action`;
-  const guestId = req.cookies.guest;
+  const cookie = req.cookies.guest as string;
+  const verifiedToken = await verfiyGuest(cookie);
+  const guestId = verifiedToken?.jti as string;
 
   try {
     switch (req.method) {
@@ -23,45 +26,37 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
         const readData = await fetch(`${baseUrl}/findOne`, {
           ...fetchOptions,
           body: JSON.stringify({
-            filter: { _id: { $oid: guestId } },
+            ...fetchBody,
+            filter: { _id: guestId },
           }),
         });
         const readDataJson = await readData.json();
 
-        if (!readDataJson.document.id) {
-          await fetch(`${baseUrl}/updateOne`, {
+        if (!readDataJson.document) {
+          await fetch(`${baseUrl}/insertOne`, {
             ...fetchOptions,
             body: JSON.stringify({
-              dataSource: process.env.MONGODB_DATA_SOURCE,
-              database: "test",
-              collection: "guests",
-              filter: { _id: { $oid: readDataJson.document.id } },
-              update: {
-                $set: {
-                  cart: {
-                    products: [],
-                  }
-                },
+              ...fetchBody,
+              document: {
+                _id: guestId,
+                products: [],
               },
             }),
           });
           readDataJson.document = {
-            ...readDataJson.document,
-            cart: {
-              products: [],
-            }
+            _id: guestId,
+            products: [],
           };
         }
-
         res.status(200).json(readDataJson.document);
         break;
-
       case "PUT":
         const data = JSON.parse(req.body);
         const updateData = await fetch(`${baseUrl}/findOne`, {
           ...fetchOptions,
           body: JSON.stringify({
             ...fetchBody,
+            filter: { _id: guestId },
           }),
         });
         const updateDataJson = await updateData.json();
@@ -71,7 +66,7 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
             ...fetchOptions,
             body: JSON.stringify({
               ...fetchBody,
-              filter: { _id: { $oid: updateDataJson.document._id } },
+              filter: { _id: updateDataJson.document._id },
               update: {
                 $set: {
                   products: [{ product: data.product, quantity: data.quantity }],
@@ -84,6 +79,7 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
             ...updateDataJson.document,
             products: [{ product: data.product, quantity: data.quantity }],
           };
+          console.log(updateDataJson);
           res.status(200).json(updateDataJson.document);
           break;
         }
@@ -116,7 +112,7 @@ export default (async function handler(req: NextApiRequest, res: NextApiResponse
           ...fetchOptions,
           body: JSON.stringify({
             ...fetchBody,
-            filter: { _id: { $oid: updateDataJson.document._id } },
+            filter: { _id: updateDataJson.document._id },
             update: {
               $set: {
                 products: filteredProducts,

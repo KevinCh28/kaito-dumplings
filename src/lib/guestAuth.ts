@@ -24,7 +24,7 @@ export const verfiyGuest = async (token: string) => {
 
 export const createGuestToken = async () => {
   const randomString = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  const jwtToken = await new SignJWT({ randomString })
+  const jwtToken = await new SignJWT({ jti: randomString })
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setExpirationTime('1d')
