@@ -126,7 +126,7 @@ const OrderSuccessPage: NextPage = () => {
       <div>
         <p>Payment successful</p>
         <h1>Thanks for ordering</h1>
-        <p>We appreciate your order, we're currently processing it. So hang tight and we'll send you confirmation very soon!</p>
+        <p>We appreciate your order, we&apos;re currently processing it. So hang tight and we&apos;ll send you confirmation very soon!</p>
       </div>
       <div>
         <p>Order #{sessionId}</p>
