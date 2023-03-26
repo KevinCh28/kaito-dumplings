@@ -20,18 +20,7 @@ const Cart = ({ onClose = () => { } }) => {
   //   stripeId: '',
   // }]);
   const [cart, setCart] = useState({
-    products: [{
-      quantity: 0,
-      product: {
-        _id: '',
-        name: '',
-        category: '',
-        price: 0,
-        imageUrl: '',
-        description: '',
-        stripeId: '',
-      }
-    }],
+    products: [],
   });
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
