@@ -120,7 +120,7 @@ const Cart = ({ onClose = () => { } }) => {
 
   // Updates free shipping progress text
   const handleCartFreeShippingMessage = () => {
-    if (totalAmount < 90) {
+    if (totalAmount < 99) {
       return (
         <div className='free_shipping_text'>
           You are ${(99 - totalAmount).toFixed(2)} away from
@@ -299,7 +299,7 @@ const Cart = ({ onClose = () => { } }) => {
         product: { stripeId: item.product.stripeId }
       };
     });
-    checkout(items)
+    checkout(items, totalAmount)
   };
 
   return (

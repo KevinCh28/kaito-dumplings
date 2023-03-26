@@ -3,7 +3,7 @@ const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string;
 import { Stripe, loadStripe } from "@stripe/stripe-js";
 let stripePromise: Promise<Stripe | null>;
 
-export const checkout = async (items: Array<{ quantity: number, product: { stripeId: string } }>) => {
+export const checkout = async (items: Array<{ quantity: number, product: { stripeId: string } }>, subtotal: number) => {
   try {
     const lineItems = items.map((item: { quantity: number, product: { stripeId: string } }) => ({ price: item.product.stripeId, quantity: item.quantity }));
     const { session } = await fetch('/api/stripe/sessions', {
@@ -11,7 +11,7 @@ export const checkout = async (items: Array<{ quantity: number, product: { strip
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ lineItems }),
+      body: JSON.stringify({ lineItems, subtotal }),
     }).then((res) => res.json())
 
     if (!stripePromise) {
