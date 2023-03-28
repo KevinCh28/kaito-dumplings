@@ -177,10 +177,10 @@ const GyozaChickenCabbage = () => {
                         <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
                       </div>
                       <div className='product_page_maincontent_sideimages_image_container'>
-                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/beefXLB-wide_1.png?v=1675392284" alt="" />
+                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/steamer-xlb-cooked_6794ecb3-89a5-4c43-b05b-e24a5ccd4eb5_1308x.png?v=1679894378" alt="" />
                       </div>
                       <div className='product_page_maincontent_sideimages_image_container'>
-                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/beefxlb-closeup_1.png?v=1675392284" alt="" />
+                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/Dumpling_da895546-4d79-4451-bca7-1ee347a8bf37_1308x.png?v=1679894496" alt="" />
                       </div>
                     </div>
                   </div>
