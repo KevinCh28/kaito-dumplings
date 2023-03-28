@@ -1,11 +1,12 @@
 
 import Link from 'next/link';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useState, useEffect, SyntheticEvent } from "react";
 import Cart from '../../components/cart/cart';
 import CartUnAuth from '../../components/cartUnAuth/cartUnAuth';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
-const Products = () => {
+const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const dumplings = {
     'beef-&-cheese': '63efa9419010d97ce1747161',
     'chicken-&-cabbage': '63efa96f9010d97ce1747163',
@@ -19,15 +20,6 @@ const Products = () => {
     'veggie': '63efa9259010d97ce174715f'
   }
   const [showModal, setShowModal] = useState(false);
-  const [products, setProducts] = useState<{
-    _id: string,
-    name: string,
-    description: string,
-    price: number,
-    imageUrl: string,
-    category: string,
-    stripeId: string,
-  }[] | null>(null);
   const [product1, setProduct1] = useState({
     _id: '',
     name: '',
@@ -58,17 +50,6 @@ const Products = () => {
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
   const { user } = useUser();
-
-  // Get Products
-  useEffect(() => {
-    (async () => {
-      const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
-      element.style.backgroundColor = 'rgb(27, 33, 55)';
-      const results = await fetch('/api/products');
-      const data = await results.json();
-      setProducts(data)
-    })();
-  }, []);
 
   // Gets selected products
   useEffect(() => {
@@ -541,3 +522,38 @@ const Products = () => {
 };
 
 export default Products;
+
+type Product = {
+  _id: string,
+  name: string,
+  description: string,
+  price: number,
+  imageUrl: string,
+  category: string,
+  stripeId: string,
+}
+
+export const getStaticProps: GetStaticProps<{ products: Product[] }> = async () => {
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Request-Headers": "*",
+      "api-key": process.env.API_KEY as string,
+    },
+  };
+  const fetchBody = {
+    dataSource: process.env.MONGODB_DATA_SOURCE as string,
+    database: "test",
+    collection: "products",
+  };
+  const readData = await fetch(`${process.env.MONGODB_DATA_API_URL}/action/find`, {
+    ...fetchOptions,
+    body: JSON.stringify({
+      ...fetchBody,
+    }),
+  });
+  const readDataJson = await readData.json();
+  const products = readDataJson.documents;
+  return { props: { products } }
+};
