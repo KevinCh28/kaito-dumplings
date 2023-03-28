@@ -57,22 +57,7 @@ const Products = () => {
   });
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
-  const [currentUser, setCurrentUser] = useState<{
-    _id: string,
-    firstname: string,
-    lastname: string,
-    email: string,
-  }[] | null>(null);
   const { user } = useUser();
-
-  // Get User
-  useEffect(() => {
-    (async () => {
-      const results = await fetch('/api/users');
-      const data = await results.json();
-      setCurrentUser(data)
-    })();
-  }, [user]);
 
   // Get Products
   useEffect(() => {
