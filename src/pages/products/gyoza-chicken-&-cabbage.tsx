@@ -174,7 +174,7 @@ const GyozaChickenCabbage = () => {
                   <div className='product_page_maincontent_sideimages_container'>
                     <div className='product_page_maincontent_sideimages_image_wrapper'>
                       <div className='product_page_maincontent_sideimages_image_container'>
-                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
+                        <img src={product.imageUrl} alt="" />
                       </div>
                       <div className='product_page_maincontent_sideimages_image_container'>
                         <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/steamer-xlb-cooked_6794ecb3-89a5-4c43-b05b-e24a5ccd4eb5_1308x.png?v=1679894378" alt="" />
@@ -193,7 +193,7 @@ const GyozaChickenCabbage = () => {
                         <div className='product_page_mainpicture_container'>
                           <div className='product_page_mainpicture_image_wrapper'>
                             <div className='product_page_mainpicture_image_container'>
-                              <img className='product_page_mainpicture_image' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
+                              <img className='product_page_mainpicture_image' src={product.imageUrl} alt="" />
                             </div>
                           </div>
                         </div>

@@ -193,7 +193,7 @@ const DumplingsBeefCheese = () => {
                         <div className='product_page_mainpicture_container'>
                           <div className='product_page_mainpicture_image_wrapper'>
                             <div className='product_page_mainpicture_image_container'>
-                              <img className='product_page_mainpicture_image' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/formattedbeef-xlb_2.png?v=1675392284" alt="" />
+                              <img className='product_page_mainpicture_image' src={product.imageUrl} alt="" />
                             </div>
                           </div>
                         </div>
