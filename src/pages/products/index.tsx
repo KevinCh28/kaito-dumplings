@@ -20,77 +20,45 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
     'veggie': '63efa9259010d97ce174715f'
   }
   const [showModal, setShowModal] = useState(false);
-  const [product1, setProduct1] = useState({
-    _id: '',
-    name: '',
-    description: '',
-    price: 0,
-    imageUrl: '',
-    category: '',
-    stripeId: '',
-  });
-  const [product2, setProduct2] = useState({
-    _id: '',
-    name: '',
-    description: '',
-    price: 0,
-    imageUrl: '',
-    category: '',
-    stripeId: '',
-  });
-  const [product3, setProduct3] = useState({
-    _id: '',
-    name: '',
-    description: '',
-    price: 0,
-    imageUrl: '',
-    category: '',
-    stripeId: '',
-  });
+  const [product1, setProduct1] = useState(products[6]);
+  const [product2, setProduct2] = useState(products[6]);
+  const [product3, setProduct3] = useState(products[0]);
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
   const { user } = useUser();
 
   // Gets selected products
   useEffect(() => {
-    if (products) {
-      const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
-      const gyozaIndex = products.findIndex((product: { _id: string; }) => product._id === gyozaId);
-      const matchedProduct1 = products[dumplingIndex];
-      const matchedProduct2 = products[dumplingIndex];
-      const matchedProduct3 = products[gyozaIndex];
+    const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
+    const gyozaIndex = products.findIndex((product: { _id: string; }) => product._id === gyozaId);
+    const matchedProduct1 = products[dumplingIndex];
+    const matchedProduct2 = products[dumplingIndex];
+    const matchedProduct3 = products[gyozaIndex];
 
-      setProduct1(matchedProduct1);
-      setProduct2(matchedProduct2);
-      setProduct3(matchedProduct3);
-    }
+    setProduct1(matchedProduct1);
+    setProduct2(matchedProduct2);
+    setProduct3(matchedProduct3);
   }, [products]);
 
   // Update Product1
   useEffect(() => {
-    if (products) {
-      const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
-      const matchedProduct = products[dumplingIndex];
-      setProduct1(matchedProduct);
-    }
+    const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
+    const matchedProduct = products[dumplingIndex];
+    setProduct1(matchedProduct);
   }, [dumplingsId]);
 
   // Update Product2
   useEffect(() => {
-    if (products) {
-      const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
-      const matchedProduct = products[dumplingIndex];
-      setProduct2(matchedProduct);
-    }
+    const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
+    const matchedProduct = products[dumplingIndex];
+    setProduct2(matchedProduct);
   }, [dumplingsId]);
 
   // Update Product3
   useEffect(() => {
-    if (products) {
-      const gyozaIndex = products.findIndex((product: { _id: string; }) => product._id === gyozaId);
-      const matchedProduct = products[gyozaIndex];
-      setProduct3(matchedProduct);
-    }
+    const gyozaIndex = products.findIndex((product: { _id: string; }) => product._id === gyozaId);
+    const matchedProduct = products[gyozaIndex];
+    setProduct3(matchedProduct);
   }, [gyozaId]);
 
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; }) => {
