@@ -63,6 +63,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
 
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+
     if (user) {
       fetch('/api/carts', {
         method: 'PUT',
@@ -98,6 +99,24 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
       })
     }
   };
+
+  // Hide cart when clicking outside of the carts container
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const className = (e.target as HTMLSpanElement).getAttribute('className');
+      if (className !== 'modal_container' && showModal === true) {
+
+        const parent = (e.target as HTMLSpanElement).closest('.modal_container');
+        if (!parent && showModal === true) {
+          setShowModal(false);
+        }
+      }
+    };
+
+    const options = { capture: true };
+    const removeListener = window.addEventListener('click', handleOutsideClick, options);
+    return () => window.removeEventListener('click', handleOutsideClick, options);
+  }, [showModal]);
 
   const handleCartModal = () => {
     if (!showModal) {
