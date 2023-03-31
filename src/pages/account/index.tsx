@@ -15,11 +15,13 @@ const AccountPage: NextPage = () => {
 
   // Fetch orders on page load
   useEffect(() => {
-    (async () => {
-      const results = await fetch('/api/orders');
-      const data = await results.json();
-      setOrders(data)
-    })();
+    if (user) {
+      (async () => {
+        const results = await fetch('/api/orders');
+        const data = await results.json();
+        setOrders(data)
+      })();
+    }
   }, [user]);
 
   const handleCancel = (orderNum: string) => {
@@ -30,19 +32,12 @@ const AccountPage: NextPage = () => {
       });
       const results = await fetch('/api/orders');
       const data = await results.json();
-      console.log(data)
       setOrders(data)
     })();
   };
 
   const handleOrderHistory = () => {
-    if (orders.length === 0) {
-      return (
-        <div>
-          <p>You have no orders associated with this email address.</p>
-          <p>If you believe this is incorrect, please try another email address or contact our support team for further help.</p>
-        </div>
-      )};
+    if (orders.length > 0) {
       return (
         <div className='account_page_orders_container'>
           <h2 className='account_page_orders_header'>YOUR ORDERS</h2>
@@ -76,16 +71,25 @@ const AccountPage: NextPage = () => {
                 </div>
                 {
                   order.orderStatus === 'pending' ?
-                  <button className='account_page_buttons' onClick={() => handleCancel(order.orderNumber)}>
-                    <i><FontAwesomeIcon icon={faBan}></FontAwesomeIcon></i>
-                    Cancel
-                  </button> : null
+                    <button className='account_page_buttons' onClick={() => handleCancel(order.orderNumber)}>
+                      <i><FontAwesomeIcon icon={faBan}></FontAwesomeIcon></i>
+                      Cancel
+                    </button> : null
                 }
               </div>
             )
           })}
         </div>
-  )};
+      )
+    } else {
+      return (
+        <div>
+          <p>You have no orders associated with this email address.</p>
+          <p>If you believe this is incorrect, please try another email address or contact our support team for further help.</p>
+        </div>
+      )
+    }
+  };
 
   const handleRender = () => {
     if (user) {
