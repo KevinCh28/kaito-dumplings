@@ -13,13 +13,16 @@ const AccountPage: NextPage = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
+  // Fetch orders on page load
   useEffect(() => {
-    (async () => {
-      const results = await fetch('/api/orders');
-      const data = await results.json();
-      setOrders(data)
-    })();
-  }, []);
+    if (user) {
+      (async () => {
+        const results = await fetch('/api/orders');
+        const data = await results.json();
+        setOrders(data)
+      })();
+    }
+  }, [user]);
 
   const handleCancel = (orderNum: string) => {
     (async () => {
