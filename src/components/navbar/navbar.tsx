@@ -3,10 +3,13 @@ import { useState, useEffect } from 'react';
 import Cart from '../cart/cart';
 import CartUnAuth from '../cartUnAuth/cartUnAuth';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
+  const [moreHover, setMoreHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
   const { user } = useUser();
@@ -115,6 +118,32 @@ const Navbar = () => {
     }
   }, [showModal]);
 
+  const handleShowMoreList = () => {
+    const moreList = document.getElementsByClassName("navbar_more_list")[0] as HTMLElement;
+    moreList.style.display = "block";
+    moreList.style.opacity = "1";
+    setMoreHover(true);
+  };
+
+  const handleHideMoreList = () => {
+    const moreList = document.getElementsByClassName("navbar_more_list")[0] as HTMLElement;
+    moreList.style.display = "none";
+    moreList.style.opacity = "0";
+    setMoreHover(false);
+  };
+
+  const handleMoreImage = () => {
+    if (!moreHover) {
+      return (
+        <i className='navbar_more_image_container'><FontAwesomeIcon icon={faPlus} className="navbar_more_image"></FontAwesomeIcon></i>
+      )
+    } else {
+      return (
+        <i className='navbar_more_image_container'><FontAwesomeIcon icon={faMinus} className="navbar_more_image"></FontAwesomeIcon></i>
+      )
+    }
+  };
+
   return (
     <div className='navbar_main'>
       <div className='navbar_wrapper'>
@@ -132,15 +161,20 @@ const Navbar = () => {
                 <div className='navbar_middle_products_container'>
                   <Link href="/products" className="navbar_middle_button">PRODUCTS</Link>
                 </div>
-                <div className='navbar_middle_more_wrapper'>
-                  <ul className='navbar_middle_more_container'>
-                    <li><Link href="/faq" className="navbar_middle_button">
-                      <span className='navbar_right_buttons_text'>FAQ</span>
-                    </Link></li>
-                    <li><Link href="/blog" className="navbar_middle_button">
-                      <span className='navbar_right_buttons_text'>BLOG</span>
-                    </Link></li>
-                  </ul>
+                <div className='navbar_middle_more_wrapper' onMouseOver={handleShowMoreList} onMouseOut={handleHideMoreList}>
+                  <div className='navbar_middle_more_container'>
+                    <div className='navbar_middle_button'>
+                      <span className='navbar_middle_button_text'>MORE </span>
+                      {handleMoreImage()}
+                    </div>
+                    <div className='navbar_more_list'>
+                      <ul className='navbar_more_list_container'>
+                        <li><Link href="/blog" className="navbar_more_list_item">BLOG</Link></li>
+                        <li><Link href="/shipping" className="navbar_more_list_item">SHIPPING</Link></li>
+                        <li><Link href="/faq" className="navbar_more_list_item">FAQ</Link></li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
