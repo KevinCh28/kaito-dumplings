@@ -4,7 +4,7 @@ import Cart from '../cart/cart';
 import CartUnAuth from '../cartUnAuth/cartUnAuth';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
@@ -139,7 +139,8 @@ const Navbar = () => {
                 <span className='navbar_right_buttons_text'>ORDER NOW</span>
               </Link>
               <div onClick={() => setShowModal(true)} className="navbar_cart_container">
-                <img src="/cart.png" alt="cart" className="navbar_cart_image" />
+                {/* <img src="/cart.png" alt="cart" className="navbar_cart_image" /> */}
+                <i className='navbar_cart_image'><FontAwesomeIcon icon={faBasketShopping}></FontAwesomeIcon></i>
               </div>
             </div>
           </div>
