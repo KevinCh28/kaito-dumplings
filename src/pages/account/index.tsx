@@ -10,19 +10,19 @@ const AccountPage: NextPage = () => {
   const { user, error, isLoading } = useUser();
   const [orders, setOrders] = useState([]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>{error.message}</div>;
+  // if (isLoading) return <div>Loading...</div>;
+  // if (error) return <div>{error.message}</div>;
 
   // Fetch orders on page load
-  useEffect(() => {
-    if (user) {
+  if (user) {
+    useEffect(() => {
       (async () => {
         const results = await fetch('/api/orders');
         const data = await results.json();
         setOrders(data)
       })();
-    }
-  }, []);
+    }, []);
+  };
 
   const handleCancel = (orderNum: string) => {
     (async () => {
