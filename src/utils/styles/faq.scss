@@ -377,6 +377,21 @@ p {
   transition: opacity 0.5s linear;
 }
 
+.faq_box_row_left_body_tab_body_active {
+  padding-left: 25px;
+  padding-right: 25px;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s linear;
+}
+
 .faq_box_row_left_body_tab_body_text {
   overflow-wrap: break-word;
+}
+
+.faq_box_row_left_body_tab_body_text_wrapper {
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-bottom: 25px;
+  margin-right: 25px;
 }

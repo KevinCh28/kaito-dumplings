@@ -1,4 +1,23 @@
-export default function FAQ() {
+import { NextPage } from 'next';
+
+const FAQ: NextPage = () => {
+  const handleShowTab = (e: any) => {
+    const tab = e.currentTarget;
+    let tabBody = tab.querySelector('.faq_box_row_left_body_tab_body');
+    const tabHeader = tab.querySelector('.faq_box_row_left_body_tab_header_plus');
+    const tabHeaderSpan = tabHeader.querySelector('span');
+
+    if (tabBody.style.display === 'block') {
+      tabBody.style.display = 'none';
+      tabBody.style.opacity = 0;
+      tabHeaderSpan.style.transform = 'rotate(180deg)';
+    } else {
+      tabBody.style.display = 'block';
+      tabBody.style.opacity = 1;
+      tabHeaderSpan.style.transform = 'rotate(45deg)';
+    }
+  };
+
   return (
     <div className="faq_page">
       <div className="faq_page_wrapper">
@@ -47,7 +66,7 @@ export default function FAQ() {
                                 <div className="faq_c faq_box_row_left_body">
                                   <div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>YOUR DUMPLINGS TASTE MUCH BETTER THAN RESTAURANTS - WHAT MAKES KAITO DUMPLINGS SO SPECIAL?</h4>
@@ -91,13 +110,12 @@ export default function FAQ() {
                                               </li>
                                             </ol>
                                             <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>WHERE ARE YOUR DUMPLINGS MADE?</h4>
@@ -105,7 +123,7 @@ export default function FAQ() {
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
@@ -114,22 +132,20 @@ export default function FAQ() {
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
-                                          <h4>YOUR DUMPLINGS TASTE MUCH BETTER THAN RESTAURANTS - WHAT MAKES KAITO DUMPLINGS SO SPECIAL?</h4>
+                                          <h4>WILL YOU BE SELLING KAITO PRODUCT OR FLAVOR?</h4>
                                           <div className="faq_box_row_left_body_tab_header_plus"><span></span></div>
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
@@ -138,14 +154,12 @@ export default function FAQ() {
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>CAN I HAVE A FULL INGREDIENT LIST?</h4>
@@ -153,7 +167,7 @@ export default function FAQ() {
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
@@ -162,14 +176,12 @@ export default function FAQ() {
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>I HAVE ALLERGIES - CAN I EAT YOUR DUMPLINGS?</h4>
@@ -177,7 +189,7 @@ export default function FAQ() {
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
@@ -185,15 +197,13 @@ export default function FAQ() {
                                                   <span>Our dumplings <strong>does not</strong> contain peanuts or tree nuts.</span>
                                                 </span>
                                               </li>
-                                            </ol>
-                                            <ol>
+                                              <li>&nbsp;</li>
                                               <li>
                                                 <span>
                                                   <span>Our dumplings do contain soy, sesame, traces of egg, and milk as a component of the chicken base we use for the soup. It may also contain trace amounts of shrimp or crab (as a result of shared equipment).</span>
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
                                             <p>&nbsp;</p>
                                           </div>
                                         </div>
@@ -209,67 +219,37 @@ export default function FAQ() {
                           <div>
                             <div>
                               <div>
-
                                 <div className="faq_c faq_box_row_left_header">
                                   <div>
                                     <h2 className="faq_box_row_left_header_wrapper_h2">SHIPPING AND DELIVERY</h2>
                                   </div>
                                 </div>
-
                                 <div className="faq_c faq_box_row_left_body">
                                   <div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
-                                          <h4>YOUR DUMPLINGS TASTE MUCH BETTER THAN RESTAURANTS - WHAT MAKES KAITO DUMPLINGS SO SPECIAL?</h4>
+                                          <h4>WHERE DO YOU SHIP?</h4>
                                           <div className="faq_box_row_left_body_tab_header_plus"><span></span></div>
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
                                                 <span>
-                                                  <span>
-                                                    <strong>
-                                                      <u>Process</u>
-                                                    </strong>
-                                                  </span>
-                                                </span>
-                                              </li>
-                                              <li>
-                                                <span>
-                                                  <span>Dumplings are made out of our kitchen in small batches of 18 bags. We produce only what we will sell and your dumplings were likely prepared a day or two before you receive them! Don't underestimate the human touch as well - there are many subtle parts of our process that can only be done by hand. Lastly, we use use only the freshest ingredients we can find!</span>
+                                                  <span>We are excited to ship nationwide!</span>
                                                 </span>
                                               </li>
                                             </ol>
-                                            <ol>
-                                              <li>&nbsp;</li>
-                                              <li>
-                                                <span>
-                                                  <span>
-                                                    <strong>
-                                                      <u>Recipe</u>
-                                                    </strong>
-                                                  </span>
-                                                </span>
-                                              </li>
-                                              <li>
-                                                <span>
-                                                  <span>Our roots are in Shanghai Pan Fried dumplings, whose filling must remain soupy after frying in hot oil! We have taken our learnings from SJB to craft our own XLB for maximum soup!</span>
-                                                </span>
-                                              </li>
-                                            </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>HOW DO MY DUMPLINGS STAY FROZEN DURING TRANSIT?</h4>
@@ -277,7 +257,7 @@ export default function FAQ() {
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
@@ -285,25 +265,25 @@ export default function FAQ() {
                                                   <span>Your Dumplings are packaged with a temperature stabilizing technology (dry ice) and then wrapped in an insulated liner.</span>
                                                 </span>
                                               </li>
+                                              <li>&nbsp;</li>
                                               <li>
                                                 <span>
                                                   <span>For your safety, please do not remove dry ice from the box or handle it with your bare hands.</span>
                                                 </span>
                                               </li>
+                                              <li>&nbsp;</li>
                                               <li>
                                                 <span>
                                                   <span>If you experience a delay in transit that affects the quality of your dumplings, not to worry! Your order is always backed by our "Melt-Free Guarantee." If your dumplings do not arrive frozen, please discard and we’ll reship your order and do what we can to make things right.</span>
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>I LIVE NEAR EDISON NJ - CAN I PICKUP INSTEAD?</h4>
@@ -311,7 +291,7 @@ export default function FAQ() {
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
@@ -322,14 +302,14 @@ export default function FAQ() {
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
+                                        <div className='faq_c'></div>
+                                        <p>&nbsp;</p>
                                       </div>
                                     </div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>WHEN WILL I GET MY DUMPLINS?!</h4>
@@ -337,7 +317,7 @@ export default function FAQ() {
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
@@ -345,23 +325,19 @@ export default function FAQ() {
                                                   <span>Local Pickup - You can receive your dumplings at any time in the store!</span>
                                                 </span>
                                               </li>
-                                            </ol>
-                                            <ol>
+                                              <li>&nbsp;</li>
                                               <li>
                                                 <span>
                                                   <span>We ship orders Mondays - Thursdays and we aim to ship out dumplings within 1-3 business days after your order is placed. This shipping setup ensures your dumplings remain safe and frozen while traveling with blocks of dry-ice!</span>
                                                 </span>
                                               </li>
-                                            </ol>
-                                            <ol>
+                                              <li>&nbsp;</li>
                                               <li>
                                                 <span>
                                                   <span>Once shipped, your dumplings will arrive fresh to your home within 2 days. If not, please reach out to us and our team will make things right.</span>
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
@@ -383,8 +359,8 @@ export default function FAQ() {
                                 </div>
                                 <div className="faq_c faq_box_row_left_body">
                                   <div>
-                                    
-                                    <div className="faq_box_row_left_body_tab">
+
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>ARE YOU STILL USING THE SAME RECIPES? IS IT THE SAME PRODUCT?</h4>
@@ -392,7 +368,7 @@ export default function FAQ() {
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
@@ -401,14 +377,12 @@ export default function FAQ() {
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>I'M A JOURNALIST - WHO DO I CONTACT</h4>
@@ -416,24 +390,21 @@ export default function FAQ() {
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
-                                              <li>&nbsp;</li>
                                               <li>
                                                 <span>
                                                   <span>Classic, using your clout for free Dumplings… email delivery@kaitodumplings.com</span>
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
 
-                                    <div className="faq_box_row_left_body_tab">
+                                    <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
                                           <h4>FULFULLMENT POLICY</h4>
@@ -441,7 +412,7 @@ export default function FAQ() {
                                         </div>
                                       </div>
                                       <div className="faq_box_row_left_body_tab_body">
-                                        <div className="faq_c">
+                                        <div className="faq_c faq_box_row_left_body_tab_body_text_wrapper">
                                           <div className="faq_box_row_left_body_tab_body_text">
                                             <ol>
                                               <li>
@@ -449,19 +420,19 @@ export default function FAQ() {
                                                   <span>We ship orders typically Monday through Wednesday to prevent our perishables from being stuck in a warehouse over the weekend.</span>
                                                 </span>
                                               </li>
+                                              <li>&nbsp;</li>
                                               <li>
                                                 <span>
                                                   <span>After an order leaves our warehouse, it is the responsibility of the carrier to deliver the order in good condition and in a timely manner.</span>
                                                 </span>
                                               </li>
+                                              <li>&nbsp;</li>
                                               <li>
                                                 <span>
                                                   <span>However, if they do not do so, we will do everything in our power to make it right. Please reach out to delivery@kaitodumplings.com and we will attempt to process a reship!</span>
                                                 </span>
                                               </li>
                                             </ol>
-                                            <p>&nbsp;</p>
-                                            <p>&nbsp;</p>
                                           </div>
                                         </div>
                                       </div>
@@ -472,6 +443,7 @@ export default function FAQ() {
                               </div>
                             </div>
                           </div>
+
                         </div>
                       </div>
 
@@ -520,3 +492,5 @@ export default function FAQ() {
     </div>
   );
 };
+
+export default FAQ;
