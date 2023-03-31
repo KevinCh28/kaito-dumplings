@@ -33,24 +33,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       case "PUT":
         let randomNum = "K" + Math.floor(Math.random() * 1000000);
         const createBody = JSON.parse(req.body);
-        const createData = await fetch(`${baseUrl}/find`, {
+        const createData = await fetch(`${baseUrl}/findOne`, {
           ...fetchOptions,
           body: JSON.stringify({
             ...fetchBody,
             filter: { 
               stripePaymentIntentId: createBody.stripePaymentIntentId,
-              orderNumber: randomNum,
             }
           }),
         });
         const createDataJson = await createData.json();
         
-        if (!createDataJson.documents.stripePaymentIntentId && !createDataJson.documents.orderNumber) {
+        if (!createDataJson.document) {
           await fetch(`${baseUrl}/insertOne`, {
             ...fetchOptions,
             body: JSON.stringify({
               ...fetchBody,
-              documents: {
+              document: {
                 ...createBody,
                 orderNumber: randomNum,
                 createdAt: new Date(),
@@ -58,13 +57,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               },
             }),
           });
-          createDataJson.documents = {
+          createDataJson.document = {
             ...createBody,
             orderNumber: randomNum,
+            stripePaymentIntentId: createBody.stripePaymentIntentId,
           };
         }
 
-        res.status(200).json(createDataJson.documents);
+        res.status(200).json(createDataJson.document);
         break;
       case "DELETE":
         const data = JSON.parse(req.body);

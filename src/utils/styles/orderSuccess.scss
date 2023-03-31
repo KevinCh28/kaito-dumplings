@@ -1,0 +1,46 @@
+.order_success_page {
+  background-color: #fff;
+  min-height: 700px;
+}
+
+.order_success_page_container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.success_page_body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 20px;
+}
+
+.success_page_body_content {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+
+.success_page_address_info {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.success_page_order_info_wrapper {
+  height: 100%;
+  margin-top: 99%;
+}
+
+.success_page_order_info_container {
+  width: 100%;
+}
+
+.success_page_order_info {
+  display: flex;
+  justify-content: space-between;
+}

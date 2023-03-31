@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import Link from 'next/link';
 
 const OrderSuccessPage: NextPage = () => {
   const { query } = useRouter();
@@ -10,14 +11,15 @@ const OrderSuccessPage: NextPage = () => {
   const { user } = useUser();
   const [checkoutSession, setCheckoutSession] = useState({
     customer_details: {
-      email: '',
       name: '',
-      line1: '',
-      line2: '',
-      city: '',
-      state: '',
-      postal_code: '',
-      country: ''
+      email: '',
+      address: {
+        line1: '',
+        line2: '',
+        city: '',
+        state: '',
+        postal_code: '',
+      },
     },
     currency: '',
     payment_status: '',
@@ -57,7 +59,35 @@ const OrderSuccessPage: NextPage = () => {
           quantity: 0
         }
       ]
-    }
+    },
+    shipping_details: {
+      name: '',
+      address: {
+        line1: '',
+        line2: '',
+        city: '',
+        state: '',
+        postal_code: '',
+      },
+    },
+  });
+  const [order, setOrder] = useState({
+    orderNumber: '',
+    tax: 0,
+    shipping: 0,
+    subtotal: 0,
+    total: 0,
+    customer: {
+      name: '',
+      email: '',
+      address: {
+        line1: '',
+        line2: '',
+        city: '',
+        state: '',
+        postal_code: '',
+      },
+    },
   });
 
   // fetch checkout session data
@@ -65,6 +95,8 @@ const OrderSuccessPage: NextPage = () => {
     (async () => {
       const response = await fetch(URL);
       const data = await response.json();
+      console.log("checkout session data: ")
+      console.log(data)
       setCheckoutSession(data);
     })();
   }, [URL]);
@@ -87,6 +119,7 @@ const OrderSuccessPage: NextPage = () => {
   }, [checkoutSession, user]);
 
   const customer = checkoutSession?.customer_details;
+  const shippingAddress = checkoutSession?.shipping_details;
   const products = checkoutSession?.line_items?.data?.map((item: { price: { product: object; unit_amount: number; }; quantity: number; }) => ({
     ...item.price.product,
     price: item.price.unit_amount,
@@ -103,7 +136,7 @@ const OrderSuccessPage: NextPage = () => {
   useEffect(() => {
     if (checkoutSession.payment_status === 'paid') {
       (async () => {
-        await fetch('/api/orders', {
+        const results = await fetch('/api/orders', {
           method: 'PUT',
           body: JSON.stringify({
             stripePaymentIntentId: checkoutSession.payment_intent.id,
@@ -117,73 +150,92 @@ const OrderSuccessPage: NextPage = () => {
             tax: (checkoutSession.total_details.amount_tax / 100).toFixed(2),
           })
         });
+        const data = await results.json();
+        console.log("order data: ")
+        console.log(data);
+        setOrder(data);
       })();
     }
   }, [checkoutSession]);
 
   return (
-    <div>
-      <div>
-        <p>Payment successful</p>
-        <h1>Thanks for ordering</h1>
-        <p>We appreciate your order, we&apos;re currently processing it. So hang tight and we&apos;ll send you confirmation very soon!</p>
-      </div>
-      <div>
-        <p>Order #{sessionId}</p>
-        <p></p>
-      </div>
-
-      <div></div>
-
-      <div>
+    <div className='order_success_page'>
+      <div className='order_success_page_container'>
         <div>
-          <p>Subtotal</p>
-          <p>${(subtotal / 100).toFixed(2)}</p>
+          <p>YOUR ORDER HAS BEEN RECEIVED.</p>
+          <h1>Thank you for your purchase!</h1>
+          <p>We appreciate your order, we&apos;re currently processing it. So hang tight and we&apos;ll send you confirmation very soon!</p>
         </div>
         <div>
-          <p>Shipping</p>
-          <p>${(shipping / 100).toFixed(2)}</p>
+          <p>Your order # is: {order.orderNumber}</p>
+          <p></p>
         </div>
-        <div>
-          <p>Total</p>
-          <p>${(total / 100).toFixed(2)} {currency?.toUpperCase()}</p>
-        </div>
-      </div>
 
-      <div>
-        <div>
-          <div>
-            <p>Billing address</p>
+        <div className='success_page_body'>
+          <div className='success_page_body_content'>
+            <div className='success_page_address_info'>
+              <div>
+                <p>Billing Information:</p>
+              </div>
+              <p>
+                {order.customer.name}
+                <br />
+                {order.customer.address.line1}
+                <br />
+                {order.customer.address.line2?.length > 0 ? order.customer.address.line2 : null}
+                {order.customer.address.line2?.length > 0 ? <br /> : null}
+                {order.customer.address.city}, {order.customer.address.state} {order.customer.address.postal_code}
+              </p>
+            </div>
+
+            <div className='success_page_address_info'>
+              <div>
+                <p>Shipping Information:</p>
+              </div>
+              <p>
+                {shippingAddress?.name}
+                <br />
+                {shippingAddress?.address?.line1}
+                <br />
+                {shippingAddress?.address?.line2?.length > 0 ? shippingAddress?.address.line2 : null}
+                {shippingAddress?.address?.line2?.length > 0 ? <br /> : null}
+                {shippingAddress?.address?.city}, {shippingAddress?.address?.state} {shippingAddress?.address?.postal_code}
+              </p>
+            </div>
           </div>
-          <p>
-            {customer?.name}
-            <br />
-            {customer?.line1}
-            <br />
-            {customer?.line2}
-            <br />
-            {customer?.city}, {customer?.state} {customer?.postal_code}
-            <br />
-            {customer?.country}
-          </p>
-        </div>
-        <div>
-          <div>
-            <p>Shipping address</p>
+
+          <div className='success_page_body_content'>
+            <div className='success_page_order_info_wrapper'>
+              <div className='success_page_order_info_container'>
+                <div className='success_page_order_info'>
+                  <p>Subtotal:</p>
+                  <p>${(order.subtotal * 1.00).toFixed(2)}</p>
+                </div>
+                <div className='success_page_order_info'>
+                  <p>Shipping:</p>
+                  <p>${(order.shipping * 1.00).toFixed(2)}</p>
+                </div>
+                <div className='success_page_order_info'>
+                  <p>Tax:</p>
+                  <p>${(order.tax * 1.00).toFixed(2)}</p>
+                </div>
+                <div className='success_page_order_info'>
+                  <p>Total:</p>
+                  <p>${(order.total * 1.00).toFixed(2)}</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <p>
-            {customer?.name}
-            <br />
-            {customer?.line1}
-            <br />
-            {customer?.line2}
-            <br />
-            {customer?.city}, {customer?.state} {customer?.postal_code}
-            <br />
-            {customer?.country}
-          </p>
         </div>
+
       </div>
+        <div className='account_page_continue_shopping_wrapper'>
+          <div className='cart_action_buttons_container'>
+            <div className='cart_continue_shopping_button'>
+              <Link href='/products'>Continue Shopping</Link>
+            </div>
+          </div>
+        </div>
     </div>
   )
 };
