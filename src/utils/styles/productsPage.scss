@@ -284,8 +284,9 @@
   max-width: 100%;
   margin-top: 0;
   justify-content: center;
-  background-color: #23bdbd;
-  color: #1b2137;
+  background-color: #E00000;
+  color: #FFFFFF;
+  border-radius: 30px;
   font-size: 20px;
   font-weight: 600;
   font-family: 'Oswald', sans-serif;
@@ -445,8 +446,9 @@
   align-items: center;
 }
 
-.products_page_product_rating_star img {
+.products_page_product_rating_star i {
   width: 100%;
+  color: #E00000;
 }
 
 .products_page_product_rating_amount {

@@ -5,6 +5,8 @@ import { useState, useEffect, SyntheticEvent } from "react";
 import Cart from '../../components/cart/cart';
 import CartUnAuth from '../../components/cartUnAuth/cartUnAuth';
 import { useUser } from '@auth0/nextjs-auth0/client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const dumplings = {
@@ -274,19 +276,19 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
                                   <div className='products_page_product_ratings'>
                                     <div className='products_page_product_rating'>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <span className='products_page_product_rating_amount'>(2018)</span>
                                     </div>
@@ -357,19 +359,19 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
                                   <div className='products_page_product_ratings'>
                                     <div className='products_page_product_rating'>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <span className='products_page_product_rating_amount'>(2018)</span>
                                     </div>
@@ -440,19 +442,19 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
                                   <div className='products_page_product_ratings'>
                                     <div className='products_page_product_rating'>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <div className='products_page_product_rating_star'>
-                                        <img src="/star.png" alt="" />
+                                        <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
                                       <span className='products_page_product_rating_amount'>(1987)</span>
                                     </div>
