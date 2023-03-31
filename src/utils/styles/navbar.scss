@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   padding-bottom: 80px;
+  border-bottom: 2px solid #E00000;
 }
 
 .navbar_container {
@@ -84,6 +85,7 @@
 	display: flex;
 	justify-content: center;
 	order: 2;
+  color: #E00000;
 }
 
 .navbar_middle_container {
@@ -127,47 +129,83 @@
 }
 
 .navbar-right-wrapper {
-	display: flex;
+  position: fixed;
+  top: 20px;
+  right: 0;
+  width: fit-content !important;
+  z-index: 1001;
+}
+
+@media only screen and (min-width: 768px) {
+  .navbar-right-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+    white-space: nowrap;
+    padding-right: 20px;
+  }
+}
+
+.navbar-right-wrapper {
+  order: 3;
+  position: absolute;
+  top: unset;
+  display: flex;
   justify-content: flex-end;
   z-index: 999;
   align-items: center;
   gap: 30px;
-  order: 3;
-  top: unset;
-  position: relative;
-  width: 100%;
-  padding: 10px 0;
-  white-space: nowrap;
+}
+
+@media (min-width: 1024px) {
+  .navbar-right-wrapper {
+    position: relative;
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .navbar-right-wrapper {
+    padding: 10px 0;
+  }
 }
 
 .navbar_right_button {
   position: relative;
   height: max-content;
 	display: flex;
-  background-color: #27bdbe;
+  background-color: #E00000;
 	color: #ffffff;
-  padding: 5px 15px;
+  min-width: 160px;
+  padding: 15px;
   font-size: 20px;
   font-weight: 800;
   text-align: center;
-  border: 2px solid #27bdbe;
+  justify-content: center;
+  border: 2px solid #E00000;
+  border-radius: 30px;
   transition: color 0.2s ease;
-  line-height: 1.2em;
+  line-height: 20px;
 }
 
 .navbar_right_button_hover {
   position: relative;
   height: max-content;
-  display: flex;
-  background-color: #fff;
-  color: #27bdbe;
-  padding: 5px 15px;
+	display: flex;
+  background-color: #ffffff;
+  color: #E00000;
+  min-width: 160px;
+  padding: 15px;
   font-size: 20px;
   font-weight: 800;
   text-align: center;
-  border: 2px solid #27bdbe;
+  justify-content: center;
+  border: 2px solid #E00000;
+  border-radius: 30px;
   transition: color 0.2s ease;
-  line-height: 1.5em;
+  line-height: 20px;
 }
 
 .navbar_cart_container {

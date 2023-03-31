@@ -10,8 +10,6 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
   const [moreHover, setMoreHover] = useState(false);
-  const [accountHover, setAccountHover] = useState(false);
-  const [loginHover, setLoginHover] = useState(false);
   const { user } = useUser();
 
   const handleCartModal = () => {
