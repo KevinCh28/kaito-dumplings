@@ -163,7 +163,7 @@
 .navbar_right_button {
   position: relative;
   height: max-content;
-	display: flex;
+	display: none;
   background-color: #E00000;
 	color: #ffffff;
   min-width: 160px;
@@ -171,7 +171,6 @@
   font-size: 20px;
   font-weight: 800;
   text-align: center;
-  justify-content: center;
   border: 2px solid #E00000;
   border-radius: 30px;
   transition: color 0.2s ease;
@@ -194,6 +193,13 @@
   border-radius: 30px;
   transition: color 0.2s ease;
   line-height: 20px;
+}
+
+@media (min-width: 1024px) {
+  .navbar_right_button {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .navbar_cart_container {
