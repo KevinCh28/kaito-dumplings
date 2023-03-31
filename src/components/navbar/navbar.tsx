@@ -13,53 +13,6 @@ const Navbar = () => {
   const [accountHover, setAccountHover] = useState(false);
   const [loginHover, setLoginHover] = useState(false);
   const { user } = useUser();
-  
-  // Selectively render navbar links based on user authentication
-  const userLinks = () => {
-    if (user) {
-      return (
-        <div className='navbar-right-wrapper'>
-          <Link href="/account"
-            className={accountHover ? 'navbar_right_button_hover' : 'navbar_right_button'}
-            onMouseOver={() => setAccountHover(true)}
-            onMouseOut={() => setAccountHover(false)}>
-            <span className='navbar_right_buttons_text'>ACCOUNT</span>
-          </Link>
-          <Link
-            href="/products"
-            className={orderHover ? 'navbar_right_button_hover' : 'navbar_right_button'}
-            onMouseOver={() => setOrderHover(true)}
-            onMouseOut={() => setOrderHover(false)}>
-            <span className='navbar_right_buttons_text'>ORDER NOW</span>
-          </Link>
-          <div onClick={() => setShowModal(true)} className="navbar_cart_container">
-            <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
-          </div>
-        </div>
-      )
-    } else {
-      return (
-        <div className='navbar-right-wrapper'>
-          <Link href="/api/auth/login"
-            className={loginHover ? 'navbar_right_button_hover' : 'navbar_right_button'}
-            onMouseOver={() => setLoginHover(true)}
-            onMouseOut={() => setLoginHover(false)}>
-            <span className='navbar_right_buttons_text'>LOG IN</span>
-          </Link>
-          <Link
-            href="/products"
-            className={orderHover ? 'navbar_right_button_hover' : 'navbar_right_button'}
-            onMouseOver={() => setOrderHover(true)}
-            onMouseOut={() => setOrderHover(false)}>
-            <span className='navbar_right_buttons_text'>ORDER NOW</span>
-          </Link>
-          <div onClick={() => setShowModal(true)} className="navbar_cart_container">
-            <img src="/cart.png" alt="cart" className="navbar_cart_image"/>
-          </div>
-        </div>
-      )
-    }
-  };
 
   const handleCartModal = () => {
     if (!showModal) {
@@ -171,6 +124,7 @@ const Navbar = () => {
                       <ul className='navbar_more_list_container'>
                         <li><Link href="/blog" className="navbar_more_list_item">BLOG</Link></li>
                         <li><Link href="/shipping" className="navbar_more_list_item">SHIPPING</Link></li>
+                        <li><Link href="/account" className="navbar_more_list_item">MY ACCOUNT</Link></li>
                         <li><Link href="/faq" className="navbar_more_list_item">FAQ</Link></li>
                       </ul>
                     </div>
@@ -178,7 +132,18 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            {userLinks()}
+            <div className='navbar-right-wrapper'>
+              <Link
+                href="/products"
+                className={orderHover ? 'navbar_right_button_hover' : 'navbar_right_button'}
+                onMouseOver={() => setOrderHover(true)}
+                onMouseOut={() => setOrderHover(false)}>
+                <span className='navbar_right_buttons_text'>ORDER NOW</span>
+              </Link>
+              <div onClick={() => setShowModal(true)} className="navbar_cart_container">
+                <img src="/cart.png" alt="cart" className="navbar_cart_image" />
+              </div>
+            </div>
           </div>
         </header>
         {handleCartModal()}
