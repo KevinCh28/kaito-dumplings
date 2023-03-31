@@ -22,7 +22,7 @@ const AccountPage: NextPage = () => {
         setOrders(data)
       })();
     }
-  }, [user]);
+  }, []);
 
   const handleCancel = (orderNum: string) => {
     (async () => {
