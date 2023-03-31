@@ -14,15 +14,13 @@ const AccountPage: NextPage = () => {
   // if (error) return <div>{error.message}</div>;
 
   // Fetch orders on page load
-  if (user) {
-    useEffect(() => {
-      (async () => {
-        const results = await fetch('/api/orders');
-        const data = await results.json();
-        setOrders(data)
-      })();
-    }, []);
-  };
+  useEffect(() => {
+    (async () => {
+      const results = await fetch('/api/orders');
+      const data = await results.json();
+      setOrders(data)
+    })();
+  }, [user]);
 
   const handleCancel = (orderNum: string) => {
     (async () => {
