@@ -88,7 +88,7 @@ const FAQ: NextPage = () => {
                                               </li>
                                               <li>
                                                 <span>
-                                                  <span>Dumplings are made out of our kitchen in small batches of 18 bags. We produce only what we will sell and your dumplings were likely prepared a day or two before you receive them! Don't underestimate the human touch as well - there are many subtle parts of our process that can only be done by hand. Lastly, we use use only the freshest ingredients we can find!</span>
+                                                  <span>Dumplings are made out of our kitchen in small batches of 18 bags. We produce only what we will sell and your dumplings were likely prepared a day or two before you receive them! Don&apos;t underestimate the human touch as well - there are many subtle parts of our process that can only be done by hand. Lastly, we use use only the freshest ingredients we can find!</span>
                                                 </span>
                                               </li>
                                             </ol>
@@ -274,7 +274,7 @@ const FAQ: NextPage = () => {
                                               <li>&nbsp;</li>
                                               <li>
                                                 <span>
-                                                  <span>If you experience a delay in transit that affects the quality of your dumplings, not to worry! Your order is always backed by our "Melt-Free Guarantee." If your dumplings do not arrive frozen, please discard and we’ll reship your order and do what we can to make things right.</span>
+                                                  <span>If you experience a delay in transit that affects the quality of your dumplings, not to worry! Your order is always backed by our &quot;Melt-Free Guarantee.&quot; If your dumplings do not arrive frozen, please discard and we&apos;ll reship your order and do what we can to make things right.</span>
                                                 </span>
                                               </li>
                                             </ol>
@@ -298,7 +298,7 @@ const FAQ: NextPage = () => {
                                                 <span>
                                                   <span>Yes! Our address is 775 US-1 STE6, Edison, NJ 08817!
                                                     <br />
-                                                    We're open everyday from 11am - 8pm. See you soon!</span>
+                                                    We&apos;re open everyday from 11am - 8pm. See you soon!</span>
                                                 </span>
                                               </li>
                                             </ol>
@@ -385,7 +385,7 @@ const FAQ: NextPage = () => {
                                     <div className="faq_box_row_left_body_tab" onClick={handleShowTab}>
                                       <div className="faq_box_row_left_body_tab_header">
                                         <div className="faq_box_row_left_body_tab_header_wrapper">
-                                          <h4>I'M A JOURNALIST - WHO DO I CONTACT</h4>
+                                          <h4>I&apos;M A JOURNALIST - WHO DO I CONTACT</h4>
                                           <div className="faq_box_row_left_body_tab_header_plus"><span></span></div>
                                         </div>
                                       </div>
