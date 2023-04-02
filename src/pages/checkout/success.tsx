@@ -88,6 +88,16 @@ const OrderSuccessPage: NextPage = () => {
         postal_code: '',
       },
     },
+    shippingAddress: {
+      name: '',
+      address: {
+        line1: '',
+        line2: '',
+        city: '',
+        state: '',
+        postal_code: '',
+      },
+    },
   });
 
   // fetch checkout session data
@@ -95,13 +105,11 @@ const OrderSuccessPage: NextPage = () => {
     (async () => {
       const response = await fetch(URL);
       const data = await response.json();
-      console.log("checkout session data: ")
-      console.log(data)
       setCheckoutSession(data);
     })();
   }, [URL]);
 
-  // reset cart
+  // reset cart to empty
   useEffect(() => {
     if (!user && checkoutSession.payment_status === 'paid') {
       (async () => {
@@ -118,21 +126,7 @@ const OrderSuccessPage: NextPage = () => {
     }
   }, [checkoutSession, user]);
 
-  const customer = checkoutSession?.customer_details;
-  const shippingAddress = checkoutSession?.shipping_details;
-  const products = checkoutSession?.line_items?.data?.map((item: { price: { product: object; unit_amount: number; }; quantity: number; }) => ({
-    ...item.price.product,
-    price: item.price.unit_amount,
-    quantity: item.quantity
-  }));
-  const subtotal = checkoutSession?.amount_subtotal;
-  const shipping = checkoutSession?.total_details?.amount_shipping;
-  const total = checkoutSession?.amount_total;
-  const currency = checkoutSession?.currency;
-  const discount = checkoutSession?.total_details?.amount_discount;
-  const tax = checkoutSession?.total_details?.amount_tax;
-
-  // create order
+  // create order on successful payment
   useEffect(() => {
     if (checkoutSession.payment_status === 'paid') {
       (async () => {
@@ -141,6 +135,7 @@ const OrderSuccessPage: NextPage = () => {
           body: JSON.stringify({
             stripePaymentIntentId: checkoutSession.payment_intent.id,
             customer: checkoutSession.customer_details,
+            shippingAddress: checkoutSession.shipping_details,
             products: checkoutSession,
             subtotal: (checkoutSession.amount_subtotal / 100).toFixed(2),
             shipping: (checkoutSession.total_details.amount_shipping / 100).toFixed(2),
@@ -151,8 +146,6 @@ const OrderSuccessPage: NextPage = () => {
           })
         });
         const data = await results.json();
-        console.log("order data: ")
-        console.log(data);
         setOrder(data);
       })();
     }
@@ -193,13 +186,13 @@ const OrderSuccessPage: NextPage = () => {
                 <p>Shipping Information:</p>
               </div>
               <p>
-                {shippingAddress?.name}
+                {order.shippingAddress?.name}
                 <br />
-                {shippingAddress?.address?.line1}
+                {order.shippingAddress?.address?.line1}
                 <br />
-                {shippingAddress?.address?.line2?.length > 0 ? shippingAddress?.address.line2 : null}
-                {shippingAddress?.address?.line2?.length > 0 ? <br /> : null}
-                {shippingAddress?.address?.city}, {shippingAddress?.address?.state} {shippingAddress?.address?.postal_code}
+                {order.shippingAddress?.address?.line2?.length > 0 ? order.shippingAddress?.address.line2 : null}
+                {order.shippingAddress?.address?.line2?.length > 0 ? <br /> : null}
+                {order.shippingAddress?.address?.city}, {order.shippingAddress?.address?.state} {order.shippingAddress?.address?.postal_code}
               </p>
             </div>
           </div>
