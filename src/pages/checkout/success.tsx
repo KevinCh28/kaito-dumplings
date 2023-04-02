@@ -107,7 +107,7 @@ const OrderSuccessPage: NextPage = () => {
       const data = await response.json();
       setCheckoutSession(data);
     })();
-  }, [URL]);
+  }, []);
 
   // reset cart to empty
   useEffect(() => {
