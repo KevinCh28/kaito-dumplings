@@ -24,45 +24,39 @@ const AccountPage: NextPage = () => {
   const handleOrderHistory = () => {
     if (orders.length > 0) {
       return (
-        <div className='account_page_orders_container'>
-          <h2 className='account_page_orders_header'>YOUR ORDERS</h2>
-          {orders.map((order: { orderNumber: string, date: string, _id: string, orderStatus: string, total: number, paymentStatus: string }) => {
-            let date;
-            let newDate;
+        <table className='account_page_content_table_wrapper'>
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Date</th>
+              <th>Payment status</th>
+              <th>Fulfillment status</th>
+              <th>Total</th>
+            </tr>
+          </thead>
 
-            if (order.date) {
-              date = order.date?.split(' ')
-              newDate = date[1] + " " + date[2] + ", " + date[3]
-            };
+          <tbody>
+            {orders.map((order: { orderNumber: string, date: string, _id: string, orderStatus: string, total: number, paymentStatus: string }) => {
+              let date;
+              let newDate;
 
-            return (
-              <div className='account_page_order' key={order._id}>
-                <div className='account_page_order_info'>
-                  <table>
-                    <thead>
-                      <tr>
-                        <td>Order</td>
-                        <td>Date</td>
-                        <td>Payment status</td>
-                        <td>Fulfillment status</td>
-                        <td>Total</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>#{order.orderNumber}</td>
-                        <td>{newDate}</td>
-                        <td>{order.paymentStatus}</td>
-                        <td>{order.orderStatus}</td>
-                        <td>${order.total}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )
-          })}
-        </div>
+              if (order.date) {
+                date = order.date?.split(' ')
+                newDate = date[1] + " " + date[2] + ", " + date[3]
+              };
+
+              return (
+                <tr className='account_page_order_hover'>
+                  <td className='bold'>#{order.orderNumber}</td>
+                  <td>{newDate}</td>
+                  <td>{order.paymentStatus}</td>
+                  <td>{order.orderStatus}</td>
+                  <td>${order.total}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       )
     } else {
       return (
@@ -78,14 +72,14 @@ const AccountPage: NextPage = () => {
     if (user) {
       return (
         <div className='account_page_main'>
+          <div className='account_page_orders_header'>
+            <div className='account_page_orders_header_wrapper'>
+              <h1>Orders ({orders.length})</h1>
+            </div>
+          </div>
+
           <div className='account_page_main_wrapper'>
             <div className='account_page_main_container'>
-              <div className='account_page_header'>
-                <h3 className='account_page_greeting'>Hi {user.name}!</h3>
-                <Link className='account_page_buttons' href='/api/auth/logout'>
-                  Logout
-                </Link>
-              </div>
               {handleOrderHistory()}
             </div>
           </div>
@@ -100,7 +94,21 @@ const AccountPage: NextPage = () => {
 
 
   return (
-    handleRender()
+    <div className='account_page_overlay'>
+      <div className='account_page_header'>
+        <div className='account_page_header_wrapper'>
+          <h3 className='account_page_greeting'>
+            <Link href='/account'>
+              Orders
+            </Link>
+          </h3>
+          <Link className='account_page_buttons' href='/api/auth/logout'>
+            Logout
+          </Link>
+        </div>
+      </div>
+      {handleRender()}
+    </div>
   )
 };
 
