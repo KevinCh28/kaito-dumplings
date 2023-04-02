@@ -143,6 +143,8 @@ const OrderSuccessPage: NextPage = () => {
             currency: checkoutSession.currency.toUpperCase(),
             discount: (checkoutSession.total_details.amount_discount / 100).toFixed(2),
             tax: (checkoutSession.total_details.amount_tax / 100).toFixed(2),
+            orderStatus: 'PENDING',
+            paymentStatus: checkoutSession.payment_status.toUpperCase(),
           })
         });
         const data = await results.json();

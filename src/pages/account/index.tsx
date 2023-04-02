@@ -5,45 +5,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Link from 'next/link';
+import { render } from 'react-dom';
 
 const AccountPage: NextPage = () => {
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
   const [orders, setOrders] = useState([]);
 
-  // if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>{error.message}</div>;
-
-  // Fetch orders on page load
+  // Fetch user's orders
   useEffect(() => {
-    if (user) {
       (async () => {
         const results = await fetch('/api/orders');
         const data = await results.json();
         setOrders(data)
       })();
-    }
   }, [user]);
 
-  const handleCancel = (orderNum: string) => {
-    (async () => {
-      await fetch('/api/orders', {
-        method: 'PUT',
-        body: JSON.stringify({ orderNum: orderNum })
-      });
-      const results = await fetch('/api/orders');
-      const data = await results.json();
-      setOrders(data)
-    })();
-  };
-
+  // Handle rendering user's orders, if any else display message
   const handleOrderHistory = () => {
     if (orders.length > 0) {
       return (
         <div className='account_page_orders_container'>
           <h2 className='account_page_orders_header'>YOUR ORDERS</h2>
-          {orders.map((order: { orderNumber: string, date: string, _id: string, orderStatus: string, total: number }) => {
-            const date = order.date.split(' ')
-            const newDate = date[1] + " " + date[2] + ", " + date[3]
+          {orders.map((order: { orderNumber: string, date: string, _id: string, orderStatus: string, total: number, paymentStatus: string }) => {
+            let date;
+            let newDate;
+
+            if (order.date) {
+              date = order.date?.split(' ')
+              newDate = date[1] + " " + date[2] + ", " + date[3]
+            };
 
             return (
               <div className='account_page_order' key={order._id}>
@@ -60,22 +50,15 @@ const AccountPage: NextPage = () => {
                     </thead>
                     <tbody>
                       <tr>
-                        <td>{order.orderNumber}</td>
+                        <td>#{order.orderNumber}</td>
                         <td>{newDate}</td>
-                        <td></td>
-                        <td>{order.orderStatus.toUpperCase()}</td>
-                        <td>${(order.total).toFixed(2)}</td>
+                        <td>{order.paymentStatus}</td>
+                        <td>{order.orderStatus}</td>
+                        <td>${order.total}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                {
-                  order.orderStatus === 'pending' ?
-                    <button className='account_page_buttons' onClick={() => handleCancel(order.orderNumber)}>
-                      <i><FontAwesomeIcon icon={faBan}></FontAwesomeIcon></i>
-                      Cancel
-                    </button> : null
-                }
               </div>
             )
           })}
@@ -115,9 +98,10 @@ const AccountPage: NextPage = () => {
     }
   };
 
+
   return (
     handleRender()
-  );
+  )
 };
 
 export default AccountPage;
