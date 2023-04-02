@@ -46,7 +46,7 @@ const AccountPage: NextPage = () => {
               };
 
               return (
-                <tr className='account_page_order_hover'>
+                <tr className='account_page_order_hover' key={order._id}>
                   <td className='bold'>#{order.orderNumber}</td>
                   <td>{newDate}</td>
                   <td>{order.paymentStatus}</td>
