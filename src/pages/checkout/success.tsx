@@ -1,76 +1,17 @@
-import type { NextPage } from 'next';
+import type { NextPage, GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Link from 'next/link';
+import Stripe from 'stripe';
+const stripeKey = process.env.STRIPE_SECRET_KEY as string;
+const stripe = new Stripe(stripeKey, { apiVersion: '2022-11-15' });
 
-const OrderSuccessPage: NextPage = () => {
+const OrderSuccessPage: NextPage = ({ checkoutSession }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { query } = useRouter();
   const sessionId = query.success_id;
-  const URL = `/api/stripe/sessions/${sessionId}`
+  const URL = `/api/stripe/sessions/${sessionId}`;
   const { user } = useUser();
-  const [checkoutSession, setCheckoutSession] = useState({
-    customer_details: {
-      name: '',
-      email: '',
-      address: {
-        line1: '',
-        line2: '',
-        city: '',
-        state: '',
-        postal_code: '',
-      },
-    },
-    currency: '',
-    payment_status: '',
-    payment_intent: {
-      id: '',
-      charges: {
-        data: [
-          {
-            payment_method_details: {
-              card: {
-                brand: '',
-                last4: ''
-              }
-            }
-          }
-        ]
-      }
-    },
-    amount_subtotal: 0,
-    amount_total: 0,
-    total_details: {
-      amount_discount: 0,
-      amount_tax: 0,
-      amount_shipping: 0
-    },
-    line_items: {
-      data: [
-        {
-          price: {
-            product: {
-              name: '',
-              description: '',
-              images: ['']
-            },
-            unit_amount: 0
-          },
-          quantity: 0
-        }
-      ]
-    },
-    shipping_details: {
-      name: '',
-      address: {
-        line1: '',
-        line2: '',
-        city: '',
-        state: '',
-        postal_code: '',
-      },
-    },
-  });
   const [order, setOrder] = useState({
     orderNumber: '',
     tax: 0,
@@ -100,15 +41,6 @@ const OrderSuccessPage: NextPage = () => {
     },
   });
 
-  // fetch checkout session data
-  useEffect(() => {
-    (async () => {
-      const response = await fetch(URL);
-      const data = await response.json();
-      setCheckoutSession(data);
-    })();
-  }, []);
-
   // reset cart to empty
   useEffect(() => {
     if (!user && checkoutSession.payment_status === 'paid') {
@@ -124,7 +56,7 @@ const OrderSuccessPage: NextPage = () => {
         });
       })();
     }
-  }, [checkoutSession, user]);
+  }, [user]);
 
   // create order on successful payment
   useEffect(() => {
@@ -151,7 +83,7 @@ const OrderSuccessPage: NextPage = () => {
         setOrder(data);
       })();
     }
-  }, [checkoutSession]);
+  }, []);
 
   return (
     <div className='order_success_page'>
@@ -236,3 +168,21 @@ const OrderSuccessPage: NextPage = () => {
 };
 
 export default OrderSuccessPage;
+
+// Fetch the Stripe's Checkout Session and pass it as props to the page before page renders
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const success_id = context.query.success_id as string;
+  if (!success_id.startsWith('cs_')) {
+    throw new Error('Invalid Checkout Session ID');
+  }
+
+  const checkoutSession = await stripe.checkout.sessions.retrieve(success_id, {
+    expand: ['payment_intent', 'line_items.data.price.product'],
+  });
+
+  return { 
+    props: { 
+      checkoutSession,
+    },
+  };
+};
