@@ -1,5 +1,4 @@
 import type { NextPage, GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import Link from 'next/link';
@@ -8,9 +7,6 @@ const stripeKey = process.env.STRIPE_SECRET_KEY as string;
 const stripe = new Stripe(stripeKey, { apiVersion: '2022-11-15' });
 
 const OrderSuccessPage: NextPage = ({ checkoutSession }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { query } = useRouter();
-  const sessionId = query.success_id;
-  const URL = `/api/stripe/sessions/${sessionId}`;
   const { user } = useUser();
   const [order, setOrder] = useState({
     orderNumber: '',
@@ -60,7 +56,7 @@ const OrderSuccessPage: NextPage = ({ checkoutSession }: InferGetServerSideProps
 
   // create order on successful payment
   useEffect(() => {
-    if (checkoutSession.payment_status === 'paid') {
+    if (order.orderNumber === '') {
       (async () => {
         const results = await fetch('/api/orders', {
           method: 'PUT',
@@ -77,13 +73,14 @@ const OrderSuccessPage: NextPage = ({ checkoutSession }: InferGetServerSideProps
             tax: (checkoutSession.total_details.amount_tax / 100).toFixed(2),
             orderStatus: 'PENDING',
             paymentStatus: checkoutSession.payment_status.toUpperCase(),
+            date: new Date().toString(),
           })
         });
         const data = await results.json();
         setOrder(data);
       })();
     }
-  }, []);
+  }, [checkoutSession]);
 
   return (
     <div className='order_success_page'>
