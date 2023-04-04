@@ -28,7 +28,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
     'black-vinegar': '642c4a901ffe19a54330e8c4',
   }
   const [showModal, setShowModal] = useState(false);
-  const [product1, setProduct1] = useState(products[6]);
+  const [product1, setProduct1] = useState(products[10]);
   const [product2, setProduct2] = useState(products[6]);
   const [product3, setProduct3] = useState(products[0]);
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
