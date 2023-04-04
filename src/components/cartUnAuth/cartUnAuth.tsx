@@ -83,7 +83,6 @@ const CartUnAuth = ({ onClose = () => { } }) => {
 
   // Renders cart items
   const handleCartItems = () => {
-    console.log(cart)
     if (cart.products.length > 0) {
       return (
         <div className='cart_items_container'>
