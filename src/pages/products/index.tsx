@@ -13,13 +13,19 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
     'beef-&-cheese': '63efa9419010d97ce1747161',
     'chicken-&-cabbage': '63efa96f9010d97ce1747163',
     'pork-&-chieves': '63efa8d89010d97ce1747159',
-    'veggie': '63efa9119010d97ce174715c'
+    'veggie': '63efa9119010d97ce174715c',
   }
   const gyoza = {
     'beef-&-cheese': '63efa8319010d97ce1747153',
     'chicken-&-cabbage': '63efa8b49010d97ce1747155',
     'pork-&-chieves': '63efa8d19010d97ce1747157',
-    'veggie': '63efa9259010d97ce174715f'
+    'veggie': '63efa9259010d97ce174715f',
+  }
+  const sauce = {
+    'sauce-bundle': '642c4a3d1ffe19a54330e8c1',
+    'xo-sauce': '642c4a6d1ffe19a54330e8c2',
+    'hot-chili-oil': '642c4aae1ffe19a54330e8c5',
+    'black-vinegar': '642c4a901ffe19a54330e8c4',
   }
   const [showModal, setShowModal] = useState(false);
   const [product1, setProduct1] = useState(products[6]);
@@ -27,13 +33,15 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
   const [product3, setProduct3] = useState(products[0]);
   const [dumplingsId, setDumplingsId] = useState('63efa9419010d97ce1747161');
   const [gyozaId, setGyozaId] = useState('63efa8319010d97ce1747153');
+  const [sauceId, setSauceId] = useState('642c4a3d1ffe19a54330e8c1');
   const { user } = useUser();
 
   // Gets selected products
   useEffect(() => {
+    const sauceIndex = products.findIndex((product: { _id: string; }) => product._id === sauceId);
     const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
     const gyozaIndex = products.findIndex((product: { _id: string; }) => product._id === gyozaId);
-    const matchedProduct1 = products[dumplingIndex];
+    const matchedProduct1 = products[sauceIndex];
     const matchedProduct2 = products[dumplingIndex];
     const matchedProduct3 = products[gyozaIndex];
 
@@ -44,10 +52,10 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
 
   // Update Product1
   useEffect(() => {
-    const dumplingIndex = products.findIndex((product: { _id: string; }) => product._id === dumplingsId);
-    const matchedProduct = products[dumplingIndex];
+    const sauceIndex = products.findIndex((product: { _id: string; }) => product._id === sauceId);
+    const matchedProduct = products[sauceIndex];
     setProduct1(matchedProduct);
-  }, [dumplingsId]);
+  }, [sauceId]);
 
   // Update Product2
   useEffect(() => {
@@ -63,9 +71,29 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
     setProduct3(matchedProduct);
   }, [gyozaId]);
 
+  // Handles add sauce to cart
+  const handleAddSaucesToCart = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    if (user) {
+      fetch('/api/carts', {
+        method: 'PUT',
+        body: JSON.stringify({ product: product1, quantity: 1 })
+      }).then(() => {
+        setShowModal(true);
+      })
+    } else {
+      fetch('/api/guests', {
+        method: 'PUT',
+        body: JSON.stringify({ product: product1, quantity: 1 })
+      }).then(() => {
+        setShowModal(true);
+      })
+    }
+  };
+
+  // Handles add dumpling to cart
   const handleAddDumplingsToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-
     if (user) {
       fetch('/api/carts', {
         method: 'PUT',
@@ -83,6 +111,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
     }
   };
 
+  // Handles add gyoza to cart
   const handleAddGyozaToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (user) {
@@ -120,6 +149,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
     return () => window.removeEventListener('click', handleOutsideClick, options);
   }, [showModal]);
 
+  // Handles show/hide cart modal
   const handleCartModal = () => {
     if (!showModal) {
       return null;
@@ -128,6 +158,32 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
     } else {
       return <CartUnAuth onClose={() => setShowModal(false)} />
     }
+  };
+
+  // Render sauce buttons that are selected or not
+  const handleSauceButtons = () => {
+    return Object.entries(sauce).map(([name, id]) => {
+      if (sauceId === id) {
+        return (
+          <div className="products_page_item_flavor" key={id}>
+            <span className="products_page_item_flavor_text_selected" key={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
+          </div>
+        );
+      } else {
+        return (
+          <div className="products_page_item_flavor" onClick={handleSauceChange} key={id}>
+            <span className="products_page_item_flavor_text_unselected" key={id} id={id}>{(name.split('-').join(' ')).toUpperCase()}</span>
+          </div>
+        );
+      }
+    });
+  };
+
+  // Handle sauce button click
+  const handleSauceChange = (e: SyntheticEvent) => {
+    e.preventDefault();
+    const key = (e.target as HTMLSpanElement).getAttribute('id');
+    setSauceId(key as string);
   };
 
   // Render gyoza buttons that are selected or not
@@ -228,7 +284,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
               <div className='products_page_items_column_wrapper'>
                 <div className='products_page_items_column_container'>
                   <div className='products_page_item_wrapper'>
-                    {/* FEATURED PRODUCTS, CURRENTLY DUMPLINGS */}
+                    {/* SAUCES */}
                     <div className='products_page_item_container'>
                       <div className='products_page_item_info_container'>
                         <div className='products_page_item_image_wrapper'>
@@ -248,18 +304,16 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
                                   <span className='products_page_item_price'>${product1.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <Link href="/products/dumplings-beef-&-cheese">{product1.category} (50 PC)</Link>
+                                  <Link href="/products/sauces-xo-sauce">KAITO SAUCES</Link>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
                                     <li className='products_page_item_description'>
-                                      <p>50 Gyozas (Good for 6 Meals!)</p>
+                                      <p>Choose from 3 Kaito Signature Sauces (6.5oz. jars):</p>
+                                      <p>XO Sauce, Hot Chili Oil, Black Vinegar</p>
                                     </li>
                                     <li className='products_page_item_description'>
-                                      <p>Ready in Just 11 Minutes</p>
-                                    </li>
-                                    <li className='products_page_item_description'>
-                                      <p>Steamer Liners Included</p>
+                                      <p>Option: 1 Sauce Bundle Set (All 3 House Made Sauces)</p>
                                     </li>
                                   </ul>
                                 </div>
@@ -267,7 +321,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
                                 <div className="products_page_item_flavors">
                                   <div className="products_page_item_flavors_wrapper">
                                     <div className="products_page_item_flavors_container">
-                                      {handleDumplingButtons()}
+                                      {handleSauceButtons()}
                                     </div>
                                   </div>
                                 </div>
@@ -290,7 +344,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
                                       <div className='products_page_product_rating_star'>
                                         <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
                                       </div>
-                                      <span className='products_page_product_rating_amount'>(2018)</span>
+                                      <span className='products_page_product_rating_amount'>(1555)</span>
                                     </div>
                                   </div>
                                 </div>
