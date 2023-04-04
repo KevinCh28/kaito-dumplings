@@ -164,7 +164,7 @@ const SauceBundle = () => {
               <div className='product_page_maincontent_breadcrumbs'>
                 <Link href="/products">ALL PRODUCTS</Link>
                 <span> &gt; </span>
-                <Link href="/products/gyoza-beef-&-cheese">{product.category}</Link>
+                <Link href="/products/sauces-sauce-bundle">{product.category}</Link>
                 <span> &gt; </span>
                 <Link href={`/products/${product.category}-${pathName}`}>{product.name}</Link>
               </div>
@@ -244,7 +244,7 @@ const SauceBundle = () => {
                                   if (flavor.split('-').join(' ') !== product.name.toLowerCase()) {
                                     return (
                                       <div key={flavor}>
-                                        <Link className='product_page_hidden_flavor_container' href={`/products/gyoza-${flavor}`}>
+                                        <Link className='product_page_hidden_flavor_container' href={`/products/sauces-${flavor}`}>
                                           {flavor.split('-').join(' ').toUpperCase()}
                                         </Link>
                                       </div>
