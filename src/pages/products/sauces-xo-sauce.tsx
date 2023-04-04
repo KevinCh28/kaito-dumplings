@@ -7,30 +7,30 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
-const GyozaVeggie = () => {
+const SauceBundle = () => {
   const router = useRouter();
   const pathName = router.pathname.split('-').slice(1).join('-');
   const flavors: { [key: string]: string } = useMemo(() => {
     return {
-      'beef-&-cheese': '63efa8319010d97ce1747153',
-      'chicken-&-cabbage': '63efa8b49010d97ce1747155',
-      'pork-&-chieves': '63efa8d19010d97ce1747157',
-      'veggie': '63efa9259010d97ce174715f',
+      'sauce-bundle': '642c4a3d1ffe19a54330e8c1',
+      'xo-sauce': '642c4a6d1ffe19a54330e8c2',
+      'hot-chili-oil': '642c4aae1ffe19a54330e8c5',
+      'black-vinegar': '642c4a901ffe19a54330e8c4',
     };
   }, []);
   const [product, setProduct] = useState({
-    _id: '',
-    name: '',
-    price: 0,
-    description: '',
+    _id: '642c4a6d1ffe19a54330e8c2',
+    name: 'XO Sauce',
+    price: 9.95,
+    description: 'XO Sauce',
     imageUrl: '',
-    category: '',
+    category: 'sauce',
     stripeId: '',
   });
   const [quantity, setQuantity] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const { user } = useUser();
-  const [gyozaId, setGyozaId] = useState(flavors[pathName]);
+  const [sauceId, setSauceId] = useState(flavors[pathName]);
   const [flavorsHidden, setFlavorsHidden] = useState(true);
   const [hiddenTab, setHiddenTab] = useState<{ [key: number]: boolean }>({
     0: true,
@@ -55,11 +55,11 @@ const GyozaVeggie = () => {
     (async () => {
       const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
       element.style.backgroundColor = '#a9dde3';
-      const results = await fetch(`/api/product?id=${gyozaId}`);
+      const results = await fetch(`/api/product?id=${sauceId}`);
       const data = await results.json();
       setProduct(data)
     })();
-  }, [gyozaId]);
+  }, [sauceId]);
 
   // Hide flavors when clicking outside of the flavors container
   useEffect(() => {
@@ -164,7 +164,7 @@ const GyozaVeggie = () => {
               <div className='product_page_maincontent_breadcrumbs'>
                 <Link href="/products">ALL PRODUCTS</Link>
                 <span> &gt; </span>
-                <Link href="/products/gyoza-beef-&-cheese">{product.category} (50 PC)</Link>
+                <Link href="/products/gyoza-beef-&-cheese">{product.category}</Link>
                 <span> &gt; </span>
                 <Link href={`/products/${product.category}-${pathName}`}>{product.name}</Link>
               </div>
@@ -206,8 +206,6 @@ const GyozaVeggie = () => {
                     <div>
                       <h2 className='product_page_info_header_container'>
                         {product.name}
-                        <br />
-                        {product.category} (50PC)
                       </h2>
                       <div className='product_page_info_header_info_container'>
                         <div className='product_page_info_header_price_container'>
@@ -221,7 +219,6 @@ const GyozaVeggie = () => {
                           </span>
                         </Link>
                       </div>
-                      <div className='product_page_price_per'>Just $6.49 per meal</div>
                     </div>
                     <div className='product_page_description_wrapper'>
                       <div></div>
@@ -606,4 +603,4 @@ const GyozaVeggie = () => {
   );
 };
 
-export default GyozaVeggie;
+export default SauceBundle;

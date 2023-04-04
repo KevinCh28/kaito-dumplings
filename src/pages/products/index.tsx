@@ -304,7 +304,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
                                   <span className='products_page_item_price'>${product1.price}</span>
                                 </div>
                                 <h3 className='products_page_item_name'>
-                                  <Link href="/products/sauces-xo-sauce">KAITO SAUCES</Link>
+                                  <Link href="/products/sauces-sauce-bundle">KAITO SAUCES</Link>
                                 </h3>
                                 <div>
                                   <ul className='products_page_item_descriptions'>
