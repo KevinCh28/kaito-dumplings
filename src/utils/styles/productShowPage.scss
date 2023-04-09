@@ -14,6 +14,12 @@
   padding: 0 30px;
 }
 
+@media screen and (max-width: 480px) {
+  .product_page_container {
+    padding: 0;
+  }
+}
+
 .product_page_maincontent {
   color: #1b2136;
   padding-bottom: 85px;
@@ -37,6 +43,13 @@
 
   span {
     margin-right: 3px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .product_page_maincontent_breadcrumbs {
+    padding: 0 16px;
+    flex-wrap: wrap;
   }
 }
 
