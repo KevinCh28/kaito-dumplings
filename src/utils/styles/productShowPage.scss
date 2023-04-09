@@ -40,8 +40,10 @@
   }
 }
 
-.product_page_maincontent_wrapper {
-  display: flex;
+@media (min-width: 768px) {
+  .product_page_maincontent_wrapper {
+    display: flex;
+  }
 }
 
 .product_page_maincontent_sideimages_wrapper {
@@ -61,6 +63,12 @@
   width: 100%;
   padding-top: 0;
   background-color: transparent;
+}
+
+@media only screen and (max-width: 767px) {
+  .product_page_maincontent_sideimages_wrapper {
+    display: none !important;
+  }
 }
 
 .product_page_maincontent_sideimages_container {
