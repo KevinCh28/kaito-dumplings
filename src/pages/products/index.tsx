@@ -351,7 +351,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
 
                               </div>
                               <div className='products_page_add_button_container'>
-                                <button className='products_page_add_button' onClick={handleAddDumplingsToCart}>
+                                <button className='products_page_add_button' onClick={handleAddSaucesToCart}>
                                   <span>ADD TO CART</span>
                                   <span>
                                     <div>
