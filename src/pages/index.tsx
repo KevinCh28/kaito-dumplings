@@ -383,10 +383,10 @@ const Home: NextPage = () => {
             <div className='contact_us_form_header'>
               <h3>{`QUESTIONS, COMMENTS, FEEDBACK?`}</h3>
             </div>
-            <form className='contact_us_form'>
-              <input type="text" placeholder='Name' value={formName} onChange={handleChange}/>
-              <input type="email" placeholder='Email' value={formEmail} onChange={handleChange}/>
-              <input type="text" placeholder='What can we do for you?' value={formQuestion} onChange={handleChange}/>
+            <form className='contact_us_form' method="POST" action="https://formsubmit.co/kaitodumplings@gmail.com">
+              <input type="text" placeholder='Name' value={formName} onChange={handleChange} name='formName'/>
+              <input type="email" placeholder='Email' value={formEmail} onChange={handleChange} name='formEmail'/>
+              <input type="text" placeholder='What can we do for you?' value={formQuestion} onChange={handleChange} name='formQuestion'/>
               <button type="submit">GET IN TOUCH</button>
             </form>
           </div>
