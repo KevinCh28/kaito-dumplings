@@ -4,13 +4,57 @@ import Cart from '../cart/cart';
 import CartUnAuth from '../cartUnAuth/cartUnAuth';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus, faBasketShopping } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faBasketShopping, faX } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
   const [moreHover, setMoreHover] = useState(false);
+  const [showMoblieModal, setShowMobileModal] = useState(false);
   const { user } = useUser();
+
+  const handleMoblieModal = () => {
+    if (!showMoblieModal) {
+      return null
+    } else {
+      const body = document.getElementsByTagName("body")[0];
+      body.style.overflow = "hidden";
+      return (
+        <div className='navbar_moblie_menu_modal'>
+          <div className='navbar_moblie_menu_modal_content'>
+            <div className='navbar_moblie_menu_modal_close' onClick={() => setShowMobileModal(false)}>
+              <i className='navbar_moblie_menu_modal_close_image'><FontAwesomeIcon icon={faX}></FontAwesomeIcon></i>
+            </div>
+            <div className='navbar_moblie_menu_modal_content_wrapper'>
+              <div className='navbar_moblie_menu_modal_content_container'>
+                <ul className='navbar_moblie_menu_modal_content_menu'>
+                  <li className='navbar_moblie_menu_modal_products'>
+                    <Link href="/products" onClick={() => setShowMobileModal(false)}>PRODUCTS</Link>
+                  </li>
+                  <nav className='navbar_moblie_menu_modal_product_links'>
+                    <Link href="/products/dumplings-beef-&-cheese" onClick={() => setShowMobileModal(false)}>DUMPLINGS</Link>
+                    <Link href="/products/gyoza-beef-&-cheese" onClick={() => setShowMobileModal(false)}>GYOZAS</Link>
+                    <Link href="/products/sauces-sauce-bundle" onClick={() => setShowMobileModal(false)}>SAUCES</Link>
+                  </nav>
+                </ul>
+                <ul className='navbar_moblie_menu_modal_content_secondary_menu'>
+                  <li><Link href='/blog' onClick={() => setShowMobileModal(false)}>ABOUT US</Link></li>
+                  <li><Link href='/blog' onClick={() => setShowMobileModal(false)}>PRESS</Link></li>
+                  <li><Link href='/shipping' onClick={() => setShowMobileModal(false)}>SHIPPING</Link></li>
+                  <li><Link href='/account' onClick={() => setShowMobileModal(false)}>MY ACCOUNT</Link></li>
+                  <li><Link href='/faq' onClick={() => setShowMobileModal(false)}>FAQ</Link></li>
+                </ul>
+                <div className='navbar_moblie_menu_modal_footer'>
+                  <Link className='navbar_moblie_menu_modal_footer_button' href='/products'>SHOP ALL PRODUCTS</Link>
+                  <h4 className='navbar_moblie_menu_modal_footer_text'>FREE SHIPPING ON ORDERS OVER $99+</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  };
 
   const handleCartModal = () => {
     if (!showModal) {
@@ -112,7 +156,8 @@ const Navbar = () => {
                 <div className='navbar_middle_products_container'>
                   <Link href="/products" className="navbar_middle_button">PRODUCTS</Link>
                 </div>
-                <div className='navbar_middle_more_wrapper' onMouseOver={handleShowMoreList} onMouseOut={handleHideMoreList}>
+                {/* <div className='navbar_middle_more_wrapper' onMouseOver={handleShowMoreList} onMouseOut={handleHideMoreList}> */}
+                <div className='navbar_middle_more_wrapper' onClick={() => setShowMobileModal(true)}>
                   <div className='navbar_middle_more_container'>
                     <div className='navbar_middle_button'>
                       <span className='navbar_middle_button_text'>MORE </span>
@@ -146,6 +191,7 @@ const Navbar = () => {
           </div>
         </header>
         {handleCartModal()}
+        {handleMoblieModal()}
       </div>
     </div>
   )
