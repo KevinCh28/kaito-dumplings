@@ -12,6 +12,7 @@ import '../utils/styles/footer.scss'
 import '../utils/styles/shipping.scss'
 import '../utils/styles/faq.scss'
 import '../utils/styles/orderSuccess.scss'
+import '../utils/styles/blog.scss'
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/footer';
 import React from 'react';
