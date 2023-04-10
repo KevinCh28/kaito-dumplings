@@ -222,7 +222,7 @@ const DumplingsVeggie = () => {
                           </span>
                         </Link>
                       </div>
-                      <div className='product_page_price_per'>Just $6.49 per meal</div>
+                      <div className='product_page_price_per'>Just $5.70 per meal</div>
                     </div>
                     <div className='product_page_description_wrapper'>
                       <div></div>
