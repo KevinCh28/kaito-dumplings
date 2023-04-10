@@ -140,22 +140,6 @@ const Navbar = () => {
     }
   }, [showModal]);
 
-  // Handle showing links from MORE+ when hovered
-  const handleShowMoreList = () => {
-    const moreList = document.getElementsByClassName("navbar_more_list")[0] as HTMLElement;
-    moreList.style.display = "block";
-    moreList.style.opacity = "1";
-    setMoreHover(true);
-  };
-
-  // Handle hiding links in MORE+ when not hovered
-  const handleHideMoreList = () => {
-    const moreList = document.getElementsByClassName("navbar_more_list")[0] as HTMLElement;
-    moreList.style.display = "none";
-    moreList.style.opacity = "0";
-    setMoreHover(false);
-  };
-
   // Handle rendering MORE + or - icon depending on if hovered or not
   const handleMoreImage = () => {
     if (!moreHover) {
@@ -191,7 +175,7 @@ const Navbar = () => {
                     <div className='navbar_middle_button_moblie' onClick={() => setShowMobileModal(true)}>
                       <i className='navbar_middle_button_moblie_image'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></i>
                     </div>
-                    <div className='navbar_middle_button' onMouseOver={handleShowMoreList} onMouseOut={handleHideMoreList}>
+                    <div className='navbar_middle_button' onMouseEnter={() => setMoreHover(true)} onMouseLeave={() => setMoreHover(false)}>
                       <span className='navbar_middle_button_text'>MORE </span>
                       {handleMoreImage()}
                       <div className='navbar_more_list'>

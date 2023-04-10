@@ -197,6 +197,22 @@
   min-width: 0;
 }
 
+.navbar_middle_button:hover {
+  .navbar_more_list {
+    display: block;
+    opacity: 1;
+    animation: fadeIn .5s linear;
+  }
+}
+
+.navbar_middle_button:not(:hover) {
+  .navbar_more_list {
+    display: none;
+    opacity: 0;
+    animation: fadeOut .5s linear;
+  }
+}
+
 .navbar_middle_button_moblie {
   transition: .2s ease-in-out;
   display: none;
@@ -362,8 +378,6 @@
   bottom: auto;
   background-color: #fff;
   height: 207px;
-  display: none;
-  opacity: 0;
 }
 
 .navbar_more_list_container {
@@ -383,6 +397,12 @@
   color: #e00000;
   transition: .2s ease-in-out;
   font-size: 20px;
+}
+
+.navbar_more_list_container:hover {
+  .navbar_more_list_item {
+    opacity: 1;
+  }
 }
 
 .navbar_more_image {
