@@ -288,6 +288,13 @@
   bottom: 0;
   z-index: 2147483638;
   transition: right 0.25s ease-in-out;
+  display: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .navbar_moblie_menu_modal {
+    display: block;
+  }
 }
 
 .navbar_moblie_menu_modal_close {

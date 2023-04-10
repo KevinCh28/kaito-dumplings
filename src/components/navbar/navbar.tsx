@@ -4,19 +4,26 @@ import Cart from '../cart/cart';
 import CartUnAuth from '../cartUnAuth/cartUnAuth';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus, faBasketShopping, faX } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faBasketShopping, faX, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
   const [moreHover, setMoreHover] = useState(false);
   const [showMoblieModal, setShowMobileModal] = useState(false);
+  const [moblie, setMoblie] = useState(false);
   const { user } = useUser();
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setMoblie(true);
+    };
+  }, [moblie]);
 
   const handleMoblieModal = () => {
     if (!showMoblieModal) {
       return null
-    } else {
+    } else if (moblie) {
       const body = document.getElementsByTagName("body")[0];
       body.style.overflow = "hidden";
       return (
@@ -139,6 +146,23 @@ const Navbar = () => {
     }
   };
 
+  const handleRenderMenuButtons = () => {
+    if (moblie) {
+      return (
+        <div className='navbar_middle_button_moblie' onClick={() => setShowMobileModal(true)}>
+          <i className='navbar_middle_button_moblie_image'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></i>
+        </div>
+      )
+    } else {
+      return (
+        <div className='navbar_middle_button'>
+          <span className='navbar_middle_button_text'>MORE </span>
+          {handleMoreImage()}
+        </div>
+      )
+    }
+  };
+
   return (
     <div className='navbar_main'>
       <div className='navbar_wrapper'>
@@ -157,12 +181,9 @@ const Navbar = () => {
                   <Link href="/products" className="navbar_middle_button">PRODUCTS</Link>
                 </div>
                 {/* <div className='navbar_middle_more_wrapper' onMouseOver={handleShowMoreList} onMouseOut={handleHideMoreList}> */}
-                <div className='navbar_middle_more_wrapper' onClick={() => setShowMobileModal(true)}>
+                <div className='navbar_middle_more_wrapper'>
                   <div className='navbar_middle_more_container'>
-                    <div className='navbar_middle_button'>
-                      <span className='navbar_middle_button_text'>MORE </span>
-                      {handleMoreImage()}
-                    </div>
+                    {handleRenderMenuButtons()}
                     <div className='navbar_more_list'>
                       <ul className='navbar_more_list_container'>
                         <li><Link href="/blog" className="navbar_more_list_item">BLOG</Link></li>

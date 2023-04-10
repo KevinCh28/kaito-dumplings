@@ -197,8 +197,16 @@
   min-width: 0;
 }
 
+.navbar_middle_button_moblie {
+  transition: .2s ease-in-out;
+}
+
 .navbar_middle_button_text {
   cursor: pointer;
+}
+
+.navbar_middle_button_moblie_image svg {
+  height: 25px;
 }
 
 .navbar-right-wrapper {
