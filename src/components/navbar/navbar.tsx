@@ -38,8 +38,8 @@ const Navbar = () => {
                   </nav>
                 </ul>
                 <ul className='navbar_moblie_menu_modal_content_secondary_menu'>
-                  <li><Link href='/blog' onClick={() => setShowMobileModal(false)}>ABOUT US</Link></li>
-                  <li><Link href='/blog' onClick={() => setShowMobileModal(false)}>PRESS</Link></li>
+                  <li><Link href='/blog/aboutus' onClick={() => setShowMobileModal(false)}>ABOUT US</Link></li>
+                  {/* <li><Link href='/blog/press' onClick={() => setShowMobileModal(false)}>PRESS</Link></li> */}
                   <li><Link href='/shipping' onClick={() => setShowMobileModal(false)}>SHIPPING</Link></li>
                   <li><Link href='/account' onClick={() => setShowMobileModal(false)}>MY ACCOUNT</Link></li>
                   <li><Link href='/faq' onClick={() => setShowMobileModal(false)}>FAQ</Link></li>
