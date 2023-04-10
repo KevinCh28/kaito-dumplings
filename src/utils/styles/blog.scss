@@ -95,3 +95,41 @@
   justify-content: center;
   font-size: 16px;
 }
+
+@media only screen and (max-width: 768px) {
+  .blog_page {
+    font-size: 16px;
+  }
+
+  .blog_page_body {
+    padding: 20px;
+  }
+
+  .blog_page_content_double {
+    flex-direction: column;
+  }
+
+  .blog_page_content_double_box_purple {
+    width: 100%;
+  }
+
+  .blog_page_content_double_box_green {
+    width: 100%;
+  }
+
+  .blog_page_content_double_box_content {
+    padding: 30px;
+  }
+
+  .blog_page_content_double_box_image {
+    width: 100%;
+  }
+
+  .blog_page_content_single_yellow {
+    padding: 30px;
+  }
+
+  .blog_page_content_single_red {
+    padding: 30px;
+  }
+}
