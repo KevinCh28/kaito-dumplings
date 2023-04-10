@@ -12,7 +12,10 @@ const Navbar = () => {
   const [moreHover, setMoreHover] = useState(false);
   const [showMoblieModal, setShowMobileModal] = useState(false);
   const { user } = useUser();
+  let lowestScrollPosition = -1;
+  let highestScrollPosition = 1;
 
+  // Handle rendering navbar menu for mobile
   const handleMoblieModal = () => {
     if (!showMoblieModal) {
       return null
@@ -56,12 +59,14 @@ const Navbar = () => {
     }
   };
 
+  // Handle closing mobile menu
   const handleCloseMobileModal = () => {
     const body = document.getElementsByTagName("body")[0];
     body.style.overflow = "";
     setShowMobileModal(false);
   };
 
+  // Handle rendering cart modal
   const handleCartModal = () => {
     if (!showModal) {
       return null
@@ -98,20 +103,36 @@ const Navbar = () => {
     return () => window.removeEventListener('click', handleOutsideClick, options);
   }, [showModal]);
 
+  // Handle hiding and showing navbar on scroll up and down
   const handleHiddenNav = () => {
     let header = document.getElementsByClassName("navbar_container")[0];
-    if (window.scrollY > 250) {
+
+    if (window.scrollY > highestScrollPosition) {
+      highestScrollPosition = window.scrollY;
+    }
+
+    if (window.scrollY >= lowestScrollPosition + 250) {
+      lowestScrollPosition = window.scrollY - 1;
+      highestScrollPosition = window.scrollY + 1;
       header.className = "navbar_container navbar_hidden";
-    } else {
+    } else if (highestScrollPosition - window.scrollY >= 250) {
+      lowestScrollPosition = window.scrollY - 1;
+      highestScrollPosition = window.scrollY + 1;
+      header.className = "navbar_container";
+    } else if (window.scrollY <= 250) {
+      lowestScrollPosition = window.scrollY - 1;
+      highestScrollPosition = window.scrollY + 1;
       header.className = "navbar_container";
     }
   };
 
+  // Add event listener for scrolling
   useEffect(() => {
     window.addEventListener("scroll", handleHiddenNav);
     return () => window.removeEventListener("scroll", handleHiddenNav);
   }, []);
 
+  // Handle removing overflow hidden from body when cart is closed so that the user can scroll on current page
   useEffect(() => {
     if (!showModal) {
       const body = document.getElementsByTagName("body")[0];
@@ -119,6 +140,7 @@ const Navbar = () => {
     }
   }, [showModal]);
 
+  // Handle showing links from MORE+ when hovered
   const handleShowMoreList = () => {
     const moreList = document.getElementsByClassName("navbar_more_list")[0] as HTMLElement;
     moreList.style.display = "block";
@@ -126,6 +148,7 @@ const Navbar = () => {
     setMoreHover(true);
   };
 
+  // Handle hiding links in MORE+ when not hovered
   const handleHideMoreList = () => {
     const moreList = document.getElementsByClassName("navbar_more_list")[0] as HTMLElement;
     moreList.style.display = "none";
@@ -133,6 +156,7 @@ const Navbar = () => {
     setMoreHover(false);
   };
 
+  // Handle rendering MORE + or - icon depending on if hovered or not
   const handleMoreImage = () => {
     if (!moreHover) {
       return (
@@ -170,14 +194,14 @@ const Navbar = () => {
                     <div className='navbar_middle_button' onMouseOver={handleShowMoreList} onMouseOut={handleHideMoreList}>
                       <span className='navbar_middle_button_text'>MORE </span>
                       {handleMoreImage()}
-                    </div>
-                    <div className='navbar_more_list'>
-                      <ul className='navbar_more_list_container'>
-                        <li><Link href="/blog" className="navbar_more_list_item">BLOG</Link></li>
-                        <li><Link href="/shipping" className="navbar_more_list_item">SHIPPING</Link></li>
-                        <li><Link href="/account" className="navbar_more_list_item">MY ACCOUNT</Link></li>
-                        <li><Link href="/faq" className="navbar_more_list_item">FAQ</Link></li>
-                      </ul>
+                      <div className='navbar_more_list'>
+                        <ul className='navbar_more_list_container'>
+                          <li><Link href="/blog" className="navbar_more_list_item">BLOG</Link></li>
+                          <li><Link href="/shipping" className="navbar_more_list_item">SHIPPING</Link></li>
+                          <li><Link href="/account" className="navbar_more_list_item">MY ACCOUNT</Link></li>
+                          <li><Link href="/faq" className="navbar_more_list_item">FAQ</Link></li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -192,7 +216,6 @@ const Navbar = () => {
                 <span className='navbar_right_buttons_text'>ORDER NOW</span>
               </Link>
               <div onClick={() => setShowModal(true)} className="navbar_cart_container">
-                {/* <img src="/cart.png" alt="cart" className="navbar_cart_image" /> */}
                 <i className='navbar_cart_image'><FontAwesomeIcon icon={faBasketShopping}></FontAwesomeIcon></i>
               </div>
             </div>
