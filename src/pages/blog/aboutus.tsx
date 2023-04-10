@@ -11,7 +11,7 @@ const AboutUsPage = () => {
         <div className='blog_page_content_double'>
           <div className='blog_page_content_double_box_green'>
             <div className='blog_page_content_double_box_content'>
-              <h2>The "Dumpling Guys" behind Kaito Dumplings!</h2>
+              <h2>The &quot;Dumpling Guys&quot; behind Kaito Dumplings!</h2>
               <p>Kevin Chen has always been passionate about delicious food. Growing up amongst chefs and restaurant owners he eventually opened his own restaurant, Kevin continuously educates himself on ingredients and innovations to achieve this.</p>
               <br />
               <p>One food in particular that he fell in love with was amazing fresh dumplings. The only downside? They were mass-produced with bad ingredients, and if you decided to make some from scratch at home after a long day at work, it was time-consuming.</p>
