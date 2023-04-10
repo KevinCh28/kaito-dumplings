@@ -22,27 +22,27 @@ const Navbar = () => {
       return (
         <div className='navbar_moblie_menu_modal'>
           <div className='navbar_moblie_menu_modal_content'>
-            <div className='navbar_moblie_menu_modal_close' onClick={() => setShowMobileModal(false)}>
+            <div className='navbar_moblie_menu_modal_close' onClick={handleCloseMobileModal}>
               <i className='navbar_moblie_menu_modal_close_image'><FontAwesomeIcon icon={faX}></FontAwesomeIcon></i>
             </div>
             <div className='navbar_moblie_menu_modal_content_wrapper'>
               <div className='navbar_moblie_menu_modal_content_container'>
                 <ul className='navbar_moblie_menu_modal_content_menu'>
                   <li className='navbar_moblie_menu_modal_products'>
-                    <Link href="/products" onClick={() => setShowMobileModal(false)}>PRODUCTS</Link>
+                    <Link href="/products" onClick={handleCloseMobileModal}>PRODUCTS</Link>
                   </li>
                   <nav className='navbar_moblie_menu_modal_product_links'>
-                    <Link href="/products/dumplings-beef-&-cheese" onClick={() => setShowMobileModal(false)}>DUMPLINGS</Link>
-                    <Link href="/products/gyoza-beef-&-cheese" onClick={() => setShowMobileModal(false)}>GYOZAS</Link>
-                    <Link href="/products/sauces-sauce-bundle" onClick={() => setShowMobileModal(false)}>SAUCES</Link>
+                    <Link href="/products/dumplings-beef-&-cheese" onClick={handleCloseMobileModal}>DUMPLINGS</Link>
+                    <Link href="/products/gyoza-beef-&-cheese" onClick={handleCloseMobileModal}>GYOZAS</Link>
+                    <Link href="/products/sauces-sauce-bundle" onClick={handleCloseMobileModal}>SAUCES</Link>
                   </nav>
                 </ul>
                 <ul className='navbar_moblie_menu_modal_content_secondary_menu'>
-                  <li><Link href='/blog/aboutus' onClick={() => setShowMobileModal(false)}>ABOUT US</Link></li>
-                  {/* <li><Link href='/blog/press' onClick={() => setShowMobileModal(false)}>PRESS</Link></li> */}
-                  <li><Link href='/shipping' onClick={() => setShowMobileModal(false)}>SHIPPING</Link></li>
-                  <li><Link href='/account' onClick={() => setShowMobileModal(false)}>MY ACCOUNT</Link></li>
-                  <li><Link href='/faq' onClick={() => setShowMobileModal(false)}>FAQ</Link></li>
+                  <li><Link href='/blog/aboutus' onClick={handleCloseMobileModal}>ABOUT US</Link></li>
+                  {/* <li><Link href='/blog/press' onClick={handleCloseMobileModal}>PRESS</Link></li> */}
+                  <li><Link href='/shipping' onClick={handleCloseMobileModal}>SHIPPING</Link></li>
+                  <li><Link href='/account' onClick={handleCloseMobileModal}>MY ACCOUNT</Link></li>
+                  <li><Link href='/faq' onClick={handleCloseMobileModal}>FAQ</Link></li>
                 </ul>
                 <div className='navbar_moblie_menu_modal_footer'>
                   <Link className='navbar_moblie_menu_modal_footer_button' href='/products'>SHOP ALL PRODUCTS</Link>
@@ -54,6 +54,12 @@ const Navbar = () => {
         </div>
       )
     }
+  };
+
+  const handleCloseMobileModal = () => {
+    const body = document.getElementsByTagName("body")[0];
+    body.style.overflow = "";
+    setShowMobileModal(false);
   };
 
   const handleCartModal = () => {
