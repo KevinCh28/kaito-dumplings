@@ -12,10 +12,10 @@ const DumplingsVeggie = () => {
   const pathName = router.pathname.split('-').slice(1).join('-');
   const flavors: { [key: string]: string } = useMemo(() => {
     return {
-      'beef-&-cheese': '63efa8319010d97ce1747153',
-      'chicken-&-cabbage': '63efa8b49010d97ce1747155',
-      'pork-&-chieves': '63efa8d19010d97ce1747157',
-      'veggie': '63efa9259010d97ce174715f',
+      'beef-&-cheese': '63efa9419010d97ce1747161',
+      'chicken-&-cabbage': '63efa96f9010d97ce1747163',
+      'pork-&-chieves': '63efa8d89010d97ce1747159',
+      'veggie': '63efa9119010d97ce174715c',
     };
   }, []);
   const [product, setProduct] = useState({
