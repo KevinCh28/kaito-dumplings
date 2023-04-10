@@ -10,32 +10,22 @@ export default function Footer() {
           <div className='footer_block'>
             <div>
               <div>
-                <div className='footer_socials_text'>
-                  <p></p>
-                  <p>
-                    Instagram
-                    <br />
-                    @kaito.tea
-                  </p>
-                </div>
                 <div className='footer_socials_icons'>
                   <Link href="">
-                    <i><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon></i>
+                    <i className='footer_socials_icon'><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon></i>
                   </Link>
                   <Link href="https://www.instagram.com/kaito.tea/">
-                    <i><FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon></i>
+                    <i className='footer_socials_icon'><FontAwesomeIcon icon={faInstagram}></FontAwesomeIcon></i>
                   </Link>
                   <Link href="">
-                    <i><FontAwesomeIcon icon={faTiktok}></FontAwesomeIcon></i>
+                    <i className='footer_socials_icon'><FontAwesomeIcon icon={faTiktok}></FontAwesomeIcon></i>
                   </Link>
                 </div>
               </div>
             </div>
           </div>
-          <div className='footer_block'></div>
           <div className='footer_block'>
             <div className='footer_info_block'>
-              <div className='footer_info_block_header'>INFO</div>
               <div className='footer_info_block_container'>
                 <ul>
                   <li><Link href="">About Us</Link></li>
