@@ -284,16 +284,16 @@ const DumplingsVeggie = () => {
                       </div>
 
                       <div className='product_page_payment_buttons_container'>
-                        <div className='product_page_shoppay_button_wrapper'>
-                          <div className='product_page_shoppay_button_container'>
-                            <div className='product_page_shoppay_button_info'>
-                              <span className='product_page_shoppay_button_text'>Buy with </span>
-                              <span className='product_page_shoppay_button_image'>
-                                <img className='shoppay_image' src="/ShopPayWhite.png" alt="" />
+                        {/* <div className='product_page_googlepay_button_wrapper'>
+                          <div className='product_page_googlepay_button_container'>
+                            <div className='product_page_googlepay_button_info'>
+                              <span className='product_page_googlepay_button_text'>Buy with </span>
+                              <span className='product_page_googlepay_button_image'>
+                                <img className='googlepay_image' src="/Google_Pay_Logo.png" alt="" />
                               </span>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
                         <button></button>
                       </div>
 
