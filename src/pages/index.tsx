@@ -32,20 +32,31 @@ const Home: NextPage = () => {
         <div className="featured_product_background_image">
           <div className="featured_product">
             <div className="featured_product_header">
-              <h1>
+              <h1 className='featured_product_header_h1'>
                 {`GRANDMA CALLED.`}
                 <br />
                 SHE WANTS HER
                 <br />
                 {`DUMPLINGS BACK.`}
               </h1>
+              <div className="featured_product_image_container_moblie">
+                <img
+                  src="//cdn.shopify.com/s/files/1/0042/3834/4321/files/assets_bc154811e83d4532a4f4f57c9d96f6c3_a16e5f1e74a34f049e81832530bf9734.png?v=1670451362"
+                  alt="featured product image"
+                  className="featured_product_image"
+                  data-src="//cdn.shopify.com/s/files/1/0042/3834/4321/files/assets_bc154811e83d4532a4f4f57c9d96f6c3_a16e5f1e74a34f049e81832530bf9734.png?v=1670451362"
+                  data-widths="[180, 360, 480, 590, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                  data-sizes="auto"
+                  sizes="504px"
+                />
+              </div>
               <ul className="featured_product_description">
                 <li>Authentic Chinese soup dumplings</li>
                 <li>Made fresh daily with high-quality ingredients</li>
                 <li>Steams up in just 11 minutes at home</li>
               </ul>
               <Link href="/products" className="featured_product_button_container">
-                <span className="featured_product_button_text">ORDER NOW</span>
+                <span className="featured_product_button_text">Order Now</span>
               </Link>
             </div>
             <div className="featured_product_image_container">
@@ -66,6 +77,68 @@ const Home: NextPage = () => {
       <div className="top3_products_container">
         <h3>{`EASY, FAST, DELISH.`}</h3>
         <div className="product_carousel_container">
+          <div className='product_carousel_cards_moblie'>
+            <div className="product_card_container">
+              <div className='product_card_wrapper'>
+                <div className="product_card_image">
+                  <Link href="/products/dumplings-beef-&-cheese">
+                    <div className='product_image_wrapper'>
+                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedbeef-xlb_2_590x.png?v=1675392214" alt="" />
+                    </div>
+                  </Link>
+                </div>
+
+                <div className="product_card_info_container">
+                  <div className='product_card_info_wrapper'>
+                    <div className='product_card_info_column'>
+                      <h3><Link href="/products/dumplings-beef-&-cheese">{`DUMPLINGS (50 PC)`}</Link></h3>
+                      <div className='product_review'>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
+                          <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
+                            <path d="M229 398 l-24 -83 -98 -5 -98 -5 75 -54 c42 -30 76 -59 76 -66 0 -6 -11 -45 -25 -85 -14 -41 -24 -78 -23 -82 2 -4 36 18 75 48 l73 55 72 -55 c40 -30 74 -53 76 -51 2 2 -8 40 -22 85 -14 44 -26 84 -26 88 0 4 34 32 77 62 l76 55 -99 5 -99 5 -24 83 c-13 45 -27 82 -31 82 -4 0 -18 -37 -31 -82z"></path>
+                          </g>
+                        </svg>
+                      </div>
+                      <div className='product_card_info_product_description'>
+                        <p>{`Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.`}</p>
+                      </div>
+                    </div>
+
+                    <div className='product_card_price_and_button'>
+                      <div className='product_card_price'>
+                        <span>{`$39.95`}</span>
+                      </div>
+                      <Link href="/products/dumplings-beef-&-cheese" className='product_card_button'>
+                        Pick My Flavor
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="product_carousel_cards">
 
             <div className="product_card_container">
@@ -81,7 +154,7 @@ const Home: NextPage = () => {
                 <div className="product_card_info_container">
                   <div className='product_card_info_wrapper'>
                     <div className='product_card_info_column'>
-                      <h3><Link href="/products/dumplings-beef-&-cheese">{`BEEF & CHEESE`}</Link></h3>
+                      <h3><Link href="/products/dumplings-beef-&-cheese">{`DUMPLINGS (50 PC)`}</Link></h3>
                       <div className='product_review'>
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
                           <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
@@ -117,10 +190,10 @@ const Home: NextPage = () => {
 
                     <div className='product_card_price_and_button'>
                       <div className='product_card_price'>
-                        <span>{`$44.95`}</span>
+                        <span>{`$39.95`}</span>
                       </div>
                       <Link href="/products/dumplings-beef-&-cheese" className='product_card_button'>
-                        ORDER NOW
+                        Pick My Flavor
                       </Link>
                     </div>
                   </div>
@@ -141,7 +214,7 @@ const Home: NextPage = () => {
                 <div className="product_card_info_container">
                   <div className='product_card_info_wrapper'>
                     <div className='product_card_info_column'>
-                      <h3><Link href="/products/dumplings-beef-&-cheese">SOUP DUMPLINGS</Link></h3>
+                      <h3><Link href="/products/gyoza-beef-&-cheese">GYOZAS (50 PC)</Link></h3>
                       <div className='product_review'>
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
                           <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
@@ -177,9 +250,9 @@ const Home: NextPage = () => {
 
                     <div className='product_card_price_and_button'>
                       <div className='product_card_price'>
-                        <span>$44.95</span>
+                        <span>$39.95</span>
                       </div>
-                      <Link href="/products/dumplings-beef-&-cheese" className='product_card_button'>
+                      <Link href="/products/gyoza-beef-&-cheese" className='product_card_button'>
                         PICK MY FLAVOR
                       </Link>
                     </div>
@@ -193,7 +266,7 @@ const Home: NextPage = () => {
                 <div className="product_card_image">
                   <Link href="/products/dumplings-beef-&-cheese">
                     <div className='product_image_wrapper'>
-                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/formattedDDM-3_2_360x.png?v=1665654399" alt="" />
+                      <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/trio_1308x.png?v=1679899126" alt="Kaito sauces" />
                     </div>
                   </Link>
                 </div>
@@ -201,7 +274,7 @@ const Home: NextPage = () => {
                 <div className="product_card_info_container">
                   <div className='product_card_info_wrapper'>
                     <div className='product_card_info_column'>
-                      <h3><Link href="/products/dumplings-beef-&-cheese">NOODLES</Link></h3>
+                      <h3><Link href="/products/sauces-sauce-bundle">KAITO SAUCES</Link></h3>
                       <div className='product_review'>
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="47px" height="47px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
                           <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
@@ -237,9 +310,9 @@ const Home: NextPage = () => {
 
                     <div className='product_card_price_and_button'>
                       <div className='product_card_price'>
-                        <span>$44.95</span>
+                        <span>$24.95</span>
                       </div>
-                      <Link href="/products/dumplings-beef-&-cheese" className='product_card_button'>
+                      <Link href="/products/sauces-sauce-bundle" className='product_card_button'>
                         PICK MY FLAVOR
                       </Link>
                     </div>
@@ -251,7 +324,7 @@ const Home: NextPage = () => {
         </div>
 
         <Link href="/products" className='shop_all_button'>
-          <span>SHOP ALL PRODUCTS</span>
+          <span>Shop All Products</span>
         </Link>
       </div>
 

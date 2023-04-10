@@ -199,6 +199,17 @@
 
 .navbar_middle_button_moblie {
   transition: .2s ease-in-out;
+  display: none;
+}
+
+@media only screen and (max-width: 640px) {
+  .navbar_middle_button {
+    display: none;
+  }
+
+  .navbar_middle_button_moblie {
+    display: block;
+  }
 }
 
 .navbar_middle_button_text {

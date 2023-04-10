@@ -11,19 +11,12 @@ const Navbar = () => {
   const [orderHover, setOrderHover] = useState(false);
   const [moreHover, setMoreHover] = useState(false);
   const [showMoblieModal, setShowMobileModal] = useState(false);
-  const [moblie, setMoblie] = useState(false);
   const { user } = useUser();
-
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setMoblie(true);
-    };
-  }, [moblie]);
 
   const handleMoblieModal = () => {
     if (!showMoblieModal) {
       return null
-    } else if (moblie) {
+    } else {
       const body = document.getElementsByTagName("body")[0];
       body.style.overflow = "hidden";
       return (
@@ -146,23 +139,6 @@ const Navbar = () => {
     }
   };
 
-  const handleRenderMenuButtons = () => {
-    if (moblie) {
-      return (
-        <div className='navbar_middle_button_moblie' onClick={() => setShowMobileModal(true)}>
-          <i className='navbar_middle_button_moblie_image'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></i>
-        </div>
-      )
-    } else {
-      return (
-        <div className='navbar_middle_button'>
-          <span className='navbar_middle_button_text'>MORE </span>
-          {handleMoreImage()}
-        </div>
-      )
-    }
-  };
-
   return (
     <div className='navbar_main'>
       <div className='navbar_wrapper'>
@@ -180,10 +156,15 @@ const Navbar = () => {
                 <div className='navbar_middle_products_container'>
                   <Link href="/products" className="navbar_middle_button">PRODUCTS</Link>
                 </div>
-                {/* <div className='navbar_middle_more_wrapper' onMouseOver={handleShowMoreList} onMouseOut={handleHideMoreList}> */}
                 <div className='navbar_middle_more_wrapper'>
                   <div className='navbar_middle_more_container'>
-                    {handleRenderMenuButtons()}
+                    <div className='navbar_middle_button_moblie' onClick={() => setShowMobileModal(true)}>
+                      <i className='navbar_middle_button_moblie_image'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></i>
+                    </div>
+                    <div className='navbar_middle_button' onMouseOver={handleShowMoreList} onMouseOut={handleHideMoreList}>
+                      <span className='navbar_middle_button_text'>MORE </span>
+                      {handleMoreImage()}
+                    </div>
                     <div className='navbar_more_list'>
                       <ul className='navbar_more_list_container'>
                         <li><Link href="/blog" className="navbar_more_list_item">BLOG</Link></li>
