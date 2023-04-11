@@ -9,6 +9,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
   const [recommended, setRecommended] = useState<{ [key: string]: boolean }>({
     'dumplings': true,
     'gyoza': true,
+    'sauces': true,
   });
   const [cart, setCart] = useState({
     products: [],
@@ -81,7 +82,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
     }
   };
 
-  // Renders cart items
+  // Handles rendering of products in cart
   const handleCartItems = () => {
     if (cart.products.length > 0) {
       return (
@@ -161,6 +162,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
     }
   }
 
+  // Handles adding quantity of item in cart
   const handleAddQuantity = (product: object) => {
     (async () => {
       const results = await fetch('/api/guests', {
@@ -172,6 +174,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
     })();
   };
 
+  // Handles subtracting quantity of item in cart
   const handleMinusQuantity = (product: object) => {
     (async () => {
       const results = await fetch('/api/guests', {
@@ -183,6 +186,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
     })();
   };
 
+  // Handles removing item from cart
   const handleRemoveItem = (product: object) => {
     (async () => {
       const results = await fetch('/api/guests', {
@@ -194,6 +198,7 @@ const CartUnAuth = ({ onClose = () => { } }) => {
     })();
   };
 
+  // Handles checkout, sends cart items to Stripe
   const handleCheckOut = () => {
     let items = cart.products.map((item: { quantity: number, product: { stripeId: string } }) => {
       return {
