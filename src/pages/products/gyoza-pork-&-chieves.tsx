@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Cart from '../../components/cart/cart';
 import CartUnAuth from '../../components/cartUnAuth/cartUnAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faX, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 const GyozaPorkChieves = () => {
@@ -41,22 +41,12 @@ const GyozaPorkChieves = () => {
   });
   const [showImageModal, setShowImageModal] = useState(false);
   const [mainImage, setMainImage] = useState('');
+  const [modalMainImage, setModalMainImage] = useState('');
   const productImages = [
     product.imageUrl,
     "https://cdn.shopify.com/s/files/1/0042/3834/4321/products/steamer-xlb-cooked_6794ecb3-89a5-4c43-b05b-e24a5ccd4eb5_1308x.png?v=1679894378",
     "https://cdn.shopify.com/s/files/1/0042/3834/4321/products/Dumpling_da895546-4d79-4451-bca7-1ee347a8bf37_1308x.png?v=1679894496",
   ];
-
-  // Get current user
-  // useEffect(() => {
-  //   getCurrentUser()
-  //     .then((res) => {
-  //       setUser(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   // Get product
   useEffect(() => {
@@ -67,6 +57,7 @@ const GyozaPorkChieves = () => {
       const data = await results.json();
       setProduct(data);
       setMainImage(data.imageUrl);
+      setModalMainImage(data.imageUrl);
     })();
   }, [gyozaId]);
 
@@ -92,7 +83,15 @@ const GyozaPorkChieves = () => {
     return () => window.removeEventListener('click', handleOutsideClick, options);
   }, [flavorsHidden]);
 
-  // Render current flavor and all other flavors
+  // Handle removing overflow hidden from body when image modal is closed so that the user can scroll on current page
+  useEffect(() => {
+    if (!showModal) {
+      const body = document.getElementsByTagName("body")[0];
+      body.style.overflow = "";
+    }
+  }, [showImageModal]);
+
+  // Handle showing all flavors
   const handleRenderFlavors = () => {
     const element = window.document.getElementsByClassName('product_page_hidden_flavors')[0] as HTMLDivElement;
     const productsArrowUpDown = window.document.getElementsByClassName('svg_arrow_updown')[0] as HTMLDivElement;
@@ -182,23 +181,7 @@ const GyozaPorkChieves = () => {
             <div className='product_page_images_modal_container active'>
               <div className='product_page_images_modal_content'>
                 <div className='product_page_images_modal_content_wrapper'>
-                  <img className='product_page_images_modal_content_image' src={mainImage} alt="" />
-                </div>
-              </div>
-            </div>
-
-            <div className='product_page_images_modal_container'>
-              <div className='product_page_images_modal_content'>
-                <div className='product_page_images_modal_content_wrapper'>
-                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/steamer-xlb-cooked_6794ecb3-89a5-4c43-b05b-e24a5ccd4eb5_1308x.png?v=1679894378" alt="" />
-                </div>
-              </div>
-            </div>
-
-            <div className='product_page_images_modal_container'>
-              <div className='product_page_images_modal_content'>
-                <div className='product_page_images_modal_content_wrapper'>
-                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/Dumpling_da895546-4d79-4451-bca7-1ee347a8bf37_1308x.png?v=1679894496" alt="" />
+                  <img className='product_page_images_modal_content_image' src={modalMainImage} alt="" />
                 </div>
               </div>
             </div>
@@ -206,8 +189,12 @@ const GyozaPorkChieves = () => {
           <div className='product_page_images_modal_close' onClick={handleImageModalClose}>
             <i><FontAwesomeIcon icon={faX}></FontAwesomeIcon></i>
           </div>
-          <div></div>
-          <div></div>
+          <div className='product_page_images_modal_prev' onClick={handleImageModalPrev}>
+            <i><FontAwesomeIcon icon={faChevronLeft}></FontAwesomeIcon></i>
+          </div>
+          <div className='product_page_images_modal_next' onClick={handleImageModalNext}>
+            <i><FontAwesomeIcon icon={faChevronRight}></FontAwesomeIcon></i>
+          </div>
         </div>
       )
     }
@@ -221,11 +208,36 @@ const GyozaPorkChieves = () => {
   // Handle image modal close
   const handleImageModalClose = () => {
     setShowImageModal(false);
+    setModalMainImage(mainImage);
     const body = document.getElementsByTagName("body")[0];
     body.style.overflow = "";
     const element = window.document.getElementsByClassName('image_modal_background_is_visible')[0] as HTMLDivElement;
     element.style.opacity = '0';
     element.style.display = 'none';
+  };
+
+  // Handle image modal carousel next
+  const handleImageModalNext = () => {
+    let currentIndexOfImage = productImages.indexOf(modalMainImage);
+
+    if (currentIndexOfImage + 1 >= productImages.length) {
+      currentIndexOfImage = 0;
+      setModalMainImage(productImages[currentIndexOfImage]);
+    } else {
+      setModalMainImage(productImages[currentIndexOfImage + 1]);
+    };
+  };
+
+  // Handle image modal carousel previous
+  const handleImageModalPrev = () => {
+    let currentIndexOfImage = productImages.indexOf(modalMainImage);
+
+    if (currentIndexOfImage - 1 < 0) {
+      currentIndexOfImage = productImages.length - 1;
+      setModalMainImage(productImages[currentIndexOfImage]);
+    } else {
+      setModalMainImage(productImages[currentIndexOfImage - 1]);
+    };
   };
 
   // Handle changing main image
@@ -235,6 +247,7 @@ const GyozaPorkChieves = () => {
   }) => {
     e.preventDefault();
     setMainImage(e.target.src);
+    setModalMainImage(e.target.src);
   };
 
   return (
