@@ -47,7 +47,7 @@
   width: 100%;
 	max-width: 1920px;
 	padding: 48px 30px;
-  padding-bottom: 12px !important;
+  padding-bottom: 12px;
   margin: 0 auto;
 }
 
@@ -140,8 +140,8 @@
 	position: absolute;
 	background-size: contain;
 	background-repeat: no-repeat;
-  width: 25px !important;
-  height: 25px !important;
+  width: 25px;
+  height: 25px;
   left: -4px;
   top: unset;
 }

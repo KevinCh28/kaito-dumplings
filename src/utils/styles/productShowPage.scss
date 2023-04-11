@@ -80,7 +80,7 @@
 
 @media only screen and (max-width: 767px) {
   .product_page_maincontent_sideimages_wrapper {
-    display: none !important;
+    display: none;
   }
 }
 
@@ -111,7 +111,7 @@
   float: left;
   max-width: 90px;
   position: relative;
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: center;
   min-width: 52px;
@@ -409,9 +409,9 @@
 }
 
 .product_page_googlepay_button_container {
-  flex: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .product_page_googlepay_button_info {
@@ -625,7 +625,7 @@
 }
 
 .product_page_tab_nutrition_product_ingredients_container {
-  margin-top: 20px !important;
+  margin-top: 20px;
   font-size: 14px;
   line-height: 1.2;
 }
@@ -798,4 +798,111 @@
   justify-content: center;
   text-decoration-line: underline;
   color: #FA0F0C;
+}
+
+.product_page_images_modal {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  display: flex;
+  min-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  z-index: 2147483638;
+  padding: 50px;
+}
+
+.product_page_images_modal_wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  z-index: 9002;
+}
+
+.product_page_images_modal_container {
+  position: relative;
+  background: #FFF;
+  display: none;
+  left: 50%;
+  max-width: 100%;
+  min-width: 200px;
+  transform: translateX(-50%);
+}
+
+.product_page_images_modal_container.active {
+  display: inline-block;
+  overflow: hidden;
+}
+
+@media only screen and (min-width: 768px) {
+  .product_page_images_modal_container {
+    min-width: 300px;
+  }
+}
+
+.product_page_images_modal_content {
+  position: relative;
+  max-width: 100%;
+  max-height: 90vh;
+  width: 1308px;
+}
+
+.product_page_images_modal_content_wrapper {
+  max-width: 100%;
+  position: relative;
+  padding-top: 100%;
+}
+
+.product_page_images_modal_content_image {
+  max-width: 100%;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.image_modal_background_is_visible {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 2147483637;
+  opacity: 0;
+  pointer-events: auto;
+  transform: translate(0%, 0%);
+  display: none;
+}
+
+.product_page_images_modal_close {
+  background-color: transparent;
+  z-index: 9002;
+  position: fixed;
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.8;
+  border: none;
+  top: 0;
+  right: 0;
+  padding: 32px;
+  font-size: 22px;
+
+  i {
+    height: 20px;
+    width: 20px;
+    vertical-align: top;
+  }
 }

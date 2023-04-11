@@ -175,7 +175,7 @@ svg:not(:root) {
 }
 
 select {
-  writing-mode: horizontal-tb !important;
+  writing-mode: horizontal-tb;
   text-rendering: auto;
   letter-spacing: normal;
   word-spacing: normal;

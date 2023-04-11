@@ -91,7 +91,7 @@
     position: relative;
     top: unset;
     left: unset;
-    width: 100% !important;
+    width: 100%;
   }
 }
 
@@ -240,7 +240,7 @@
   position: fixed;
   top: 20px;
   right: 0;
-  width: fit-content !important;
+  width: fit-content;
   z-index: 1001;
 }
 
@@ -257,7 +257,7 @@
 }
 
 .navbar-right-wrapper {
-  width: fit-content !important;
+  width: fit-content;
   display: flex;
   justify-content: flex-end;
   z-index: 999;
@@ -296,7 +296,7 @@
 @media (min-width: 1024px) {
   .navbar-right-wrapper {
     position: relative;
-    width: 100% !important;
+    width: 100%;
   }
 }
 
