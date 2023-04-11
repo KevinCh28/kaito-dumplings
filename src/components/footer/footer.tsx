@@ -28,7 +28,7 @@ export default function Footer() {
             <div className='footer_info_block'>
               <div className='footer_info_block_container'>
                 <ul>
-                  <li><Link href="">About Us</Link></li>
+                  <li><Link href="/blog/aboutus">About Us</Link></li>
                   <li><Link href="">Careers</Link></li>
                   <li><Link href="/faq">FAQs</Link></li>
                   <li><Link href="">Terms of Service</Link></li>

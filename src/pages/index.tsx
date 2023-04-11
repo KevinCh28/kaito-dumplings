@@ -184,7 +184,7 @@ const Home: NextPage = () => {
                         </svg>
                       </div>
                       <div className='product_card_info_product_description'>
-                        <p>{`Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.`}</p>
+                        <p>{`Our best-selling, 5-star rated dumplings, rich with flavors that you can't stop at just a few.`}</p>
                       </div>
                     </div>
 
@@ -204,7 +204,7 @@ const Home: NextPage = () => {
             <div className="product_card_container">
               <div className='product_card_wrapper'>
                 <div className="product_card_image">
-                  <Link href="/products/dumplings-beef-&-cheese">
+                  <Link href="/products/gyoza-beef-&-cheese">
                     <div className='product_image_wrapper'>
                       <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/product-1_f30f9493-ef96-446c-8dc1-e3dfce797f30_360x.png?v=1664295187" alt="" />
                     </div>
@@ -264,7 +264,7 @@ const Home: NextPage = () => {
             <div className="product_card_container">
               <div className='product_card_wrapper'>
                 <div className="product_card_image">
-                  <Link href="/products/dumplings-beef-&-cheese">
+                  <Link href="/products/sauces-sauce-bundle">
                     <div className='product_image_wrapper'>
                       <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/trio_1308x.png?v=1679899126" alt="Kaito sauces" />
                     </div>
@@ -304,7 +304,7 @@ const Home: NextPage = () => {
                         </svg>
                       </div>
                       <div className='product_card_info_product_description'>
-                        <p>{`Our new limited-edition Lunar New Year soup dumplings feature a rich beef filling with a savory and oh-so-slightly spicy beef broth.`}</p>
+                        <p>{`Our unique crafted sauces perfectly complement our umami-rich flavors.`}</p>
                       </div>
                     </div>
 
