@@ -54,8 +54,8 @@ const DumplingsBeefCheese = () => {
       element.style.backgroundColor = '#a9dde3';
       const results = await fetch(`/api/product?id=${dumplingId}`);
       const data = await results.json();
-      setProduct(data)
-      setMainImage(data.imageUrl)
+      setProduct(data);
+      setMainImage(data.imageUrl);
     })();
   }, [dumplingId]);
 
@@ -182,7 +182,7 @@ const DumplingsBeefCheese = () => {
             <div className='product_page_images_modal_container active'>
               <div className='product_page_images_modal_content'>
                 <div className='product_page_images_modal_content_wrapper'>
-                  <img className='product_page_images_modal_content_image' src={product.imageUrl} alt="" />
+                  <img className='product_page_images_modal_content_image' src={mainImage} alt="" />
                 </div>
               </div>
             </div>

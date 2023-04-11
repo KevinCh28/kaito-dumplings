@@ -40,6 +40,12 @@ const DumplingsVeggie = () => {
     3: true,
   });
   const [showImageModal, setShowImageModal] = useState(false);
+  const [mainImage, setMainImage] = useState('');
+  const productImages = [
+    product.imageUrl,
+    "https://cdn.shopify.com/s/files/1/0042/3834/4321/products/steamer-xlb-cooked_6794ecb3-89a5-4c43-b05b-e24a5ccd4eb5_1308x.png?v=1679894378",
+    "https://cdn.shopify.com/s/files/1/0042/3834/4321/products/Dumpling_da895546-4d79-4451-bca7-1ee347a8bf37_1308x.png?v=1679894496",
+  ];
 
   // Get current user
   // useEffect(() => {
@@ -59,7 +65,8 @@ const DumplingsVeggie = () => {
       element.style.backgroundColor = '#a9dde3';
       const results = await fetch(`/api/product?id=${dumplingId}`);
       const data = await results.json();
-      setProduct(data)
+      setProduct(data);
+      setMainImage(data.imageUrl);
     })();
   }, [dumplingId]);
 
@@ -175,7 +182,7 @@ const DumplingsVeggie = () => {
             <div className='product_page_images_modal_container active'>
               <div className='product_page_images_modal_content'>
                 <div className='product_page_images_modal_content_wrapper'>
-                  <img className='product_page_images_modal_content_image' src={product.imageUrl} alt="" />
+                  <img className='product_page_images_modal_content_image' src={mainImage} alt="" />
                 </div>
               </div>
             </div>
@@ -221,6 +228,15 @@ const DumplingsVeggie = () => {
     element.style.display = 'none';
   };
 
+  // Handle changing main image
+  const handleMainImageChange = (e: {
+    [x: string]: any;
+    preventDefault: () => void; 
+  }) => {
+    e.preventDefault();
+    setMainImage(e.target.src);
+  };
+
   return (
     <main className='product_page_main'>
       <div>
@@ -238,13 +254,13 @@ const DumplingsVeggie = () => {
                 <div className='product_page_maincontent_sideimages_wrapper'>
                   <div className='product_page_maincontent_sideimages_container'>
                     <div className='product_page_maincontent_sideimages_image_wrapper'>
-                      <div className='product_page_maincontent_sideimages_image_container'>
+                      <div className='product_page_maincontent_sideimages_image_container' onClick={handleMainImageChange}>
                         <img src={product.imageUrl} alt="" />
                       </div>
-                      <div className='product_page_maincontent_sideimages_image_container'>
+                      <div className='product_page_maincontent_sideimages_image_container' onClick={handleMainImageChange}>
                         <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/steamer-xlb-cooked_6794ecb3-89a5-4c43-b05b-e24a5ccd4eb5_1308x.png?v=1679894378" alt="" />
                       </div>
-                      <div className='product_page_maincontent_sideimages_image_container'>
+                      <div className='product_page_maincontent_sideimages_image_container' onClick={handleMainImageChange}>
                         <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/Dumpling_da895546-4d79-4451-bca7-1ee347a8bf37_1308x.png?v=1679894496" alt="" />
                       </div>
                     </div>
@@ -258,7 +274,7 @@ const DumplingsVeggie = () => {
                         <div className='product_page_mainpicture_container' onClick={handleImageModalOpen}>
                           <div className='product_page_mainpicture_image_wrapper'>
                             <div className='product_page_mainpicture_image_container'>
-                              <img className='product_page_mainpicture_image' src={product.imageUrl} alt="" />
+                              <img className='product_page_mainpicture_image' src={mainImage} alt="Main Image" />
                             </div>
                           </div>
                         </div>
