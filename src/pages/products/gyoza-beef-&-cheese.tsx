@@ -202,7 +202,7 @@ const GyozaBeefCheese = () => {
 
   // Handle image modal open
   const handleImageModalOpen = () => {
-    setShowImageModal(true);
+    if (window.innerWidth > 600) setShowImageModal(true);
   };
 
   // Handle image modal close
