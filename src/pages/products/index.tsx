@@ -290,7 +290,7 @@ const Products = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) 
                         <div className='products_page_item_image_wrapper'>
                           <div className='products_page_item_image_container'>
                             <div className="products_page_item_image_content">
-                              <Link href="/products/dumplings-beef-&-cheese">
+                              <Link href="/products/sauces-sauce-bundle">
                                 <img className="products_page_item_image" src={product1.imageUrl} alt="" />
                               </Link>
                             </div>
