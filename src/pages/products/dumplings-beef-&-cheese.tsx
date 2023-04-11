@@ -311,13 +311,23 @@ const DumplingsBeefCheese = () => {
                   <button className='product_page_mainpicture_modal_prev' onClick={handleImageMobilePrev}>
                     <i><FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon></i>
                   </button>
-                  <div>
-                    <div className='product_page_mainpicture_container' onClick={handleImageModalOpen}>
-                      <div className='product_page_mainpicture_image_wrapper'>
-                        <div className='product_page_mainpicture_image_container'>
-                          <img className='product_page_mainpicture_image' src={mainImage} alt="Main Image" />
+                  <div className='mobile_image_slider'>
+                    <div className='mobile_image_slider_wrapper'>
+                      <div className='product_page_mainpicture_container' onClick={handleImageModalOpen}>
+                        <div className='product_page_mainpicture_image_wrapper'>
+                          <div className='product_page_mainpicture_image_container'>
+                            <img className='product_page_mainpicture_image' src={mainImage} alt="Main Image" />
+                          </div>
                         </div>
                       </div>
+
+                      {/* <div className='product_page_mobile_mainpicture_container'>
+                        <div className='product_page_mobile_mainpicture_image_wrapper'>
+                          <div className='product_page_mobile_mainpicture_image_container'>
+                            <img className='product_page_mobile_mainpicture_image' src={mainImage} alt="Main Image" />
+                          </div>
+                        </div>
+                      </div> */}
                     </div>
                   </div>
                   <button className='product_page_mainpicture_modal_next' onClick={handleImageMobileNext}>
