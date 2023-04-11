@@ -155,7 +155,7 @@ const Home: NextPage = () => {
                     <div className='product_card_info_wrapper'>
                       <div className='product_card_info_column'>
                         <div>
-                          <h3 className='product_card_info_header'><Link href="/products/dumplings-beef-&-cheese">GYOZAS (50 PC)</Link></h3>
+                          <h3 className='product_card_info_header'><Link href="/products/dumplings-beef-&-cheese">DUMPLINGS (50 PC)</Link></h3>
                           <div className='product_review'>
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
                               <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
@@ -281,7 +281,7 @@ const Home: NextPage = () => {
                     <div className='product_card_info_wrapper'>
                       <div className='product_card_info_column'>
                         <div>
-                          <h3 className='product_card_info_header'><Link href="/products/gyoza-beef-&-cheese">GYOZAS (50 PC)</Link></h3>
+                          <h3 className='product_card_info_header'><Link href="/products/gyoza-beef-&-cheese">KAITO SAUCES</Link></h3>
                           <div className='product_review'>
                             <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" viewBox="0 0 50 50" preserveAspectRatio="xMidYMid meet">
                               <g transform="translate(0.000000,50.000000) scale(0.100000,-0.100000)" fill="#1b2137" stroke="none">
@@ -317,7 +317,7 @@ const Home: NextPage = () => {
 
                         <div className='product_card_price_and_button'>
                           <div className='product_card_price'>
-                            <span>$39.95</span>
+                            <span>$24.95</span>
                           </div>
                           <Link href="/products/sauces-sauce-bundle" className='product_card_button'>
                             PICK MY FLAVOR
