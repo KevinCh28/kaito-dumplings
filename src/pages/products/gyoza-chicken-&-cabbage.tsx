@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Cart from '../../components/cart/cart';
 import CartUnAuth from '../../components/cartUnAuth/cartUnAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus, faX, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faX, faChevronLeft, faChevronRight, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 const GyozaChickenCabbage = () => {
@@ -250,6 +250,30 @@ const GyozaChickenCabbage = () => {
     setModalMainImage(e.target.src);
   };
 
+  // Handle image mobile carousel next
+  const handleImageMobileNext = () => {
+    let currentIndexOfImage = productImages.indexOf(mainImage);
+
+    if (currentIndexOfImage + 1 >= productImages.length) {
+      currentIndexOfImage = 0;
+      setMainImage(productImages[currentIndexOfImage]);
+    } else {
+      setMainImage(productImages[currentIndexOfImage + 1]);
+    };
+  };
+
+  // Handle image mobile carousel previous
+  const handleImageMobilePrev = () => {
+    let currentIndexOfImage = productImages.indexOf(mainImage);
+
+    if (currentIndexOfImage - 1 < 0) {
+      currentIndexOfImage = productImages.length - 1;
+      setMainImage(productImages[currentIndexOfImage]);
+    } else {
+      setMainImage(productImages[currentIndexOfImage - 1]);
+    };
+  };
+
   return (
     <div className='product_page_main'>
       <div>
@@ -281,19 +305,21 @@ const GyozaChickenCabbage = () => {
                 </div>
 
                 <div className='product_page_mainpicture_modal'>
+                  <button className='product_page_mainpicture_modal_prev' onClick={handleImageMobilePrev}>
+                    <i><FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon></i>
+                  </button>
                   <div>
-                    <div>
-                      <Link href="">
-                        <div className='product_page_mainpicture_container' onClick={handleImageModalOpen}>
-                          <div className='product_page_mainpicture_image_wrapper'>
-                            <div className='product_page_mainpicture_image_container'>
-                              <img className='product_page_mainpicture_image' src={mainImage} alt="Main Image" />
-                            </div>
-                          </div>
+                    <div className='product_page_mainpicture_container' onClick={handleImageModalOpen}>
+                      <div className='product_page_mainpicture_image_wrapper'>
+                        <div className='product_page_mainpicture_image_container'>
+                          <img className='product_page_mainpicture_image' src={mainImage} alt="Main Image" />
                         </div>
-                      </Link>
+                      </div>
                     </div>
                   </div>
+                  <button className='product_page_mainpicture_modal_next' onClick={handleImageMobileNext}>
+                    <i><FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></i>
+                  </button>
                 </div>
 
                 <div className='product_page_info_container'>
