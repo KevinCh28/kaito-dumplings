@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Cart from '../../components/cart/cart';
 import CartUnAuth from '../../components/cartUnAuth/cartUnAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faX } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 const DumplingsVeggie = () => {
@@ -39,6 +39,7 @@ const DumplingsVeggie = () => {
     2: true,
     3: true,
   });
+  const [showImageModal, setShowImageModal] = useState(false);
 
   // Get current user
   // useEffect(() => {
@@ -156,6 +157,70 @@ const DumplingsVeggie = () => {
     }
   };
 
+  // Handle rendering images modal
+  const handleImageModal = () => {
+    if (!showImageModal) {
+      return null;
+    } else {
+      const body = document.getElementsByTagName("body")[0];
+      body.style.overflow = "hidden";
+      
+
+      const element = window.document.getElementsByClassName('image_modal_background_is_visible')[0] as HTMLDivElement;
+      element.style.opacity = '1';
+      element.style.display = 'block';
+      return (
+        <div className='product_page_images_modal'>
+          <div className='product_page_images_modal_wrapper'>
+            <div className='product_page_images_modal_container active'>
+              <div className='product_page_images_modal_content'>
+                <div className='product_page_images_modal_content_wrapper'>
+                  <img className='product_page_images_modal_content_image' src={product.imageUrl} alt="" />
+                </div>
+              </div>
+            </div>
+
+            <div className='product_page_images_modal_container'>
+              <div className='product_page_images_modal_content'>
+                <div className='product_page_images_modal_content_wrapper'>
+                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/steamer-xlb-cooked_6794ecb3-89a5-4c43-b05b-e24a5ccd4eb5_1308x.png?v=1679894378" alt="" />
+                </div>
+              </div>
+            </div>
+
+            <div className='product_page_images_modal_container'>
+              <div className='product_page_images_modal_content'>
+                <div className='product_page_images_modal_content_wrapper'>
+                  <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/Dumpling_da895546-4d79-4451-bca7-1ee347a8bf37_1308x.png?v=1679894496" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='product_page_images_modal_close' onClick={handleImageModalClose}>
+            <i><FontAwesomeIcon icon={faX}></FontAwesomeIcon></i>
+          </div>
+          <div></div>
+          <div></div>
+        </div>
+      )
+    }
+  };
+
+  // Handle image modal open
+  const handleImageModalOpen = () => {
+    setShowImageModal(true);
+  };
+
+  // Handle image modal close
+  const handleImageModalClose = () => {
+    setShowImageModal(false);
+    const body = document.getElementsByTagName("body")[0];
+    body.style.overflow = "";
+    const element = window.document.getElementsByClassName('image_modal_background_is_visible')[0] as HTMLDivElement;
+    element.style.opacity = '0';
+    element.style.display = 'none';
+  };
+
   return (
     <main className='product_page_main'>
       <div>
@@ -190,7 +255,7 @@ const DumplingsVeggie = () => {
                   <div>
                     <div>
                       <Link href="">
-                        <div className='product_page_mainpicture_container'>
+                        <div className='product_page_mainpicture_container' onClick={handleImageModalOpen}>
                           <div className='product_page_mainpicture_image_wrapper'>
                             <div className='product_page_mainpicture_image_container'>
                               <img className='product_page_mainpicture_image' src={product.imageUrl} alt="" />
@@ -602,6 +667,8 @@ const DumplingsVeggie = () => {
         </div>
       </div>
 
+      <div className='image_modal_background_is_visible'></div>
+      {handleImageModal()}
       {handleCartModal()}
     </main>
   );
