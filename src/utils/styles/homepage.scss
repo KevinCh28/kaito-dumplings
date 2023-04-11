@@ -187,12 +187,12 @@
 	max-width: 850px;
 }
 
-.featured_product_image_container_moblie {
+.featured_product_image_container_mobile {
   display: none;
 }
 
 @media only screen and (max-width: 640px) {
-  .featured_product_image_container_moblie {
+  .featured_product_image_container_mobile {
     display: block;
   }
   .featured_product_image_container {
@@ -301,7 +301,7 @@
 	justify-content: center;
 }
 
-.product_carousel_cards_moblie {
+.product_carousel_cards_mobile {
   display: none;
   margin: 0 auto;
   padding: 0px 20px;
@@ -311,7 +311,7 @@
 }
 
 @media only screen and (max-width: 640px) {
-  .product_carousel_cards_moblie {
+  .product_carousel_cards_mobile {
     display: block;
   }
   .product_carousel_cards {

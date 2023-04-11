@@ -278,7 +278,7 @@
   transform: translate(0%, 0%);
 }
 
-.navbar_moblie_menu_modal {
+.navbar_mobile_menu_modal {
   min-height: 610px;
   width: 100%;
   overflow: hidden;
@@ -293,12 +293,12 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .navbar_moblie_menu_modal {
+  .navbar_mobile_menu_modal {
     display: block;
   }
 }
 
-.navbar_moblie_menu_modal_close {
+.navbar_mobile_menu_modal_close {
   position: absolute;
   top: 12px;
   z-index: 400000;
@@ -309,24 +309,24 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .navbar_moblie_menu_modal_close {
+  .navbar_mobile_menu_modal_close {
     left: 15px;
   }
 }
 
-.navbar_moblie_menu_modal_close_image {
+.navbar_mobile_menu_modal_close_image {
   position: relative;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
 }
 
-.navbar_moblie_menu_modal_close_image svg {
+.navbar_mobile_menu_modal_close_image svg {
   height: 25px;
   width: 25px;
 }
 
-.navbar_moblie_menu_modal_content {
+.navbar_mobile_menu_modal_content {
   transform: translateX(0px);
   position: relative;
   background-color: #fff;
@@ -335,41 +335,41 @@
   padding: 50px 15px 0;
 }
 
-.navbar_moblie_menu_modal_content_wrapper {
+.navbar_mobile_menu_modal_content_wrapper {
   color: #E00000;
   font-size: 15px;
 }
 
-.navbar_moblie_menu_modal_content_container {
+.navbar_mobile_menu_modal_content_container {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.navbar_moblie_menu_modal_content_menu {
+.navbar_mobile_menu_modal_content_menu {
   border-bottom: 1px solid #E00000;
   padding: 40px 0;
 }
 
-.navbar_moblie_menu_modal_products {
+.navbar_mobile_menu_modal_products {
   font-size: 35px;
   font-weight: 800;
   line-height: 1.1;
   margin-top: 25px;
 }
 
-.navbar_moblie_menu_modal_product_links {
+.navbar_mobile_menu_modal_product_links {
   display: flex;
   flex-direction: column;
   margin: 15px;
 }
 
-.navbar_moblie_menu_modal_product_links a {
+.navbar_mobile_menu_modal_product_links a {
   font-size: 20px;
   line-height: 1.5;
 }
 
-.navbar_moblie_menu_modal_content_secondary_menu {
+.navbar_mobile_menu_modal_content_secondary_menu {
   font-size: 20px;
   border-bottom: 1px solid #E00000;
   padding: 40px 0;
@@ -378,14 +378,14 @@
   gap: 20px;
 }
 
-.navbar_moblie_menu_modal_footer {
+.navbar_mobile_menu_modal_footer {
   display: flex;
   flex-direction: column;
   padding-top: 50px;
   justify-content: center;
 }
 
-.navbar_moblie_menu_modal_footer_button {
+.navbar_mobile_menu_modal_footer_button {
   display: block;
   min-width: 160px;
   margin: 0 auto;
@@ -398,7 +398,7 @@
   padding: 10px 15px;
 }
 
-.navbar_moblie_menu_modal_footer_text {
+.navbar_mobile_menu_modal_footer_text {
   font-weight: 400;
   font-size: 16px;
   text-align: center;

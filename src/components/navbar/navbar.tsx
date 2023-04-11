@@ -10,46 +10,46 @@ const Navbar = () => {
   const [showModal, setShowModal] = useState(false);
   const [orderHover, setOrderHover] = useState(false);
   const [moreHover, setMoreHover] = useState(false);
-  const [showMoblieModal, setShowMobileModal] = useState(false);
+  const [showMobileModal, setShowMobileModal] = useState(false);
   const { user } = useUser();
   let lowestScrollPosition = -1;
   let highestScrollPosition = 1;
 
   // Handle rendering navbar menu for mobile
-  const handleMoblieModal = () => {
-    if (!showMoblieModal) {
+  const handleMobileModal = () => {
+    if (!showMobileModal) {
       return null
     } else {
       const body = document.getElementsByTagName("body")[0];
       body.style.overflow = "hidden";
       return (
-        <div className='navbar_moblie_menu_modal'>
-          <div className='navbar_moblie_menu_modal_content'>
-            <div className='navbar_moblie_menu_modal_close' onClick={handleCloseMobileModal}>
-              <i className='navbar_moblie_menu_modal_close_image'><FontAwesomeIcon icon={faX}></FontAwesomeIcon></i>
+        <div className='navbar_mobile_menu_modal'>
+          <div className='navbar_mobile_menu_modal_content'>
+            <div className='navbar_mobile_menu_modal_close' onClick={handleCloseMobileModal}>
+              <i className='navbar_mobile_menu_modal_close_image'><FontAwesomeIcon icon={faX}></FontAwesomeIcon></i>
             </div>
-            <div className='navbar_moblie_menu_modal_content_wrapper'>
-              <div className='navbar_moblie_menu_modal_content_container'>
-                <ul className='navbar_moblie_menu_modal_content_menu'>
-                  <li className='navbar_moblie_menu_modal_products'>
+            <div className='navbar_mobile_menu_modal_content_wrapper'>
+              <div className='navbar_mobile_menu_modal_content_container'>
+                <ul className='navbar_mobile_menu_modal_content_menu'>
+                  <li className='navbar_mobile_menu_modal_products'>
                     <Link href="/products" onClick={handleCloseMobileModal}>PRODUCTS</Link>
                   </li>
-                  <nav className='navbar_moblie_menu_modal_product_links'>
+                  <nav className='navbar_mobile_menu_modal_product_links'>
                     <Link href="/products/dumplings-beef-&-cheese" onClick={handleCloseMobileModal}>DUMPLINGS</Link>
                     <Link href="/products/gyoza-beef-&-cheese" onClick={handleCloseMobileModal}>GYOZAS</Link>
                     <Link href="/products/sauces-sauce-bundle" onClick={handleCloseMobileModal}>SAUCES</Link>
                   </nav>
                 </ul>
-                <ul className='navbar_moblie_menu_modal_content_secondary_menu'>
+                <ul className='navbar_mobile_menu_modal_content_secondary_menu'>
                   <li><Link href='/blog/aboutus' onClick={handleCloseMobileModal}>ABOUT US</Link></li>
                   {/* <li><Link href='/blog/press' onClick={handleCloseMobileModal}>PRESS</Link></li> */}
                   <li><Link href='/shipping' onClick={handleCloseMobileModal}>SHIPPING</Link></li>
                   <li><Link href='/account' onClick={handleCloseMobileModal}>MY ACCOUNT</Link></li>
                   <li><Link href='/faq' onClick={handleCloseMobileModal}>FAQ</Link></li>
                 </ul>
-                <div className='navbar_moblie_menu_modal_footer'>
-                  <Link className='navbar_moblie_menu_modal_footer_button' href='/products'>SHOP ALL PRODUCTS</Link>
-                  <h4 className='navbar_moblie_menu_modal_footer_text'>FREE SHIPPING ON ORDERS OVER $99+</h4>
+                <div className='navbar_mobile_menu_modal_footer'>
+                  <Link className='navbar_mobile_menu_modal_footer_button' href='/products'>SHOP ALL PRODUCTS</Link>
+                  <h4 className='navbar_mobile_menu_modal_footer_text'>FREE SHIPPING ON ORDERS OVER $99+</h4>
                 </div>
               </div>
             </div>
@@ -172,8 +172,8 @@ const Navbar = () => {
                 </div>
                 <div className='navbar_middle_more_wrapper'>
                   <div className='navbar_middle_more_container'>
-                    <div className='navbar_middle_button_moblie' onClick={() => setShowMobileModal(true)}>
-                      <i className='navbar_middle_button_moblie_image'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></i>
+                    <div className='navbar_middle_button_mobile' onClick={() => setShowMobileModal(true)}>
+                      <i className='navbar_middle_button_mobile_image'><FontAwesomeIcon icon={faBars}></FontAwesomeIcon></i>
                     </div>
                     <div className='navbar_middle_button' onMouseEnter={() => setMoreHover(true)} onMouseLeave={() => setMoreHover(false)}>
                       <span className='navbar_middle_button_text'>MORE </span>
@@ -206,7 +206,7 @@ const Navbar = () => {
           </div>
         </header>
         {handleCartModal()}
-        {handleMoblieModal()}
+        {handleMobileModal()}
       </div>
     </div>
   )

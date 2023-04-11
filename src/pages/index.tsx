@@ -39,7 +39,7 @@ const Home: NextPage = () => {
                 <br />
                 {`DUMPLINGS BACK.`}
               </h1>
-              <div className="featured_product_image_container_moblie">
+              <div className="featured_product_image_container_mobile">
                 <img
                   src="//cdn.shopify.com/s/files/1/0042/3834/4321/files/assets_bc154811e83d4532a4f4f57c9d96f6c3_a16e5f1e74a34f049e81832530bf9734.png?v=1670451362"
                   alt="featured product image"
@@ -77,7 +77,7 @@ const Home: NextPage = () => {
       <div className="top3_products_container">
         <h3>{`EASY, FAST, DELISH.`}</h3>
         <div className="product_carousel_container">
-          <div className='product_carousel_cards_moblie'>
+          <div className='product_carousel_cards_mobile'>
             <div className="product_card_container">
               <div className='product_card_wrapper'>
                 <div className="product_card_image">
