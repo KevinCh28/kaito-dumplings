@@ -784,10 +784,25 @@
   padding-bottom: 90px;
 }
 
+@media only screen and (max-width: 480px) {
+  .product_show_page_origin_info_container {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .product_show_page_origin_content_container {
   max-width: 605px;
   width: 60%;
   padding-right: 50px;
+}
+
+@media only screen and (max-width: 480px) {
+  .product_show_page_origin_content_container {
+    width: 100%;
+    padding: 5%;
+  }
 }
 
 .product_show_page_origin_content_header {
@@ -804,6 +819,14 @@
   background-image: url("https://cdn.shopify.com/s/files/1/0042/3834/4321/files/XLB-chinese.png?v=1664395286");
 }
 
+@media only screen and (max-width: 480px) {
+  .product_show_page_origin_content_header {
+    padding-top: 80px;
+    background-size: 100%;
+    background-position: 0 0;
+  }
+}
+
 .product_show_page_origin_content_body {
   margin: 0;
   font-size: 16px;
@@ -813,6 +836,13 @@
   max-width: 530px;
   width: 50%;
   padding-right: 32px;
+}
+
+@media only screen and (max-width: 480px) {
+  .product_show_page_origin_image_container {
+    width: 100%;
+    padding: 5%;
+  }
 }
 
 .product_show_page_origin_image {
