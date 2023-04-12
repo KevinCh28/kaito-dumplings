@@ -1,5 +1,6 @@
 .shipping_page_container {
   background-color: rgb(212, 255, 208);
+  padding-bottom: 5px;
 }
 
 .shipping_banner_container {
@@ -16,6 +17,14 @@
   line-height: 1;
   max-width: 850px;
   letter-spacing: -1px;
+}
+
+@media only screen and (max-width: 480px) {
+  .shipping_banner_header {
+    margin-left: 0;
+    padding: 5%;
+    font-size: 40px;
+  }
 }
 
 .shipping_banner_header span {
@@ -81,6 +90,13 @@
   padding: 0 30px;
 }
 
+@media only screen and (max-width: 480px) {
+  .shipping_info_wrapper {
+    margin: 0;
+    padding: 0 5%;
+  }
+}
+
 .shipping_info_header {
   max-width: 865px;
   margin-bottom: 50px;
@@ -92,10 +108,23 @@
   color: #e00000;
 }
 
+@media only screen and (max-width: 480px) {
+  .shipping_info_header {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+}
+
 .shipping_info_text {
   max-width: 615px;
   font-size: 30px;
   color: #e00000;
+}
+
+@media only screen and (max-width: 480px) {
+  .shipping_info_text {
+    font-size: 20px;
+  }
 }
 
 .shipping_info_text p {
