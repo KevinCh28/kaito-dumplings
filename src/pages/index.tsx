@@ -339,9 +339,9 @@ const Home: NextPage = () => {
 
       <div className="shop_gyozas_container">
         <section>
-          <div className='shop_gyoza_image_container'>
-            <Link href="/products/gyoza-beef-&-cheese">
-              <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/topdown-edited_2_bcefcd16-4d37-494e-afd9-86a87317b0df_720x_1_1512x.jpg?v=1665763652" alt="gyozas" />
+          <div className='shop_gyoza_image_wrapper'>
+            <Link className='shop_gyoza_image_container' href="/products/gyoza-beef-&-cheese">
+              <img className='shop_gyoza_image' src="https://cdn.shopify.com/s/files/1/0042/3834/4321/files/topdown-edited_2_bcefcd16-4d37-494e-afd9-86a87317b0df_720x_1_1512x.jpg?v=1665763652" alt="gyozas" />
             </Link>
             <div className="shop_gyozas_info_container">
               <div className='shop_gyoza_info_wrapper'>
@@ -436,7 +436,7 @@ const Home: NextPage = () => {
         </div>
       </div>
 
-      <div className="featured-blog-post-block">
+      {/* <div className="featured-blog-post-block">
         <div className="featured-blog-post">
           <div className="featured-blog-post-image">
             <div>
@@ -457,7 +457,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="contact_us_container">
         <div className="contact_us_wrapper">
@@ -466,9 +466,9 @@ const Home: NextPage = () => {
               <h3>{`QUESTIONS, COMMENTS, FEEDBACK?`}</h3>
             </div>
             <form className='contact_us_form' method="POST" action="https://formsubmit.co/kaitodumplings@gmail.com">
-              <input type="text" placeholder='Name' value={formName} onChange={handleChange} name='formName'/>
-              <input type="email" placeholder='Email' value={formEmail} onChange={handleChange} name='formEmail'/>
-              <input type="text" placeholder='What can we do for you?' value={formQuestion} onChange={handleChange} name='formQuestion'/>
+              <input className='contact_us_form_input' type="text" placeholder='Name' value={formName} onChange={handleChange} name='formName'/>
+              <input className='contact_us_form_input' type="email" placeholder='Email' value={formEmail} onChange={handleChange} name='formEmail'/>
+              <input className='contact_us_form_input' type="text" placeholder='What can we do for you?' value={formQuestion} onChange={handleChange} name='formQuestion'/>
               <button type="submit">GET IN TOUCH</button>
             </form>
           </div>
