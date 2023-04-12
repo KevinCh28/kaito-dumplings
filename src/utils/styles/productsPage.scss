@@ -20,6 +20,12 @@
   background-repeat: repeat-x;
 }
 
+@media only screen and (max-width: 480px) {
+  .products_page_products_wrapper {
+    padding: 40px 0px 200px 0px;
+  }
+}
+
 .products_page_products_container {
   padding: 0;
 }
@@ -61,6 +67,12 @@
   padding: 0 30px;
 }
 
+@media only screen and (max-width: 480px) {
+  .title_with_mini_images {
+    padding: 0 5%;
+  }
+}
+
 .title_with_mini_images_container {
   display: flex;
   width: 100%;
@@ -86,9 +98,27 @@
   margin-right: 30px;
 }
 
+@media only screen and (max-width: 480px) {
+  .title_with_mini_image {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .title_with_mini_image:nth-child(1) {
+    padding-left: 10%;
+  }
+}
+
 .title_with_mini_image img {
   vertical-align: middle;
   max-width: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+  .title_with_mini_image img {
+    width: 70%;
+  }
 }
 
 .title_with_mini_image_text h5 {
@@ -98,6 +128,12 @@
   font-size: 18px;
   line-height: 130%;
   text-align: center;
+}
+
+@media only screen and (max-width: 480px) {
+  .title_with_mini_image_text h5 {
+    font-size: 16px;
+  }
 }
 
 .products_page_items_wrapper {
@@ -485,13 +521,21 @@
   background-repeat: no-repeat;
 }
 
+@media only screen and (max-width: 480px) {
+  .products_page_subscribe_container {
+    background-size: 100%;
+    background-position-x: center;
+    background-position-y: bottom;
+  }
+}
+
 .products_page_subscribe {
   max-width: 1350px;
   width: 100%;
   padding: 0 30px;
   padding-top: 6.3%;
   padding-bottom: 450px;
-  margin: 0 auto!important;
+  margin: 0;
 }
 
 .products_page_subscribe_content {
@@ -503,6 +547,12 @@
   text-align: left;
   line-height: 1;
   letter-spacing: -1px;
+}
+
+@media only screen and (max-width: 480px) {
+  .products_page_subscribe_content {
+    font-size: 40px;
+  }
 }
 
 .products_page_subscribe_button {
@@ -519,4 +569,13 @@
   font-weight: 500;
   color: #1b2137;
   background-position: 15px center;
+}
+
+@media only screen and (max-width: 480px) {
+  .products_page_subscribe_button {
+    margin-top: 0;
+    padding-left: 10px;
+    background-position: 0 center;
+    background-size: 100%;
+  }
 }
