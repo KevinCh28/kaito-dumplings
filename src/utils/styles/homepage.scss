@@ -565,7 +565,6 @@
 }
 
 .product_card_price_and_button {
-	margin-left: 15px;
   width: 100%;
 }
 
@@ -598,6 +597,7 @@
   left: 0;
   transition: color 0.2s ease;
   margin-top: 6px;
+  text-align: center;
 }
 
 @media screen and (min-width: 1024px) {
