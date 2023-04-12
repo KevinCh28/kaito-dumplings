@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Cart from '../../components/cart/cart';
 import CartUnAuth from '../../components/cartUnAuth/cartUnAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus, faX, faChevronLeft, faChevronRight, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faX, faChevronLeft, faChevronRight, faArrowLeft, faArrowRight, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 const DumplingsBeefCheese = () => {
@@ -348,7 +348,27 @@ const DumplingsBeefCheese = () => {
                           <div className='roduct_page_info_header_price'>${product.price}</div>
                         </div>
                         <Link className='product_page_info_header_reviews_container' href="">
-                          <img src="" alt="STARS" />
+                          <div className='products_page_product_rating_container'>
+                            <div className='products_page_product_ratings'>
+                              <div className='products_page_product_rating'>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           <span className='product_page_info_header_reviews_text'>
                             <span className='product_page_info_header_reviews_text_left'>3497 </span>
                             <span className='product_page_info_header_reviews_text_right'>Reviews</span>
@@ -640,7 +660,7 @@ const DumplingsBeefCheese = () => {
               <h3 className='product_show_page_origin_content_header'>THE ORIGIN OF SOUP DUMPLINGS</h3>
               <div>
                 <p className='product_show_page_origin_content_body'>
-                  Soup dumplings (小笼包, Xiao Long Bao) originate in Shanghai, where they’re the stuff of legend: some focus on a royal Chinese emperor who traveled by river for a taste of these steamed delicacies; others involve an inventive chef looking to wow his guests with this new creation. While their true history may never be known, we can all agree on one thing: We love having soup dumplings ready at home in just 10 minutes!
+                  Soup dumplings (小笼包, Xiao Long Bao) originate in Shanghai, where they&apos;re the stuff of legend: some focus on a royal Chinese emperor who traveled by river for a taste of these steamed delicacies; others involve an inventive chef looking to wow his guests with this new creation. While their true history may never be known, we can all agree on one thing: We love having soup dumplings ready at home in just 10 minutes!
                 </p>
               </div>
             </div>

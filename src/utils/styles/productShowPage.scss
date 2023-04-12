@@ -322,6 +322,7 @@
   justify-content: space-between;
   margin-top: 16px;
   color: #FA0F0C;
+  align-items: end;
 }
 
 .product_page_info_header_price_container {
@@ -338,7 +339,7 @@
 }
 
 .product_page_info_header_reviews_container {
-  align-items: center;
+  align-items: end;
   justify-content: center;
   display: flex;
   transition: color 0.2 ease;
@@ -1081,4 +1082,9 @@
 .product_page_images_modal_prev:hover,
 .product_page_images_modal_next:hover {
   opacity: 1;
+}
+
+.product_page_product_rating_star {
+  margin: 0;
+  padding: 0;
 }

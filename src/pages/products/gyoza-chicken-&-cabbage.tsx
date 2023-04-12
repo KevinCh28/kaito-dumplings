@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from 'react';
 import Cart from '../../components/cart/cart';
 import CartUnAuth from '../../components/cartUnAuth/cartUnAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus, faX, faChevronLeft, faChevronRight, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faX, faChevronLeft, faChevronRight, faArrowLeft, faArrowRight, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 const GyozaChickenCabbage = () => {
@@ -335,7 +335,27 @@ const GyozaChickenCabbage = () => {
                           <div className='roduct_page_info_header_price'>${product.price}</div>
                         </div>
                         <Link className='product_page_info_header_reviews_container' href="">
-                          <img src="" alt="STARS" />
+                          <div className='products_page_product_rating_container'>
+                            <div className='products_page_product_ratings'>
+                              <div className='products_page_product_rating'>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                                <div className='product_page_product_rating_star'>
+                                  <i><FontAwesomeIcon icon={faStar}></FontAwesomeIcon></i>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           <span className='product_page_info_header_reviews_text'>
                             <span className='product_page_info_header_reviews_text_left'>3497 </span>
                             <span className='product_page_info_header_reviews_text_right'>Reviews</span>
