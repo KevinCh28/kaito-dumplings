@@ -267,7 +267,7 @@
   justify-content: center;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 768px) {
   .product_carousel_cards_mobile {
     display: block;
   }
@@ -344,6 +344,12 @@
   align-items: flex-end;
   flex-grow: 1;
   width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .product_card_image {
+    justify-content: center;
+  }
 }
 
 @media screen and (max-width: 1660px) {
