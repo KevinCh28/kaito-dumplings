@@ -11,6 +11,7 @@
   margin: -0.25em 0;
   position: relative;
   margin-left: 355px;
+  padding-top: 100px;
   font-weight: 700;
   font-size: 80px;
   text-align: left;
@@ -19,9 +20,17 @@
   letter-spacing: -1px;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 768px) {
   .shipping_banner_header {
     margin-left: 0;
+    padding: 15%;
+    font-size: 60px;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .shipping_banner_header {
     padding: 5%;
     font-size: 40px;
   }

@@ -5,7 +5,7 @@ const Shipping: NextPage = () => {
   // Should move this to navbar component and use if statement for each page to change background color and title accordingly
   useEffect(() => {
     document.title = 'Kaito | Shipping Info';
-    const element = window.document.getElementsByClassName('navbar_main')[0] as HTMLDivElement;
+    const element = window.document.getElementsByClassName('off_canvas_main_content')[0] as HTMLDivElement;
     element.style.backgroundColor = 'rgb(212, 255, 208)';
   }, []);
 
