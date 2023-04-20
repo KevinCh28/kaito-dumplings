@@ -159,6 +159,13 @@ const SauceBundle = () => {
       }).then(() => {
         setShowModal(true);
       })
+    } else {
+      fetch('/api/guests', {
+        method: 'PUT',
+        body: JSON.stringify({ product: product, quantity: quantity })
+      }).then(() => {
+        setShowModal(true);
+      })
     }
   };
 

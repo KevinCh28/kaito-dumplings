@@ -150,7 +150,7 @@ const SauceBundle = () => {
     }
   };
 
-  const handleAddGyozaToCart = (e: { preventDefault: () => void; }) => {
+  const handleAddSauceToCart = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (user) {
       fetch('/api/carts', {
