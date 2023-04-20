@@ -11,4 +11,4 @@ export interface Product {
   imageUrl: string;
   category: string;
   stripeId: string;
-}
+};

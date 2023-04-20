@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useMemo } from 'react';
 import Cart from '../../components/cart/cart';
-import CartUnAuth from '@/src/components/cartUnAuth/cartUnAuth';
+import CartUnAuth from '@/components/cartUnAuth/cartUnAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus, faX, faChevronLeft, faChevronRight, faArrowLeft, faArrowRight, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useUser } from '@auth0/nextjs-auth0/client';
@@ -154,6 +154,13 @@ const SauceBundle = () => {
     e.preventDefault();
     if (user) {
       fetch('/api/carts', {
+        method: 'PUT',
+        body: JSON.stringify({ product: product, quantity: quantity })
+      }).then(() => {
+        setShowModal(true);
+      })
+    } else {
+      fetch('/api/guests', {
         method: 'PUT',
         body: JSON.stringify({ product: product, quantity: quantity })
       }).then(() => {

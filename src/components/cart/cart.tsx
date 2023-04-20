@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faLock, faMinus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { checkout } from '@/src/lib/checkout';
+import { checkout } from '@lib/checkout';
+import { Product } from '../../../types/global';
 
 const Cart = ({ onClose = () => { } }) => {
   const [recommended, setRecommended] = useState<{ [key: string]: boolean }>({
@@ -25,15 +26,7 @@ const Cart = ({ onClose = () => { } }) => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [userId, setUserId] = useState('');
-  const [products, setProducts] = useState<{
-    _id: string,
-    name: string,
-    description: string,
-    price: number,
-    imageUrl: string,
-    category: string,
-    stripeId: string,
-  }[] | null>(null);
+  const [products, setProducts] = useState<Product[] | null>(null);
 
   // Gets user's id
   // useEffect(() => {
