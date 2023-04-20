@@ -1,10 +1,5 @@
 import { jwtVerify, SignJWT } from 'jose';
 
-interface UserJwtPayload {
-  jti: string;
-  iat: number;
-};
-
 export const getJwtSecretKey = () => {
   const secret = process.env.secretOrKey as string;
   if (!secret || secret.length === 0) {

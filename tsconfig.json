@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/api/auth/[...auth0].js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./types/**/*.d.ts", "src/pages/api/auth/[...auth0].js"],
   "exclude": ["node_modules"]
 }
