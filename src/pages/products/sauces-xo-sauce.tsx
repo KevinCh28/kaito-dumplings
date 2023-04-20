@@ -420,7 +420,7 @@ const SauceBundle = () => {
                           </div>
                         </div>
                         <div className='product_page_product_addtocart_button_wrapper'>
-                          <button className='product_page_product_addtocart_button' onClick={handleAddGyozaToCart}>
+                          <button className='product_page_product_addtocart_button' onClick={handleAddSauceToCart}>
                             <span>ADD TO CART</span>
                           </button>
                         </div>
