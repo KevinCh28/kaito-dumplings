@@ -1,4 +1,5 @@
 import { jwtVerify, SignJWT } from 'jose';
+import { UserJwtPayload } from '../../types/global';
 
 export const getJwtSecretKey = () => {
   const secret = process.env.secretOrKey as string;
