@@ -43,7 +43,7 @@ const SauceBundle = () => {
   const [modalMainImage, setModalMainImage] = useState('');
   const productImages = [
     product.imageUrl,
-    "https://cdn.shopify.com/s/files/1/0042/3834/4321/products/steamer-xlb-cooked_6794ecb3-89a5-4c43-b05b-e24a5ccd4eb5_1308x.png?v=1679894378",
+    "https://eatmila.com/cdn/shop/products/pork-xlb-cooked.png?v=1681922267",
     "https://cdn.shopify.com/s/files/1/0042/3834/4321/products/Dumpling_da895546-4d79-4451-bca7-1ee347a8bf37_1308x.png?v=1679894496",
   ];
 
@@ -301,7 +301,7 @@ const SauceBundle = () => {
                         <img src={product.imageUrl} alt="" />
                       </div>
                       <div className='product_page_maincontent_sideimages_image_container' onClick={handleMainImageChange}>
-                        <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/steamer-xlb-cooked_6794ecb3-89a5-4c43-b05b-e24a5ccd4eb5_1308x.png?v=1679894378" alt="" />
+                        <img src="https://eatmila.com/cdn/shop/products/pork-xlb-cooked.png?v=1681922267" alt="" />
                       </div>
                       <div className='product_page_maincontent_sideimages_image_container' onClick={handleMainImageChange}>
                         <img src="https://cdn.shopify.com/s/files/1/0042/3834/4321/products/Dumpling_da895546-4d79-4451-bca7-1ee347a8bf37_1308x.png?v=1679894496" alt="" />
